@@ -1267,7 +1267,7 @@
   /* COUNTER ANIMATION */
   .counter { display: inline-block; }
 
-  /* RESPONSIVE */
+  /* RESPONSIVE - TABLET */
   @media (max-width: 1024px) {
     nav { padding: 1.2rem 2rem; }
     section { padding: 5rem 2rem; }
@@ -1279,21 +1279,119 @@
     .skills-grid { grid-template-columns: 1fr; }
     .speaking-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
+    .video-side-by-side { grid-template-columns: 1fr !important; }
+    .robot-images { grid-template-columns: 1fr 1fr; }
   }
 
+  /* RESPONSIVE - MOBILE */
   @media (max-width: 768px) {
-    #hero { grid-template-columns: 1fr; text-align: center; min-height: auto; padding-top: 7rem; padding-bottom: 3rem; }
-    .hero-right { order: -1; margin-bottom: 2rem; }
-    .hero-desc { margin: 0 auto 2rem; }
+    /* Base */
+    body { font-size: 15px; }
+    section { padding: 4rem 1.2rem; }
+
+    /* Nav */
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      padding: 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border2);
+      gap: 1.2rem;
+      z-index: 200;
+    }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    #hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      min-height: auto;
+      padding: 6rem 1.2rem 3rem;
+      gap: 2rem;
+    }
+    .hero-right { order: -1; }
+    .hero-desc { margin: 0 auto 2rem; max-width: 100%; }
     .hero-badges { justify-content: center; }
     .hero-actions { justify-content: center; }
-    .stats-row { max-width: 340px; }
-    .nav-links { display: none; }
-    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border2); gap: 1.2rem; }
-    .hamburger { display: flex; }
+    .hero-tag { font-size: 0.62rem; letter-spacing: 0.06em; text-align: center; }
+    .headshot-wrap { width: 200px; height: 200px; margin-bottom: 1.5rem; }
+    .headshot-img { width: 200px; height: 200px; }
+    .stats-row { max-width: 100%; gap: 0.5rem; }
+    .stat-card { padding: 0.7rem 0.5rem; }
+    .stat-number { font-size: 1.3rem; }
+    .stat-label { font-size: 0.55rem; }
+
+    /* Section headings */
+    .section-title { font-size: 1.6rem; }
+
+    /* About */
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .highlight-box { font-size: 0.75rem; }
+
+    /* Featured */
+    .featured-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .featured-bg-text { display: none; }
+    .metric-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .metric { padding: 0.8rem 0.5rem; }
+    .metric-val { font-size: 1.4rem; }
+    .metric-label { font-size: 0.58rem; }
+    .supervisor-quote { padding: 1rem; }
+    .quote-text { font-size: 0.85rem; }
+
+    /* Videos - stack vertically on mobile */
+    .video-side-by-side {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+
+    /* Robot images */
+    .robot-images { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .robot-img { aspect-ratio: 1/1; }
+
+    /* Projects */
     .projects-grid { grid-template-columns: 1fr; }
-    .metric-row { grid-template-columns: repeat(3, 1fr); }
+    .project-card { padding: 1.5rem; }
+
+    /* Skills */
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-category { padding: 1.5rem; }
+
+    /* Timeline */
     .timeline-header { flex-direction: column; gap: 0.2rem; }
+    .timeline-role { font-size: 0.95rem; }
+    .timeline-date { white-space: normal; }
+    .timeline-item { padding-left: 1.8rem; }
+
+    /* Publications */
+    .pub-card { padding: 1.5rem; }
+
+    /* Speaking */
+    .speaking-grid { grid-template-columns: 1fr; }
+
+    /* Testimonials */
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card { padding: 1.5rem; }
+
+    /* Contact */
+    .contact-title { font-size: 2rem; }
+    .contact-links { gap: 0.6rem; }
+    .contact-link { padding: 0.6rem 1rem; font-size: 0.72rem; }
+    .visa-note { font-size: 0.68rem; padding: 0.4rem 0.7rem; }
+    .contact-email-big { font-size: 0.9rem; word-break: break-all; }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem 1.2rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
   }
 </style>
 </head>
@@ -1441,6 +1539,8 @@
       <p class="featured-desc">
         The study developed novel gesture-based and verbal communication modalities, testing their 
         combined effect on perceived robot trustworthiness using the validated RoSAS scale. 
+        Over 200 pre-study validation trials were conducted across both platforms to ensure 
+        consistent, repeatable robot behaviour before the formal n=20 participant experiment began. 
         Results showed a statistically significant improvement in companionship metrics, 
         with 98% intent clarity across structured interaction trials.
       </p>
@@ -1451,12 +1551,22 @@
         </div>
         <div class="metric">
           <div class="metric-val">200+</div>
-          <div class="metric-label">User Trials</div>
+          <div class="metric-label">Validation Trials</div>
         </div>
         <div class="metric">
           <div class="metric-val">98%</div>
           <div class="metric-label">Intent Clarity</div>
         </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border2);border-left:3px solid var(--cyan);border-radius:4px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">Platform Note</div>
+        <p style="font-size:0.85rem;color:var(--text-dim);font-weight:300;line-height:1.8;">
+          Both the <strong style="color:var(--white)">iCub</strong> and <strong style="color:var(--white)">JD EZ-Robot</strong> humanoids were used during platform testing and validation. 
+          Early trials revealed that iCub's hyper-realistic appearance caused participants to experience discomfort, 
+          a well-documented phenomenon known as the <strong style="color:var(--white)">uncanny valley effect</strong>. 
+          To ensure valid trust measurements, the formal study proceeded with the JD humanoid, 
+          whose more stylised appearance produced natural, unguarded responses from participants.
+        </p>
       </div>
       <div class="supervisor-quote">
         <div class="quote-text">
@@ -1469,7 +1579,7 @@
     </div>
     <div class="featured-right reveal">
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div class="video-side-by-side" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
         <div>
           <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">Phase 1 · Verbal Communication</div>
           <div style="position:relative;width:100%;padding-bottom:177%;border-radius:4px;overflow:hidden;border:1px solid var(--border);">
@@ -1547,9 +1657,9 @@
       <div class="project-icon">🛡️</div>
       <div class="project-name">ROS2 LLM Safety Verifier</div>
       <div class="project-desc">
-        Real-time LLM hallucination detector for Nav2 that prevents unsafe trajectory 
-        commands from reaching robot hardware. Tested on TurtleBot3 with Jetson Orin Nano 
-        at under 50ms detection latency across 103 trials.
+        Built a real-time LLM hallucination detector for ROS2 Nav2 that intercepts unsafe trajectory 
+        commands before they reach robot hardware. Validated on TurtleBot3 with Jetson Orin Nano, 
+        catching 94% of unsafe trajectories at under 50ms latency across 103 trials.
       </div>
       <div class="project-metrics">
         <span class="project-metric">94% unsafe trajectory catch</span>
@@ -1768,10 +1878,13 @@
     <h2 class="section-title">Research Output</h2>
   </div>
   <div class="pub-card reveal">
-    <div class="pub-title">Human-Robot Interaction for Companionship: Verbal and Non-Verbal Intent Communication on Humanoid Platforms</div>
+    <div class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</div>
     <div class="pub-authors">Kazmi, M. &amp; Holthaus, P. (2025)</div>
-    <div class="pub-venue">Manuscript in Preparation</div>
-    <span class="pub-status status-prep">In Preparation</span>
+    <div class="pub-venue">Preprint · Target: IEEE RO-MAN 2026</div>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:0.8rem;">
+      <span class="pub-status status-prep">Under Review</span>
+      <a href="https://drive.google.com/file/d/1ad4We5Peno_CuYsWLHR3bOJ_V8XRPpMw/view?usp=sharing" target="_blank" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--cyan);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:2px;transition:all 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.1)'" onmouseout="this.style.background='transparent'">↗ Read Paper</a>
+    </div>
   </div>
 </section>
 
@@ -1851,7 +1964,7 @@
     <div class="contact-links">
       <a href="mailto:munawarsaeedkazmi1@gmail.com" class="contact-link">✉ Email</a>
       <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" class="contact-link">in LinkedIn</a>
-      <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">⌥ GitHub</a>
+      <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">&lt;/&gt; GitHub</a>
       <a href="https://medium.com/@munawarkazmi" target="_blank" class="contact-link">✍ Medium</a>
       <a href="https://drive.google.com/file/d/1J70c0se8TjlevHMe6r9_nKfJTxuDu18f/view?usp=sharing" target="_blank" class="contact-link">↓ Download CV</a>
     </div>
