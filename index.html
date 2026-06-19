@@ -3,1910 +3,1328 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Munawar Kazmi | Robotics Systems Engineer. MSc AI & Robotics (Commendation), University of Hertfordshire. HRI, ROS2, Edge AI, C++. Available for sponsored roles in UK, EU, USA.">
-<meta property="og:title" content="Munawar Kazmi | Robotics Systems Engineer">
-<meta property="og:description" content="HRI research, ROS2, Edge AI deployment. 30% trust improvement on iCub humanoid. Open to sponsored roles globally.">
-<title>Munawar Kazmi | Robotics Systems Engineer</title>
+<meta name="description" content="Munawar Kazmi · Robotics & AI Research Engineer. MSc AI & Robotics (Commendation), University of Hertfordshire. Human-robot interaction, sim-to-real transfer, edge AI deployment.">
+<meta property="og:title" content="Munawar Kazmi · Robotics & AI Research Engineer">
+<meta property="og:description" content="HRI research on humanoid platforms, sim-to-real pipelines, deployed embedded AI. MSc (Commendation), University of Hertfordshire.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/headshot.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://munawarkazmi.com">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Munawar Kazmi · Robotics &amp; AI Research Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080d1a;
-    --bg2: #0d1425;
-    --bg3: #111c30;
-    --card: #0f1828;
-    --border: rgba(0, 212, 255, 0.12);
-    --border2: rgba(0, 212, 255, 0.06);
-    --cyan: #00d4ff;
-    --cyan-dim: rgba(0, 212, 255, 0.15);
-    --cyan-glow: rgba(0, 212, 255, 0.25);
-    --amber: #f59e0b;
-    --amber-dim: rgba(245, 158, 11, 0.15);
-    --text: #e8eef8;
-    --text-dim: #8a9ab8;
-    --text-muted: #4a5a78;
-    --white: #f0f4ff;
-    --font-display: 'Syne', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-body: 'DM Sans', sans-serif;
+    --ink: #0A0A0C;
+    --ink2: #121214;
+    --ink3: #18181B;
+    --paper: #F7F5F0;
+    --accent: #C9A876;
+    --accent-soft: rgba(201, 168, 118, 0.12);
+    --accent-line: rgba(201, 168, 118, 0.25);
+    --text-primary: #EDEAE3;
+    --text-dim: #9C988F;
+    --text-faint: #8B877D;
+    --hairline: rgba(237, 234, 227, 0.09);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--ink);
+    color: var(--text-primary);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-weight: 300;
     line-height: 1.7;
     overflow-x: hidden;
   }
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
 
-  /* NOISE TEXTURE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--text-faint); border-radius: 3px; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
-  /* NAV */
+  /* ============ NAV ============ */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(8, 13, 26, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border2);
+    padding: 1.6rem 4rem;
+    background: rgba(10, 10, 12, 0.78);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--cyan);
-    letter-spacing: 0.08em;
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     text-decoration: none;
+    color: var(--text-primary);
   }
 
   .nav-links {
     display: flex;
-    gap: 2.5rem;
+    align-items: center;
+    gap: 2.6rem;
     list-style: none;
   }
 
   .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.86rem;
+    font-weight: 400;
     color: var(--text-dim);
     text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
+    letter-spacing: 0.01em;
+    transition: color 0.25s ease;
   }
 
-  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover { color: var(--text-primary); }
 
   .nav-cta {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--cyan) !important;
-    border: 1px solid var(--border);
-    padding: 0.4rem 1.2rem;
-    border-radius: 2px;
-    transition: background 0.2s, color 0.2s !important;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--ink) !important;
+    background: var(--accent);
+    padding: 0.55rem 1.3rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: opacity 0.25s ease;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    cursor: pointer;
   }
 
-  .nav-cta:hover {
-    background: var(--cyan-dim) !important;
-    color: var(--white) !important;
-  }
-
-  /* HERO */
+  /* ============ HERO ============ */
   #hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 0 4rem;
-    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 4rem 4rem;
     position: relative;
-    overflow: hidden;
   }
 
-  .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
+  .hero-inner { max-width: 1180px; margin: 0 auto; width: 100%; position: relative; }
 
-  .hero-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
-    top: 50%;
-    right: -100px;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .hero-glow-2 {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
-    bottom: 0;
-    left: 10%;
-    pointer-events: none;
-  }
-
-  .hero-left { position: relative; z-index: 2; }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--cyan);
-    letter-spacing: 0.12em;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--border);
-    padding: 0.35rem 0.8rem;
-    border-radius: 2px;
-    background: var(--cyan-dim);
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--cyan);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
+  .hero-eyebrow {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.15s ease forwards;
   }
 
   .hero-name {
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    font-weight: 800;
+    font-optical-sizing: auto;
+    font-size: clamp(2.6rem, 6vw, 5.4rem);
+    font-weight: 400;
     line-height: 1.05;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    max-width: 880px;
+    margin-bottom: 1.9rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.32s ease forwards;
   }
 
-  .hero-name span { color: var(--cyan); }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 600;
-    color: var(--text-dim);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.01em;
+  .hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
   }
 
   .hero-desc {
-    font-size: 1rem;
-    color: var(--text-dim);
-    max-width: 520px;
-    margin-bottom: 2rem;
-    line-height: 1.8;
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
     font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin-bottom: 2.6rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s ease forwards;
   }
 
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-  }
+  .hero-desc strong { color: var(--text-primary); font-weight: 500; }
 
-  .badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.3rem 0.7rem;
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-  }
-
-  .badge-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
-  .badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
-  .badge-dim { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.08); }
-
-  .hero-actions {
+  .hero-cta-row {
     display: flex;
     gap: 1rem;
+    align-items: center;
     flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.68s ease forwards;
   }
 
   .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--cyan);
-    color: var(--bg);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     font-weight: 500;
-    padding: 0.85rem 2rem;
-    border-radius: 2px;
+    color: var(--ink);
+    background: var(--accent);
+    padding: 0.85rem 1.8rem;
+    border-radius: 3px;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-    box-shadow: 0 0 20px rgba(0,212,255,0.3);
+    letter-spacing: 0.01em;
+    transition: opacity 0.25s ease;
+    display: inline-block;
   }
-
-  .btn-primary:hover {
-    background: var(--white);
-    box-shadow: 0 0 30px rgba(0,212,255,0.5);
-    transform: translateY(-1px);
-  }
+  .btn-primary:hover { opacity: 0.85; }
 
   .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 0.85rem 2rem;
-    border-radius: 2px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: transparent;
+    padding: 0.85rem 1.8rem;
+    border: 1px solid var(--text-faint);
+    border-radius: 3px;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    transition: border-color 0.25s ease;
+    display: inline-block;
   }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-  .btn-secondary:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-dim);
-  }
-
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .headshot-wrap {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    margin-bottom: 2rem;
-  }
-
-  .headshot-ring {
+  .gesture-line {
     position: absolute;
-    inset: -12px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    animation: spin 20s linear infinite;
-  }
-
-  .headshot-ring::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: var(--cyan);
-    border-radius: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 10px var(--cyan);
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .headshot-img {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center top;
-    border: 3px solid var(--bg3);
-    filter: grayscale(15%);
-    transition: filter 0.3s;
-  }
-
-  .headshot-img:hover { filter: grayscale(0%); }
-
-  .headshot-glow {
-    position: absolute;
-    inset: -20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px;
+    height: 340px;
+    opacity: 0;
+    animation: fadeIn 1.4s 1s ease forwards;
     pointer-events: none;
   }
-
-  /* STATS ROW */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    width: 100%;
-    max-width: 380px;
+  .gesture-line svg { width: 100%; height: 100%; }
+  .gesture-path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1;
+    stroke-linecap: round;
+    opacity: 0.5;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: draw 2.2s 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  .gesture-dot {
+    fill: var(--accent);
+    opacity: 0;
+    animation: dotFade 0.6s 3.2s ease forwards;
   }
 
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 1rem;
-    text-align: center;
-    transition: border-color 0.2s;
-  }
-
-  .stat-card:hover { border-color: var(--border); }
-
-  .stat-number {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--cyan);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* SECTION STYLES */
-  section { padding: 6rem 4rem; }
-
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--cyan);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
+  .stat-row {
     display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    gap: 3.2rem;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--hairline);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.86s ease forwards;
   }
 
-  .section-tag::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--cyan);
+  .stat { display: flex; flex-direction: column; gap: 0.3rem; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 400;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    max-width: 160px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes dotFade { to { opacity: 0.9; } }
+
+  /* ============ SECTION SCAFFOLDING ============ */
+  section { padding: 7rem 0; position: relative; }
+
+  .eyebrow {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
   }
 
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
+    font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+    font-weight: 400;
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 1.2rem;
   }
 
-  .section-subtitle {
-    color: var(--text-dim);
-    font-size: 1rem;
+  .section-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+  .section-lede {
+    font-size: 1.02rem;
     font-weight: 300;
-    max-width: 600px;
-    margin-bottom: 3rem;
-    line-height: 1.8;
+    color: var(--text-dim);
+    max-width: 560px;
+    line-height: 1.7;
   }
 
-  /* ABOUT */
-  #about { background: var(--bg2); }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ============ ABOUT ============ */
+  #about { background: var(--ink2); }
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
     align-items: start;
   }
 
   .about-text p {
-    color: var(--text-dim);
+    font-size: 1.02rem;
     font-weight: 300;
-    line-height: 1.9;
-    margin-bottom: 1.2rem;
-    font-size: 0.98rem;
-  }
-
-  .about-text p strong {
-    color: var(--white);
-    font-weight: 500;
-  }
-
-  .highlight-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--cyan);
-    border-radius: 4px;
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
     color: var(--text-dim);
-    line-height: 1.7;
-  }
-
-  .highlight-box strong { color: var(--cyan); }
-
-  .about-right { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .edu-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 1.5rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .edu-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--cyan);
-  }
-
-  .edu-card:hover { border-color: var(--border); transform: translateX(4px); }
-
-  .edu-degree {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-  }
-
-  .edu-school {
-    font-size: 0.88rem;
-    color: var(--cyan);
-    margin-bottom: 0.2rem;
-  }
-
-  .edu-meta {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-
-  .edu-badge {
-    display: inline-block;
-    margin-top: 0.6rem;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    border-radius: 2px;
-    letter-spacing: 0.06em;
-  }
-
-  /* FEATURED PROJECT */
-  #featured { background: var(--bg); position: relative; overflow: hidden; }
-
-  .featured-bg-text {
-    position: absolute;
-    top: 50%;
-    right: -2%;
-    transform: translateY(-50%);
-    font-family: var(--font-display);
-    font-size: 14rem;
-    font-weight: 800;
-    color: rgba(0,212,255,0.03);
-    letter-spacing: -0.05em;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .featured-left {}
-
-  .featured-tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .featured-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
-  }
-
-  .featured-desc {
-    color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.9;
-    margin-bottom: 1.5rem;
-    font-size: 0.97rem;
-  }
-
-  .metric-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .metric {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 1.2rem 1rem;
-    text-align: center;
-  }
-
-  .metric-val {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--amber);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .metric-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .featured-right {}
-
-  .video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    margin-bottom: 1.5rem;
-  }
-
-  .video-container iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .robot-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-  }
-
-  .robot-img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid var(--border2);
-    transition: border-color 0.2s, transform 0.2s;
-    filter: grayscale(10%);
-  }
-
-  .robot-img:hover { border-color: var(--border); transform: scale(1.01); filter: grayscale(0%); }
-
-  .supervisor-quote {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--amber);
-    border-radius: 4px;
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .quote-text {
-    font-style: italic;
-    color: var(--text-dim);
-    font-size: 0.92rem;
     line-height: 1.8;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.4rem;
   }
 
-  .quote-author {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--amber);
-    letter-spacing: 0.05em;
-  }
+  .about-text strong { color: var(--text-primary); font-weight: 500; }
 
-  /* PROJECTS */
-  #projects { background: var(--bg2); }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
+  .about-credentials {
     display: flex;
     flex-direction: column;
+    gap: 1.6rem;
   }
 
-  .project-card::after {
-    pointer-events: none;
-    content: '';
+  .about-photo {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+  }
+
+  .about-photo img {
+    width: 100%;
+    display: block;
+    filter: grayscale(25%) contrast(1.05) brightness(0.96);
+  }
+
+  .credential {
+    border-left: 1px solid var(--accent-line);
+    padding-left: 1.4rem;
+  }
+
+  .credential-degree {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .credential-meta {
+    font-size: 0.86rem;
+    color: var(--text-dim);
+  }
+
+  .dual-track {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .track-card {
+    background: var(--ink3);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 1.6rem 1.7rem;
+  }
+
+  .track-label {
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .track-text {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 980px) {
+    .wrap, nav, #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .dual-track { grid-template-columns: 1fr; }
+    .gesture-line { display: none; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      background: var(--ink2);
+      border-bottom: 1px solid var(--hairline);
+      padding: 0.5rem 1.5rem 1.2rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; padding: 0.75rem 0; border-bottom: 1px solid var(--hairline); }
+    .nav-links li:last-child { border-bottom: none; padding-top: 1rem; }
+    .nav-links a { display: block; }
+    .nav-cta { display: inline-block; }
+    .nav-toggle { display: block; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Syed Munawar Saeed Kazmi",
+  "alternateName": "Munawar Kazmi",
+  "url": "https://munawarkazmi.com",
+  "image": "https://munawarkazmi.com/assets/headshot.jpg",
+  "jobTitle": "Robotics & AI Research Engineer",
+  "email": "mailto:munawarsaeedkazmi1@gmail.com",
+  "alumniOf": [
+    {"@type": "CollegeOrUniversity", "name": "University of Hertfordshire"},
+    {"@type": "CollegeOrUniversity", "name": "National University of Sciences and Technology"}
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/munawar-kazmi/",
+    "https://github.com/munawarkazmi",
+    "https://medium.com/@munawarkazmi"
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-name">Munawar Kazmi</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">ROBOTICS &amp; AI RESEARCH ENGINEER</div>
+    <h1 class="hero-name">Teaching robots to say <em>what they mean</em>, clearly enough to trust.</h1>
+    <p class="hero-desc">
+      I research and build the systems that let humanoid robots communicate their intentions to people, from sim-to-real pipelines on real hardware to deployed embedded AI. <strong>MSc AI &amp; Robotics (Commendation)</strong>, University of Hertfordshire.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#research" class="btn-primary">View Research</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Intent clarity in verbal HRI condition, RoSAS-validated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">d&nbsp;=&nbsp;0.58</div>
+        <div class="stat-label">Effect size, verbal vs. gestural communication</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Humanoid platforms engineered, iCub &amp; JD</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gesture-line">
+    <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+      <path class="gesture-path" d="M 50 260 Q 110 90 190 110 T 300 75" />
+      <circle class="gesture-dot" cx="300" cy="75" r="4" />
+      <circle class="gesture-dot" cx="50" cy="260" r="3" style="animation-delay: 1.3s;" />
+    </svg>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">ABOUT</div>
+      <h2 class="section-title">Engineer first. <em>Researcher</em> by conviction.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I work at the boundary between robotics research and shipped engineering. My academic work asks how humanoid robots should communicate so that people trust them appropriately, not too little, not too much. My applied work has been building the embedded systems and edge AI pipelines that make robots, and the products around them, actually work in the field.</p>
+        <p>That combination shapes how I think about every project: a result only matters once it survives contact with real hardware, real users, and conditions nobody designed for in the lab. I bring the same standard to a fresh dataset on a humanoid platform as I do to firmware shipping in a safety-critical product.</p>
+        <p>I'm currently <strong>pursuing PhD research</strong> in human-robot interaction and AI reliability, while remaining <strong>open to robotics and AI engineering roles</strong> where that same standard of rigor is valued.</p>
+      </div>
+      <div class="about-credentials reveal">
+        <div class="about-photo">
+          <img src="assets/headshot.jpg" alt="Portrait of Munawar Kazmi">
+        </div>
+        <div class="credential">
+          <div class="credential-degree">MSc AI &amp; Robotics</div>
+          <div class="credential-meta">Commendation · University of Hertfordshire · 2023–2024</div>
+        </div>
+        <div class="credential">
+          <div class="credential-degree">BEng Mechatronics Engineering</div>
+          <div class="credential-meta">NUST · 2018–2022</div>
+        </div>
+        <div class="dual-track">
+          <div class="track-card">
+            <div class="track-label">FOR ACADEMIC CONTACTS</div>
+            <div class="track-text">Actively applying to PhD programmes in HRI, AI reliability, and trust calibration. Happy to share research proposals on request.</div>
+          </div>
+          <div class="track-card">
+            <div class="track-label">FOR HIRING TEAMS</div>
+            <div class="track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. UK Graduate Visa valid through September 2026.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ FEATURED RESEARCH ============ -->
+<style>
+  #research { background: var(--ink); }
+
+  .research-card {
+    margin-top: 3.5rem;
+    background: var(--ink3);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .research-card-body { padding: 3rem; }
+
+  .research-platform-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-line);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .research-title {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    max-width: 640px;
+  }
+
+  .research-supervisor {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-bottom: 1.8rem;
+  }
+
+  .research-desc {
+    font-size: 0.98rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 680px;
+    margin-bottom: 1.6rem;
+  }
+
+  .research-platform-note {
+    background: var(--ink2);
+    border-left: 2px solid var(--accent);
+    padding: 1.1rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    max-width: 680px;
+  }
+
+  .research-platform-note strong { color: var(--text-primary); font-weight: 500; }
+
+  .research-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    margin-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .research-stat {
+    background: var(--ink3);
+    padding: 1.6rem 1.8rem;
+  }
+
+  .research-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .research-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .research-quote {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .research-quote-attr {
+    margin-top: 1rem;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.84rem;
+    color: var(--text-faint);
+  }
+
+  .research-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    max-width: 680px;
+  }
+
+  .research-photo {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+  }
+
+  .research-photo img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.05);
+  }
+
+  .research-photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(10,10,12,0.88), transparent);
+    padding: 1rem 1rem 0.6rem;
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  .research-videos {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .research-videos-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.4rem;
+  }
+
+  .research-videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 480px;
+  }
+
+  .research-video {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    background: var(--ink2);
+  }
+
+  .research-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #000;
+  }
+
+  .research-video-frame iframe {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.25s;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
-  .project-card:hover {
-    border-color: var(--border);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-
-  .project-card:hover::after { opacity: 1; }
-
-  .project-icon {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-name {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.6rem;
-    line-height: 1.3;
-  }
-
-  .project-desc {
-    font-size: 0.875rem;
+  .research-video-caption {
+    padding: 0.9rem 1rem;
+    font-size: 0.8rem;
     color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 1.2rem;
-    flex: 1;
+    line-height: 1.5;
   }
 
-  .project-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1.2rem;
+  .research-video-caption strong { color: var(--text-primary); font-weight: 500; }
+
+  @media (max-width: 980px) {
+    .research-card-body { padding: 2rem; }
+    .research-stats { grid-template-columns: repeat(2, 1fr); }
   }
 
-  .project-metric {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--amber);
-    background: var(--amber-dim);
-    border: 1px solid rgba(245,158,11,0.15);
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    letter-spacing: 0.04em;
+  @media (max-width: 600px) {
+    .research-photos { grid-template-columns: 1fr; }
+    .research-videos-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 0.8rem; }
   }
+</style>
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1.2rem;
-  }
+<section id="research">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">FEATURED RESEARCH</div>
+      <h2 class="section-title">Sim-to-real HRI on <em>iCub &amp; JD</em> humanoid platforms</h2>
+      <p class="section-lede">MSc thesis research, University of Hertfordshire, on how humanoid robots should communicate need-states to build appropriate, calibrated trust.</p>
+    </div>
 
-  .project-tag {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-  }
+    <div class="research-card reveal">
+      <div class="research-card-body">
+        <span class="research-platform-tag">iCub &middot; JD Humanoid &middot; Isaac Sim &middot; ROS2</span>
+        <h3 class="research-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
+        <div class="research-supervisor">MSc Thesis &middot; University of Hertfordshire &middot; Supervised by Prof. Patrick Holthaus</div>
 
-  .project-link {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--cyan);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: gap 0.2s;
-    margin-top: auto;
-  }
+        <div class="research-photos">
+          <div class="research-photo">
+            <img src="assets/icub.jpg" alt="iCub humanoid robot platform in the lab">
+            <div class="research-photo-caption">iCub humanoid &middot; IIT</div>
+          </div>
+          <div class="research-photo">
+            <img src="assets/jd-robot.jpg" alt="JD humanoid robot platform used in the formal trust-calibration study">
+            <div class="research-photo-caption">JD humanoid &middot; EZ-Robot</div>
+          </div>
+        </div>
 
-  .project-link:hover { gap: 0.7rem; }
+        <p class="research-desc">I built a full sim-to-real pipeline across both the iCub and JD humanoid platforms, developing a high-fidelity Isaac Sim digital twin and engineering the hardware integration for both robots. The formal trust-calibration study, comparing verbal and gestural communication strategies for conveying robot need-states, was conducted on the JD platform with 20 participants in a counterbalanced, RoSAS-validated design.</p>
 
-  /* SKILLS */
-  #skills { background: var(--bg); }
+        <div class="research-platform-note">
+          <strong>Why JD for the formal study:</strong> early platform testing on iCub surfaced a well-documented uncanny valley effect, its hyper-realistic appearance produced participant discomfort that would have confounded trust measurements. The JD platform's more stylised appearance allowed for natural, unguarded participant responses, so the controlled study proceeded on JD while engineering work continued across both platforms.
+        </div>
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
+        <p class="research-desc">Verbal communication produced significantly clearer intent conveyance than gestural cues alone, with comparable engagement and warmth across both modalities, evidence that hybrid verbal-gestural strategies are the right design target for companion robots.</p>
 
-  .skill-category {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: border-color 0.2s;
-  }
+        <div class="research-stats">
+          <div class="research-stat">
+            <div class="research-stat-num">d&nbsp;=&nbsp;0.58</div>
+            <div class="research-stat-label">Effect size, clarity: verbal vs. gestural (p&nbsp;=&nbsp;0.017)</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num">95%</div>
+            <div class="research-stat-label">Intent identification accuracy, verbal condition</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num">80%</div>
+            <div class="research-stat-label">Intent identification accuracy, gestural condition</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num">N=20</div>
+            <div class="research-stat-label">Within-subjects, counterbalanced, RoSAS-validated</div>
+          </div>
+        </div>
 
-  .skill-category:hover { border-color: var(--border); }
+        <div class="research-videos">
+          <div class="research-videos-label">SEE IT IN ACTION &middot; JD HUMANOID</div>
+          <div class="research-videos-grid">
+            <div class="research-video">
+              <div class="research-video-frame">
+                <iframe src="https://www.youtube.com/embed/oaMcdPCNy4Q" title="Verbal communication condition demo" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="research-video-caption"><strong>Verbal condition</strong> &middot; robot states its need directly</div>
+            </div>
+            <div class="research-video">
+              <div class="research-video-frame">
+                <iframe src="https://www.youtube.com/embed/rUIRjTfs2_E?autoplay=1&mute=1&loop=1&playlist=rUIRjTfs2_E&playsinline=1" title="Non-verbal communication condition demo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="research-video-caption"><strong>Non-verbal condition</strong> &middot; robot communicates via gesture (muted, tap to unmute)</div>
+            </div>
+          </div>
+        </div>
 
-  .skill-cat-title {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--cyan);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
+        <div class="research-quote">
+          "Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic&hellip; a valuable asset to academic or professional institutions."
+          <div class="research-quote-attr">Dr Patrick Holthaus &middot; Senior Research Fellow, University of Hertfordshire &middot; MSc Supervisor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  .skill-cat-title::before {
-    content: '';
-    width: 16px;
-    height: 1px;
-    background: var(--cyan);
-  }
+<!-- ============ EXPERIENCE ============ -->
+<style>
+  #experience { background: var(--ink2); }
 
-  .skill-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .skill-pill {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.04);
-    color: var(--text-dim);
-    border: 1px solid rgba(255,255,255,0.07);
-    transition: all 0.15s;
-  }
-
-  .skill-pill:hover {
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    border-color: rgba(0,212,255,0.2);
-  }
-
-  /* EXPERIENCE */
-  #experience { background: var(--bg2); }
-
-  .timeline {
-    position: relative;
-    max-width: 900px;
-  }
-
+  .timeline { margin-top: 3.5rem; position: relative; }
   .timeline::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 8px;
-    bottom: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
     width: 1px;
-    background: linear-gradient(to bottom, var(--cyan), transparent);
+    background: var(--hairline);
   }
 
   .timeline-item {
     position: relative;
-    padding-left: 2.5rem;
-    margin-bottom: 3rem;
+    padding-left: 2.6rem;
+    padding-bottom: 3rem;
   }
+  .timeline-item:last-child { padding-bottom: 0; }
 
   .timeline-dot {
     position: absolute;
-    left: -5px;
-    top: 8px;
-    width: 11px;
-    height: 11px;
+    left: -4px;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px rgba(0,212,255,0.6);
+    background: var(--accent);
   }
 
   .timeline-header {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.4rem;
+    align-items: baseline;
     flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
   }
 
   .timeline-role {
     font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 500;
   }
 
   .timeline-date {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+    font-size: 0.82rem;
+    color: var(--text-faint);
   }
 
   .timeline-company {
-    font-size: 0.88rem;
-    color: var(--cyan);
-    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
   }
 
   .timeline-bullets {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.55rem;
   }
 
   .timeline-bullets li {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.7;
-    padding-left: 1rem;
+    line-height: 1.65;
+    padding-left: 1.1rem;
     position: relative;
+    max-width: 680px;
   }
 
   .timeline-bullets li::before {
-    content: '›';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--cyan);
+    top: 0.65em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-faint);
   }
 
-  .timeline-bullets strong { color: var(--white); font-weight: 500; }
+  .timeline-bullets strong { color: var(--text-primary); font-weight: 500; }
+</style>
 
-  /* PUBLICATIONS */
-  #publications { background: var(--bg); }
+<section id="experience">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">EXPERIENCE</div>
+      <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
+    </div>
 
-  .pub-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Visiting Lecturer, AI &amp; Robotics</div>
+          <div class="timeline-date">Aug 2025 &ndash; Present</div>
+        </div>
+        <div class="timeline-company">Pak-Turk Maarif Schools &middot; Multan, Pakistan</div>
+        <ul class="timeline-bullets">
+          <li>Designed an ML curriculum for <strong>30+ students</strong>; teams achieved <strong>92% model accuracy</strong> with <strong>28% average error reduction</strong> on custom classification tasks.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Embedded Systems Engineer</div>
+          <div class="timeline-date">Jan 2025 &ndash; May 2025</div>
+        </div>
+        <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
+        <ul class="timeline-bullets">
+          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32, reducing peak RAM by <strong>60%</strong>.</li>
+          <li>Architected a LoRa mesh protocol achieving <strong>under 3 second alert latency</strong> across 100m field trials in a safety-critical deployed product.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Robotics Integration Specialist</div>
+          <div class="timeline-date">Jan 2024 &ndash; May 2024</div>
+        </div>
+        <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
+        <ul class="timeline-bullets">
+          <li>Architected a gesture recognition and motion planning pipeline in Unity/C++ for the iCub humanoid, reducing user frustration by <strong>40%</strong> and improving HRI task efficiency by <strong>25%</strong>.</li>
+          <li>Deployed PyTorch-based non-verbal communication models onto iCub's real-time control loop, lifting user engagement from <strong>4.7 to 5.2</strong> on a 1&ndash;7 Likert scale.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Research Associate</div>
+          <div class="timeline-date">May 2023 &ndash; Dec 2023</div>
+        </div>
+        <div class="timeline-company">University of Hertfordshire</div>
+        <ul class="timeline-bullets">
+          <li>Fine-tuned TensorFlow LLMs for real-time robotics inference on the Unitree Go1 quadruped, cutting inference latency by <strong>29%</strong> across 200 trials.</li>
+          <li>Integrated optimised models into the control loop, improving platform responsiveness by <strong>35%</strong> with <strong>99.5% runtime stability</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Embedded Systems Intern</div>
+          <div class="timeline-date">Mar 2022 &ndash; Apr 2022</div>
+        </div>
+        <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation &middot; Islamabad</div>
+        <ul class="timeline-bullets">
+          <li>Optimised bare-metal C firmware for embedded controllers, achieving <strong>40% faster processing</strong> and <strong>98% reliability</strong> across 100+ safety-critical test cycles.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<style>
+  #projects { background: var(--ink); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .project-card {
+    background: var(--ink3);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
     padding: 2rem;
-    max-width: 800px;
-    transition: border-color 0.2s;
-    position: relative;
+    transition: border-color 0.3s ease;
+  }
+  .project-card:hover { border-color: var(--accent-line); }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tag {
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    border: 1px solid var(--hairline);
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1.3rem;
+  }
+
+  .project-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .project-metric-num {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--accent);
+  }
+
+  .project-metric-label {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+
+  .project-link {
+    font-size: 0.84rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 2px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 980px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">PROJECTS</div>
+      <h2 class="section-title">Built, deployed, <em>measured</em></h2>
+      <p class="section-lede">Every project here shipped to real hardware with quantified outcomes, not benchmark numbers alone.</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-tags">
+          <span class="project-tag">C++20</span>
+          <span class="project-tag">ROS2 Nav2</span>
+          <span class="project-tag">TurtleBot3</span>
+        </div>
+        <div class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</div>
+        <div class="project-desc">A high-performance C++20 Global Planner plugin for ROS2 Nav2 using A* and D* Lite, validated on TurtleBot3 with strict protective-stop safety guarantees.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num">22%</div><div class="project-metric-label">faster replanning</div></div>
+          <div><div class="project-metric-num">24%</div><div class="project-metric-label">travel time reduction</div></div>
+        </div>
+        <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tags">
+          <span class="project-tag">TensorRT</span>
+          <span class="project-tag">Jetson Nano</span>
+          <span class="project-tag">CNN</span>
+        </div>
+        <div class="project-title">Edge AI Optimisation on Jetson Nano</div>
+        <div class="project-desc">TensorRT optimisation of CNN and gesture recognition models, enabling real-time decentralised motor control across a multi-robot system.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num">40%</div><div class="project-metric-label">latency reduction</div></div>
+          <div><div class="project-metric-num">96%</div><div class="project-metric-label">accuracy maintained</div></div>
+        </div>
+        <a href="https://github.com/munawarkazmi" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tags">
+          <span class="project-tag">ROS2</span>
+          <span class="project-tag">LLM</span>
+          <span class="project-tag">Jetson Orin</span>
+        </div>
+        <div class="project-title">ROS2 LLM Safety Verifier</div>
+        <div class="project-desc">A real-time hallucination detector for ROS2 Nav2 that intercepts unsafe trajectory commands before they reach robot hardware, validated on TurtleBot3 with Jetson Orin Nano.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num">94%</div><div class="project-metric-label">unsafe trajectory catch rate</div></div>
+          <div><div class="project-metric-num">&lt;50ms</div><div class="project-metric-label">detection latency</div></div>
+        </div>
+        <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tags">
+          <span class="project-tag">ESP32</span>
+          <span class="project-tag">LoRa Mesh</span>
+          <span class="project-tag">Deployed</span>
+        </div>
+        <div class="project-title">ESP32-CAM Motion Detector</div>
+        <div class="project-desc">Deterministic C++ firmware for image processing on ESP32-CAM with a LoRa mesh alert protocol, shipped as a deployed safety-critical product.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num">93.8%</div><div class="project-metric-label">detection accuracy</div></div>
+          <div><div class="project-metric-num">60%</div><div class="project-metric-label">RAM reduction</div></div>
+        </div>
+        <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ SKILLS ============ -->
+<style>
+  #skills { background: var(--ink2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    margin-top: 3.5rem;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
     overflow: hidden;
   }
 
-  .pub-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(to bottom, var(--cyan), var(--amber));
+  .skill-col { background: var(--ink2); padding: 2rem 1.8rem; }
+
+  .skill-cat {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.2rem;
   }
 
-  .pub-card:hover { border-color: var(--border); }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .skill-list li { font-size: 0.88rem; color: var(--text-dim); }
+
+  @media (max-width: 980px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">TECHNICAL SKILLS</div>
+      <h2 class="section-title">Tools I <em>ship</em> with</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-col">
+        <div class="skill-cat">ROBOTICS &amp; SOFTWARE</div>
+        <ul class="skill-list">
+          <li>C++20</li><li>Python</li><li>ROS2 (Nav2, Plugin Dev)</li><li>Git &amp; CI/CD</li><li>Docker</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">SIMULATION &amp; DIGITAL TWINS</div>
+        <ul class="skill-list">
+          <li>Isaac Sim</li><li>MuJoCo</li><li>Gazebo</li><li>Unity</li><li>Sim-to-Real Transfer</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">AI &amp; PERCEPTION</div>
+        <ul class="skill-list">
+          <li>PyTorch</li><li>TensorFlow</li><li>TensorRT</li><li>Computer Vision</li><li>LLM Integration</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">HARDWARE &amp; EMBEDDED</div>
+        <ul class="skill-list">
+          <li>iCub &amp; JD Humanoid</li><li>Unitree Go1</li><li>Jetson Nano</li><li>ESP32 &amp; LoRa</li><li>Bare-Metal C/C++</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<style>
+  #publications { background: var(--ink); }
+
+  .pub-card {
+    margin-top: 3.5rem;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 2.4rem 2.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
 
   .pub-title {
     font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
+    font-size: 1.18rem;
+    font-weight: 500;
+    max-width: 600px;
     margin-bottom: 0.5rem;
-    line-height: 1.4;
   }
 
-  .pub-authors {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-bottom: 0.3rem;
-  }
+  .pub-authors { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.3rem; }
+  .pub-venue { font-size: 0.84rem; color: var(--text-faint); margin-bottom: 1rem; }
 
-  .pub-venue {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--cyan);
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.04em;
+  .pub-link {
+    display: inline-block;
+    font-size: 0.84rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
   }
+  .pub-link:hover { color: var(--accent); border-color: var(--accent); }
 
   .pub-status {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    padding: 0.25rem 0.65rem;
-    border-radius: 2px;
-    letter-spacing: 0.06em;
+    font-size: 0.76rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-line);
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    white-space: nowrap;
   }
+</style>
 
-  .status-prep { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+<section id="publications">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">PUBLICATIONS</div>
+      <h2 class="section-title">Research <em>output</em></h2>
+    </div>
+    <div class="pub-card reveal">
+      <div>
+        <div class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</div>
+        <div class="pub-authors">Kazmi, S.M.S. (2025)</div>
+        <div class="pub-venue">Submitted to MDPI Robotics &middot; Under Review</div>
+        <a href="https://drive.google.com/file/d/1wqbuFUncJgoeZCsrwP4nvvxrNSWjoAEQ/view?usp=sharing" target="_blank" class="pub-link">Read Paper (PDF) &rarr;</a>
+      </div>
+      <span class="pub-status">Under Review</span>
+    </div>
+  </div>
+</section>
 
-  /* SPEAKING */
-  #speaking { background: var(--bg2); }
+<!-- ============ SPEAKING ============ -->
+<style>
+  #speaking { background: var(--ink2); }
 
   .speaking-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    margin-top: 3.5rem;
   }
 
   .speaking-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 2rem;
     overflow: hidden;
-    transition: all 0.25s;
   }
 
-  .speaking-card:hover { border-color: var(--border); transform: translateY(-2px); }
-
-  .speaking-img {
-    width: 100%;
-    height: 200px;
+  .speaking-photo {
+    display: block;
+    width: calc(100% + 4rem);
+    margin: -2rem -2rem 1.5rem -2rem;
+    height: 170px;
     object-fit: cover;
-    filter: grayscale(20%);
-    transition: filter 0.3s;
-  }
-
-  .speaking-card:hover .speaking-img { filter: grayscale(0%); }
-
-  .speaking-body { padding: 1.5rem; }
-
-  .speaking-event {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-  }
-
-  .speaking-detail {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.7;
+    filter: grayscale(15%) contrast(1.05);
   }
 
   .speaking-meta {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    font-size: 0.76rem;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
   }
 
-  /* TESTIMONIALS */
-  #testimonials { background: var(--bg); }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .testimonial-card {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: border-color 0.2s;
-    position: relative;
-  }
-
-  .testimonial-card:hover { border-color: var(--border); }
-
-  .quote-mark {
+  .speaking-event {
     font-family: var(--font-display);
-    font-size: 4rem;
-    line-height: 0.8;
-    color: var(--cyan);
-    opacity: 0.3;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
   }
 
-  .testimonial-text {
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.9;
-    margin-bottom: 1.5rem;
-  }
+  .speaking-detail { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; }
 
-  .testimonial-author {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .author-name {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .author-role {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 0.05em;
-  }
-
-  /* CONTACT */
-  #contact {
-    background: var(--bg2);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-glow {
-    position: absolute;
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .contact-inner { position: relative; z-index: 2; }
-
-  .contact-availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-  }
-
-  .avail-dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 8px rgba(34,197,94,0.6);
-  }
-
-  .contact-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
-
-  .contact-title span { color: var(--cyan); }
-
-  .contact-subtitle {
-    color: var(--text-dim);
-    font-size: 1rem;
-    font-weight: 300;
-    margin-bottom: 0.6rem;
-  }
-
-  .visa-note {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--amber);
-    background: var(--amber-dim);
-    border: 1px solid rgba(245,158,11,0.2);
-    padding: 0.4rem 1rem;
-    border-radius: 2px;
-    display: inline-block;
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    border: 1px solid var(--border2);
-    padding: 0.7rem 1.5rem;
-    border-radius: 2px;
-    transition: all 0.2s;
-    letter-spacing: 0.04em;
-    background: var(--card);
-  }
-
-  .contact-link:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    transform: translateY(-2px);
-  }
-
-  .contact-email-big {
-    font-family: var(--font-display);
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    font-weight: 600;
-    color: var(--cyan);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    display: inline-block;
-    border-bottom: 1px solid rgba(0,212,255,0.3);
-    padding-bottom: 2px;
-    transition: border-color 0.2s;
-  }
-
-  .contact-email-big:hover { border-color: var(--cyan); }
-
-  /* FOOTER */
-  footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border2);
-    padding: 2rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-left {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-
-  .footer-right {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-  }
-
-  /* HAMBURGER MOBILE */
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .hamburger span { width: 22px; height: 1px; background: var(--text-dim); transition: all 0.2s; }
-
-  /* REVEAL ANIMATION */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* COUNTER ANIMATION */
-  .counter { display: inline-block; }
-
-  /* RESPONSIVE - TABLET */
-  @media (max-width: 1024px) {
-    nav { padding: 1.2rem 2rem; }
-    section { padding: 5rem 2rem; }
-    #hero { padding: 6rem 2rem 3rem; }
-    footer { padding: 2rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .featured-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    .skills-grid { grid-template-columns: 1fr; }
+  @media (max-width: 980px) {
     .speaking-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .video-side-by-side { grid-template-columns: 1fr !important; }
-    .robot-images { grid-template-columns: 1fr 1fr; }
-  }
-
-  /* RESPONSIVE - MOBILE */
-  @media (max-width: 768px) {
-    /* Base */
-    body { font-size: 15px; }
-    section { padding: 4rem 1.2rem; }
-
-    /* Nav */
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { display: none; }
-    .nav-links.open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--bg);
-      padding: 1.5rem 1.5rem;
-      border-bottom: 1px solid var(--border2);
-      gap: 1.2rem;
-      z-index: 200;
-    }
-    .hamburger { display: flex; }
-
-    /* Hero */
-    #hero {
-      grid-template-columns: 1fr;
-      text-align: center;
-      min-height: auto;
-      padding: 6rem 1.2rem 3rem;
-      gap: 2rem;
-    }
-    .hero-right { order: -1; }
-    .hero-desc { margin: 0 auto 2rem; max-width: 100%; }
-    .hero-badges { justify-content: center; }
-    .hero-actions { justify-content: center; }
-    .hero-tag { font-size: 0.62rem; letter-spacing: 0.06em; text-align: center; }
-    .headshot-wrap { width: 200px; height: 200px; margin-bottom: 1.5rem; }
-    .headshot-img { width: 200px; height: 200px; }
-    .stats-row { max-width: 100%; gap: 0.5rem; }
-    .stat-card { padding: 0.7rem 0.5rem; }
-    .stat-number { font-size: 1.3rem; }
-    .stat-label { font-size: 0.55rem; }
-
-    /* Section headings */
-    .section-title { font-size: 1.6rem; }
-
-    /* About */
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .highlight-box { font-size: 0.75rem; }
-
-    /* Featured */
-    .featured-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .featured-bg-text { display: none; }
-    .metric-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-    .metric { padding: 0.8rem 0.5rem; }
-    .metric-val { font-size: 1.4rem; }
-    .metric-label { font-size: 0.58rem; }
-    .supervisor-quote { padding: 1rem; }
-    .quote-text { font-size: 0.85rem; }
-
-    /* Videos - stack vertically on mobile */
-    .video-side-by-side {
-      grid-template-columns: 1fr !important;
-      gap: 1.5rem !important;
-    }
-
-    /* Robot images */
-    .robot-images { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    .robot-img { aspect-ratio: 1/1; }
-
-    /* Projects */
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card { padding: 1.5rem; }
-
-    /* Skills */
-    .skills-grid { grid-template-columns: 1fr; }
-    .skill-category { padding: 1.5rem; }
-
-    /* Timeline */
-    .timeline-header { flex-direction: column; gap: 0.2rem; }
-    .timeline-role { font-size: 0.95rem; }
-    .timeline-date { white-space: normal; }
-    .timeline-item { padding-left: 1.8rem; }
-
-    /* Publications */
-    .pub-card { padding: 1.5rem; }
-
-    /* Speaking */
-    .speaking-grid { grid-template-columns: 1fr; }
-
-    /* Testimonials */
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .testimonial-card { padding: 1.5rem; }
-
-    /* Contact */
-    .contact-title { font-size: 2rem; }
-    .contact-links { gap: 0.6rem; }
-    .contact-link { padding: 0.6rem 1rem; font-size: 0.72rem; }
-    .visa-note { font-size: 0.68rem; padding: 0.4rem 0.7rem; }
-    .contact-email-big { font-size: 0.9rem; word-break: break-all; }
-
-    /* Footer */
-    footer {
-      padding: 1.5rem 1.2rem;
-      flex-direction: column;
-      text-align: center;
-      gap: 0.5rem;
-    }
   }
 </style>
-</head>
-<body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">MK://portfolio</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#featured">Research</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
-
-  <div class="hero-left">
-    <div class="hero-tag">Available for Sponsored Roles · UK / EU / USA</div>
-    <h1 class="hero-name">Munawar<br><span>Kazmi</span></h1>
-    <p class="hero-title">Robotics Systems Engineer</p>
-    <p class="hero-desc">
-      Robotics Systems Engineer specialising in Human-Robot Interaction, ROS2, and Edge AI deployment.
-      Delivered a <strong style="color:var(--white)">30% trust improvement</strong> on the iCub humanoid through a full sim-to-real pipeline.
-      Open to sponsored roles in UK, EU, and USA.
-    </p>
-    <div class="hero-badges">
-      <span class="badge badge-cyan">ROS2 · C++20</span>
-      <span class="badge badge-cyan">iCub Humanoid</span>
-      <span class="badge badge-cyan">Edge AI · TensorRT</span>
-      <span class="badge badge-amber">MSc Commendation · UH</span>
-      <span class="badge badge-dim">Isaac Sim · MuJoCo</span>
-      <span class="badge badge-dim">PyTorch · TensorFlow</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">↗ Get In Touch</a>
-      <a href="https://drive.google.com/file/d/1J70c0se8TjlevHMe6r9_nKfJTxuDu18f/view?usp=sharing" target="_blank" class="btn-secondary">↓ Download CV</a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="headshot-wrap">
-      <div class="headshot-glow"></div>
-      <div class="headshot-ring"></div>
-      <img src="images/headshot.jpg" alt="Munawar Kazmi" class="headshot-img" onerror="this.style.display='none'">
-    </div>
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-number counter" data-target="30">0</div><div class="stat-number" style="font-size:1rem">%</div>
-        <div class="stat-label">Trust Lift</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number counter" data-target="200">0</div><div class="stat-number" style="font-size:0.9rem">+</div>
-        <div class="stat-label">Trials Run</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number counter" data-target="96">0</div><div class="stat-number" style="font-size:1rem">%</div>
-        <div class="stat-label">Edge AI Acc.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="reveal">
-    <div class="section-tag">About Me</div>
-    <h2 class="section-title">Engineer. Researcher. Builder.</h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        I'm a robotics engineer who works at the intersection of <strong>human-robot interaction</strong>, 
-        <strong>real-time AI systems</strong>, and <strong>embedded hardware</strong>. My work spans the full 
-        stack: from bare-metal C++ firmware on ESP32 microcontrollers to running sim-to-real pipelines 
-        on the iCub humanoid platform at the University of Hertfordshire Robot House.
-      </p>
-      <p>
-        My MSc thesis produced one of the few quantitative studies on <strong>humanoid robot companionship</strong>, 
-        achieving a validated 30% improvement in human trust using a novel blend of verbal and non-verbal 
-        communication strategies. The work ran across two humanoid platforms (iCub and JD EZ-Robot) 
-        with 200+ structured trials, supervised by Dr Patrick Holthaus.
-      </p>
-      <p>
-        Beyond research, I've deployed production AI on constrained hardware, cutting CNN inference 
-        latency by 40% on Jetson Nano via TensorRT, and engineering deterministic firmware for 
-        safety-critical real-world deployments. I care about systems that actually work in the field, 
-        not just in simulation.
-      </p>
-      <div class="highlight-box">
-        <strong>// Open to Work</strong><br>
-        Actively seeking Robotics and AI Systems roles in the UK, EU, or USA.<br>
-        UK Graduate Visa (PSW) valid until <strong>September 2026</strong> · Immediate availability.
-      </div>
-    </div>
-    <div class="about-right reveal">
-      <div class="edu-card">
-        <div class="edu-degree">MSc Artificial Intelligence &amp; Robotics</div>
-        <div class="edu-school">University of Hertfordshire · Hatfield, UK</div>
-        <div class="edu-meta">Jan 2023 – Aug 2024</div>
-        <div class="edu-badge">Commendation</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-degree">BEng Mechatronics Engineering</div>
-        <div class="edu-school">NUST · Islamabad, Pakistan</div>
-        <div class="edu-meta">Sep 2018 – May 2022</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED PROJECT -->
-<section id="featured">
-  <div class="featured-bg-text">HRI</div>
-  <div class="reveal">
-    <div class="section-tag">Featured Research</div>
-    <h2 class="section-title">MSc Thesis · iCub &amp; JD Humanoid<br>Sim-to-Real Pipeline</h2>
-  </div>
-  <div class="featured-grid">
-    <div class="featured-left reveal">
-      <div class="featured-tag-row">
-        <span class="badge badge-cyan">Isaac Sim</span>
-        <span class="badge badge-cyan">ROS2</span>
-        <span class="badge badge-cyan">iCub</span>
-        <span class="badge badge-cyan">PyTorch</span>
-        <span class="badge badge-dim">Physical Deployment</span>
-      </div>
-      <h3 class="featured-title">Human-Robot Interaction for Companionship: A Quantitative Study</h3>
-      <p class="featured-desc">
-        Led a full-stack Sim-to-Real pipeline across two humanoid platforms, iCub and JD EZ-Robot, 
-        building a high-fidelity Isaac Sim digital twin and transferring hybrid verbal/non-verbal 
-        intent communication strategies to physical hardware.
-      </p>
-      <p class="featured-desc">
-        The study developed novel gesture-based and verbal communication modalities, testing their 
-        combined effect on perceived robot trustworthiness using the validated RoSAS scale. 
-        Over 200 pre-study validation trials were conducted across both platforms to ensure 
-        consistent, repeatable robot behaviour before the formal n=20 participant experiment began. 
-        Results showed a statistically significant improvement in companionship metrics, 
-        with 98% intent clarity across structured interaction trials.
-      </p>
-      <div class="metric-row">
-        <div class="metric">
-          <div class="metric-val">30%</div>
-          <div class="metric-label">Trust Improvement</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">200+</div>
-          <div class="metric-label">Validation Trials</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">98%</div>
-          <div class="metric-label">Intent Clarity</div>
-        </div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border2);border-left:3px solid var(--cyan);border-radius:4px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
-        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">Platform Note</div>
-        <p style="font-size:0.85rem;color:var(--text-dim);font-weight:300;line-height:1.8;">
-          Both the <strong style="color:var(--white)">iCub</strong> and <strong style="color:var(--white)">JD EZ-Robot</strong> humanoids were used during platform testing and validation. 
-          Early trials revealed that iCub's hyper-realistic appearance caused participants to experience discomfort, 
-          a well-documented phenomenon known as the <strong style="color:var(--white)">uncanny valley effect</strong>. 
-          To ensure valid trust measurements, the formal study proceeded with the JD humanoid, 
-          whose more stylised appearance produced natural, unguarded responses from participants.
-        </p>
-      </div>
-      <div class="supervisor-quote">
-        <div class="quote-text">
-          "Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic. 
-          His comprehensive understanding of the project, ability to explain his work, and communication 
-          skills were particularly evident during the excellent final presentation and live demonstration."
-        </div>
-        <div class="quote-author">Dr Patrick Holthaus, Senior Research Fellow · University of Hertfordshire · MSc Supervisor</div>
-      </div>
-    </div>
-    <div class="featured-right reveal">
-
-      <div class="video-side-by-side" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-        <div>
-          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">Phase 1 · Verbal Communication</div>
-          <div style="position:relative;width:100%;padding-bottom:177%;border-radius:4px;overflow:hidden;border:1px solid var(--border);">
-            <iframe src="https://www.youtube.com/embed/oaMcdPCNy4Q" title="HRI Verbal Phase Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">Phase 2 · Non-Verbal Communication</div>
-          <div style="position:relative;width:100%;padding-bottom:177%;border-radius:4px;overflow:hidden;border:1px solid var(--border);">
-            <iframe src="https://www.youtube.com/embed/rUIRjTfs2_E" title="HRI Non-Verbal Phase Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="robot-images">
-        <img src="images/icub.jpg" alt="iCub Humanoid Robot at UH Robot House" class="robot-img">
-        <img src="images/jd-robot.jpg" alt="JD EZ-Robot Humanoid HRI Research" class="robot-img">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="reveal">
-    <div class="section-tag">Engineering Projects</div>
-    <h2 class="section-title">Built. Deployed. Measured.</h2>
-    <p class="section-subtitle">Every project ships with real hardware validation and quantified outcomes.</p>
-  </div>
-  <div class="projects-grid">
-
-    <div class="project-card reveal">
-      <div class="project-icon">🤖</div>
-      <div class="project-name">ROS2 Autonomous Navigation &amp; Deterministic Planning</div>
-      <div class="project-desc">
-        Developed a high-performance C++20 Global Planner plugin for ROS2 Nav2 using A* and D* Lite. 
-        Achieved 22% faster replanning and 24% shorter travel times in dynamic environments, 
-        validated on TurtleBot3 with strict protective-stop safety guarantees.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">22% faster replanning</span>
-        <span class="project-metric">24% travel time reduction</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">C++20</span>
-        <span class="project-tag">ROS2 Nav2</span>
-        <span class="project-tag">A* / D* Lite</span>
-        <span class="project-tag">TurtleBot3</span>
-      </div>
-      <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" class="project-link">View on GitHub →</a>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">⚡</div>
-      <div class="project-name">Edge AI Optimisation on Jetson Nano</div>
-      <div class="project-desc">
-        Optimised CNN and gesture recognition models using TensorRT on Jetson Nano. 
-        Achieved 40% latency reduction from baseline PyTorch inference while maintaining 96% accuracy, 
-        enabling real-time decentralised motor control across a multi-robot system.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">40% latency reduction</span>
-        <span class="project-metric">96% accuracy</span>
-        <span class="project-metric">&lt;200ms inference</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">TensorRT</span>
-        <span class="project-tag">Jetson Nano</span>
-        <span class="project-tag">PyTorch</span>
-        <span class="project-tag">CNN</span>
-      </div>
-      <a href="https://github.com/munawarkazmi" target="_blank" class="project-link">View on GitHub →</a>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🛡️</div>
-      <div class="project-name">ROS2 LLM Safety Verifier</div>
-      <div class="project-desc">
-        Built a real-time LLM hallucination detector for ROS2 Nav2 that intercepts unsafe trajectory 
-        commands before they reach robot hardware. Validated on TurtleBot3 with Jetson Orin Nano, 
-        catching 94% of unsafe trajectories at under 50ms latency across 103 trials.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">94% unsafe trajectory catch</span>
-        <span class="project-metric">&lt;50ms on Orin Nano</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">ROS2</span>
-        <span class="project-tag">LLM</span>
-        <span class="project-tag">Docker</span>
-        <span class="project-tag">Safety Systems</span>
-      </div>
-      <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" class="project-link">View on GitHub →</a>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">📡</div>
-      <div class="project-name">ESP32-CAM Motion Detector (Deployed Product)</div>
-      <div class="project-desc">
-        Engineered deterministic C++ firmware for image processing on ESP32-CAM. 
-        Reduced peak RAM by 60% and built a LoRa mesh protocol achieving under 3s alert latency 
-        across 100m field trials. Shipped as a deployed product with 93.8% detection accuracy.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">93.8% accuracy</span>
-        <span class="project-metric">60% RAM reduction</span>
-        <span class="project-metric">&lt;3s alert latency</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">C++</span>
-        <span class="project-tag">ESP32</span>
-        <span class="project-tag">LoRa Mesh</span>
-        <span class="project-tag">Embedded</span>
-      </div>
-      <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" class="project-link">View on GitHub →</a>
-      <a href="https://youtube.com/shorts/3PMJ9setbT8" target="_blank" class="project-link" style="margin-top:0.5rem;">▶ Watch Demo →</a>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🐾</div>
-      <div class="project-name">Unitree Go1 Quadruped: LLM Gait Control</div>
-      <div class="project-desc">
-        Fine-tuned TensorFlow LLMs for robotics inference on the Unitree Go1 quadruped and integrated 
-        models directly into the control loop. Achieved 29% latency reduction and 35% better platform 
-        responsiveness with 99.5% runtime stability across 200 trials.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">29% latency reduction</span>
-        <span class="project-metric">35% responsiveness gain</span>
-        <span class="project-metric">99.5% stability</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">TensorFlow</span>
-        <span class="project-tag">Unitree Go1</span>
-        <span class="project-tag">LLM Fine-tuning</span>
-        <span class="project-tag">Gazebo</span>
-      </div>
-      <a href="https://github.com/munawarkazmi" target="_blank" class="project-link">View on GitHub →</a>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🎓</div>
-      <div class="project-name">AI &amp; Robotics Curriculum, Pak-Turk Maarif</div>
-      <div class="project-desc">
-        Designed and delivered an ML curriculum covering neural networks, gesture control, and 
-        embedded AI for 30+ students. Teams built working classifiers from scratch, achieving 
-        92% model accuracy and 28% average error reduction on custom classification tasks.
-      </div>
-      <div class="project-metrics">
-        <span class="project-metric">92% model accuracy</span>
-        <span class="project-metric">28% error reduction</span>
-        <span class="project-metric">30+ students</span>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">ML Education</span>
-        <span class="project-tag">PyTorch</span>
-        <span class="project-tag">Curriculum Design</span>
-      </div>
-      <a href="https://medium.com/@munawarkazmi" target="_blank" class="project-link">Read on Medium →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="reveal">
-    <div class="section-tag">Technical Stack</div>
-    <h2 class="section-title">Tools I Ship With</h2>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-category reveal">
-      <div class="skill-cat-title">Robotics &amp; Software</div>
-      <div class="skill-pills">
-        <span class="skill-pill">C++20</span>
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">ROS2 (Nav2)</span>
-        <span class="skill-pill">ROS Control</span>
-        <span class="skill-pill">Plugin Development</span>
-        <span class="skill-pill">Git</span>
-        <span class="skill-pill">CI/CD</span>
-        <span class="skill-pill">Docker</span>
-      </div>
-    </div>
-    <div class="skill-category reveal">
-      <div class="skill-cat-title">Simulation &amp; Digital Twins</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Isaac Sim</span>
-        <span class="skill-pill">MuJoCo</span>
-        <span class="skill-pill">Gazebo</span>
-        <span class="skill-pill">Unity</span>
-        <span class="skill-pill">Sim-to-Real Transfer</span>
-        <span class="skill-pill">Digital Twin Design</span>
-      </div>
-    </div>
-    <div class="skill-category reveal">
-      <div class="skill-cat-title">AI &amp; Perception</div>
-      <div class="skill-pills">
-        <span class="skill-pill">PyTorch</span>
-        <span class="skill-pill">TensorFlow</span>
-        <span class="skill-pill">TensorRT</span>
-        <span class="skill-pill">Computer Vision</span>
-        <span class="skill-pill">Imitation Learning</span>
-        <span class="skill-pill">VLA Models</span>
-        <span class="skill-pill">LLM Integration</span>
-        <span class="skill-pill">CNN Optimisation</span>
-      </div>
-    </div>
-    <div class="skill-category reveal">
-      <div class="skill-cat-title">Hardware &amp; Embedded</div>
-      <div class="skill-pills">
-        <span class="skill-pill">iCub Humanoid</span>
-        <span class="skill-pill">Unitree Go1</span>
-        <span class="skill-pill">Jetson Nano</span>
-        <span class="skill-pill">ESP32</span>
-        <span class="skill-pill">LoRa Mesh</span>
-        <span class="skill-pill">Bare-Metal C/C++</span>
-        <span class="skill-pill">Arduino</span>
-        <span class="skill-pill">Safety-Critical Systems</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="reveal">
-    <div class="section-tag">Experience</div>
-    <h2 class="section-title">Where I've Shipped</h2>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-role">Visiting Lecturer, AI &amp; Robotics</div>
-        <div class="timeline-date">Aug 2025 – Present</div>
-      </div>
-      <div class="timeline-company">Pak-Turk Maarif Schools · Multan, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Designed ML curriculum for <strong>30+ students</strong>; teams achieved <strong>92% model accuracy</strong> with <strong>28% average error reduction</strong> on custom classification tasks.</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-role">Embedded Systems Engineer</div>
-        <div class="timeline-date">Jan 2025 – May 2025</div>
-      </div>
-      <div class="timeline-company">Muxtronics (Contract) · Multan, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Engineered deterministic C++ firmware for real-time image processing on ESP32; reducing peak RAM by <strong>60%</strong>.</li>
-        <li>Architected a LoRa mesh protocol achieving <strong>&lt;3s alert latency</strong> across 100m field trials in a safety-critical deployed product.</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-role">Robotics Integration Specialist</div>
-        <div class="timeline-date">Jan 2024 – May 2024</div>
-      </div>
-      <div class="timeline-company">Robot House · University of Hertfordshire · Hatfield, UK</div>
-      <ul class="timeline-bullets">
-        <li>Architected a gesture recognition and motion planning pipeline in Unity/C++ for the iCub humanoid, reducing user frustration by <strong>40%</strong> and improving HRI task efficiency by <strong>25%</strong>.</li>
-        <li>Deployed PyTorch-based non-verbal communication models onto iCub's real-time control loop, lifting user engagement from <strong>4.7 to 5.2 on a Likert 1–7 scale</strong> across structured interaction trials.</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-role">Research Associate</div>
-        <div class="timeline-date">May 2023 – Dec 2023</div>
-      </div>
-      <div class="timeline-company">University of Hertfordshire · Hatfield, UK</div>
-      <ul class="timeline-bullets">
-        <li>Fine-tuned TensorFlow LLMs for real-time robotics inference on the Unitree Go1, cutting inference latency by <strong>29%</strong> across 200 trials.</li>
-        <li>Integrated optimised models into the control loop, improving platform responsiveness by <strong>35%</strong> with <strong>99.5% runtime stability</strong>.</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-role">Embedded Systems Intern</div>
-        <div class="timeline-date">Mar 2022 – Apr 2022</div>
-      </div>
-      <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation · Islamabad, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Optimised bare-metal C firmware for embedded controllers, achieving <strong>40% faster processing</strong> and <strong>98% reliability</strong> across 100+ safety-critical test cycles.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="reveal">
-    <div class="section-tag">Publications</div>
-    <h2 class="section-title">Research Output</h2>
-  </div>
-  <div class="pub-card reveal">
-    <div class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</div>
-    <div class="pub-authors">Kazmi, M. &amp; Holthaus, P. (2025)</div>
-    <div class="pub-venue">Preprint · Target: IEEE RO-MAN 2026</div>
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:0.8rem;">
-      <span class="pub-status status-prep">Under Review</span>
-      <a href="https://drive.google.com/file/d/1ad4We5Peno_CuYsWLHR3bOJ_V8XRPpMw/view?usp=sharing" target="_blank" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--cyan);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:2px;transition:all 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.1)'" onmouseout="this.style.background='transparent'">↗ Read Paper</a>
-    </div>
-  </div>
-</section>
-
-<!-- SPEAKING -->
 <section id="speaking">
-  <div class="reveal">
-    <div class="section-tag">Speaking &amp; Teaching</div>
-    <h2 class="section-title">In the Room</h2>
-  </div>
-  <div class="speaking-grid">
-    <div class="speaking-card reveal">
-      <img src="images/speaking.jpg" alt="Keynote at University of Hertfordshire" class="speaking-img" onerror="this.style.background='var(--bg3)'">
-      <div class="speaking-body">
-        <div class="speaking-meta">KEYNOTE · UNIVERSITY OF HERTFORDSHIRE</div>
-        <div class="speaking-event">AI &amp; Robotics in Education Conference</div>
-        <div class="speaking-detail">Delivered a keynote on HRI and Edge AI applications to 50+ students and faculty, with live robot demonstrations of the iCub companionship system.</div>
-      </div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">SPEAKING &amp; TEACHING</div>
+      <h2 class="section-title">In the <em>room</em></h2>
     </div>
-    <div class="speaking-card reveal">
-      <img src="images/teaching.jpg" alt="Teaching AI & Robotics session" class="speaking-img" onerror="this.style.background='var(--bg3)'">
-      <div class="speaking-body">
-        <div class="speaking-meta">WORKSHOP · PAK-TURK MAARIF SCHOOLS</div>
+    <div class="speaking-grid">
+      <div class="speaking-card reveal">
+        <img class="speaking-photo" src="assets/speaking.jpg" alt="Munawar Kazmi presenting at the University of Hertfordshire">
+        <div class="speaking-meta">TALK &middot; UNIVERSITY OF HERTFORDSHIRE</div>
+        <div class="speaking-event">AI &amp; Robotics in Education Conference</div>
+        <div class="speaking-detail">Presented on HRI and edge AI applications to students and faculty, with live robot demonstrations of the companionship research.</div>
+      </div>
+      <div class="speaking-card reveal">
+        <div class="speaking-meta">WORKSHOP &middot; PAK-TURK MAARIF SCHOOLS</div>
         <div class="speaking-event">Hands-On Robotics &amp; ML Workshop</div>
         <div class="speaking-detail">Led practical sessions covering gesture control, neural networks, and real-time AI deployment. Teams built and trained working classifiers during the session.</div>
       </div>
@@ -1914,123 +1332,249 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ============ TESTIMONIALS ============ -->
+<style>
+  #testimonials { background: var(--ink); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .testimonial-card {
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 2.2rem;
+  }
+
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.94rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-name { font-size: 0.92rem; font-weight: 500; color: var(--text-primary); }
+  .author-role { font-size: 0.8rem; color: var(--text-faint); margin-top: 0.2rem; }
+
+  @media (max-width: 980px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
 <section id="testimonials">
-  <div class="reveal">
-    <div class="section-tag">Testimonials</div>
-    <h2 class="section-title">What They Say</h2>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="testimonial-text">
-        Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic. 
-        He actively sought feedback and incorporated it into his work, demonstrating a commitment to 
-        continuous improvement. His innovative approach, coupled with a strong foundation in research 
-        and development, positions him as a valuable asset to academic or professional institutions.
-        I wholeheartedly recommend him for any future academic or professional opportunities.
-      </div>
-      <div class="testimonial-author">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">TESTIMONIALS</div>
+      <h2 class="section-title">What they <em>say</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">&ldquo;</div>
+        <div class="testimonial-text">Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic. He actively sought feedback and incorporated it into his work, demonstrating a commitment to continuous improvement. His innovative approach, coupled with a strong foundation in research and development, positions him as a valuable asset to academic or professional institutions.</div>
         <div class="author-name">Dr Patrick Holthaus</div>
-        <div class="author-role">Senior Research Fellow &amp; Visiting Lecturer · University of Hertfordshire · MSc Supervisor</div>
+        <div class="author-role">Senior Research Fellow &amp; Visiting Lecturer &middot; University of Hertfordshire &middot; MSc Supervisor</div>
       </div>
-    </div>
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="testimonial-text">
-        Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, 
-        leading the ESP32-CAM prototype to 93.8% accuracy and optimizing real-time processing by 60%, 
-        a true asset for any robotics team.
-      </div>
-      <div class="testimonial-author">
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">&ldquo;</div>
+        <div class="testimonial-text">Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, leading the ESP32-CAM prototype to 93.8% accuracy and optimizing real-time processing by 60%, a true asset for any robotics team.</div>
         <div class="author-name">Waheed Shah</div>
-        <div class="author-role">CEO · Muxtronics</div>
+        <div class="author-role">CEO &middot; Muxtronics</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ============ CONTACT ============ -->
+<style>
+  #contact {
+    background: var(--ink2);
+    text-align: center;
+    padding: 8rem 0;
+  }
+
+  .contact-eyebrow {
+    font-size: 0.84rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .contact-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+  .contact-sub {
+    font-size: 1.02rem;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+    text-align: left;
+  }
+
+  .contact-track-card {
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 1.8rem;
+  }
+
+  .contact-track-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.7rem;
+  }
+
+  .contact-track-text {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-track-link {
+    font-size: 0.86rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 2px;
+  }
+  .contact-track-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .contact-link {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .contact-link:hover { color: var(--accent); }
+
+  @media (max-width: 980px) {
+    .contact-tracks { grid-template-columns: 1fr; }
+  }
+</style>
+
 <section id="contact">
-  <div class="contact-glow"></div>
-  <div class="contact-inner reveal">
-    <div class="contact-availability">
-      <div class="avail-dot"></div>
-      Available for immediate start
+  <div class="wrap">
+    <div class="reveal">
+      <div class="contact-eyebrow">GET IN TOUCH</div>
+      <h2 class="contact-title">Let's build<br><em>something real.</em></h2>
+      <p class="contact-sub">Open to PhD research collaboration in HRI and AI reliability, and to robotics and AI engineering roles in the UK, EU, and USA.</p>
+
+      <div class="contact-tracks">
+        <div class="contact-track-card">
+          <div class="contact-track-label">ACADEMIC &amp; RESEARCH CONTACTS</div>
+          <div class="contact-track-text">Pursuing PhD opportunities in human-robot interaction and AI reliability. Happy to share full research proposals.</div>
+          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Research%20Inquiry" class="contact-track-link">Email about research &rarr;</a>
+        </div>
+        <div class="contact-track-card">
+          <div class="contact-track-label">HIRING TEAMS</div>
+          <div class="contact-track-text">Open to robotics and AI engineering roles. UK Graduate Visa valid through September 2026, sponsorship welcome.</div>
+          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Role%20Inquiry" class="contact-track-link">Email about roles &rarr;</a>
+        </div>
+      </div>
+
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://medium.com/@munawarkazmi" target="_blank" class="contact-link">Medium</a>
+        <a href="https://drive.google.com/file/d/1epkWzDtC4iTFtlqvQH5ltjKJy3GvwK0i/view?usp=sharing" target="_blank" class="contact-link">Download CV</a>
+      </div>
     </div>
-    <h2 class="contact-title">Let's Build<br><span>Something Real</span></h2>
-    <p class="contact-subtitle">Open to sponsored robotics and AI engineering roles in the UK, EU, and USA.</p>
-    <div class="visa-note">🇬🇧 UK Graduate Visa (PSW) valid until September 2026 · Visa sponsorship welcome</div>
-    <div class="contact-links">
-      <a href="mailto:munawarsaeedkazmi1@gmail.com" class="contact-link">✉ Email</a>
-      <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" class="contact-link">in LinkedIn</a>
-      <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">&lt;/&gt; GitHub</a>
-      <a href="https://medium.com/@munawarkazmi" target="_blank" class="contact-link">✍ Medium</a>
-      <a href="https://drive.google.com/file/d/1J70c0se8TjlevHMe6r9_nKfJTxuDu18f/view?usp=sharing" target="_blank" class="contact-link">↓ Download CV</a>
-    </div>
-    <a href="mailto:munawarsaeedkazmi1@gmail.com" class="contact-email-big">munawarsaeedkazmi1@gmail.com</a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
+<style>
+  footer {
+    background: var(--ink2);
+    border-top: 1px solid var(--hairline);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+  }
+  @media (max-width: 600px) {
+    footer { flex-direction: column; gap: 0.6rem; padding: 2rem 1.5rem; text-align: center; }
+  }
+</style>
+
 <footer>
-  <div class="footer-left">© 2026 Munawar Kazmi · Robotics Systems Engineer</div>
-  <div class="footer-right">Built for humans. Deployed on hardware.</div>
+  <div>&copy; 2026 Munawar Kazmi</div>
+  <div>Robotics &amp; AI Research Engineer</div>
 </footer>
 
 <script>
-  // MOBILE MENU
   function toggleMenu() {
-    const links = document.getElementById('navLinks');
-    links.classList.toggle('open');
+    const nav = document.getElementById('navLinks');
+    const btn = document.querySelector('.nav-toggle');
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
   }
 
-  // SCROLL REVEAL
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    });
+  });
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 100);
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // COUNTER ANIMATION
-  function animateCounter(el, target, duration = 1800) {
-    let start = 0;
-    const step = (timestamp) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(eased * target);
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = target;
-    };
-    requestAnimationFrame(step);
-  }
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const target = parseInt(entry.target.dataset.target);
-        animateCounter(entry.target, target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
-  // SMOOTH NAV CLOSE ON LINK CLICK
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('open');
-    });
+  // Failsafe: reveal anything still hidden shortly after load (e.g. fast scroll, reduced motion)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 200) el.classList.add('visible');
+      });
+    }, 600);
   });
 </script>
+
 </body>
 </html>
