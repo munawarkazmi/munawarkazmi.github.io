@@ -50,6 +50,37 @@
   a { color: inherit; }
   img { max-width: 100%; display: block; }
 
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: var(--accent);
+    color: var(--ink);
+    padding: 0.8rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 999;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--ink); }
   ::-webkit-scrollbar-thumb { background: var(--text-faint); border-radius: 3px; }
@@ -101,6 +132,7 @@
   }
 
   .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a.active { color: var(--accent); }
 
   .nav-cta {
     font-size: 0.84rem;
@@ -345,6 +377,8 @@
 
   .about-photo img {
     width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     display: block;
     filter: grayscale(25%) contrast(1.05) brightness(0.96);
   }
@@ -444,6 +478,8 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <nav>
   <a href="#hero" class="nav-name">Munawar Kazmi</a>
   <ul class="nav-links" id="navLinks">
@@ -455,6 +491,8 @@
   </ul>
   <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
 </nav>
+
+<main id="main-content">
 
 <section id="hero">
   <div class="hero-inner">
@@ -506,7 +544,7 @@
       </div>
       <div class="about-credentials reveal">
         <div class="about-photo">
-          <img src="assets/headshot.jpg" alt="Portrait of Munawar Kazmi">
+          <img src="assets/headshot.jpg" alt="Portrait of Munawar Kazmi" width="400" height="400">
         </div>
         <div class="credential">
           <div class="credential-degree">MSc AI &amp; Robotics</div>
@@ -542,6 +580,11 @@
     border: 1px solid var(--hairline);
     border-radius: 8px;
     overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .research-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-line);
   }
 
   .research-card-body { padding: 3rem; }
@@ -671,6 +714,62 @@
     letter-spacing: 0.01em;
   }
 
+  .trust-demo {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .trust-demo-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.2rem;
+  }
+  .trust-toggle {
+    display: inline-flex;
+    background: var(--ink2);
+    border-radius: 6px;
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 1.1rem;
+  }
+  .trust-toggle-btn {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .trust-toggle-btn.active { background: var(--accent); color: var(--ink); }
+  .trust-caption { font-size: 0.84rem; color: var(--text-dim); margin-bottom: 1.1rem; }
+  .trust-bar-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    max-width: 420px;
+  }
+  .trust-bar-val { color: var(--text-primary); font-weight: 500; }
+  .trust-bar-track {
+    max-width: 420px;
+    height: 8px;
+    background: var(--ink2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .trust-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+
   .research-videos {
     margin-top: 2rem;
     padding-top: 2rem;
@@ -750,11 +849,11 @@
 
         <div class="research-photos">
           <div class="research-photo">
-            <img src="assets/icub.jpg" alt="iCub humanoid robot platform in the lab">
+            <img src="assets/icub.jpg" alt="iCub humanoid robot platform in the lab" width="400" height="260">
             <div class="research-photo-caption">iCub humanoid &middot; IIT</div>
           </div>
           <div class="research-photo">
-            <img src="assets/jd-robot.jpg" alt="JD humanoid robot platform used in the formal trust-calibration study">
+            <img src="assets/jd-robot.jpg" alt="JD humanoid robot platform used in the formal trust-calibration study" width="400" height="260">
             <div class="research-photo-caption">JD humanoid &middot; EZ-Robot</div>
           </div>
         </div>
@@ -769,21 +868,35 @@
 
         <div class="research-stats">
           <div class="research-stat">
-            <div class="research-stat-num">d&nbsp;=&nbsp;0.58</div>
+            <div class="research-stat-num count-up">d&nbsp;=&nbsp;0.58</div>
             <div class="research-stat-label">Effect size, clarity: verbal vs. gestural (p&nbsp;=&nbsp;0.017)</div>
           </div>
           <div class="research-stat">
-            <div class="research-stat-num">95%</div>
+            <div class="research-stat-num count-up">95%</div>
             <div class="research-stat-label">Intent identification accuracy, verbal condition</div>
           </div>
           <div class="research-stat">
-            <div class="research-stat-num">80%</div>
+            <div class="research-stat-num count-up">80%</div>
             <div class="research-stat-label">Intent identification accuracy, gestural condition</div>
           </div>
           <div class="research-stat">
-            <div class="research-stat-num">N=20</div>
+            <div class="research-stat-num count-up">N=20</div>
             <div class="research-stat-label">Within-subjects, counterbalanced, RoSAS-validated</div>
           </div>
+        </div>
+
+        <div class="trust-demo">
+          <div class="trust-demo-label">TRY IT &middot; VERBAL VS. NON-VERBAL</div>
+          <div class="trust-toggle" role="group" aria-label="Communication condition toggle">
+            <button type="button" class="trust-toggle-btn active" id="trustVerbalBtn" aria-pressed="true">Verbal</button>
+            <button type="button" class="trust-toggle-btn" id="trustNonverbalBtn" aria-pressed="false">Non-verbal</button>
+          </div>
+          <div class="trust-caption" id="trustCaption">Robot states its need directly</div>
+          <div class="trust-bar-row">
+            <span>Intent identification accuracy</span>
+            <span class="trust-bar-val" id="trustVal">95%</span>
+          </div>
+          <div class="trust-bar-track"><div class="trust-bar-fill" id="trustBar" style="width:95%;"></div></div>
         </div>
 
         <div class="research-videos">
@@ -979,21 +1092,42 @@
 <style>
   #projects { background: var(--ink); }
 
+  .project-filters {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .project-filter-btn {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .project-filter-btn:hover { border-color: var(--accent-line); color: var(--text-primary); }
+  .project-filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    margin-top: 3.5rem;
+    margin-top: 2rem;
   }
+  .project-card.filtered-out { display: none; }
 
   .project-card {
     background: var(--ink3);
     border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 2rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease;
   }
-  .project-card:hover { border-color: var(--accent-line); }
+  .project-card:hover { border-color: var(--accent-line); transform: translateY(-4px); }
 
   .project-tags {
     display: flex;
@@ -1065,8 +1199,15 @@
       <p class="section-lede">Every project here shipped to real hardware with quantified outcomes, not benchmark numbers alone.</p>
     </div>
 
+    <div class="project-filters" role="group" aria-label="Filter projects by category">
+      <button type="button" class="project-filter-btn active" data-filter="all">All</button>
+      <button type="button" class="project-filter-btn" data-filter="ros2">ROS2</button>
+      <button type="button" class="project-filter-btn" data-filter="edge-ai">Edge AI</button>
+      <button type="button" class="project-filter-btn" data-filter="embedded">Embedded</button>
+    </div>
+
     <div class="projects-grid">
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-category="ros2">
         <div class="project-tags">
           <span class="project-tag">C++20</span>
           <span class="project-tag">ROS2 Nav2</span>
@@ -1075,13 +1216,13 @@
         <div class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</div>
         <div class="project-desc">A high-performance C++20 Global Planner plugin for ROS2 Nav2 using A* and D* Lite, validated on TurtleBot3 with strict protective-stop safety guarantees.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num">22%</div><div class="project-metric-label">faster replanning</div></div>
-          <div><div class="project-metric-num">24%</div><div class="project-metric-label">travel time reduction</div></div>
+          <div><div class="project-metric-num count-up">22%</div><div class="project-metric-label">faster replanning</div></div>
+          <div><div class="project-metric-num count-up">24%</div><div class="project-metric-label">travel time reduction</div></div>
         </div>
         <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" class="project-link">View on GitHub &rarr;</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-category="edge-ai">
         <div class="project-tags">
           <span class="project-tag">TensorRT</span>
           <span class="project-tag">Jetson Nano</span>
@@ -1090,13 +1231,13 @@
         <div class="project-title">Edge AI Optimisation on Jetson Nano</div>
         <div class="project-desc">TensorRT optimisation of CNN and gesture recognition models, enabling real-time decentralised motor control across a multi-robot system.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num">40%</div><div class="project-metric-label">latency reduction</div></div>
-          <div><div class="project-metric-num">96%</div><div class="project-metric-label">accuracy maintained</div></div>
+          <div><div class="project-metric-num count-up">40%</div><div class="project-metric-label">latency reduction</div></div>
+          <div><div class="project-metric-num count-up">96%</div><div class="project-metric-label">accuracy maintained</div></div>
         </div>
         <a href="https://github.com/munawarkazmi" target="_blank" class="project-link">View on GitHub &rarr;</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-category="ros2 edge-ai">
         <div class="project-tags">
           <span class="project-tag">ROS2</span>
           <span class="project-tag">LLM</span>
@@ -1105,13 +1246,13 @@
         <div class="project-title">ROS2 LLM Safety Verifier</div>
         <div class="project-desc">A real-time hallucination detector for ROS2 Nav2 that intercepts unsafe trajectory commands before they reach robot hardware, validated on TurtleBot3 with Jetson Orin Nano.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num">94%</div><div class="project-metric-label">unsafe trajectory catch rate</div></div>
-          <div><div class="project-metric-num">&lt;50ms</div><div class="project-metric-label">detection latency</div></div>
+          <div><div class="project-metric-num count-up">94%</div><div class="project-metric-label">unsafe trajectory catch rate</div></div>
+          <div><div class="project-metric-num count-up">&lt;50ms</div><div class="project-metric-label">detection latency</div></div>
         </div>
         <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" class="project-link">View on GitHub &rarr;</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-category="embedded">
         <div class="project-tags">
           <span class="project-tag">ESP32</span>
           <span class="project-tag">LoRa Mesh</span>
@@ -1120,8 +1261,8 @@
         <div class="project-title">ESP32-CAM Motion Detector</div>
         <div class="project-desc">Deterministic C++ firmware for image processing on ESP32-CAM with a LoRa mesh alert protocol, shipped as a deployed safety-critical product.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num">93.8%</div><div class="project-metric-label">detection accuracy</div></div>
-          <div><div class="project-metric-num">60%</div><div class="project-metric-label">RAM reduction</div></div>
+          <div><div class="project-metric-num count-up">93.8%</div><div class="project-metric-label">detection accuracy</div></div>
+          <div><div class="project-metric-num count-up">60%</div><div class="project-metric-label">RAM reduction</div></div>
         </div>
         <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" class="project-link">View on GitHub &rarr;</a>
       </div>
@@ -1213,7 +1354,9 @@
     align-items: flex-start;
     gap: 2rem;
     flex-wrap: wrap;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
+  .pub-card:hover { transform: translateY(-4px); border-color: var(--accent-line); }
 
   .pub-title {
     font-family: var(--font-display);
@@ -1237,6 +1380,25 @@
   }
   .pub-link:hover { color: var(--accent); border-color: var(--accent); }
 
+  .copy-btn {
+    font-family: var(--font-body);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .pub-copy-btn {
+    display: inline-block;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .pub-copy-btn:hover { color: var(--text-primary); border-color: var(--accent-line); }
+
   .pub-status {
     font-size: 0.76rem;
     color: var(--accent);
@@ -1259,6 +1421,7 @@
         <div class="pub-authors">Kazmi, S.M.S. (2025)</div>
         <div class="pub-venue">Submitted to MDPI Robotics &middot; Under Review</div>
         <a href="https://drive.google.com/file/d/1wqbuFUncJgoeZCsrwP4nvvxrNSWjoAEQ/view?usp=sharing" target="_blank" class="pub-link">Read Paper (PDF) &rarr;</a>
+        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, S. M. S. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. Manuscript submitted for publication, MDPI Robotics.">Copy citation</button>
       </div>
       <span class="pub-status">Under Review</span>
     </div>
@@ -1281,7 +1444,9 @@
     border-radius: 8px;
     padding: 2rem;
     overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
+  .speaking-card:hover { transform: translateY(-4px); border-color: var(--accent-line); }
 
   .speaking-photo {
     display: block;
@@ -1321,13 +1486,13 @@
     </div>
     <div class="speaking-grid">
       <div class="speaking-card reveal">
-        <img class="speaking-photo" src="assets/speaking.jpg" alt="Munawar Kazmi presenting at the University of Hertfordshire">
+        <img class="speaking-photo" src="assets/speaking.jpg" alt="Munawar Kazmi presenting at the University of Hertfordshire" width="700" height="170">
         <div class="speaking-meta">TALK &middot; UNIVERSITY OF HERTFORDSHIRE</div>
         <div class="speaking-event">AI &amp; Robotics in Education Conference</div>
         <div class="speaking-detail">Presented on HRI and edge AI applications to students and faculty, with live robot demonstrations of the companionship research.</div>
       </div>
       <div class="speaking-card reveal">
-        <img class="speaking-photo" src="assets/teaching.jpg" alt="Munawar Kazmi leading a hands-on robotics and ML workshop at Pak-Turk Maarif Schools">
+        <img class="speaking-photo" src="assets/teaching.jpg" alt="Munawar Kazmi leading a hands-on robotics and ML workshop at Pak-Turk Maarif Schools" width="700" height="170">
         <div class="speaking-meta">WORKSHOP &middot; PAK-TURK MAARIF SCHOOLS</div>
         <div class="speaking-event">Hands-On Robotics &amp; ML Workshop</div>
         <div class="speaking-detail">Led practical sessions covering gesture control, neural networks, and real-time AI deployment. Teams built and trained working classifiers during the session.</div>
@@ -1512,6 +1677,7 @@
       </div>
 
       <div class="contact-links">
+        <button type="button" class="copy-btn contact-link" id="copyEmailBtn" data-email="munawarsaeedkazmi1@gmail.com">Copy email</button>
         <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" class="contact-link">LinkedIn</a>
         <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">GitHub</a>
         <a href="https://medium.com/@munawarkazmi" target="_blank" class="contact-link">Medium</a>
@@ -1520,6 +1686,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ============ FOOTER ============ -->
 <style>
@@ -1578,6 +1746,125 @@
       });
     }, 600);
   });
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Nav scroll-spy ---
+  const navAnchors = Array.from(document.querySelectorAll('#navLinks a[href^="#"]'));
+  const spySections = navAnchors
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  spySections.forEach(sec => spyObserver.observe(sec));
+
+  // --- Count-up animation for stat/metric numbers ---
+  function animateCountUp(el) {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^([^\d]*)([\d]+(?:\.\d+)?)(.*)$/);
+    if (!match) return;
+    const [, prefix, numStr, suffix] = match;
+    const target = parseFloat(numStr);
+    const decimals = numStr.includes('.') ? numStr.split('.')[1].length : 0;
+    if (prefersReducedMotion) {
+      el.textContent = prefix + numStr + suffix;
+      return;
+    }
+    const duration = 1100;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = (target * eased).toFixed(decimals);
+      el.textContent = prefix + current + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + numStr + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCountUp(entry.target);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+  // --- Trust calibration toggle (Research section) ---
+  const trustData = {
+    verbal: { val: '95%', caption: 'Robot states its need directly', width: '95%' },
+    nonverbal: { val: '80%', caption: 'Robot communicates via gesture only', width: '80%' }
+  };
+  const trustVerbalBtn = document.getElementById('trustVerbalBtn');
+  const trustNonverbalBtn = document.getElementById('trustNonverbalBtn');
+  const trustBar = document.getElementById('trustBar');
+  const trustVal = document.getElementById('trustVal');
+  const trustCaption = document.getElementById('trustCaption');
+
+  function setTrustState(key) {
+    const d = trustData[key];
+    if (!d || !trustBar) return;
+    trustBar.style.width = d.width;
+    trustVal.textContent = d.val;
+    trustCaption.textContent = d.caption;
+    const isVerbal = key === 'verbal';
+    trustVerbalBtn.classList.toggle('active', isVerbal);
+    trustVerbalBtn.setAttribute('aria-pressed', isVerbal);
+    trustNonverbalBtn.classList.toggle('active', !isVerbal);
+    trustNonverbalBtn.setAttribute('aria-pressed', !isVerbal);
+  }
+
+  if (trustVerbalBtn && trustNonverbalBtn) {
+    trustVerbalBtn.addEventListener('click', () => setTrustState('verbal'));
+    trustNonverbalBtn.addEventListener('click', () => setTrustState('nonverbal'));
+  }
+
+  // --- Project filters ---
+  const filterBtns = document.querySelectorAll('.project-filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projectCards.forEach(card => {
+        const cats = (card.dataset.category || '').split(' ');
+        const show = filter === 'all' || cats.includes(filter);
+        card.classList.toggle('filtered-out', !show);
+      });
+    });
+  });
+
+  // --- Copy-to-clipboard buttons ---
+  function wireCopyButton(btn, getText, label) {
+    if (!btn) return;
+    const original = btn.textContent;
+    btn.addEventListener('click', () => {
+      const text = getText();
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = original; }, 1600);
+      }).catch(() => {
+        btn.textContent = text;
+      });
+    });
+  }
+
+  wireCopyButton(document.getElementById('copyEmailBtn'), () => document.getElementById('copyEmailBtn').dataset.email);
+  wireCopyButton(document.getElementById('copyCitationBtn'), () => document.getElementById('copyCitationBtn').dataset.citation);
 </script>
 
 </body>
