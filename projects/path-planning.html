@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROS2 Dynamic Path Planning · Munawar Kazmi</title>
+<meta name="description" content="A* vs D* Lite global planners for ROS2 Nav2: real-time replanning in dynamic environments, validated over 200 reproducible trials.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">ROS2 · C++20 · Nav2 · TurtleBot3</div>
+    <h1>Planning paths that survive a <em>changing world</em></h1>
+    <p class="lede">Two global planner plugins for ROS2 Nav2, written in modern C++20: classic A* and incremental D* Lite, benchmarked head-to-head in an office full of moving people.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">22.4%</div><div class="metric-label">faster average travel time with D* Lite</div></div>
+      <div class="metric"><div class="metric-num">197/200</div><div class="metric-label">trials won by D* Lite (seed 42, fully reproducible)</div></div>
+      <div class="metric"><div class="metric-num">8</div><div class="metric-label">moving people in the simulated office world</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>Warehouses, hospitals, and homes never hold still. A robot plans a route, someone steps into it, and the plan is suddenly wrong. Classic A* handles this by throwing everything away and searching again from scratch, which costs processing spikes and jerky motion exactly when smoothness matters most. D* Lite takes the other road: it repairs the existing plan incrementally, reusing everything the previous search already learned.</p>
+    <p>This project turns that textbook comparison into running code: two real Nav2 global planner plugins, one launch-file switch between them, and a benchmark node that settles the question with numbers instead of intuition.</p>
+  </section>
+
+  <section class="block">
+    <h2>What the planner <em>sees</em></h2>
+    <figure class="light">
+      <img src="img/astar_plan.png" alt="A* global plan across the office map with expanded nodes shown as a blue cloud" loading="lazy">
+      <figcaption>A real A* run on the project's 50 m &times; 40 m office map. The blue cloud is every node the search expanded on its way to the goal; the navy line is the resulting path. Algorithm visualization, generated from the repository's actual occupancy map.</figcaption>
+    </figure>
+    <figure class="light">
+      <img src="img/replan_obstacle.png" alt="Replanned route bending around an obstacle that appeared on the original path" loading="lazy">
+      <figcaption>Mid-journey, an obstacle appears directly on the route. The planner repairs the path around it. This event, repeated with 8 walking actors, is exactly what the 200-trial benchmark measures.</figcaption>
+    </figure>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="img/benchmark_summary.png" alt="Bar chart: A* 3.298 seconds average travel time versus D* Lite 2.560 seconds" loading="lazy">
+      <figcaption>200 trials, fixed seed, identical conditions for both planners. D* Lite averaged 2.560 s against A*'s 3.298 s and won 197 of 200 runs. The full CSV ships with the repository, and one launch command reproduces the entire benchmark.</figcaption>
+    </figure>
+    <p>The engineering details that make the comparison fair: both planners run as genuine <strong>pluginlib Nav2 plugins</strong> against the same costmaps, dynamic obstacles are injected identically via MarkerArray, and the benchmark node fixes its random seed so every trial sequence is repeatable to the run.</p>
+  </section>
+
+  <section class="block">
+    <h2>Under the <em>hood</em></h2>
+    <ul>
+      <li>Modern C++20 implementations of A* and D* Lite as Nav2 global planner plugins</li>
+      <li>Gazebo world with 8 walking actors for live, visual replanning demos in RViz</li>
+      <li>Single-parameter planner switching; production-grade launch files and configs</li>
+      <li>Benchmark node with CSV output: 200 reproducible trials in about 2 minutes</li>
+      <li>Protective-stop safety guarantees around every replan</li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>

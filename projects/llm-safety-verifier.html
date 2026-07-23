@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROS2 LLM Safety Verifier · Munawar Kazmi</title>
+<meta name="description" content="A real-time safety layer that intercepts LLM-hallucinated trajectories before they reach robot hardware: 94% catch rate at under 50 ms, validated on TurtleBot3.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">ROS2 · LLM Safety · Jetson Orin Nano · TurtleBot3</div>
+    <h1>Catching hallucinations <em>before the wheels turn</em></h1>
+    <p class="lede">Language models are being handed the steering wheel of real robots, and sometimes they invent a goal inside a wall. This project puts a deterministic verifier between the LLM and the hardware.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">94%</div><div class="metric-label">of unsafe trajectories caught before execution</div></div>
+      <div class="metric"><div class="metric-num">&lt;50 ms</div><div class="metric-label">verification latency on Jetson Orin Nano</div></div>
+      <div class="metric"><div class="metric-num">57&rarr;91%</div><div class="metric-label">navigation success, raw LLM vs verified, 103 hardware trials</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>Ask a large language model for a navigation goal and it usually gives a sensible one. Usually is the problem. Across 103 real trials, a quantized Llama-3.1-8B produced plans that failed on hardware almost half the time: goals inside obstacles, paths through people, waypoints that never existed. On a screen that's a wrong answer; on a robot it's a collision.</p>
+    <p>The insight this project runs on: you don't need another neural network to check the first one. A <strong>deterministic verifier</strong>, checking each proposed trajectory against the costmap, the robot's kinematics, and the workspace bounds, gives a yes or no in under 50 milliseconds, every time, with no hallucinations of its own.</p>
+  </section>
+
+  <section class="block">
+    <h2>The <em>architecture</em></h2>
+    <figure class="light">
+      <img src="img/architecture.svg" alt="Architecture diagram: LLM planner feeds the safety verifier, which passes safe plans to Nav2 and rejects unsafe ones back for replanning" loading="lazy">
+      <figcaption>The verifier sits in the command path. Safe plans pass through to Nav2 untouched; unsafe ones are rejected and a replan is requested, before any command reaches the TurtleBot3.</figcaption>
+    </figure>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="img/results.png" alt="Bar chart: 57% navigation success for the raw LLM versus 91% with the safety verifier" loading="lazy">
+      <figcaption>The same LLM, with and without the verifier in front of it. 103 hardware trials on TurtleBot3 with a Jetson Orin Nano; the error bar is the 95% confidence interval.</figcaption>
+    </figure>
+    <p>The verifier caught <strong>94% of unsafe trajectories</strong> while rejecting fewer than 4% of good plans, and lifted end-to-end navigation success from 57% to 91%. The whole check costs less than 50 ms per plan, small enough to be invisible next to LLM inference itself.</p>
+    <p>The repository currently ships the reproducible Docker development environment (identical on x86_64 and Jetson arm64) with CI keeping it green. The verifier node, the full failure-mode study, the 103 raw trial bags, and demo videos are being prepared for release alongside a planned Nav2 integration proposal.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
