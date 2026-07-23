@@ -2064,6 +2064,7 @@
 
     <div class="project-filters" role="group" aria-label="Filter projects by category">
       <button type="button" class="project-filter-btn active" data-filter="all">All</button>
+      <button type="button" class="project-filter-btn" data-filter="research">Research</button>
       <button type="button" class="project-filter-btn" data-filter="ros2">ROS2</button>
       <button type="button" class="project-filter-btn" data-filter="edge-ai">Edge AI</button>
       <button type="button" class="project-filter-btn" data-filter="embedded">Embedded</button>
@@ -2071,6 +2072,24 @@
     </div>
 
     <div class="projects-grid" data-stagger>
+      <div class="project-card reveal spotlight tilt" data-category="research">
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">LLM Evaluation</span>
+          <span class="project-tag">PDDL</span>
+        </div>
+        <div class="project-title">plan-failure-bench: How LLM Planners Fail</div>
+        <div class="project-desc">A research benchmark measuring how language models fail at robot task planning: 30 trap-labelled instructions, a machine-checkable action DSL with explicit refusal responses, and planted-versus-observed confusion matrices, with ground truth decidable end to end and no human or LLM judging anywhere. First results show a 70B and a 7B model failing in opposite ways.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num count-up">294</div><div class="project-metric-label">tests and label proofs in CI</div></div>
+          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human judgements in the scoring loop</div></div>
+        </div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="projects/plan-failure-bench.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
+        </div>
+      </div>
+
       <div class="project-card reveal spotlight tilt" data-category="ros2">
         <div class="project-tags">
           <span class="project-tag">C++20</span>
