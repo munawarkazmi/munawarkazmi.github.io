@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safina Portal · Munawar Kazmi</title>
+<meta name="description" content="A complete school management system built and operated solo, live in production: seven user roles, prorated billing, payroll, digital ID cards, and a tamper-proof audit trail.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">React · TypeScript · Supabase · In Production</div>
+    <h1>An entire institution, <em>running on my code</em></h1>
+    <p class="lede">The complete management system of Safina International, an educational institute in Multan: admissions, classes, billing, payroll, library, facilities, and ID cards. Designed, built, shipped, and operated end to end, solo.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://portal.safinainternational.com" target="_blank" rel="noopener">Live portal</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">7</div><div class="metric-label">user roles, each with its own tailored interface</div></div>
+      <div class="metric"><div class="metric-num">100%</div><div class="metric-label">of database changes recorded in the audit trail</div></div>
+      <div class="metric"><div class="metric-num">15</div><div class="metric-label">ordered SQL migrations from prototype to production</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>What it <em>does</em></h2>
+    <p>Students sign in with an emailed code, no passwords anywhere, and see their day at a glance: classes, homework with online submission, an attendance donut, fees they can actually understand, and a digital student ID that doubles as a printable card. Teachers post and grade homework and take one-tap attendance. The office runs admissions through a three-step wizard, the accounts desk records cash against auto-generated invoices, and gym and daycare staff see exactly their members and no one else's.</p>
+    <div class="fig-grid">
+      <figure><img src="img/03-dashboard.png" alt="Student dashboard" loading="lazy"><figcaption>The student dashboard: the day at a glance.</figcaption></figure>
+      <figure><img src="img/12-fees.png" alt="Fees page" loading="lazy"><figcaption>Fees built for one glance: what to pay now, what is coming.</figcaption></figure>
+      <figure><img src="img/10-booking.png" alt="Facility booking" loading="lazy"><figcaption>First-come facility booking with capacity locking.</figcaption></figure>
+      <figure><img src="img/11-ticket.png" alt="Session ticket" loading="lazy"><figcaption>A session ticket, shown at the door.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>The parts that were <em>hard</em></h2>
+    <ul>
+      <li><strong>Billing that matches real life.</strong> Tuition and subscriptions in advance, sessions in arrears, mid-month joins charged immediately and prorated to the day, one-time trials with month locks, automatic suspension for unpaid fees with a grace mechanism.</li>
+      <li><strong>Money that cannot be silently edited.</strong> Financial records are append-only: corrections happen through recorded reversals and waivers, never deletion, and every change lands in a database-trigger audit log with before-and-after values.</li>
+      <li><strong>Security with no server of my own.</strong> Authorization lives entirely in PostgreSQL row-level security and guarded functions; each of the seven roles reads exactly what it needs. The service-role key is never used.</li>
+      <li><strong>Built for non-technical users, in two languages.</strong> Plain-language interfaces, printable branded PDFs, and parent handouts in English and Urdu.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>The <em>stack</em></h2>
+    <p>Vite, React 18, and TypeScript with a hand-written design system, no UI libraries. Supabase (PostgreSQL) behind row-level security. Email OTP auth over the institute's own domain. Netlify hosting, pg_cron for nightly billing. Everything runs on free tiers, by design, for an institute that needed world-class software on a startup budget of zero.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://portal.safinainternational.com" target="_blank" rel="noopener">Live portal &rarr;</a>
+    &ensp;·&ensp;
+    <a href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener">Source on GitHub</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
