@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>plan-failure-bench · Munawar Kazmi</title>
+<meta name="description" content="A benchmark measuring how LLMs fail at robot task planning: planted traps, a machine-checkable action DSL with refusal terminals, and planted-versus-observed confusion matrices with fully decidable ground truth.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">LLM Evaluation · Robot Task Planning · Benchmark Design · PDDL</div>
+    <h1>Measuring <em>how</em> planners fail, not just that they do</h1>
+    <p class="lede">The literature agrees that language models plan poorly. This benchmark asks the sharper questions: when an instruction hides a specific trap, does the model fail the way the trap predicts, does it say so instead of complying, and does its judgement survive when every semantic cue is renamed to nonsense?</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">294</div><div class="metric-label">automated tests and label proofs, re-run on every change</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">human or LLM judgements anywhere in the scoring loop</div></div>
+      <div class="metric"><div class="metric-num">15&rarr;1</div><div class="metric-label">hallucination artefact found and eliminated by versioned methodology</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>My <a href="llm-safety-verifier.html">runtime safety verifier</a> catches unsafe trajectories at the last possible moment, on the robot. This project moves upstream to the question that determines whether a language model should be planning for a robot at all: when a task is impossible, ambiguous, or forbidden, does the model notice, or does it comply and fail?</p>
+    <p>Success-rate benchmarks blur that distinction into a single number. A model that politely refuses everything and a model that walks into every trap can score identically. And most evaluations of embodied planning still rely on human or LLM judges somewhere in the loop, which caps how far they scale and how much a reviewer can trust them.</p>
+    <p>So this benchmark is built on one hard constraint: <strong>ground truth must be decidable by construction</strong>. Every instruction either admits a valid plan or contains exactly one planted trap: an unreachable goal, a missing capability, an ambiguous referent, a precondition trap, a sequencing trap, or a constraint violation. The model answers in a small JSON action language that includes explicit <strong>infeasible</strong> and <strong>clarify</strong> responses, so detecting a trap is machine-checkable, never judged.</p>
+  </section>
+
+  <section class="block">
+    <h2>The <em>design</em></h2>
+    <p>A symbolic world (rooms, doors, items, a one-slot gripper, safety constraints that must hold at every step) feeds a fixed prompt. A deterministic checker simulates every returned plan and assigns exactly one verdict. The headline artefact is the <strong>confusion matrix between planted trap and observed failure</strong>: not just whether models fail, but whether they fail as predicted.</p>
+    <p>The ground truth defends itself. The checker is differentially tested against an independent PDDL toolchain on hundreds of adversarial and randomised plans. Infeasibility labels are proofs from sound over-approximating search, not authoring assertions, and they re-run in CI on every commit. Ambiguity labels are proved by counting referent bindings.</p>
+    <p>Every instruction also exists in an <strong>obfuscated condition</strong> in the style of Mystery Blocksworld: all semantic content words renamed to nonsense tokens, relational structure fully preserved, applied as a bijection so the checker always scores the canonical world. If a model detects "carry the knife to the nursery" is forbidden but misses the identical situation with the meaning stripped out, its safety behaviour is pattern matching, not state tracking. That distinction is the benchmark's central experiment.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>First <em>results</em></h2>
+    <figure class="light">
+      <img src="img/pfb-confusion.png" alt="Four confusion matrices, planted trap versus observed verdict, for two models in plain and obfuscated conditions" loading="lazy">
+      <figcaption>Planted trap versus observed verdict for a 70B and a 7B model, plain and obfuscated, 30 seeds per run. Counts, not rates; the shape of each matrix is the finding.</figcaption>
+    </figure>
+    <p>The two models fail in opposite ways. Llama 3.3 70B detects most infeasibility and ambiguity traps but wraps its answers in prose that violates the protocol. Qwen 2.5 7B follows the format flawlessly and detects almost nothing: zero refusals, so zero false positives, and nearly every trap ends in the same observed failure, a precondition violation. A success rate would rank these two; the matrices explain them.</p>
+    <p>Obfuscation splits the 70B model's abilities apart: trap detection survived (false positives actually fell), while plan execution collapsed from 5 of 9 valid tasks solved to 1 of 9. Detection and execution dissociate, which is not what a pure pattern-matching account predicts.</p>
+    <p>The methodology also caught its own first artefact. Under the first token scheme, the 7B model appeared to hallucinate entities 15 times; the tokens were merely too similar to each other. Regenerating them with a guaranteed minimum edit distance dropped it to 1, the obfuscation is now versioned in every record, and both generations of results live in the repository history. At 30 seeds these are hypotheses rather than claims, and the benchmark says so on its own front page.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
