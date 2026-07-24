@@ -2107,7 +2107,10 @@
     <div class="now-card reveal spotlight">
       <div class="now-head">
         <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
-        <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="#projects" class="project-link">Project details &darr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+        </div>
       </div>
       <div class="project-title">plan-failure-bench</div>
       <p class="now-desc">The benchmark now spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 529 tests on every commit. Newest result: both models tested on the second environment replicated the direction of their failure profiles, and unreachability detection survived semantic obfuscation only where the isolation was stated in the prompt rather than left to be inferred from the connection graph. Next on the bench: k=5 sampling for per-seed verdict consistency, Llama runs on the second environment, and a frontier reasoning model trickling through free-tier quota.</p>
