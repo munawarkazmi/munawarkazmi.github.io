@@ -1724,6 +1724,48 @@
   }
   .back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .back-to-top:hover { border-color: var(--accent); color: var(--accent); }
+  /* ============ Now section ============ */
+  .now-card {
+    max-width: 860px;
+    border: 1px solid var(--hairline);
+    background: rgba(24, 24, 27, 0.5);
+    border-radius: 14px;
+    padding: 2rem 2.2rem;
+    margin-top: 2.4rem;
+  }
+  .now-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+  }
+  .now-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .now-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin: 0.5rem 0 1.4rem;
+  }
+  .now-commit {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    border-top: 1px solid var(--hairline);
+    padding-top: 1rem;
+  }
+  .now-commit-msg { color: var(--accent); font-style: italic; }
+  @media (max-width: 640px) {
+    .now-card { padding: 1.4rem 1.2rem; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -1771,6 +1813,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#research">Research</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#now">Now</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
@@ -1866,11 +1909,11 @@
         </div>
         <div class="credential">
           <div class="credential-degree">MSc AI &amp; Robotics</div>
-          <div class="credential-meta">Commendation · University of Hertfordshire · 2023–2024</div>
+          <div class="credential-meta">Commendation · University of Hertfordshire · 2023-2024</div>
         </div>
         <div class="credential">
           <div class="credential-degree">BEng Mechatronics Engineering</div>
-          <div class="credential-meta">NUST · 2018–2022</div>
+          <div class="credential-meta">NUST · 2018-2022</div>
         </div>
         <div class="dual-track">
           <div class="track-card spotlight">
@@ -2054,10 +2097,29 @@
   </div>
 </section>
 
+<section id="now">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-num">04</span> NOW</div>
+      <h2 class="section-title">On the bench <em>right now</em></h2>
+      <p class="section-lede">Active research, updated as it lands. The latest commit is fetched live from GitHub, so the freshness claim checks itself.</p>
+    </div>
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
+        <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+      </div>
+      <div class="project-title">plan-failure-bench</div>
+      <p class="now-desc">The benchmark now spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 529 tests on every commit. Newest result: both models tested on the second environment replicated the direction of their failure profiles, and unreachability detection survived semantic obfuscation only where the isolation was stated in the prompt rather than left to be inferred from the connection graph. Next on the bench: k=5 sampling for per-seed verdict consistency, Llama runs on the second environment, and a frontier reasoning model trickling through free-tier quota.</p>
+      <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> PROJECTS</div>
+      <div class="eyebrow"><span class="eyebrow-num">05</span> PROJECTS</div>
       <h2 class="section-title">Built, deployed, <em>measured</em></h2>
       <p class="section-lede">Every project here shipped to real hardware with quantified outcomes, not benchmark numbers alone.</p>
     </div>
@@ -2079,9 +2141,9 @@
           <span class="project-tag">PDDL</span>
         </div>
         <div class="project-title">plan-failure-bench: How LLM Planners Fail</div>
-        <div class="project-desc">A research benchmark measuring how language models fail at robot task planning: 30 trap-labelled instructions, a machine-checkable action DSL with explicit refusal responses, and planted-versus-observed confusion matrices, with ground truth decidable end to end and no human or LLM judging anywhere. First results show a 70B and a 7B model failing in opposite ways.</div>
+        <div class="project-desc">A research benchmark measuring how language models fail at robot task planning: 60 trap-labelled instructions across two symbolic environments, a machine-checkable action DSL with explicit refusal responses, and planted-versus-observed confusion matrices, with ground truth decidable end to end and no human or LLM judging anywhere. Results so far show three models failing in three distinct ways.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num count-up">294</div><div class="project-metric-label">tests and label proofs in CI</div></div>
+          <div><div class="project-metric-num count-up">529</div><div class="project-metric-label">tests and label proofs in CI</div></div>
           <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human judgements in the scoring loop</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -2183,7 +2245,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">05</span> TECHNICAL SKILLS</div>
+      <div class="eyebrow"><span class="eyebrow-num">06</span> TECHNICAL SKILLS</div>
       <h2 class="section-title">Tools I <em>ship</em> with</h2>
     </div>
     <div class="skills-grid reveal">
@@ -2218,7 +2280,7 @@
 <section id="publications">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">06</span> PUBLICATIONS</div>
+      <div class="eyebrow"><span class="eyebrow-num">07</span> PUBLICATIONS</div>
       <h2 class="section-title">Research <em>output</em></h2>
     </div>
     <div class="pub-card reveal spotlight">
@@ -2237,7 +2299,7 @@
 <section id="speaking">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">07</span> SPEAKING &amp; TEACHING</div>
+      <div class="eyebrow"><span class="eyebrow-num">08</span> SPEAKING &amp; TEACHING</div>
       <h2 class="section-title">In the <em>room</em></h2>
     </div>
     <div class="speaking-grid" data-stagger>
@@ -2260,7 +2322,7 @@
 <section id="testimonials">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">08</span> TESTIMONIALS</div>
+      <div class="eyebrow"><span class="eyebrow-num">09</span> TESTIMONIALS</div>
       <h2 class="section-title">What they <em>say</em></h2>
     </div>
     <div class="testimonials-grid" data-stagger>
@@ -2799,6 +2861,39 @@
       });
     });
   });
+
+  /* ============ Live commit line for the Now section ============ */
+  (function () {
+    var el = document.getElementById('nowCommit');
+    if (!el || !window.fetch) return;
+    fetch('https://api.github.com/repos/munawarkazmi/plan-failure-bench/commits?per_page=1')
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('http ' + res.status)); })
+      .then(function (data) {
+        var c = data && data[0] && data[0].commit;
+        if (!c || !c.message) return;
+        var message = c.message.split('\n')[0];
+        var stamp = (c.committer && c.committer.date) || (c.author && c.author.date);
+        var age = '';
+        if (stamp) {
+          var hours = Math.max(0, Math.floor((Date.now() - new Date(stamp).getTime()) / 3600000));
+          if (hours < 1) age = 'within the last hour';
+          else if (hours < 24) age = hours + (hours === 1 ? ' hour ago' : ' hours ago');
+          else {
+            var days = Math.floor(hours / 24);
+            age = days + (days === 1 ? ' day ago' : ' days ago');
+          }
+        }
+        var link = document.createElement('a');
+        link.href = 'https://github.com/munawarkazmi/plan-failure-bench/commits/main';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.className = 'now-commit-msg';
+        link.textContent = '“' + message + '”';
+        el.textContent = age ? 'Latest commit, ' + age + ': ' : 'Latest commit: ';
+        el.appendChild(link);
+      })
+      .catch(function () { /* the static link to the commit history stays in place */ });
+  })();
 
   /* ============ Copy-to-clipboard buttons ============ */
   function wireCopyButton(btn, getText) {
