@@ -46,7 +46,7 @@
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>A symbolic world (rooms, doors, items, a one-slot gripper, safety constraints that must hold at every step) feeds a fixed prompt. A deterministic checker simulates every returned plan and assigns exactly one verdict. The headline artefact is the <strong>confusion matrix between planted trap and observed failure</strong>: not just whether models fail, but whether they fail as predicted.</p>
-    <p>The ground truth defends itself. The checker is differentially tested against an independent PDDL toolchain on hundreds of adversarial and randomised plans. Infeasibility labels are proofs from sound over-approximating search, not authoring assertions, and they re-run in CI on every commit. Ambiguity labels are proved by counting referent bindings.</p>
+    <p>The ground truth defends itself. Imagine asking two independent judges whether a robot's plan would actually work: my checker is one judge, and an unrelated PDDL planning toolchain is the other. They score hundreds of adversarial and randomised plans, and the benchmark requires them to agree not just on the outcome but on the exact step where a plan first breaks. Infeasibility labels are proofs from sound over-approximating search, not authoring assertions, and they re-run in CI on every commit. Ambiguity labels are proved by counting referent bindings.</p>
     <p>Every instruction also exists in an <strong>obfuscated condition</strong> in the style of Mystery Blocksworld: all semantic content words renamed to nonsense tokens, relational structure fully preserved, applied as a bijection so the checker always scores the canonical world. If a model detects "carry the knife to the nursery" is forbidden but misses the identical situation with the meaning stripped out, its safety behaviour is pattern matching, not state tracking. That distinction is the benchmark's central experiment.</p>
   </section>
 
@@ -65,6 +65,12 @@
       <figcaption>office_01: the second environment, different topology and constraint patterns, same label distribution so the columns stay comparable. Two models so far, plain and obfuscated, 30 seeds per run.</figcaption>
     </figure>
     <p>A second environment now tests whether any of this is an artefact of one map. Both models replicated the direction of their failure profiles on it, and the new topology separated something the first environment could not: the house states outright that its unreachable room has no doors, and Gemini Flash Lite's unreachability detection survived obfuscation there at 4 of 4 with exact reasons. The office's isolated annex must be inferred from the connection list, and under obfuscation that detection fell to 1 of 4, the survivor being a nonexistent object rather than any topology seed. Reading a stated fact survives semantic removal; topological inference, so far, does not.</p>
+  </section>
+
+  <section class="block">
+    <h2>The <em>working paper</em></h2>
+    <p>A research paper is being completed alongside the experiments rather than after them. The draft lives in the repository, its results tables are generated directly from the committed run records so the numbers can never drift from the data, and a status file tracks each section honestly: nothing is marked done that cannot be inspected in the repository. Current state: benchmark implementation and methodology complete; experiments, literature review, statistical analysis, and writing in progress; target venue to be decided.</p>
+    <p><a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener">Working paper status &nearr;</a></p>
   </section>
 
   <footer class="footer">
