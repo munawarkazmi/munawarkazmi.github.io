@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 360" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="parr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0f2f52"/>
+    </marker>
+    <marker id="parrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8a24c"/>
+    </marker>
+  </defs>
+  <rect width="980" height="360" fill="#ffffff"/>
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#0f2f52">Evaluation pipeline: one verdict per response, no judge anywhere</text>
+
+  <rect x="20" y="80" width="168" height="118" rx="14" fill="#f3ecd8" stroke="#c8a24c" stroke-width="2"/>
+  <text x="104" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Labelled instruction</text>
+  <text x="104" y="132" text-anchor="middle" font-size="12" fill="#4b5a6a">+ symbolic world</text>
+  <text x="104" y="156" text-anchor="middle" font-size="12" fill="#4b5a6a">one planted trap,</text>
+  <text x="104" y="172" text-anchor="middle" font-size="12" fill="#4b5a6a">or none</text>
+
+  <line x1="192" y1="139" x2="212" y2="139" stroke="#0f2f52" stroke-width="2" marker-end="url(#parr)"/>
+
+  <rect x="216" y="80" width="168" height="118" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="300" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Fixed prompt</text>
+  <text x="300" y="136" text-anchor="middle" font-size="12" fill="#4b5a6a">plain, or obfuscated</text>
+  <text x="300" y="152" text-anchor="middle" font-size="12" fill="#4b5a6a">by a versioned</text>
+  <text x="300" y="168" text-anchor="middle" font-size="12" fill="#4b5a6a">bijective renaming</text>
+
+  <line x1="388" y1="139" x2="408" y2="139" stroke="#0f2f52" stroke-width="2" marker-end="url(#parr)"/>
+
+  <rect x="412" y="80" width="168" height="118" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="496" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Model under test</text>
+  <text x="496" y="136" text-anchor="middle" font-size="12" fill="#4b5a6a">answers in JSON:</text>
+  <text x="496" y="152" text-anchor="middle" font-size="12" fill="#4b5a6a">a plan, infeasible,</text>
+  <text x="496" y="168" text-anchor="middle" font-size="12" fill="#4b5a6a">or clarify</text>
+
+  <line x1="584" y1="139" x2="604" y2="139" stroke="#0f2f52" stroke-width="2" marker-end="url(#parr)"/>
+
+  <rect x="608" y="80" width="168" height="118" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="692" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Deterministic checker</text>
+  <text x="692" y="136" text-anchor="middle" font-size="12" fill="#4b5a6a">inverse renaming,</text>
+  <text x="692" y="152" text-anchor="middle" font-size="12" fill="#4b5a6a">then simulates</text>
+  <text x="692" y="168" text-anchor="middle" font-size="12" fill="#4b5a6a">every step</text>
+
+  <line x1="780" y1="139" x2="800" y2="139" stroke="#0f2f52" stroke-width="2" marker-end="url(#parr)"/>
+
+  <rect x="804" y="80" width="156" height="118" rx="14" fill="#f3ecd8" stroke="#c8a24c" stroke-width="2"/>
+  <text x="882" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Verdict + matrix</text>
+  <text x="882" y="136" text-anchor="middle" font-size="12" fill="#4b5a6a">planted vs observed,</text>
+  <text x="882" y="152" text-anchor="middle" font-size="12" fill="#4b5a6a">detection with paired</text>
+  <text x="882" y="168" text-anchor="middle" font-size="12" fill="#4b5a6a">false positives</text>
+
+  <rect x="60" y="262" width="330" height="66" rx="12" fill="#ffffff" stroke="#c8a24c" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="225" y="288" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f2f52">Per-seed label proofs</text>
+  <text x="225" y="308" text-anchor="middle" font-size="12" fill="#4b5a6a">re-proved in CI on every commit (548 tests)</text>
+  <line x1="150" y1="262" x2="104" y2="202" stroke="#c8a24c" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#parrg)"/>
+
+  <rect x="540" y="262" width="360" height="66" rx="12" fill="#ffffff" stroke="#c8a24c" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="720" y="288" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f2f52">Independent PDDL toolchain</text>
+  <text x="720" y="308" text-anchor="middle" font-size="12" fill="#4b5a6a">differential testing: first failing step must agree</text>
+  <line x1="700" y1="262" x2="692" y2="202" stroke="#c8a24c" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#parrg)"/>
+</svg>
