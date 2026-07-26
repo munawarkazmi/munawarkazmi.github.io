@@ -41,7 +41,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
   body {
     background: var(--ink);
@@ -1811,9 +1811,9 @@
 <nav id="siteNav">
   <a href="#hero" class="nav-name">Munawar Kazmi</a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#now">Now</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#now">Now</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
@@ -1930,10 +1930,33 @@
   </div>
 </section>
 
+<section id="now">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-num">02</span> NOW</div>
+      <h2 class="section-title">On the bench <em>right now</em></h2>
+      <p class="section-lede">Active research, updated as it lands. The latest commit is fetched live from GitHub, so the freshness claim checks itself.</p>
+    </div>
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="#projects" class="project-link">Project details &darr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="project-link">Working paper status &nearr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+        </div>
+      </div>
+      <div class="project-title">plan-failure-bench</div>
+      <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. Newest results: the first frontier reasoning column (Gemini 3.6 Flash) clears the plain condition almost perfectly, and the versioned obfuscation retired one of the project's own findings by exposing a token artefact, exactly as designed. Next on the bench: the frontier model's obfuscated and second-environment columns, and prompt sensitivity.</p>
+      <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+    </div>
+  </div>
+</section>
+
 <section id="research">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">02</span> FEATURED RESEARCH</div>
+      <div class="eyebrow"><span class="eyebrow-num">03</span> FEATURED RESEARCH</div>
       <h2 class="section-title">Sim-to-real HRI on <em>iCub &amp; JD</em> humanoid platforms</h2>
       <p class="section-lede">MSc thesis research, University of Hertfordshire, on how humanoid robots should communicate need-states to build appropriate, calibrated trust.</p>
     </div>
@@ -2026,7 +2049,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">03</span> EXPERIENCE</div>
+      <div class="eyebrow"><span class="eyebrow-num">04</span> EXPERIENCE</div>
       <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
     </div>
 
@@ -2093,29 +2116,6 @@
           <li>Optimised bare-metal C firmware for embedded controllers, achieving <strong>40% faster processing</strong> and <strong>98% reliability</strong> across 100+ safety-critical test cycles.</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="now">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> NOW</div>
-      <h2 class="section-title">On the bench <em>right now</em></h2>
-      <p class="section-lede">Active research, updated as it lands. The latest commit is fetched live from GitHub, so the freshness claim checks itself.</p>
-    </div>
-    <div class="now-card reveal spotlight">
-      <div class="now-head">
-        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="#projects" class="project-link">Project details &darr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="project-link">Working paper status &nearr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
-        </div>
-      </div>
-      <div class="project-title">plan-failure-bench</div>
-      <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. Newest results: the first frontier reasoning column (Gemini 3.6 Flash) clears the plain condition almost perfectly, and the versioned obfuscation retired one of the project's own findings by exposing a token artefact, exactly as designed. Next on the bench: the frontier model's obfuscated and second-environment columns, and prompt sensitivity.</p>
-      <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
   </div>
 </section>
