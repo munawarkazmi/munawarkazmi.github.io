@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ESP32-CAM Motion Detector · Munawar Kazmi</title>
-<meta name="description" content="Deterministic C++ firmware for a deployed safety-critical intrusion detector: 93.8% field accuracy, 60% RAM reduction, sub-3-second LoRa mesh alerts.">
+<meta name="description" content="Deterministic C++ firmware for a commercial ESP32-CAM intrusion-detection prototype: block-difference motion detection with no ML and no vision libraries, CI-compiled for the target board.">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,32 +22,32 @@
 
 <div class="wrap">
   <header class="hero">
-    <div class="eyebrow">Embedded C++ · ESP32 · LoRa Mesh · Shipped Product</div>
-    <h1>A watchman made of <em>240 kilobytes</em></h1>
-    <p class="lede">Deterministic C++ firmware for a deployed, safety-critical intrusion detector: an ESP32-CAM that sees motion, decides in-frame, and raises an alert across a LoRa mesh in under three seconds. Built under contract for Muxtronics, 2025.</p>
+    <div class="eyebrow">Embedded C++ · ESP32 · Commercial Prototype</div>
+    <h1>A watchman that <em>decides in-frame</em></h1>
+    <p class="lede">Deterministic C++ firmware for an ESP32-CAM intrusion detector, built under contract for Muxtronics in 2025: the camera sees motion and decides on-device, with alerts carried by the client's proprietary LoRa mesh.</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="https://www.youtube.com/shorts/3PMJ9setbT8" target="_blank" rel="noopener">Watch the demo</a>
     </div>
     <div class="metric-row">
-      <div class="metric"><div class="metric-num">93.8%</div><div class="metric-label">detection accuracy over 100+ hours of outdoor field trials</div></div>
-      <div class="metric"><div class="metric-num">&minus;60%</div><div class="metric-label">peak RAM versus baseline, ~240 KB total</div></div>
-      <div class="metric"><div class="metric-num">&lt;3 s</div><div class="metric-label">alert latency across 100 m of LoRa mesh</div></div>
+      <div class="metric"><div class="metric-num">16&times;12</div><div class="metric-label">decision grid distilled from 800&times;600 grayscale frames</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">ML dependencies - no OpenCV, no TensorFlow Lite, fully deterministic</div></div>
+      <div class="metric"><div class="metric-num">CI</div><div class="metric-label">compiles the firmware for the AI-Thinker board on every push</div></div>
     </div>
   </header>
 
   <section class="block">
     <h2>The <em>constraint</em></h2>
-    <p>No OpenCV, no TensorFlow Lite, no megabytes to spare. An ESP32-CAM has a camera, a modest processor, and very little memory, and the product had to run on exactly that, outdoors, for hours, without missing an intruder or crying wolf. Every byte and every branch is accounted for: the firmware is <strong>fully deterministic</strong>, which is what lets a safety-critical product be tested, trusted, and shipped.</p>
+    <p>No OpenCV, no TensorFlow Lite, no megabytes to spare. An ESP32-CAM has a camera, a modest processor, and very little memory, and the product had to run on exactly that, outdoors, for hours. The answer is a <strong>fully deterministic</strong> pipeline - the same frames always produce the same decision, which is what makes embedded firmware testable and trustworthy.</p>
   </section>
 
   <section class="block">
     <h2>How it <em>works</em></h2>
     <figure class="light">
       <img src="img/pipeline.svg" alt="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" loading="lazy">
-      <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a temporal difference against adaptive thresholds makes the call; alerts hop the LoRa mesh. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public.</figcaption>
+      <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a frame-to-frame relative difference against a tuned threshold makes the call. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public, and the device reports only what it actually measures at runtime - frames, detections, loop rate, free heap.</figcaption>
     </figure>
-    <p>The field results are documented in the repository: 100-hour trial logs, the accuracy calculation worked through openly, and a signed academic reference from Dr. Patrick Holthaus of the University of Hertfordshire.</p>
+    <p>A note on measurements, because this portfolio takes them seriously: earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong> - the repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and a signed academic reference from Dr. Patrick Holthaus of the University of Hertfordshire. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
   </section>
 
   <footer class="footer">

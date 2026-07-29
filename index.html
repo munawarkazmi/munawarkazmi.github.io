@@ -2074,7 +2074,7 @@
         </div>
         <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
         <ul class="timeline-bullets">
-          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32, reducing peak RAM by <strong>60%</strong>.</li>
+          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32 for a commercial intrusion-detection prototype.</li>
           <li>Architected a LoRa mesh protocol achieving <strong>under 3 second alert latency</strong> across 100m field trials in a safety-critical deployed product.</li>
         </ul>
       </div>
@@ -2160,34 +2160,18 @@
         <div class="project-tags">
           <span class="project-tag">C++20</span>
           <span class="project-tag">ROS2 Nav2</span>
-          <span class="project-tag">TurtleBot3</span>
+          <span class="project-tag">CI-verified</span>
         </div>
         <div class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</div>
-        <div class="project-desc">A high-performance C++20 Global Planner plugin for ROS2 Nav2 using A* and D* Lite, validated on TurtleBot3 with strict protective-stop safety guarantees.</div>
+        <div class="project-desc">A* and D* Lite as C++20 Nav2 plugins over a ROS-free core validated against Dijkstra ground truth with exact integer arithmetic. A fair, seeded 200-trial benchmark measures the event that matters: a path-blocking obstacle appears and both planners must recover. Full per-event data committed and re-run in CI.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num count-up">22%</div><div class="project-metric-label">faster replanning</div></div>
-          <div><div class="project-metric-num count-up">24%</div><div class="project-metric-label">travel time reduction</div></div>
+          <div><div class="project-metric-num count-up">4.3x</div><div class="project-metric-label">faster replanning with D* Lite (mean, 11x median)</div></div>
+          <div><div class="project-metric-num count-up">185,237</div><div class="project-metric-label">fuzzed replans validated against Dijkstra, exactly</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/path-planning.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
         </div>
-      </div>
-
-      <div class="project-card reveal spotlight tilt" data-category="edge-ai">
-        <div class="project-tags">
-          <span class="project-tag">TensorRT</span>
-          <span class="project-tag">Jetson Nano</span>
-          <span class="project-tag">CNN</span>
-        </div>
-        <div class="project-title">Edge AI Optimisation on Jetson Nano</div>
-        <div class="project-desc">TensorRT optimisation of CNN and gesture recognition models, enabling real-time decentralised motor control across a multi-robot system.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">40%</div><div class="project-metric-label">latency reduction</div></div>
-          <div><div class="project-metric-num count-up">96%</div><div class="project-metric-label">accuracy maintained</div></div>
-        </div>
-        <a href="https://github.com/munawarkazmi" target="_blank" class="project-link">View on GitHub &rarr;</a>
-        <div style="font-size:0.78rem;color:var(--text-faint);font-style:italic;margin-top:10px">Repository temporarily private while proprietary client code is removed; back online shortly.</div>
       </div>
 
       <div class="project-card reveal spotlight tilt" data-category="ros2 edge-ai">
@@ -2197,10 +2181,10 @@
           <span class="project-tag">Jetson Orin</span>
         </div>
         <div class="project-title">ROS2 LLM Safety Verifier</div>
-        <div class="project-desc">A real-time hallucination detector for ROS2 Nav2 that intercepts unsafe trajectory commands before they reach robot hardware, validated on TurtleBot3 with Jetson Orin Nano.</div>
+        <div class="project-desc">A deterministic safety gate between LLM planners and ROS2 Nav2: footprint collision, continuity, and map-bounds checks reject hallucinated trajectories before they reach a controller. Evaluated against a real model, with prompts, raw responses, and the evaluator committed - CI replays every number on every push.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num count-up">94%</div><div class="project-metric-label">unsafe trajectory catch rate</div></div>
-          <div><div class="project-metric-num count-up">&lt;50ms</div><div class="project-metric-label">detection latency</div></div>
+          <div><div class="project-metric-num count-up">35/35</div><div class="project-metric-label">unsafe qwen2.5-7B plans caught, zero false positives</div></div>
+          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">missed dangers across 2,111 oracle-checked cases</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/llm-safety-verifier.html" class="project-link">Read the full story &rarr;</a>
@@ -2215,10 +2199,10 @@
           <span class="project-tag">Deployed</span>
         </div>
         <div class="project-title">ESP32-CAM Motion Detector</div>
-        <div class="project-desc">Deterministic C++ firmware for image processing on ESP32-CAM with a LoRa mesh alert protocol, shipped as a deployed safety-critical product.</div>
+        <div class="project-desc">Deterministic C++ firmware for a commercial intrusion-detection prototype built under contract for Muxtronics: block-difference motion detection with no ML and no vision libraries, plus a proprietary LoRa mesh alert path retained by the client. CI compiles the firmware for the target board on every push.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num count-up">93.8%</div><div class="project-metric-label">detection accuracy</div></div>
-          <div><div class="project-metric-num count-up">60%</div><div class="project-metric-label">RAM reduction</div></div>
+          <div><div class="project-metric-num count-up">16&times;12</div><div class="project-metric-label">decision grid distilled from 800&times;600 frames</div></div>
+          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">ML dependencies - fully deterministic pipeline</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/esp32-motion-detector.html" class="project-link">Read the full story &rarr;</a>
@@ -2351,7 +2335,7 @@
       </div>
       <div class="testimonial-card reveal spotlight">
         <div class="quote-mark">&ldquo;</div>
-        <div class="testimonial-text">Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, leading the ESP32-CAM prototype to 93.8% accuracy and optimizing real-time processing by 60%, a true asset for any robotics team.</div>
+        <div class="testimonial-text">Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, leading the ESP32-CAM prototype from concept to a working product - a true asset for any robotics team.</div>
         <div class="author-name">Waheed Shah</div>
         <div class="author-role">CEO &middot; Muxtronics</div>
       </div>

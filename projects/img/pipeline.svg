@@ -31,6 +31,6 @@
   <line x1="415" y1="142" x2="452" y2="142" stroke="#0f2f52" stroke-width="2.5" marker-end="url(#arr)"/>
   <line x1="645" y1="142" x2="682" y2="142" stroke="#0f2f52" stroke-width="2.5" marker-end="url(#arr)"/>
 
-  <text x="490" y="245" text-anchor="middle" font-size="13.5" fill="#4b5a6a">93.8% detection accuracy across 100+ hours of outdoor field trials · ~240 KB peak RAM (60% below baseline)</text>
+  <text x="490" y="245" text-anchor="middle" font-size="13.5" fill="#4b5a6a">Deterministic block-difference detection - no ML, no external vision libraries</text>
   <text x="490" y="272" text-anchor="middle" font-size="12.5" fill="#8a97a5">Commercial prototype, Muxtronics 2025</text>
 </svg>
