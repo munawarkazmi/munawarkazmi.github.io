@@ -42,6 +42,14 @@
     <p>The forward gate is goal-aware: a proposal passes only if it is both verifier-safe <em>and</em> actually ends at the goal. That requirement exists because a dry run caught a real case - a qwen proposal that was perfectly safe and went nowhere near the goal. Safety and task-success stay separate judgments; the gate requires both, and the design change is documented in the pre-registration commit, made before any result was published.</p>
   </section>
 
+  <section class="block">
+    <h2>The <em>decision flow</em></h2>
+    <figure class="light">
+      <img src="img/shield_flow.svg" alt="Flowchart: LLM proposal enters the gate (verifier-safe and at the goal?); pass forwards to the controller; fail goes to the A* fallback on the inflated fine grid, whose result is re-verified by the verifier, the independent oracle, and a goal check before forwarding; no path means halt, and a failed re-verification is the load-bearing fallback_unsafe cell that CI keeps at zero" loading="lazy">
+      <figcaption>The whole system in one picture: two ways to a forwarded plan, one honest halt, and one red cell whose emptiness is the entire safety claim. The outcome names are the pre-registered buckets from the code; the counts live in the results below, not in the diagram.</figcaption>
+    </figure>
+  </section>
+
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
     <figure class="light">
