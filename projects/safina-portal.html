@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Safina Portal · Munawar Kazmi</title>
-<meta name="description" content="A complete school management system built and operated solo, live in production: seven user roles, prorated billing, payroll, digital ID cards, and a tamper-proof audit trail.">
+<meta name="description" content="A complete school management system built and operated solo, live in production: seven user roles, prorated billing, payroll, digital ID cards, and an append-only, trigger-written audit trail.">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">7</div><div class="metric-label">user roles, each with its own tailored interface</div></div>
-      <div class="metric"><div class="metric-num">100%</div><div class="metric-label">of database changes recorded in the audit trail</div></div>
+      <div class="metric"><div class="metric-num">33</div><div class="metric-label">tables under trigger-written audit with before-and-after values - only the log itself and an internal counter sit outside it</div></div>
       <div class="metric"><div class="metric-num">15</div><div class="metric-label">ordered SQL migrations from prototype to production</div></div>
     </div>
   </header>
