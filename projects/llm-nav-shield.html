@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>llm-nav-shield · Munawar Kazmi</title>
+<meta name="description" content="A neurosymbolic navigation shield: verify LLM trajectory proposals, recover with a provably-safe classical path, or halt when none exists. 38/38 recovered, 0 unsafe forwarded, 10/10 sealed goals halted - replayed in CI from committed data.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Neurosymbolic · Safe Autonomy · Composition of Verified Cores</div>
+    <h1>Detect, recover, <em>or halt</em></h1>
+    <p class="lede">An LLM proposes a route. A deterministic verifier checks it. On a fail, a provably-correct classical planner recovers a safe path, which is re-verified before anything moves. And when no safe path exists at all, the shield stops - because knowing the difference between "the model was wrong, here's the fix" and "there is no safe action" is what safe autonomy actually means.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">38/38</div><div class="metric-label">flawed qwen2.5-7B proposals recovered with verified safe paths</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">unsafe fallbacks forwarded - the load-bearing zero, CI-enforced</div></div>
+      <div class="metric"><div class="metric-num">10/10</div><div class="metric-label">sealed-goal cases halted instead of inventing a route</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>keystone</em></h2>
+    <p>This repository is the sentence that connects my other work: LLM planners fail in measurable ways (<a href="plan-failure-bench.html">plan-failure-bench</a>), so I detect those failures deterministically (<a href="llm-safety-verifier.html">the safety verifier</a>) and recover with a path from a planner that is provably correct (<a href="path-planning.html">the planning core</a>) - or halt when no safe path exists. It is deliberately a <strong>composition of already-verified components</strong>, pinned as git submodules at exact commits: no new algorithms, just the full detect-and-recover loop, with every guarantee re-proven by CI on every push. The term <em>shield</em> follows the safe-RL usage of Alshiekh et&nbsp;al.</p>
+    <p>The forward gate is goal-aware: a proposal passes only if it is both verifier-safe <em>and</em> actually ends at the goal. That requirement exists because a dry run caught a real case - a qwen proposal that was perfectly safe and went nowhere near the goal. Safety and task-success stay separate judgments; the gate requires both, and the design change is documented in the pre-registration commit, made before any result was published.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="img/shield_outcomes.png" alt="Bar charts: all 40 qwen proposals by outcome bucket, and the 10 sealed-goal variants all halting" loading="lazy">
+      <figcaption>All 40 committed qwen2.5:7b-instruct proposals, replayed deterministically - no model inference at evaluation time. Only 2 were both safe and goal-reaching; 38 were recovered; nothing unsafe was forwarded. The halt suite seals the goal so no safe path exists, and all 10 correctly halt.</figcaption>
+    </figure>
+    <figure class="light">
+      <img src="img/shield_recovery.png" alt="Map showing a rejected unsafe qwen path in red beside the shield's verified recovery path in green" loading="lazy">
+      <figcaption>Detect and recover, from committed data: the model's proposal (red) wanders off the map through walls; the shield rejects it, plans on the fine-resolution truth, re-verifies with two independent judges plus a goal check, and forwards the green path instead. Median decision time: 0.48 ms.</figcaption>
+    </figure>
+    <figure class="light">
+      <img src="img/shield_halt.png" alt="Map with the goal sealed inside a ring of obstacles; the model's short stub path is shown and the shield halts" loading="lazy">
+      <figcaption>The branch almost no demo has: the goal is sealed, the model's plan is safe but useless, and the shield halts rather than forwarding it or inventing a route. Any other outcome here fails CI.</figcaption>
+    </figure>
+    <p>Discipline, same as every project on this site: the outcome taxonomy was committed before the first published results, every number above is quoted from the tool's output, the figures are rendered from the evaluation's own committed artifacts, and CI replays the entire evaluation - failing on any unsafe fallback or any sealed-goal case that doesn't halt.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
