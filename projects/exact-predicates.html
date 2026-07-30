@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>exact-predicates · Munawar Kazmi</title>
+<meta name="description" content="Exact geometric predicates over integer coordinates with code-enforced bounds - and 657 committed adversarial cases where CI asserts the floating-point version is wrong and the exact one is right, on every push.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Numerical Robustness · Computational Geometry · C++ / __int128</div>
+    <h1>Predicates that <em>cannot be wrong</em></h1>
+    <p class="lede">Floating point silently corrupts geometric algorithms at exact ties and near-degeneracies, and the failure is invisible until it isn't. This repository proves the danger with committed adversarial inputs, proves the fix with exact arithmetic and an unbounded oracle - and guards the word "exact" with code, not prose.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">657</div><div class="metric-label">committed adversarial cases: float wrong AND exact right, asserted case-by-case in CI</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">disagreements with an unbounded big-integer oracle across 1,554 re-verified cases</div></div>
+      <div class="metric"><div class="metric-num">~2x</div><div class="metric-label">the measured cost of exactness (49.9 vs 27.5 ns orientation, x86-64) - not orders of magnitude</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The bug that <em>started it</em></h2>
+    <p>My <a href="path-planning.html">D* Lite planner</a> froze stale state into paths because two mathematically equal priority keys, computed along different arithmetic routes, landed one ulp apart in floating point - and a vertex the algorithm had to expand got buried behind one it didn't. The fix there was an exact integer cost metric. This repository generalizes that lesson into its own artifact: the classic geometric predicates - orientation, in-circle, segment intersection, and a convex hull built on them - implemented exactly over integer coordinates in <code>__int128</code>, with statically proven bounds.</p>
+    <p>The part most correctness repos skip: proving the danger is real. The committed corpus contains 657 adversarial inputs - Fibonacci triples whose true determinant is exactly &plusmn;1 at coordinate scale ~2<sup>59</sup> (Catalan's identity), near-collinear lattice quadruples whose in-circle determinant collapses into double's rounding noise, parallel segments separated by a determinant of exactly &plusmn;1 - and CI asserts, on every case, <strong>both</strong> that the naive double version gives the wrong answer <strong>and</strong> that the exact version gives the right one.</p>
+  </section>
+
+  <section class="block">
+    <h2>Bounds enforced by <em>code, not prose</em></h2>
+    <p>Exactness here has a domain: |coordinate| &le; 2<sup>60</sup> for orientation, 2<sup>28</sup> for in-circle, proven by static bit-arithmetic. A documented bound that isn't checked would let an out-of-range input overflow silently and return a confidently wrong answer while the README still said "exact". So every predicate validates its inputs <em>before any arithmetic happens</em> - a plain magnitude comparison that can never rely on observing the overflow it prevents - and throws loudly on violation. The single most important test in the repository feeds coordinates one past each bound, in every argument position, and asserts the throw fires. For exact predicates over arbitrary doubles, the README names Shewchuk's adaptive predicates and CGAL: reimplementing those would risk looking right while being subtly wrong in the error-bound bookkeeping, the precise anti-pattern this project exists to refute.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="img/vanishing_determinant.png" alt="Log-log scatter: Fibonacci triples whose true determinant is exactly plus or minus one; double computes it correctly until coordinates reach about 2 to the 26, then returns zeros and garbage values" loading="lazy">
+      <figcaption>The vanishing determinant: every point's true determinant is exactly &plusmn;1, by construction. Double arithmetic sees it perfectly - until the coordinates pass ~2<sup>26</sup>, after which it returns zero or garbage in the 10<sup>15</sup> range. Rendered from committed data that CI drift-checks against the committed generator.</figcaption>
+    </figure>
+    <figure class="light">
+      <img src="img/incircle_threshold.png" alt="Curve: percentage of near-collinear quadruples where the double in-circle sign is wrong, zero until scale 2 to the 24 and rising to about 7.5 percent at the bound" loading="lazy">
+      <figcaption>Where the bug class actually lives: on the near-collinear in-circle family, double is flawless up to coordinate scale ~2<sup>24</sup> and fails routinely near the bound. Mapping this honestly matters - a corpus built at small scales would have "proven" a danger that doesn't exist there.</figcaption>
+    </figure>
+    <figure class="light">
+      <img src="img/hull_breakage.png" alt="Two panels: counts of float-predicate hull invariant violations across 60 configs, and one config's exact residuals all sitting inside double's rounding-noise band" loading="lazy">
+      <figcaption>The same monotone-chain hull algorithm, two predicates, two truths: the float version violates convexity or containment on all 60 committed degenerate configs (left), because the &plusmn;1 residual structure that decides the hull sits entirely inside double's rounding-noise band (right). The exact hull, property-tested on random clouds as well, never violates an invariant.</figcaption>
+    </figure>
+    <p>Independent judgment, as always: a Python big-integer oracle with no coordinate bound re-verifies every committed case (1,554 of them, zero disagreements) and computes answers <em>beyond</em> the C++ bound where the guard refuses - proving the bound is a restriction of the implementation, not of the problem. CI also regenerates both the corpus and the figure data and diffs them against the committed files, so neither can drift from the code. And the honest cost: exactness runs about 2x slower than the float versions - <code>__int128</code> is cheap - measured and machine-named, because the float versions buy their speed by being wrong.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
