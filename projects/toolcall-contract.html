@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>toolcall-contract · Munawar Kazmi</title>
+<meta name="description" content="A deterministic two-layer validator for LLM tool calls: in 25,000-case differential agreement with jsonschema, plus the semantic contract layer where real failures live - qwen2.5-7B: 0 schema violations, 7 semantic, replayed in CI.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">LLM Agents · Structured Output · Python / jsonschema Differential</div>
+    <h1>Tool calls that look right <em>and silently aren't</em></h1>
+    <p class="lede">LLMs emit structured tool calls that mostly parse, type-check, and validate - and still break the contract. This is my navigation shield's architecture pointed at the problem every agent framework has right now: a deterministic two-layer validator, an independent oracle, and the finding that the failures live above the schema.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">25,000/25,000</div><div class="metric-label">fuzzed structural verdicts in agreement with the pinned jsonschema oracle</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">on both load-bearing cells - validator disagreements and invalid-marked-valid - CI-enforced on both tiers</div></div>
+      <div class="metric"><div class="metric-num">7/40</div><div class="metric-label">qwen2.5-7B calls that were schema-valid contract violations (0 broke the schema itself)</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>two layers</em></h2>
+    <p>The <strong>structural layer</strong> - does the call parse, name a real tool, satisfy its JSON Schema? - is a standard-library checker with zero runtime dependencies, differentially tested against the mature <code>jsonschema</code> package, pinned exactly. On every structural verdict, every committed and fuzzed case, both checkers run and must agree; a disagreement is a bug in one of them, surfaced, never smoothed. The tests assert the oracle's sharp edges by name: <code>bool</code> is not a number, <code>1.0</code> is a valid integer, <code>True</code> is not a member of <code>enum [1]</code>.</p>
+    <p>The <strong>semantic layer</strong> carries the contract rules a schema does not: referential integrity against live catalogs, mutually exclusive parameters, parameters required together or in order, conditionals. It is declared as data beside each tool - and it is where the real failures concentrated.</p>
+    <figure class="light">
+      <img src="img/toolcall_contract_flow.svg" alt="Flowchart: LLM output is parsed, checked against the tool catalog, run through the structural layer twice (hand-written checker and jsonschema oracle, with a disagreement cell that must stay empty), then the semantic contract layer; buckets are parse failure, unknown tool, schema violation, semantic violation, and valid" loading="lazy">
+      <figcaption>The pre-registered taxonomy as a pipeline. The structural layer runs twice by design - the hand-written checker beside the independent oracle - and their disagreement cell is a load-bearing zero that fails CI. Bucket counts live in the results, never in the diagram.</figcaption>
+    </figure>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="img/toolcall_qwen_layers.png" alt="Left: all 40 qwen tool calls by bucket - 32 valid, 1 parse failure, 0 unknown tools, 0 schema violations, 7 semantic violations. Right: a schema-level check passes 39 of 40 calls while the full contract passes 32" loading="lazy">
+      <figcaption>Forty natural robot-operations tasks, one call each from qwen2.5:7b-instruct at temperature 0, raw responses committed and replayed deterministically in CI. The model never hallucinated a tool and never broke a schema - and still produced seven contract violations: nonexistent entities transcribed faithfully into well-typed calls, copied contradictions in time windows and geofences, a dangling conditional.</figcaption>
+    </figure>
+    <p>The headline is the right panel: <strong>a schema-level check - what most agent frameworks do - passes 39 of 40 of this model's calls. The contract passes 32.</strong> Everything substantive lived above the schema, which is the thesis of the repository, demonstrated on committed data.</p>
+    <p>And the honest boundary, with committed examples: the model also <em>silently substituted</em> impossible requests into contract-valid calls - "warehouse 3" became an existing waypoint, "5 m/s" became 0.5, "turn the robot off" became a status report. Those land in <code>valid</code>, because they satisfy the contract. Whether a call matches the user's <em>intent</em> is a task-appropriateness axis this validator pre-declared as a non-goal - those cases are why the axes exist separately, and why merging them into one "valid" score would be a lie.</p>
+    <p>Backing it all: a 262-case constructed tier with every label confirmed by the oracle before it counts, dataset regeneration diff-checked in CI, and the 25,000-pair seeded differential - deterministic on purpose, because an asserted count must not drift. Facts about one 7B model at one temperature on n=40, worded that way everywhere.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
