@@ -2237,8 +2237,8 @@
         <div class="project-title">ROS2 LLM Safety Verifier</div>
         <div class="project-desc">A deterministic safety gate between LLM planners and ROS2 Nav2: footprint collision, continuity, and map-bounds checks reject hallucinated trajectories before they reach a controller. Evaluated against a real model, with prompts, raw responses, and the evaluator committed - CI replays every number on every push.</div>
         <div class="project-metrics">
-          <div><div class="project-metric-num count-up">35/35</div><div class="project-metric-label">unsafe qwen2.5-7B plans caught, zero false positives</div></div>
-          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">missed dangers: 2,071 constructed + 40 real-model cases, each count CI-enforced</div></div>
+          <div><div class="project-metric-num count-up">35/35 &middot; 32/32</div><div class="project-metric-label">unsafe qwen2.5-7B and llama-3.3-70B plans caught, zero false positives, per model</div></div>
+          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">missed dangers: 2,071 constructed + 80 real-model cases, each count CI-enforced</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/llm-safety-verifier.html" class="project-link">Read the full story &rarr;</a>
