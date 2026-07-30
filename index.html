@@ -2181,10 +2181,10 @@
           <span class="project-tag">jsonschema Differential</span>
         </div>
         <div class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</div>
-        <div class="project-desc">A deterministic two-layer validator for LLM tool calls - the shield architecture pointed at the problem every agent framework has. A stdlib structural checker in 25,000-case differential agreement with pinned jsonschema, plus the semantic contract layer (catalog refs, exclusions, orderings, conditionals) where the real failures live: qwen2.5-7B broke zero schemas and seven contracts.</div>
+        <div class="project-desc">A deterministic two-layer validator for LLM tool calls - the shield architecture pointed at the problem every agent framework has. A stdlib structural checker in 25,000-case differential agreement with pinned jsonschema, plus the semantic contract layer (catalog refs, exclusions, orderings, conditionals) where the real failures live: on the same 40 tasks, qwen2.5-7B broke zero schemas and seven contracts, llama-3.3-70B zero schemas and five.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">25,000</div><div class="project-metric-label">fuzzed structural verdicts, all in oracle agreement</div></div>
-          <div><div class="project-metric-num count-up">7/40</div><div class="project-metric-label">schema-valid qwen calls that broke the contract (0 broke a schema)</div></div>
+          <div><div class="project-metric-num count-up">7 &middot; 5</div><div class="project-metric-label">contract breaks by qwen2.5-7B and llama-3.3-70B per model - zero schema breaks by either</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/toolcall-contract.html" class="project-link">Read the full story &rarr;</a>
