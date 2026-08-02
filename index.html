@@ -1832,9 +1832,9 @@
   <div class="hero-inner">
     <div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span> Open to PhD &amp; engineering opportunities</div>
     <div class="hero-eyebrow">ROBOTICS &amp; AI RESEARCH ENGINEER</div>
-    <h1 class="hero-name" id="heroName">Teaching robots to say <em>what they mean</em>, clearly enough to trust.</h1>
+    <h1 class="hero-name" id="heroName">Teaching robots to say <em>what they mean</em>, and to know <em>when they can't</em>.</h1>
     <p class="hero-desc">
-      I research and build the systems that let humanoid robots communicate their intentions to people, from sim-to-real pipelines on real hardware to deployed embedded AI. <strong>MSc AI &amp; Robotics (Commendation)</strong>, University of Hertfordshire.
+      I build the systems that make robots worth trusting: benchmarks that prove how LLM planners fail, verifiers that stop unsafe plans before hardware moves, and humanoids that communicate their intentions clearly. <strong>MSc AI &amp; Robotics (Commendation)</strong>, University of Hertfordshire.
     </p>
     <div class="hero-cta-row">
       <a href="#research" class="btn-primary magnetic">View Research</a>
@@ -1847,8 +1847,8 @@
         <div class="stat-label">Intent clarity in verbal HRI condition, RoSAS-validated</div>
       </div>
       <div class="stat">
-        <div class="stat-num">d&nbsp;=&nbsp;0.58</div>
-        <div class="stat-label">Effect size, verbal vs. gestural communication</div>
+        <div class="stat-num count-up">548</div>
+        <div class="stat-label">Tests and label proofs behind the benchmark, re-run on every commit</div>
       </div>
       <div class="stat">
         <div class="stat-num count-up">2</div>
@@ -1947,7 +1947,7 @@
         </div>
       </div>
       <div class="project-title">plan-failure-bench</div>
-      <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. Newest results: the frontier reasoning model (Gemini 3.6 Flash) cleared house_01 twice with identical ideal diagonals, in plain English and under full semantic obfuscation, answering the benchmark's central question for that model: state tracking, not pattern matching. Prompt sensitivity is quantified: no wording cures the 70B model's format habit, while planning conclusions stay put. The 70B model's first five-sample cell is in: 19 of 30 seeds hold one verdict across all five decodes, and the instability sits at the detection boundary. And the fixed-prompt grid is now complete: the frontier model's second environment landed in both conditions with identical rows, every headline count repeated, 13 of 13 traps with zero false positives, and the same single sequencing seed failing in each, its only planning failure anywhere, a blemish only the confusion matrix can see. Next on the bench: the statistics scope decision, and sampling for the remaining cells.</p>
+      <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. Newest results: the frontier reasoning model (Gemini 3.6 Flash) cleared house_01 twice with identical ideal diagonals, in plain English and under full semantic obfuscation, answering the benchmark's central question for that model: state tracking, not pattern matching. Prompt sensitivity is quantified: no wording cures the 70B model's format habit, while planning conclusions stay put. The 70B model's first five-sample cell is in: 19 of 30 seeds hold one verdict across all five decodes, and the instability sits at the detection boundary. And the fixed-prompt grid is now complete: the frontier model's second environment landed in both conditions with identical rows, every headline count repeated, 13 of 13 traps with zero false positives, and the same single sequencing seed failing in each, its only planning failure anywhere, a blemish only the confusion matrix can see. The paper is now public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>. Next on the bench: the statistics scope decision, and sampling for the remaining cells.</p>
       <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
   </div>
@@ -1957,8 +1957,45 @@
   <div class="wrap">
     <div class="reveal">
       <div class="eyebrow"><span class="eyebrow-num">03</span> FEATURED RESEARCH</div>
-      <h2 class="section-title">Sim-to-real HRI on <em>iCub &amp; JD</em> humanoid platforms</h2>
-      <p class="section-lede">MSc thesis research, University of Hertfordshire, on how humanoid robots should communicate need-states to build appropriate, calibrated trust.</p>
+      <h2 class="section-title">Two research lines: <em>reliable planners</em>, <em>legible robots</em></h2>
+      <p class="section-lede">How language model planners fail, measured against machine-checked ground truth; and how humanoid robots should communicate so people can calibrate their trust.</p>
+    </div>
+
+    <div class="research-card reveal spotlight">
+      <div class="research-card-body">
+        <span class="research-platform-tag">Symbolic environments &middot; PDDL &middot; 4 LLMs &middot; CI-proved labels</span>
+        <h3 class="research-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
+        <div class="research-supervisor">Sole author &middot; Working paper &middot; DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a></div>
+
+        <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
+
+        <p class="research-desc">Across an 18-run grid over four models, the models fail in distinct, stable ways: a frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect, while smaller models split between silent compliance and surface-anchored refusal.</p>
+
+        <div class="research-stats">
+          <div class="research-stat">
+            <div class="research-stat-num count-up">60</div>
+            <div class="research-stat-label">Instructions, each with a machine-checked proof of ground truth</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num count-up">18</div>
+            <div class="research-stat-label">Complete model runs, every record committed</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num count-up">548</div>
+            <div class="research-stat-label">Tests and label proofs, re-run on every commit</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat-num">0</div>
+            <div class="research-stat-label">Human or LLM judgements in the scoring loop</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px">
+          <a href="projects/plan-failure-bench.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener" class="project-link">Repository &rarr;</a>
+          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="project-link">Preprint (DOI) &rarr;</a>
+        </div>
+      </div>
     </div>
 
     <div class="research-card reveal spotlight">
