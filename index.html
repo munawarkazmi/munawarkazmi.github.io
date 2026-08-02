@@ -1967,15 +1967,15 @@
         <h3 class="research-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
         <div class="research-supervisor">Sole author &middot; Working paper &middot; DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a></div>
 
-        <div class="research-photos">
-          <div class="research-photo">
-            <img src="projects/img/pfb-pipeline.svg" alt="Pipeline flowchart: labelled instruction and symbolic world feed a fixed prompt, plain or obfuscated; the model answers in JSON; a deterministic checker emits one verdict into the planted versus observed matrix" width="400" height="260" loading="lazy" decoding="async" style="height:260px;object-fit:contain;filter:none;">
-            <div class="research-photo-caption">The deterministic pipeline &middot; label proofs to verdict matrix</div>
+        <div style="margin:18px 0 6px">
+          <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
+            <img src="projects/img/pfb-pipeline.svg" alt="Pipeline flowchart: labelled instruction and symbolic world feed a fixed prompt, plain or obfuscated; the model answers in JSON; a deterministic checker emits one verdict into the planted versus observed matrix" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
           </div>
-          <div class="research-photo">
-            <img src="projects/img/pfb-confusion.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the house environment" width="400" height="260" loading="lazy" decoding="async" style="height:260px;object-fit:contain;filter:none;background:#fcfcfb;">
-            <div class="research-photo-caption">Planted vs observed &middot; eight house_01 runs</div>
+          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 18px">The deterministic pipeline: label proofs in, one verdict per response out, no judge anywhere.</div>
+          <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
+            <img src="projects/img/pfb-confusion-card.png" alt="Two confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, while Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
           </div>
+          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, opposite failure profiles: the smallest model walks into nearly every trap; the frontier model answers the ideal diagonal. All eighteen runs are on the story page.</div>
         </div>
 
         <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
