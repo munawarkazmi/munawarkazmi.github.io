@@ -1813,8 +1813,8 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#now">Now</a></li>
     <li><a href="#research">Research</a></li>
-    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
@@ -1967,6 +1967,17 @@
         <h3 class="research-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
         <div class="research-supervisor">Sole author &middot; Working paper &middot; DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a></div>
 
+        <div class="research-photos">
+          <div class="research-photo">
+            <img src="projects/img/pfb-pipeline.svg" alt="Pipeline flowchart: labelled instruction and symbolic world feed a fixed prompt, plain or obfuscated; the model answers in JSON; a deterministic checker emits one verdict into the planted versus observed matrix" width="400" height="260" loading="lazy" decoding="async" style="height:260px;object-fit:contain;filter:none;">
+            <div class="research-photo-caption">The deterministic pipeline &middot; label proofs to verdict matrix</div>
+          </div>
+          <div class="research-photo">
+            <img src="projects/img/pfb-confusion.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the house environment" width="400" height="260" loading="lazy" decoding="async" style="height:260px;object-fit:contain;filter:none;background:#fcfcfb;">
+            <div class="research-photo-caption">Planted vs observed &middot; eight house_01 runs</div>
+          </div>
+        </div>
+
         <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
 
         <p class="research-desc">Across an 18-run grid over four models, the models fail in distinct, stable ways: a frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect, while smaller models split between silent compliance and surface-anchored refusal.</p>
@@ -2083,84 +2094,10 @@
   </div>
 </section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> EXPERIENCE</div>
-      <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
-    </div>
-
-    <div class="timeline" id="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <div class="timeline-role">Visiting Lecturer, AI &amp; Robotics</div>
-          <div class="timeline-date">Aug 2025 - Present</div>
-        </div>
-        <div class="timeline-company">Pak-Turk Maarif Schools &middot; Multan, Pakistan</div>
-        <ul class="timeline-bullets">
-          <li>Designed an ML curriculum for <strong>30+ students</strong>; teams achieved <strong>92% model accuracy</strong> with <strong>28% average error reduction</strong> on custom classification tasks.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <div class="timeline-role">Embedded Systems Engineer</div>
-          <div class="timeline-date">Jan 2025 - May 2025</div>
-        </div>
-        <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
-        <ul class="timeline-bullets">
-          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32 for a commercial intrusion-detection prototype.</li>
-          <li>Architected a LoRa mesh protocol achieving <strong>under 3 second alert latency</strong> across 100m field trials in a safety-critical deployed product.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <div class="timeline-role">Robotics Integration Specialist</div>
-          <div class="timeline-date">Jan 2024 - May 2024</div>
-        </div>
-        <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
-        <ul class="timeline-bullets">
-          <li>Architected a gesture recognition and motion planning pipeline in Unity/C++ for the iCub humanoid, reducing user frustration by <strong>40%</strong> and improving HRI task efficiency by <strong>25%</strong>.</li>
-          <li>Deployed PyTorch-based non-verbal communication models onto iCub's real-time control loop and measured their communicative effect: <a href="files/Kazmi_HRI_MDPI_Robotics.pdf#page=5" target="_blank" rel="noopener"><strong>a significant clarity effect (4.9 versus 5.8 on a 1 to 7 scale, p = 0.017, d = 0.58)</strong></a>, with engagement statistically comparable across modalities.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <div class="timeline-role">Research Associate</div>
-          <div class="timeline-date">May 2023 - Dec 2023</div>
-        </div>
-        <div class="timeline-company">University of Hertfordshire</div>
-        <ul class="timeline-bullets">
-          <li>Fine-tuned TensorFlow LLMs for real-time robotics inference on the Unitree Go1 quadruped, cutting inference latency by <strong>29%</strong> across 200 trials.</li>
-          <li>Integrated optimised models into the control loop, improving platform responsiveness by <strong>35%</strong> with <strong>99.5% runtime stability</strong>.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <div class="timeline-role">Embedded Systems Intern</div>
-          <div class="timeline-date">Mar 2022 - Apr 2022</div>
-        </div>
-        <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation &middot; Islamabad</div>
-        <ul class="timeline-bullets">
-          <li>Optimised bare-metal C firmware for embedded controllers, achieving <strong>40% faster processing</strong> and <strong>98% reliability</strong> across 100+ safety-critical test cycles.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="projects">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">05</span> PROJECTS</div>
+      <div class="eyebrow"><span class="eyebrow-num">04</span> PROJECTS</div>
       <h2 class="section-title">Built, deployed, <em>measured</em></h2>
       <p class="section-lede">Every project here shipped to real hardware with quantified outcomes, not benchmark numbers alone.</p>
     </div>
@@ -2325,7 +2262,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">06</span> TECHNICAL SKILLS</div>
+      <div class="eyebrow"><span class="eyebrow-num">05</span> TECHNICAL SKILLS</div>
       <h2 class="section-title">Tools I <em>ship</em> with</h2>
     </div>
     <div class="skills-grid reveal">
@@ -2351,6 +2288,80 @@
         <div class="skill-cat">HARDWARE &amp; EMBEDDED</div>
         <ul class="skill-list">
           <li>iCub &amp; JD Humanoid</li><li>Unitree Go1</li><li>Jetson Nano</li><li>ESP32 &amp; LoRa</li><li>Bare-Metal C/C++</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-num">06</span> EXPERIENCE</div>
+      <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Visiting Lecturer, AI &amp; Robotics</div>
+          <div class="timeline-date">Aug 2025 - Present</div>
+        </div>
+        <div class="timeline-company">Pak-Turk Maarif Schools &middot; Multan, Pakistan</div>
+        <ul class="timeline-bullets">
+          <li>Designed an ML curriculum for <strong>30+ students</strong>; teams achieved <strong>92% model accuracy</strong> with <strong>28% average error reduction</strong> on custom classification tasks.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Embedded Systems Engineer</div>
+          <div class="timeline-date">Jan 2025 - May 2025</div>
+        </div>
+        <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
+        <ul class="timeline-bullets">
+          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32 for a commercial intrusion-detection prototype.</li>
+          <li>Architected a LoRa mesh protocol achieving <strong>under 3 second alert latency</strong> across 100m field trials in a safety-critical deployed product.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Robotics Integration Specialist</div>
+          <div class="timeline-date">Jan 2024 - May 2024</div>
+        </div>
+        <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
+        <ul class="timeline-bullets">
+          <li>Architected a gesture recognition and motion planning pipeline in Unity/C++ for the iCub humanoid, reducing user frustration by <strong>40%</strong> and improving HRI task efficiency by <strong>25%</strong>.</li>
+          <li>Deployed PyTorch-based non-verbal communication models onto iCub's real-time control loop and measured their communicative effect: <a href="files/Kazmi_HRI_MDPI_Robotics.pdf#page=5" target="_blank" rel="noopener"><strong>a significant clarity effect (4.9 versus 5.8 on a 1 to 7 scale, p = 0.017, d = 0.58)</strong></a>, with engagement statistically comparable across modalities.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Research Associate</div>
+          <div class="timeline-date">May 2023 - Dec 2023</div>
+        </div>
+        <div class="timeline-company">University of Hertfordshire</div>
+        <ul class="timeline-bullets">
+          <li>Fine-tuned TensorFlow LLMs for real-time robotics inference on the Unitree Go1 quadruped, cutting inference latency by <strong>29%</strong> across 200 trials.</li>
+          <li>Integrated optimised models into the control loop, improving platform responsiveness by <strong>35%</strong> with <strong>99.5% runtime stability</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Embedded Systems Intern</div>
+          <div class="timeline-date">Mar 2022 - Apr 2022</div>
+        </div>
+        <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation &middot; Islamabad</div>
+        <ul class="timeline-bullets">
+          <li>Optimised bare-metal C firmware for embedded controllers, achieving <strong>40% faster processing</strong> and <strong>98% reliability</strong> across 100+ safety-critical test cycles.</li>
         </ul>
       </div>
     </div>
