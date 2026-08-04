@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="larr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0f2f52"/>
+    </marker>
+    <marker id="larrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8a24c"/>
+    </marker>
+  </defs>
+  <rect width="980" height="430" fill="#ffffff"/>
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#0f2f52">From trajectory to belief: every number computed, none judged</text>
+
+  <rect x="20" y="72" width="168" height="126" rx="14" fill="#f3ecd8" stroke="#c8a24c" stroke-width="2"/>
+  <text x="104" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">World and path</text>
+  <text x="104" y="128" text-anchor="middle" font-size="12" fill="#4b5a6a">start, candidate goals,</text>
+  <text x="104" y="146" text-anchor="middle" font-size="12" fill="#4b5a6a">obstacles, keep-out zones</text>
+  <text x="104" y="170" text-anchor="middle" font-size="12" fill="#4b5a6a">a polyline, no physics</text>
+
+  <line x1="192" y1="135" x2="212" y2="135" stroke="#0f2f52" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="216" y="72" width="168" height="126" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="300" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Sampled by length</text>
+  <text x="300" y="128" text-anchor="middle" font-size="12" fill="#4b5a6a">constant speed, so a</text>
+  <text x="300" y="146" text-anchor="middle" font-size="12" fill="#4b5a6a">longer path takes</text>
+  <text x="300" y="164" text-anchor="middle" font-size="12" fill="#4b5a6a">longer to arrive</text>
+
+  <line x1="388" y1="135" x2="408" y2="135" stroke="#0f2f52" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="412" y="72" width="168" height="126" rx="14" fill="#f3ecd8" stroke="#c8a24c" stroke-width="2"/>
+  <text x="496" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Optimal cost-to-go</text>
+  <text x="496" y="128" text-anchor="middle" font-size="12" fill="#4b5a6a">exact, over a visibility</text>
+  <text x="496" y="146" text-anchor="middle" font-size="12" fill="#4b5a6a">graph of the corners a</text>
+  <text x="496" y="164" text-anchor="middle" font-size="12" fill="#4b5a6a">shortest path turns at</text>
+  <text x="496" y="186" text-anchor="middle" font-size="11" font-style="italic" fill="#8a6d2f">no grid, no resolution</text>
+
+  <line x1="584" y1="135" x2="604" y2="135" stroke="#0f2f52" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="608" y="72" width="168" height="126" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="692" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Belief over goals</text>
+  <text x="692" y="128" text-anchor="middle" font-size="12" fill="#4b5a6a">Boltzmann, in the form</text>
+  <text x="692" y="146" text-anchor="middle" font-size="12" fill="#4b5a6a">Dragan et al. state it</text>
+  <text x="692" y="170" text-anchor="middle" font-size="12" fill="#4b5a6a">nothing learns</text>
+
+  <line x1="780" y1="135" x2="800" y2="135" stroke="#0f2f52" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="804" y="72" width="168" height="126" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="888" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Four numbers</text>
+  <text x="888" y="128" text-anchor="middle" font-size="12" fill="#4b5a6a">legibility, path cost,</text>
+  <text x="888" y="146" text-anchor="middle" font-size="12" fill="#4b5a6a">time to confidence,</text>
+  <text x="888" y="164" text-anchor="middle" font-size="12" fill="#4b5a6a">entries and clearance</text>
+  <text x="888" y="186" text-anchor="middle" font-size="11" font-style="italic" fill="#8a6d2f">returned together, always</text>
+
+  <line x1="496" y1="200" x2="496" y2="232" stroke="#c8a24c" stroke-width="2"/>
+  <line x1="255" y1="232" x2="737" y2="232" stroke="#c8a24c" stroke-width="2"/>
+  <line x1="255" y1="232" x2="255" y2="256" stroke="#c8a24c" stroke-width="2" marker-end="url(#larrg)"/>
+  <line x1="737" y1="232" x2="737" y2="256" stroke="#c8a24c" stroke-width="2" marker-end="url(#larrg)"/>
+  <text x="600" y="225" text-anchor="middle" font-size="12" font-style="italic" fill="#8a6d2f">two conditions, both reported for every result</text>
+
+  <rect x="130" y="260" width="250" height="100" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="255" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Can see the room</text>
+  <text x="255" y="312" text-anchor="middle" font-size="12" fill="#4b5a6a">cost-to-go is the real path</text>
+  <text x="255" y="330" text-anchor="middle" font-size="12" fill="#4b5a6a">around the obstacles</text>
+
+  <rect x="612" y="260" width="250" height="100" rx="14" fill="#ffffff" stroke="#0f2f52" stroke-width="2"/>
+  <text x="737" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#0f2f52">Cannot see the room</text>
+  <text x="737" y="312" text-anchor="middle" font-size="12" fill="#4b5a6a">cost-to-go is the straight</text>
+  <text x="737" y="330" text-anchor="middle" font-size="12" fill="#4b5a6a">line: the person in a doorway</text>
+
+  <rect x="130" y="380" width="732" height="34" rx="10" fill="#f3ecd8" stroke="#c8a24c" stroke-width="1.5"/>
+  <text x="496" y="402" text-anchor="middle" font-size="12.5" fill="#4b5a6a">Keep-out zones do not block motion. A trajectory may cross one and is scored for having done so, or there is no trade to measure.</text>
+</svg>
