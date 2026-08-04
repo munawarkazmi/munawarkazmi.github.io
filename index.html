@@ -1763,6 +1763,64 @@
     padding-top: 1rem;
   }
   .now-commit-msg { color: var(--accent); font-style: italic; }
+  .now-lead {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+  .now-figure {
+    margin: 0 0 1.5rem;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--ink2);
+  }
+  .now-figure img { display: block; width: 100%; height: auto; }
+  .now-figure figcaption {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    padding: 0.7rem 0.9rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .now-table-title {
+    font-size: 0.74rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 1.6rem 0 0.6rem;
+  }
+  .now-table-scroll { overflow-x: auto; }
+  .now-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .now-table th {
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0 1.1rem 0.45rem 0;
+    border-bottom: 1px solid var(--hairline);
+    white-space: nowrap;
+  }
+  .now-table td {
+    padding: 0.42rem 1.1rem 0.42rem 0;
+    color: var(--text-dim);
+    border-bottom: 1px solid rgba(237, 234, 227, 0.045);
+    white-space: nowrap;
+  }
+  .now-table td:first-child { color: var(--text-primary); }
+  .now-table tr:last-child td { border-bottom: none; }
+  .now-table .mark { color: var(--accent); }
+  .now-note {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    margin: 0.9rem 0 0;
+  }
   @media (max-width: 640px) {
     .now-card { padding: 1.4rem 1.2rem; }
   }
@@ -1950,6 +2008,56 @@
       <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. The fixed-prompt grid is complete: 18 runs, four models, both environments, both conditions, every record committed. The headline result belongs to the frontier reasoning model, which repeats every headline count under full semantic obfuscation on both environments, 13 of 13 traps detected with zero false positives, and fails a single sequencing seed identically in each condition, a blemish only the confusion matrix can see. Smaller models split the other way: one never refuses anything, one refuses on surface semantics alone, and the 70B model's five-sample cell shows its instability sitting at the detection boundary rather than in a stable wrong answer. The paper is public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>, and every citation in it has been checked against the cited paper's body rather than its abstract, with the record of those checks published as an appendix. Next on the bench: the statistics scope decision, and sampling the remaining cells.</p>
       <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
+
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="projects/legible-motion-bench.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/legible-motion-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="project-link">Working paper status &nearr;</a>
+          <a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+        </div>
+      </div>
+      <div class="project-title">legible-motion-bench</div>
+      <p class="now-lead">A robot heading for one of several goals is ambiguous for the first few seconds, and that is exactly when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest way to signal a goal is the way the robot is not allowed to go. This measures that three-way trade exactly, with no human rater and no model judging anywhere in the scoring loop. Legibility is Dragan's, formalised at HRI 2013; what is mine is the instrument.</p>
+
+      <figure class="now-figure">
+        <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
+        <figcaption>One world, four planners, one clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing; the three legible trajectories commit early and cut straight through it. The bars are the observer's belief, and they are the same numbers the tables are computed from rather than a second drawing of them.</figcaption>
+      </figure>
+
+      <div class="now-table-title">The frontier, measured on one scenario</div>
+      <div class="now-table-scroll">
+        <table class="now-table">
+          <thead><tr><th>Path budget</th><th>Legibility</th><th>Cost paid</th><th>Keep-out entries</th></tr></thead>
+          <tbody>
+            <tr><td>shortest path</td><td>0.7200</td><td>1.0000</td><td class="mark">1</td></tr>
+            <tr><td>5 per cent</td><td>0.7995</td><td>1.0500</td><td class="mark">1</td></tr>
+            <tr><td>10 per cent</td><td>0.8180</td><td>1.0999</td><td>0</td></tr>
+            <tr><td>50 per cent</td><td>0.8658</td><td>1.5000</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="now-note">The cost paid sits on the budget in every row, so the constraint binds and the curve is the trade rather than an artefact of where the search stopped. Safety moves along it: at a five per cent budget the clearest trajectory still crosses the zone, and only at ten per cent does it buy its way out.</p>
+
+      <div class="now-table-title">Asked the same question, two language models</div>
+      <div class="now-table-scroll">
+        <table class="now-table">
+          <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th></tr></thead>
+          <tbody>
+            <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td></tr>
+            <tr><td>physically possible</td><td>26</td><td>29</td></tr>
+            <tr><td>clearer than the shortest path</td><td>10</td><td>20</td></tr>
+            <tr><td>over the stated path budget</td><td>9</td><td>15</td></tr>
+            <tr><td>entered a keep-out zone</td><td>7</td><td>7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="now-note">Every one of the 80 decodes claimed to be legible, including the 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, both models beat the shortest path on 5 of 5 samples and both entered the zone on 5 of 5. Given four different path budgets, the smaller model's median cost moved by 0.012: where the optimiser treats the budget as a constraint that binds, the model treats it as text.</p>
+      <p class="now-note">Two models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: a third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
+
+      <div class="now-commit"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+    </div>
   </div>
 </section>
 
@@ -2112,6 +2220,24 @@
     </div>
 
     <div class="projects-grid" data-stagger>
+      <div class="project-card reveal spotlight tilt" data-category="research">
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Human-Robot Interaction</span>
+          <span class="project-tag">Motion Planning</span>
+        </div>
+        <div class="project-title">legible-motion-bench: What Clarity Costs</div>
+        <div class="project-desc">A robot moving towards one of several goals is unreadable for the first few seconds, and that is when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest signal is the one the robot is not allowed to send. This benchmark measures that three-way trade between legibility, path cost and constraint satisfaction exactly: eight worlds each carrying machine-checked facts about their own geometry, exact optimal cost-to-go over a visibility graph, and a guarded predicate that matches rational arithmetic on 20,000 near-collinear cases where plain floating point returns the wrong sign. Legibility is Dragan's, formalised at HRI 2013; the instrument is mine. Asked to be legible under a stated path budget, two models called all 80 of their trajectories legible, and 25 of those were not physically possible.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num count-up">80</div><div class="project-metric-label">of 80 model decodes claimed to be legible</div></div>
+          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human or model judgements in the scoring loop</div></div>
+        </div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="projects/legible-motion-bench.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/legible-motion-bench" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
+        </div>
+      </div>
+
       <div class="project-card reveal spotlight tilt" data-category="research">
         <div class="project-tags">
           <span class="project-tag">Python</span>
