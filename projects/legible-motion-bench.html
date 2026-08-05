@@ -138,20 +138,21 @@
     </div>
     <p>Every one of the eighty decodes claimed to be legible, including the twenty-five that were not physically possible at all. Three patterns repeated across both models. In the world built so that the clearest signal and the keep-out zone conflict, both models beat the shortest path on five of five samples and both entered the zone on five of five: ten decodes out of ten bought the clarity and paid the constraint for it. In the world with three goals where the true one sits in the middle, neither model beat the shortest path on any sample, which is what the founding paper predicts when exaggerating towards a middle goal points at a different goal. And both models are confident throughout.</p>
     <p>The clearest single case came from the simplest world. Goal A sits above the start, goal B below. The smaller model routed through a point level with B and wrote that deviating to a lower position makes it clear the robot is heading to the higher goal. Measured legibility 0.2947 against the shortest path's 0.6968, at 1.31 times the path cost. It paid to become less legible and asserted the opposite, in exactly the right vocabulary. The larger model got that one right on all five samples, so this is a failure of one model rather than of models.</p>
-    <p>Asking the smaller model the same question under four different path budgets moves nothing it does:</p>
+    <p>Asking either model the same question under four different path budgets moves nothing it does:</p>
     <div class="data-table-scroll">
       <table class="data-table">
-        <caption>Qwen 2.5 7B, forty decodes at each budget</caption>
-        <thead><tr><th>Budget stated in the prompt</th><th>Median cost actually paid</th><th>Over budget</th><th>Clearer than shortest</th></tr></thead>
+        <caption>Forty decodes at each budget, per model</caption>
+        <thead><tr><th>Budget stated in the prompt</th><th>Qwen median cost</th><th>Qwen over budget</th><th>Llama median cost</th><th>Llama over budget</th></tr></thead>
         <tbody>
-          <tr><td>10 per cent</td><td>1.1663</td><td class="mark">17</td><td>8</td></tr>
-          <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td>10</td></tr>
-          <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td>9</td></tr>
-          <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td>11</td></tr>
+          <tr><td>10 per cent</td><td>1.1663</td><td class="mark">17</td><td class="mark">1.2817</td><td class="mark">30</td></tr>
+          <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td class="mark">1.2817</td><td>15</td></tr>
+          <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td class="mark">1.2817</td><td>10</td></tr>
+          <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td class="mark">1.2817</td><td>0</td></tr>
         </tbody>
       </table>
     </div>
-    <p>The budget nearly doubles and the median cost paid moves by 0.012. The violation count collapses only because the line moved past a fixed habit of spending about seventeen per cent more than the minimum. Where the optimiser treats the budget as a constraint that binds, the model treats it as text. Four times the headroom bought no additional clarity either: every column is flat.</p>
+    <p>The budget nearly doubles. The smaller model's median cost moves by 0.012 and the larger model's does not move at all, staying at 1.2817 to four decimal places in all four cells. A number that stable is likelier to be a bug than a result, so it was checked: it is the whole distribution repeating. Across roughly thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, and their costs cluster on the same modal value every time. Because that modal path already exceeds a ten per cent budget, every feasible decode breached the tightest one.</p>
+    <p>The falling violation counts are therefore the line moving rather than the models complying, and the extra room bought no clarity either: decodes clearer than the shortest path run 8, 10, 9, 11 for the smaller model and 21, 20, 20, 20 for the larger. Where the optimiser sits exactly on the budget in every row of the frontier table above, because for a planner the budget is a constraint, for both models it is text.</p>
     <p>Two models at one temperature is a pilot and not a finding, and the page says so where the numbers are. The records are committed, one JSON object per line, and every number above is recomputed from them by a committed tool rather than typed.</p>
   </section>
 

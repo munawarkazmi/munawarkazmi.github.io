@@ -2053,7 +2053,21 @@
           </tbody>
         </table>
       </div>
-      <p class="now-note">Every one of the 80 decodes claimed to be legible, including the 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, both models beat the shortest path on 5 of 5 samples and both entered the zone on 5 of 5. Given four different path budgets, the smaller model's median cost moved by 0.012: where the optimiser treats the budget as a constraint that binds, the model treats it as text.</p>
+      <p class="now-note">Every one of the 80 decodes claimed to be legible, including the 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, both models beat the shortest path on 5 of 5 samples and both entered the zone on 5 of 5.</p>
+
+      <div class="now-table-title">The stated path budget changes nothing either model does</div>
+      <div class="now-table-scroll">
+        <table class="now-table">
+          <thead><tr><th>Budget in the prompt</th><th>Qwen median cost</th><th>Qwen over budget</th><th>Llama median cost</th><th>Llama over budget</th></tr></thead>
+          <tbody>
+            <tr><td>10 per cent</td><td>1.1663</td><td>17</td><td class="mark">1.2817</td><td>30</td></tr>
+            <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td class="mark">1.2817</td><td>15</td></tr>
+            <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td class="mark">1.2817</td><td>10</td></tr>
+            <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td class="mark">1.2817</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for both models it is text.</p>
       <p class="now-note">Two models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: a third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
 
       <div class="now-commit"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
