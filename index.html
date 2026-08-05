@@ -2006,7 +2006,7 @@
       </div>
       <div class="project-title">plan-failure-bench</div>
       <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. The fixed-prompt grid is complete: 18 runs, four models, both environments, both conditions, every record committed. The headline result belongs to the frontier reasoning model, which repeats every headline count under full semantic obfuscation on both environments, 13 of 13 traps detected with zero false positives, and fails a single sequencing seed identically in each condition, a blemish only the confusion matrix can see. Smaller models split the other way: one never refuses anything, one refuses on surface semantics alone, and the 70B model's five-sample cell shows its instability sitting at the detection boundary rather than in a stable wrong answer. The paper is public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>, and every citation in it has been checked against the cited paper's body rather than its abstract, with the record of those checks published as an appendix. Next on the bench: the statistics scope decision, and sampling the remaining cells.</p>
-      <div class="now-commit" id="nowCommit"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+      <div class="now-commit" data-repo="munawarkazmi/plan-failure-bench"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
 
     <div class="now-card reveal spotlight">
@@ -2070,7 +2070,7 @@
       <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for both models it is text.</p>
       <p class="now-note">Two models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: a third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
 
-      <div class="now-commit"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+      <div class="now-commit" data-repo="munawarkazmi/legible-motion-bench"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
   </div>
 </section>
@@ -3106,37 +3106,41 @@
     });
   });
 
-  /* ============ Live commit line for the Now section ============ */
+  /* ============ Live commit line for every Now card ============ */
   (function () {
-    var el = document.getElementById('nowCommit');
-    if (!el || !window.fetch) return;
-    fetch('https://api.github.com/repos/munawarkazmi/plan-failure-bench/commits?per_page=1')
-      .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('http ' + res.status)); })
-      .then(function (data) {
-        var c = data && data[0] && data[0].commit;
-        if (!c || !c.message) return;
-        var message = c.message.split('\n')[0];
-        var stamp = (c.committer && c.committer.date) || (c.author && c.author.date);
-        var age = '';
-        if (stamp) {
-          var hours = Math.max(0, Math.floor((Date.now() - new Date(stamp).getTime()) / 3600000));
-          if (hours < 1) age = 'within the last hour';
-          else if (hours < 24) age = hours + (hours === 1 ? ' hour ago' : ' hours ago');
-          else {
-            var days = Math.floor(hours / 24);
-            age = days + (days === 1 ? ' day ago' : ' days ago');
+    if (!window.fetch) return;
+    var slots = document.querySelectorAll('.now-commit[data-repo]');
+    Array.prototype.forEach.call(slots, function (el) {
+      var repo = el.dataset.repo;
+      if (!repo) return;
+      fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1')
+        .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('http ' + res.status)); })
+        .then(function (data) {
+          var c = data && data[0] && data[0].commit;
+          if (!c || !c.message) return;
+          var message = c.message.split('\n')[0];
+          var stamp = (c.committer && c.committer.date) || (c.author && c.author.date);
+          var age = '';
+          if (stamp) {
+            var hours = Math.max(0, Math.floor((Date.now() - new Date(stamp).getTime()) / 3600000));
+            if (hours < 1) age = 'within the last hour';
+            else if (hours < 24) age = hours + (hours === 1 ? ' hour ago' : ' hours ago');
+            else {
+              var days = Math.floor(hours / 24);
+              age = days + (days === 1 ? ' day ago' : ' days ago');
+            }
           }
-        }
-        var link = document.createElement('a');
-        link.href = 'https://github.com/munawarkazmi/plan-failure-bench/commits/main';
-        link.target = '_blank';
-        link.rel = 'noopener';
-        link.className = 'now-commit-msg';
-        link.textContent = '“' + message + '”';
-        el.textContent = age ? 'Latest commit, ' + age + ': ' : 'Latest commit: ';
-        el.appendChild(link);
-      })
-      .catch(function () { /* the static link to the commit history stays in place */ });
+          var link = document.createElement('a');
+          link.href = 'https://github.com/' + repo + '/commits/main';
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.className = 'now-commit-msg';
+          link.textContent = '“' + message + '”';
+          el.textContent = age ? 'Latest commit, ' + age + ': ' : 'Latest commit: ';
+          el.appendChild(link);
+        })
+        .catch(function () { /* the static link to the commit history stays in place */ });
+    });
   })();
 
   /* ============ Copy-to-clipboard buttons ============ */
