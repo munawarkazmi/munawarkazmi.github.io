@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plain-language guides · Munawar Kazmi</title>
+<meta name="description" content="Eight short guides explaining each of my engineering and research projects in plain language, with the real data and real model responses that produced the claims.">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+<style>
+  .guide-list { margin: 0; padding: 0; list-style: none; max-width: 760px; }
+  .guide {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .guide:first-of-type { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+  .guide-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .guide-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+  .guide-repo {
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .guide-desc { font-size: 15.5px; margin: 0 0 10px; max-width: 700px; }
+  .guide-links { font-size: 14px; display: flex; gap: 18px; flex-wrap: wrap; align-items: baseline; }
+  .guide-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 1px;
+  }
+  .guide-links a:hover { color: var(--accent-bright); border-bottom-color: var(--accent-bright); }
+  .guide-pages { color: var(--text-secondary); font-size: 13px; opacity: 0.75; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">PLAIN-LANGUAGE GUIDES</div>
+    <h1>Eight projects, explained <em>without the jargon</em></h1>
+    <p class="lede">Each of these is a short guide to one project, written for someone who has never read a research paper. They quote the real model responses, the real measurements and the real mistakes from the committed records, rather than describing them from a distance. Every one is also committed alongside the code it describes, so it rebuilds when the project does.</p>
+  </header>
+
+  <section class="block">
+    <ul class="guide-list">
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">The glass of water problem</span>
+          <span class="guide-repo">plan-failure-bench</span>
+        </div>
+        <p class="guide-desc">One instruction, a rule about carrying liquids across a carpet, and three AI models that handled it three different ways. How to measure whether a language model knows when a task is impossible, ambiguous or forbidden, without any human or AI judging the answers.</p>
+        <div class="guide-links">
+          <a href="../files/plan-failure-bench-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="plan-failure-bench.html">Full story</a>
+          <span class="guide-pages">6 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Wrong, or impossible?</span>
+          <span class="guide-repo">llm-nav-shield</span>
+        </div>
+        <p class="guide-desc">An AI plans a route for a robot and gets it wrong. There are two very different kinds of wrong: a bad route where a good one exists, and a situation with no safe answer at all. Why a system that cannot tell those apart is not a safety system.</p>
+        <div class="guide-links">
+          <a href="../files/llm-nav-shield-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="llm-nav-shield.html">Full story</a>
+          <span class="guide-pages">6 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">It went exactly where you asked</span>
+          <span class="guide-repo">ros2-llm-safety-verifier</span>
+        </div>
+        <p class="guide-desc">Two models were given the same forty navigation problems. The larger one reached the right destination every single time, and drove into things more than twice as often. Unsafe but on target is the failure that looks most like success.</p>
+        <div class="guide-links">
+          <a href="../files/llm-safety-verifier-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="llm-safety-verifier.html">Full story</a>
+          <span class="guide-pages">4 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Well-formed and wrong</span>
+          <span class="guide-repo">toolcall-contract</span>
+        </div>
+        <p class="guide-desc">When an AI operates a system it fills in a form, and everyone checks the shape of that form. Both models tested filled it in perfectly every time, and still asked for objects that do not exist and deliveries that end before they begin.</p>
+        <div class="guide-links">
+          <a href="../files/toolcall-contract-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="toolcall-contract.html">Full story</a>
+          <span class="guide-pages">5 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Someone steps in front of the robot</span>
+          <span class="guide-repo">ros2-dynamic-path-planning</span>
+        </div>
+        <p class="guide-desc">Working out a route across a building examined 125,760 possibilities. Recovering after somebody stepped into the corridor examined 256. What it costs a machine to think again, measured honestly enough to report where the faster method loses.</p>
+        <div class="guide-links">
+          <a href="../files/path-planning-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="path-planning.html">Full story</a>
+          <span class="guide-pages">5 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Which side of the line?</span>
+          <span class="guide-repo">exact-predicates</span>
+        </div>
+        <p class="guide-desc">A question so simple you can answer it by looking, that computers get wrong often enough to corrupt the software built on top of it. Including the honest map of where the danger does not exist.</p>
+        <div class="guide-links">
+          <a href="../files/exact-predicates-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="exact-predicates.html">Full story</a>
+          <span class="guide-pages">5 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Motion detection without the magic</span>
+          <span class="guide-repo">esp32-cam-motion-detector</span>
+        </div>
+        <p class="guide-desc">A detector on a ten-dollar board that notices movement using nothing but arithmetic, no AI anywhere. And the headline accuracy figure that did not survive being checked, along with exactly what was wrong with it.</p>
+        <div class="guide-links">
+          <a href="../files/esp32-motion-detector-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="esp32-motion-detector.html">Full story</a>
+          <span class="guide-pages">4 pages</span>
+        </div>
+      </li>
+
+      <li class="guide">
+        <div class="guide-head">
+          <span class="guide-title">Nothing is ever deleted</span>
+          <span class="guide-repo">safina-portal</span>
+        </div>
+        <p class="guide-desc">A receptionist takes cash fees and types the wrong amount. Letting her simply correct it is the tempting answer and the wrong one. Building software that handles other people's money, and other people's mistakes.</p>
+        <div class="guide-links">
+          <a href="../files/safina-portal-explained.pdf" target="_blank" rel="noopener">Read the guide (PDF) &rarr;</a>
+          <a href="safina-portal.html">Full story</a>
+          <span class="guide-pages">4 pages</span>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Why these exist</h2>
+    <p>Technical repositories are written for people who already know the field, which means the reasoning inside them is invisible to everyone else, including the people best placed to say whether it is any good. These guides are an attempt to fix that without softening anything: the numbers are the same numbers, the limitations are stated in the same places, and where a claim was withdrawn the guide says so and explains what was wrong with it.</p>
+    <p>Each guide's source is committed in its project's repository under <code>docs/explainer/</code>, next to the code and data it describes. They are built from the same generated figures as the papers and READMEs, so a guide cannot quietly drift away from the project it explains.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi" target="_blank" rel="noopener">All repositories on GitHub &rarr;</a>
+    &ensp;&middot;&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>
