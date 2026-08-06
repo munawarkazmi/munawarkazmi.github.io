@@ -2073,6 +2073,45 @@
 
       <div class="now-commit" data-repo="munawarkazmi/legible-motion-bench"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
+
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="project-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener" class="project-link">Working log &nearr;</a>
+          <a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
+        </div>
+      </div>
+      <div class="project-title">legibility-bounds</div>
+      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. For a world, a path budget and a stated observer it returns two numbers: a trajectory that exists, and a wall no trajectory within the budget can cross. The gap between them is reported rather than hidden, which finally separates the question a scenario designer actually asks, is this world hard, from the one they can currently answer, did my planner do badly in it.</p>
+
+      <figure class="now-figure">
+        <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
+        <figcaption>Every band is a certified interval. The circle is a trajectory that exists, the diamond is a wall nothing can cross, and the tick is the shortest path for contrast. The optimum lies inside every band, and no bound is violated.</figcaption>
+      </figure>
+
+      <div class="now-table-title">The widest interval in each world</div>
+      <div class="now-table-scroll">
+        <table class="now-table">
+          <thead><tr><th>World</th><th>Budget</th><th>Achieved</th><th>Bound</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr><td>fan_middle</td><td>1.25</td><td>0.4343</td><td>0.4909</td><td class="mark">0.0567</td></tr>
+            <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8047</td><td class="mark">0.0462</td></tr>
+            <tr><td>fan_outer</td><td>1.10</td><td>0.6410</td><td>0.6692</td><td>0.0282</td></tr>
+            <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8777</td><td>0.0270</td></tr>
+            <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5931</td><td>0.0144</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest; the narrowest gap anywhere in the suite is 0.0065. The upper end is the half no search can supply, because it quantifies over every admissible trajectory rather than the ones somebody tried, and no better optimiser weakens it.</p>
+
+      <p class="now-note">The lower end is constructed rather than searched for, threaded from the bound's own high-belief cells and pulled back until it fits the budget, and it beats the vendored local search in 13 of 32 cases by up to 0.1485. The same argument certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, because the constrained search may simply have been worse, so 3 of 8 keep-out pairs certify a positive price and the other 5 certify nothing and are reported as nothing.</p>
+
+      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it, and what survives is one loose constant in the obstacle argument, sampled at a factor of 3.7 looser than the worst real case. That is named in the README as the highest-leverage improvement outstanding. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Drafted for RA-L.</p>
+
+      <div class="now-commit" data-repo="munawarkazmi/legibility-bounds"><a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
+    </div>
   </div>
 </section>
 
@@ -2235,6 +2274,24 @@
     </div>
 
     <div class="projects-grid" data-stagger>
+      <div class="project-card reveal spotlight tilt" data-category="research">
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Certified Bounds</span>
+          <span class="project-tag">Computational Geometry</span>
+        </div>
+        <div class="project-title">legibility-bounds: Proving What No Robot Can Achieve</div>
+        <div class="project-desc">Every method for making a robot's motion readable optimises it and reports the clarity it found. That cannot answer the question a designer actually asks: is this world hard, or did my planner just do badly in it? This returns a certified interval instead. The lower end is a trajectory that exists; the upper end is a wall that <em>no</em> trajectory within the path budget can cross, which is a claim no amount of further searching overturns. The mathematics turns on noticing that path length cancels out of the observer's belief, so belief is a fixed field, and on rewriting belief as odds against the true goal so the bound survives beside obstacles where the geodesic metric breaks the usual argument. The lower end is constructed rather than searched for, and beats the vendored search in 13 of 32 cases. It also certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, so 3 of 8 pairs certify a positive price and the rest certify nothing and say so.</div>
+        <div class="project-metrics">
+          <div><div class="project-metric-num count-up">32</div><div class="project-metric-label">of 32 certified intervals holding, zero violations</div></div>
+          <div><div class="project-metric-num">0.0065</div><div class="project-metric-label">narrowest gap between what exists and what is impossible</div></div>
+        </div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="project-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
+        </div>
+      </div>
+
       <div class="project-card reveal spotlight tilt" data-category="research">
         <div class="project-tags">
           <span class="project-tag">Python</span>
