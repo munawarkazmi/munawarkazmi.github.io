@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>legibility-bounds · Munawar Kazmi</title>
+<meta name="description" content="Certified upper bounds on robot motion legibility: for a world, a path budget and a stated observer, a trajectory that exists and a wall no trajectory can cross. All 32 world and budget pairs hold with zero violations.">
+<link rel="canonical" href="https://munawarkazmi.com/projects/legibility-bounds.html">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:title" content="legibility-bounds · Munawar Kazmi">
+<meta property="og:description" content="Certified upper bounds on robot motion legibility: for a world, a path budget and a stated observer, a trajectory that exists and a wall no trajectory can cross. All 32 world and budget pairs hold with zero violations.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://munawarkazmi.com/projects/legibility-bounds.html">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+<style>
+  .data-table-scroll { overflow-x: auto; margin: 1.6rem 0; }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .data-table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.74rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.7rem;
+  }
+  .data-table th {
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 0 1.2rem 0.5rem 0;
+    border-bottom: 1px solid rgba(237, 234, 227, 0.09);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 0.45rem 1.2rem 0.45rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(237, 234, 227, 0.045);
+    white-space: nowrap;
+  }
+  .data-table td:first-child { color: var(--text-primary); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .mark { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Human-Robot Interaction · Certified Bounds · Computational Geometry</div>
+    <h1>Proving what <em>no robot could</em> achieve</h1>
+    <p class="lede">Your planner scores 0.58 in a test room. Is the room hard, or did your planner do badly in it? Nobody could tell, because searching only ever proves that something exists, never that nothing better does. This proves the other half: a level no trajectory can reach, whatever anyone tries next.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="../files/legibility-bounds-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">32/32</div><div class="metric-label">certified intervals holding across every world and budget pair, zero violations</div></div>
+      <div class="metric"><div class="metric-num">0.0065</div><div class="metric-label">narrowest gap anywhere between what exists and what is impossible</div></div>
+      <div class="metric"><div class="metric-num">13/32</div><div class="metric-label">cases where the constructed trajectory beats the vendored local search, by up to 0.1485</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>Legibility is Dragan's, formalised at HRI 2013: a trajectory is legible when it deviates from the efficient path early enough that someone watching can infer the goal sooner than efficiency alone would allow. My <a href="legible-motion-bench.html">legible-motion-bench</a> measures what a planner achieved against that objective, and what it paid in path length and constraint violations to get there.</p>
+    <p>Every method in this space works the same way. It optimises, and it reports the clarity it found. That is a lower bound and nothing more: proof that some trajectory reaches 0.58, and silence on whether 0.60 or 0.90 was ever available. So when a number comes back low, two completely different explanations fit it equally well. The world may be genuinely hard, its goals so nearly collinear from the start that no motion within the budget separates them. Or the world may be easy and the planner poor. A scenario designer needs to tell those apart, and a search cannot do it, because a better optimiser tomorrow could always overturn the verdict.</p>
+    <p>This project supplies the missing half. For a world, a path budget and a stated observer it returns two numbers: a trajectory that exists, and a wall no trajectory within that budget can cross. The gap between them is reported rather than hidden.</p>
+  </section>
+
+  <section class="block">
+    <h2>Why the bound <em>holds</em></h2>
+    <p>The upper end is the half no search can supply, because it quantifies over every admissible trajectory rather than over the ones somebody happened to try. No better optimiser weakens it. Two observations make that tractable.</p>
+    <p>The first is that <strong>path length cancels out of the observer's belief</strong>. What remains is a fixed field over the world: a quantity that can be computed once, independently of which trajectory is eventually drawn through it, and then maximised over the whole admissible set at once.</p>
+    <p>The second concerns obstacles. The usual argument leans on the metric behaving well, and beside an obstacle the geodesic metric breaks that assumption. Rewriting belief as <strong>odds against the true goal</strong> restores it, so the bound survives in exactly the cluttered worlds that matter, rather than holding only in the open ones where the question is easy anyway.</p>
+    <p>The lower end is not searched for. It is constructed: threaded from the bound's own high-belief cells and then pulled back until it fits the path budget. That construction beats the vendored local search in 13 of 32 cases, by as much as 0.1485 — so it is not merely a formality to make the interval close, it is often the better trajectory of the two.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <figure class="light">
+      <img src="../assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
+      <figcaption>Every band is a certified interval. The circle is a trajectory that exists, the diamond is a wall nothing can cross, and the tick is the shortest path for contrast. The optimum lies inside every band, and no bound is violated.</figcaption>
+    </figure>
+    <p>Eight worlds — <code>door_pair</code>, <code>pillar_aisle</code>, <code>open_pair</code>, <code>keep_out_shortcut</code>, <code>narrow_gap</code>, <code>fan_outer</code>, <code>wall_choice</code> and <code>fan_middle</code> — each swept across a range of path budgets. Every row below shows a world at the budget where its interval is widest, which is the least flattering way to present the result:</p>
+    <div class="data-table-scroll">
+      <table class="data-table">
+        <caption>The widest interval in each world</caption>
+        <thead><tr><th>World</th><th>Budget</th><th>Achieved</th><th>Bound</th><th>Gap</th></tr></thead>
+        <tbody>
+          <tr><td>fan_middle</td><td>1.25</td><td>0.4343</td><td>0.4909</td><td class="mark">0.0567</td></tr>
+          <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8047</td><td class="mark">0.0462</td></tr>
+          <tr><td>fan_outer</td><td>1.10</td><td>0.6410</td><td>0.6692</td><td>0.0282</td></tr>
+          <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8777</td><td>0.0270</td></tr>
+          <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5931</td><td>0.0144</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>All 32 world and budget pairs hold, with zero violations. The narrowest gap anywhere in the suite is 0.0065. Read a row as a sentence: in <code>fan_middle</code> at a 25 per cent budget, a trajectory scoring 0.4343 exists, nothing can exceed 0.4909, and the true optimum is somewhere in between. A planner returning 0.43 in that world is not doing badly. The world is hard, and now that can be stated rather than suspected.</p>
+  </section>
+
+  <section class="block">
+    <h2>What safety <em>costs</em></h2>
+    <p>The same argument settles a question that comparison cannot. Adding a keep-out zone and observing that the constrained planner scores lower does not establish that the constraint cost anything — the constrained search may simply have been the worse search. Two searches can never separate those.</p>
+    <p>A bound can. If the certified ceiling with the constraint sits below the achieved floor without it, the price is real and no future optimiser recovers it. Applied to eight keep-out pairs, <strong>3 certify a positive price</strong>. The other <strong>5 certify nothing, and are reported as nothing</strong> — not as a small effect, not as a trend, as an absence of evidence in either direction. That distinction is the reason for building the instrument.</p>
+  </section>
+
+  <section class="block">
+    <h2>What is <em>not</em> settled</h2>
+    <p>Where the remaining width lives was measured rather than argued. Refining the lattice closes 55 to 79 per cent of it, which means most of the gap is discretisation and will yield to compute. What survives is one loose constant in the obstacle argument, currently sampled at a factor of 3.7 looser than the worst case actually observed. That is named in the README as the highest-leverage improvement outstanding, rather than left for a reader to discover.</p>
+    <p>The honest ceiling on all of it: the observer model is exactly specified and exactly reproducible, and it has never been validated against people. These are therefore certified bounds on a <em>stated objective</em>, not on what a human watching the robot would actually infer. The proof is only as meaningful as the definition it quantifies over, and saying so is part of the result.</p>
+    <p>A paper is being drafted for RA-L alongside the code, with a working log that tracks each part honestly. Nothing is marked done that cannot be inspected in the repository.</p>
+    <p><a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener">Working log &nearr;</a></p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../files/legibility-bounds-explained.pdf" target="_blank" rel="noopener">Plain-language guide (PDF)</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+</body>
+</html>

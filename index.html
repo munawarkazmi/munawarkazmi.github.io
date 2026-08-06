@@ -1520,12 +1520,20 @@
   .pub-copy-btn:hover { color: var(--text-primary); border-color: var(--accent-line); }
 
   .pub-status {
+    display: inline-block;
     font-size: 0.76rem;
     color: var(--accent);
     border: 1px solid var(--accent-line);
     padding: 0.3rem 0.85rem;
     border-radius: 20px;
     white-space: nowrap;
+    text-decoration: none;
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+  a.pub-status:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-bright);
   }
 
   /* ============ SPEAKING ============ */
@@ -2135,7 +2143,7 @@
           </div>
           <div class="track-card spotlight">
             <div class="track-label">FOR HIRING TEAMS</div>
-            <div class="track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. UK Graduate Visa valid through September 2026.</div>
+            <div class="track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. Happy to talk through work authorisation and timing directly.</div>
           </div>
         </div>
       </div>
@@ -2248,7 +2256,7 @@
       <div class="now-head">
         <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="project-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="projects/legibility-bounds.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener" class="project-link">Working log &nearr;</a>
           <a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
@@ -2471,7 +2479,7 @@
           <div><div class="project-metric-num">0.0065</div><div class="project-metric-label">narrowest gap between what exists and what is impossible</div></div>
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="project-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="projects/legibility-bounds.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
         </div>
       </div>
@@ -2760,11 +2768,11 @@
       <div>
         <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
         <div class="pub-authors">Kazmi, M. (2025)</div>
-        <div class="pub-venue">Submitted to MDPI Robotics &middot; Under Review</div>
-        <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the manuscript (PDF) &rarr;</a>
-        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. Manuscript submitted for publication, MDPI Robotics.">Copy citation</button>
+        <div class="pub-venue">MSc thesis research &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
+        <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
+        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
       </div>
-      <span class="pub-status">Under Review</span>
+      <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-status">Read the paper &rarr;</a>
     </div>
     <div class="pub-card reveal spotlight">
       <div>
@@ -2844,7 +2852,7 @@
         </div>
         <div class="contact-track-card reveal spotlight">
           <div class="contact-track-label">HIRING TEAMS</div>
-          <div class="contact-track-text">Open to robotics and AI engineering roles. UK Graduate Visa valid through September 2026, sponsorship welcome.</div>
+          <div class="contact-track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. Sponsorship welcome.</div>
           <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Role%20Inquiry" class="contact-track-link">Email about roles &rarr;</a>
         </div>
       </div>

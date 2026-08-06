@@ -87,6 +87,24 @@ h2 em { font-style: italic; color: var(--accent); font-weight: 300; }
 .block ul { margin: 0 0 14px 20px; max-width: 700px; }
 .block li { margin-bottom: 6px; }
 
+/* Inline prose links, which otherwise fall back to default browser blue
+   on every project page that cross-references another. */
+.block p a, .block li a, .lede a, figcaption a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-line);
+  transition: color .2s ease, border-color .2s ease;
+}
+.block p a:hover, .block li a:hover, .lede a:hover, figcaption a:hover {
+  color: var(--accent-bright);
+  border-bottom-color: var(--accent-bright);
+}
+.block p code, .block li code {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
 figure {
   background: var(--ink2); border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px; padding: 14px; margin: 22px 0;
