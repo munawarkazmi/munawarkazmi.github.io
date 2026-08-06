@@ -4,12 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="5I5lqNTOpN7VVbSs31lBwRdbHxBGvP_rTF_GBlq-x4E" />
-<meta name="description" content="Munawar Kazmi · Robotics & AI Research Engineer. MSc AI & Robotics (Commendation), University of Hertfordshire. Human-robot interaction, sim-to-real transfer, edge AI deployment.">
+<meta name="description" content="Munawar Kazmi · Robotics & AI Research Engineer. MSc AI & Robotics (Commendation), University of Hertfordshire. Human-robot interaction, LLM planner reliability, legible motion, edge AI deployment.">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#0A0A0C">
+<link rel="canonical" href="https://munawarkazmi.com/">
 <meta property="og:title" content="Munawar Kazmi · Robotics & AI Research Engineer">
-<meta property="og:description" content="HRI research on humanoid platforms, sim-to-real pipelines, deployed embedded AI. MSc (Commendation), University of Hertfordshire.">
-<meta property="og:image" content="https://munawarkazmi.com/assets/headshot.jpg">
+<meta property="og:description" content="Benchmarks that measure how LLM planners fail, verifiers that stop unsafe plans before hardware moves, and humanoids that communicate their intentions clearly. MSc (Commendation), University of Hertfordshire.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Munawar Kazmi, Robotics & AI Research Engineer — teaching robots to say what they mean, and to know when they can't.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://munawarkazmi.com">
+<meta property="og:url" content="https://munawarkazmi.com/">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -17,7 +25,7 @@
 <title>Munawar Kazmi · Robotics &amp; AI Research Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
@@ -47,9 +55,11 @@
     background: var(--ink);
     color: var(--text-primary);
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body.no-scroll { overflow: hidden; }
@@ -320,6 +330,7 @@
   /* ============ HERO ============ */
   #hero {
     min-height: 100vh;
+    min-height: 100svh; /* mobile browser chrome must not push the CTAs off-screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -459,7 +470,7 @@
 
   .hero-desc {
     font-size: clamp(1.02rem, 1.5vw, 1.18rem);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
     color: var(--text-dim);
     max-width: 600px;
@@ -605,6 +616,26 @@
   @keyframes draw { to { stroke-dashoffset: 0; } }
   @keyframes dotFade { to { opacity: 0.9; } }
 
+  /* On a phone the hero has to stay close to one screen, or the first
+     project is two deliberate swipes away. Same content, tighter metrics. */
+  @media (max-width: 600px) {
+    #hero { padding-top: 6rem; padding-bottom: 3rem; }
+    .hero-status { margin-bottom: 1.1rem; font-size: 0.75rem; padding: 0.4rem 0.85rem; }
+    .hero-eyebrow { margin-bottom: 1.1rem; font-size: 0.76rem; }
+    .hero-name { font-size: clamp(2.05rem, 8.6vw, 2.6rem); margin-bottom: 1.3rem; }
+    .hero-desc { font-size: 0.98rem; margin-bottom: 1.8rem; }
+    .hero-cta-row { gap: 0.6rem; }
+    .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary {
+      padding: 0.72rem 1.15rem;
+      font-size: 0.82rem;
+    }
+    /* number beside label, rather than three tall stacked blocks */
+    .stat-row { flex-direction: column; gap: 1rem; margin-top: 2.2rem; padding-top: 1.6rem; }
+    .stat { flex-direction: row; align-items: baseline; gap: 0.9rem; }
+    .stat-num { font-size: 1.45rem; min-width: 66px; flex-shrink: 0; }
+    .stat-label { max-width: none; flex: 1; font-size: 0.76rem; line-height: 1.45; }
+  }
+
   /* ============ MARQUEE ============ */
   .marquee {
     border-top: 1px solid var(--hairline);
@@ -683,7 +714,7 @@
 
   .section-lede {
     font-size: 1.02rem;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--text-dim);
     max-width: 560px;
     line-height: 1.7;
@@ -728,7 +759,7 @@
 
   .about-text p {
     font-size: 1.02rem;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--text-dim);
     line-height: 1.8;
     margin-bottom: 1.4rem;
@@ -1092,6 +1123,53 @@
     border: 0;
   }
 
+  /* Click-to-load facade: YouTube is only contacted once a visitor asks for
+     the video, so the page sets no third-party cookies and loads ~2.5s faster. */
+  .video-facade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    background: radial-gradient(circle at 50% 42%, #1c1c20, #0a0a0c 72%);
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+  .video-facade:hover { background: radial-gradient(circle at 50% 42%, #24242a, #0a0a0c 72%); color: var(--text-primary); }
+  .video-facade-play {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-line);
+    background: rgba(201, 168, 118, 0.1);
+    display: grid;
+    place-items: center;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-out);
+  }
+  .video-facade:hover .video-facade-play {
+    border-color: var(--accent);
+    background: rgba(201, 168, 118, 0.18);
+    transform: scale(1.07);
+  }
+  .video-facade-play::after {
+    content: '';
+    width: 0; height: 0;
+    margin-left: 4px;
+    border-left: 13px solid var(--accent);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+
   .research-video-caption {
     padding: 0.9rem 1rem;
     font-size: 0.8rem;
@@ -1376,7 +1454,11 @@
     .skills-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
-    .skills-grid { grid-template-columns: 1fr; }
+    /* two narrow columns read better here than four full-width blocks
+       that spend 1,400px of scroll on 57 words */
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .skill-col { padding: 1.4rem 1.2rem; }
+    .skill-list li { font-size: 0.84rem; }
   }
 
   /* ============ PUBLICATIONS ============ */
@@ -1751,11 +1833,6 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-  .now-desc {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin: 0.5rem 0 1.4rem;
-  }
   .now-commit {
     font-size: 0.85rem;
     color: var(--text-faint);
@@ -1821,8 +1898,76 @@
     color: var(--text-faint);
     margin: 0.9rem 0 0;
   }
+
+  /* The measurements stay on the page in full; they just don't cost every
+     visitor 1,200 words before they reach the projects. */
+  .now-more { margin-top: 1.4rem; border-top: 1px solid var(--hairline); }
+  .now-more > summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1rem 0 0.2rem;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: color 0.25s ease;
+  }
+  .now-more > summary::-webkit-details-marker { display: none; }
+  .now-more > summary::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.3s var(--ease-out);
+  }
+  .now-more[open] > summary::after { transform: translateY(1px) rotate(-135deg); }
+  .now-more > summary:hover { color: var(--accent-bright); }
+  .now-more-body { padding-top: 0.6rem; }
+  .now-more[open] > .now-more-body { animation: nowOpen 0.45s var(--ease-out); }
+  @keyframes nowOpen {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .now-more-body > .now-table-title:first-child { margin-top: 0.6rem; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
   @media (max-width: 640px) {
     .now-card { padding: 1.4rem 1.2rem; }
+  }
+
+  /* ============ MOBILE DENSITY ============
+     Section rhythm tuned for a 1440px canvas costs roughly a screen of
+     scrolling per section on a phone. Same content, proportionate spacing. */
+  @media (max-width: 600px) {
+    section { padding: 4.5rem 0; }
+    #contact { padding: 5rem 0; }
+    .about-grid, .timeline, .skills-grid,
+    .speaking-grid, .testimonials-grid { margin-top: 2.2rem; }
+    .research-card, .pub-card { margin-top: 2.2rem; }
+    .research-card-body { padding: 1.5rem 1.3rem; }
+    .project-card { padding: 1.5rem 1.4rem; }
+    .pub-card { padding: 1.6rem 1.4rem; gap: 1rem; }
+    .testimonial-card { padding: 1.6rem 1.4rem; }
+    .speaking-card { padding: 1.5rem; }
+    .speaking-photo { width: calc(100% + 3rem); margin: -1.5rem -1.5rem 1.2rem -1.5rem; height: 150px; }
+    .timeline-item { padding-bottom: 2.2rem; }
+    .quote-mark { font-size: 2rem; margin-bottom: 0.2rem; }
+    .research-stat { padding: 1.1rem 1.2rem; }
   }
 </style>
 <script type="application/ld+json">
@@ -1830,11 +1975,19 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Munawar Kazmi",
-  "alternateName": "Munawar Kazmi",
-  "url": "https://munawarkazmi.com",
+  "url": "https://munawarkazmi.com/",
   "image": "https://munawarkazmi.com/assets/headshot.jpg",
   "jobTitle": "Robotics & AI Research Engineer",
+  "description": "Robotics and AI research engineer working on human-robot interaction, LLM planner reliability, and legible robot motion.",
   "email": "mailto:munawarsaeedkazmi1@gmail.com",
+  "knowsAbout": [
+    "Human-Robot Interaction",
+    "Robot Motion Planning",
+    "LLM Evaluation",
+    "Safe Autonomy",
+    "ROS2",
+    "Embedded Systems"
+  ],
   "alumniOf": [
     {"@type": "CollegeOrUniversity", "name": "University of Hertfordshire"},
     {"@type": "CollegeOrUniversity", "name": "National University of Sciences and Technology"}
@@ -1842,7 +1995,8 @@
   "sameAs": [
     "https://www.linkedin.com/in/munawar-kazmi/",
     "https://github.com/munawarkazmi",
-    "https://medium.com/@munawarkazmi"
+    "https://medium.com/@munawarkazmi",
+    "https://doi.org/10.5281/zenodo.21756817"
   ]
 }
 </script>
@@ -1967,11 +2121,11 @@
           <img src="assets/headshot.webp" alt="Portrait of Munawar Kazmi" width="400" height="400" loading="lazy" decoding="async">
         </div>
         <div class="credential">
-          <div class="credential-degree">MSc AI &amp; Robotics</div>
+          <h3 class="credential-degree">MSc AI &amp; Robotics</h3>
           <div class="credential-meta">Commendation · University of Hertfordshire · 2023-2024</div>
         </div>
         <div class="credential">
-          <div class="credential-degree">BEng Mechatronics Engineering</div>
+          <h3 class="credential-degree">BEng Mechatronics Engineering</h3>
           <div class="credential-meta">NUST · 2018-2022</div>
         </div>
         <div class="dual-track">
@@ -2005,8 +2159,17 @@
           <a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
       </div>
-      <div class="project-title">plan-failure-bench</div>
-      <p class="now-desc">The benchmark spans two symbolic environments: 60 trap-labelled instructions, each carrying a machine-checked proof of its ground truth, re-verified by 548 tests on every commit, with a working paper whose results tables are generated from the committed records. The fixed-prompt grid is complete: 18 runs, four models, both environments, both conditions, every record committed. The headline result belongs to the frontier reasoning model, which repeats every headline count under full semantic obfuscation on both environments, 13 of 13 traps detected with zero false positives, and fails a single sequencing seed identically in each condition, a blemish only the confusion matrix can see. Smaller models split the other way: one never refuses anything, one refuses on surface semantics alone, and the 70B model's five-sample cell shows its instability sitting at the detection boundary rather than in a stable wrong answer. The paper is public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>, and every citation in it has been checked against the cited paper's body rather than its abstract, with the record of those checks published as an appendix. Next on the bench: the statistics scope decision, and sampling the remaining cells.</p>
+      <h3 class="project-title">plan-failure-bench</h3>
+      <p class="now-lead">Sixty trap-labelled instructions across two symbolic environments, each carrying a machine-checked proof of its own ground truth, re-verified by 548 tests on every commit. The fixed-prompt grid is complete: 18 runs, four models, both environments, both conditions, every record committed. Public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>.</p>
+
+      <details class="now-more">
+        <summary>What the grid found</summary>
+        <div class="now-more-body">
+          <p class="now-note">The headline result belongs to the frontier reasoning model, which repeats every headline count under full semantic obfuscation on both environments, 13 of 13 traps detected with zero false positives, and fails a single sequencing seed identically in each condition, a blemish only the confusion matrix can see. Smaller models split the other way: one never refuses anything, one refuses on surface semantics alone, and the 70B model's five-sample cell shows its instability sitting at the detection boundary rather than in a stable wrong answer.</p>
+          <p class="now-note">Every citation in the paper has been checked against the cited paper's body rather than its abstract, with the record of those checks published as an appendix. Next on the bench: the statistics scope decision, and sampling the remaining cells.</p>
+        </div>
+      </details>
+
       <div class="now-commit" data-repo="munawarkazmi/plan-failure-bench"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
 
@@ -2019,13 +2182,17 @@
           <a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
       </div>
-      <div class="project-title">legible-motion-bench</div>
+      <h3 class="project-title">legible-motion-bench</h3>
       <p class="now-lead">A robot heading for one of several goals is ambiguous for the first few seconds, and that is exactly when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest way to signal a goal is the way the robot is not allowed to go. This measures that three-way trade exactly, with no human rater and no model judging anywhere in the scoring loop. Legibility is Dragan's, formalised at HRI 2013; what is mine is the instrument.</p>
 
       <figure class="now-figure">
         <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
         <figcaption>One world, four planners, one clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing; the three legible trajectories commit early and cut straight through it. The bars are the observer's belief, and they are the same numbers the tables are computed from rather than a second drawing of them.</figcaption>
       </figure>
+
+      <details class="now-more">
+        <summary>The three measurements</summary>
+        <div class="now-more-body">
 
       <div class="now-table-title">The frontier, measured on one scenario</div>
       <div class="now-table-scroll">
@@ -2071,6 +2238,9 @@
       <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for both models it is text.</p>
       <p class="now-note">Two models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: a third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
 
+        </div>
+      </details>
+
       <div class="now-commit" data-repo="munawarkazmi/legible-motion-bench"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
 
@@ -2083,13 +2253,17 @@
           <a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
       </div>
-      <div class="project-title">legibility-bounds</div>
+      <h3 class="project-title">legibility-bounds</h3>
       <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. For a world, a path budget and a stated observer it returns two numbers: a trajectory that exists, and a wall no trajectory within the budget can cross. The gap between them is reported rather than hidden, which finally separates the question a scenario designer actually asks, is this world hard, from the one they can currently answer, did my planner do badly in it.</p>
 
       <figure class="now-figure">
         <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
         <figcaption>Every band is a certified interval. The circle is a trajectory that exists, the diamond is a wall nothing can cross, and the tick is the shortest path for contrast. The optimum lies inside every band, and no bound is violated.</figcaption>
       </figure>
+
+      <details class="now-more">
+        <summary>The certified intervals</summary>
+        <div class="now-more-body">
 
       <div class="now-table-title">The widest interval in each world</div>
       <div class="now-table-scroll">
@@ -2109,6 +2283,9 @@
       <p class="now-note">The lower end is constructed rather than searched for, threaded from the bound's own high-belief cells and pulled back until it fits the budget, and it beats the vendored local search in 13 of 32 cases by up to 0.1485. The same argument certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, because the constrained search may simply have been worse, so 3 of 8 keep-out pairs certify a positive price and the other 5 certify nothing and are reported as nothing.</p>
 
       <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it, and what survives is one loose constant in the obstacle argument, sampled at a factor of 3.7 looser than the worst real case. That is named in the README as the highest-leverage improvement outstanding. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Drafted for RA-L.</p>
+
+        </div>
+      </details>
 
       <div class="now-commit" data-repo="munawarkazmi/legibility-bounds"><a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
@@ -2234,15 +2411,21 @@
           <div class="research-videos-grid">
             <div class="research-video">
               <div class="research-video-frame">
-                <iframe src="https://www.youtube.com/embed/oaMcdPCNy4Q" title="Verbal communication condition demo" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <button type="button" class="video-facade" data-video="oaMcdPCNy4Q" data-title="Verbal communication condition demo">
+                  <span class="video-facade-play" aria-hidden="true"></span>
+                  <span>Play &middot; verbal condition</span>
+                </button>
               </div>
               <div class="research-video-caption"><strong>Verbal condition</strong> &middot; robot states its need directly</div>
             </div>
             <div class="research-video">
               <div class="research-video-frame">
-                <iframe src="https://www.youtube.com/embed/rUIRjTfs2_E?autoplay=1&mute=1&loop=1&playlist=rUIRjTfs2_E&playsinline=1" title="Non-verbal communication condition demo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <button type="button" class="video-facade" data-video="rUIRjTfs2_E" data-title="Non-verbal communication condition demo">
+                  <span class="video-facade-play" aria-hidden="true"></span>
+                  <span>Play &middot; non-verbal condition</span>
+                </button>
               </div>
-              <div class="research-video-caption"><strong>Non-verbal condition</strong> &middot; robot communicates via gesture (muted, tap to unmute)</div>
+              <div class="research-video-caption"><strong>Non-verbal condition</strong> &middot; robot communicates via gesture</div>
             </div>
           </div>
         </div>
@@ -2261,7 +2444,7 @@
     <div class="reveal">
       <div class="eyebrow"><span class="eyebrow-num">04</span> PROJECTS</div>
       <h2 class="section-title">Built, deployed, <em>measured</em></h2>
-      <p class="section-lede">Every project here shipped to real hardware with quantified outcomes, not benchmark numbers alone. Each one also has a short <a href="projects/guides.html">plain-language guide</a>, written for readers outside the field.</p>
+      <p class="section-lede">Every project here is backed by committed data and code a stranger can re-run, and says in its own words where its claims stop. Two are deployed in the field: firmware in a commercial intrusion-detection prototype, and a portal running an institute day to day. Nine of the ten also have a short <a href="projects/guides.html">plain-language guide</a>, written for readers outside the field.</p>
     </div>
 
     <div class="project-filters" role="group" aria-label="Filter projects by category">
@@ -2272,6 +2455,7 @@
       <button type="button" class="project-filter-btn" data-filter="embedded">Embedded</button>
       <button type="button" class="project-filter-btn" data-filter="fullstack">Full-stack</button>
     </div>
+    <p class="visually-hidden" role="status" aria-live="polite" id="filterStatus"></p>
 
     <div class="projects-grid" data-stagger>
       <div class="project-card reveal spotlight tilt" data-category="research">
@@ -2280,8 +2464,8 @@
           <span class="project-tag">Certified Bounds</span>
           <span class="project-tag">Computational Geometry</span>
         </div>
-        <div class="project-title">legibility-bounds: Proving What No Robot Can Achieve</div>
-        <div class="project-desc">Every method for making a robot's motion readable optimises it and reports the clarity it found. That cannot answer the question a designer actually asks: is this world hard, or did my planner just do badly in it? This returns a certified interval instead. The lower end is a trajectory that exists; the upper end is a wall that <em>no</em> trajectory within the path budget can cross, which is a claim no amount of further searching overturns. The mathematics turns on noticing that path length cancels out of the observer's belief, so belief is a fixed field, and on rewriting belief as odds against the true goal so the bound survives beside obstacles where the geodesic metric breaks the usual argument. The lower end is constructed rather than searched for, and beats the vendored search in 13 of 32 cases. It also certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, so 3 of 8 pairs certify a positive price and the rest certify nothing and say so.</div>
+        <h3 class="project-title">legibility-bounds: Proving What No Robot Can Achieve</h3>
+        <div class="project-desc">Every method for making a robot's motion readable optimises it and reports the clarity it found. That cannot answer the question a designer actually asks: is this world hard, or did my planner just do badly in it? This returns a certified interval instead. The lower end is a trajectory that exists; the upper end is a wall that <em>no</em> trajectory within the path budget can cross, which is a claim no amount of further searching overturns. It also certifies what safety costs, and where it cannot: 3 of 8 keep-out pairs certify a positive price, and the other 5 certify nothing and are reported as nothing.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">32</div><div class="project-metric-label">of 32 certified intervals holding, zero violations</div></div>
           <div><div class="project-metric-num">0.0065</div><div class="project-metric-label">narrowest gap between what exists and what is impossible</div></div>
@@ -2298,8 +2482,8 @@
           <span class="project-tag">Human-Robot Interaction</span>
           <span class="project-tag">Motion Planning</span>
         </div>
-        <div class="project-title">legible-motion-bench: What Clarity Costs</div>
-        <div class="project-desc">A robot moving towards one of several goals is unreadable for the first few seconds, and that is when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest signal is the one the robot is not allowed to send. This benchmark measures that three-way trade between legibility, path cost and constraint satisfaction exactly: eight worlds each carrying machine-checked facts about their own geometry, exact optimal cost-to-go over a visibility graph, and a guarded predicate that matches rational arithmetic on 20,000 near-collinear cases where plain floating point returns the wrong sign. Legibility is Dragan's, formalised at HRI 2013; the instrument is mine. Asked to be legible under a stated path budget, two models called all 80 of their trajectories legible, and 25 of those were not physically possible.</div>
+        <h3 class="project-title">legible-motion-bench: What Clarity Costs</h3>
+        <div class="project-desc">A robot moving towards one of several goals is unreadable for the first few seconds, and that is when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest signal is the one the robot is not allowed to send. This benchmark measures that three-way trade between legibility, path cost and constraint satisfaction exactly, across eight worlds each carrying machine-checked facts about their own geometry. Legibility is Dragan's, formalised at HRI 2013; the instrument is mine. Asked to be legible under a stated path budget, two models called all 80 of their trajectories legible, and 25 of those were not physically possible.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">80</div><div class="project-metric-label">of 80 model decodes claimed to be legible</div></div>
           <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human or model judgements in the scoring loop</div></div>
@@ -2316,7 +2500,7 @@
           <span class="project-tag">LLM Evaluation</span>
           <span class="project-tag">PDDL</span>
         </div>
-        <div class="project-title">plan-failure-bench: How LLM Planners Fail</div>
+        <h3 class="project-title">plan-failure-bench: How LLM Planners Fail</h3>
         <div class="project-desc">A research benchmark measuring how language models fail at robot task planning: 60 trap-labelled instructions across two symbolic environments, a machine-checkable action DSL with explicit refusal responses, and planted-versus-observed confusion matrices, with ground truth decidable end to end and no human or LLM judging anywhere. Results so far: three smaller models fail in three distinct ways, and the frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">548</div><div class="project-metric-label">tests and label proofs in CI</div></div>
@@ -2334,7 +2518,7 @@
           <span class="project-tag">Safe Autonomy</span>
           <span class="project-tag">CI-replayed</span>
         </div>
-        <div class="project-title">llm-nav-shield: Detect, Recover, or Halt</div>
+        <h3 class="project-title">llm-nav-shield: Detect, Recover, or Halt</h3>
         <div class="project-desc">The keystone that closes the loop across my safety work: LLM trajectory proposals are verified; unsafe or goal-missing ones are recovered with a provably-safe path from my planning core, re-verified before anything moves; and when no safe path exists, the shield halts rather than inventing one. A composition of my two verified cores, pinned as submodules at exact commits.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">38/38</div><div class="project-metric-label">flawed qwen2.5-7B proposals recovered, 0 unsafe forwarded</div></div>
@@ -2352,7 +2536,7 @@
           <span class="project-tag">Python</span>
           <span class="project-tag">jsonschema Differential</span>
         </div>
-        <div class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</div>
+        <h3 class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</h3>
         <div class="project-desc">A deterministic two-layer validator for LLM tool calls - the shield architecture pointed at the problem every agent framework has. A stdlib structural checker in 25,000-case differential agreement with pinned jsonschema, plus the semantic contract layer (catalog refs, exclusions, orderings, conditionals) where the real failures live: on the same 40 tasks, qwen2.5-7B broke zero schemas and seven contracts, llama-3.3-70B zero schemas and five.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">25,000</div><div class="project-metric-label">fuzzed structural verdicts, all in oracle agreement</div></div>
@@ -2370,7 +2554,7 @@
           <span class="project-tag">ROS2 Nav2</span>
           <span class="project-tag">CI-verified</span>
         </div>
-        <div class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</div>
+        <h3 class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</h3>
         <div class="project-desc">A* and D* Lite as C++20 Nav2 plugins over a ROS-free core validated against Dijkstra ground truth with exact integer arithmetic. A fair, seeded 200-trial benchmark measures the event that matters: a path-blocking obstacle appears and both planners must recover. Full per-event data committed and re-run in CI.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">4.3x</div><div class="project-metric-label">faster replanning with D* Lite (mean, 11x median)</div></div>
@@ -2388,7 +2572,7 @@
           <span class="project-tag">Numerical Robustness</span>
           <span class="project-tag">CI-verified</span>
         </div>
-        <div class="project-title">exact-predicates: When Floating Point Lies</div>
+        <h3 class="project-title">exact-predicates: When Floating Point Lies</h3>
         <div class="project-desc">Geometric predicates that cannot be wrong - grown from a real D* Lite bug where two equal priority keys landed one ulp apart. Exact integer arithmetic under code-enforced bounds, an unbounded big-integer oracle, and the artifact most correctness repos skip: a committed adversarial corpus where CI asserts the float version is wrong AND the exact one is right, case by case, on every push.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">657</div><div class="project-metric-label">adversarial cases: float wrong, exact right, CI-asserted</div></div>
@@ -2406,7 +2590,7 @@
           <span class="project-tag">LLM</span>
           <span class="project-tag">CI-replayed</span>
         </div>
-        <div class="project-title">ROS2 LLM Safety Verifier</div>
+        <h3 class="project-title">ROS2 LLM Safety Verifier</h3>
         <div class="project-desc">A deterministic safety gate between LLM planners and ROS2 Nav2: footprint collision, continuity, and map-bounds checks reject hallucinated trajectories before they reach a controller. Evaluated against a real model, with prompts, raw responses, and the evaluator committed - CI replays every number on every push.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">35/35 &middot; 32/32</div><div class="project-metric-label">unsafe qwen2.5-7B and llama-3.3-70B plans caught, zero false positives, per model</div></div>
@@ -2424,7 +2608,7 @@
           <span class="project-tag">LoRa Mesh</span>
           <span class="project-tag">Deployed</span>
         </div>
-        <div class="project-title">ESP32-CAM Motion Detector</div>
+        <h3 class="project-title">ESP32-CAM Motion Detector</h3>
         <div class="project-desc">Deterministic C++ firmware for a commercial intrusion-detection prototype built under contract for Muxtronics: block-difference motion detection with no ML and no vision libraries, plus a proprietary LoRa mesh alert path retained by the client. CI compiles the firmware for the target board on every push.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">16&times;12</div><div class="project-metric-label">decision grid distilled from 800&times;600 frames</div></div>
@@ -2442,7 +2626,7 @@
           <span class="project-tag">Supabase RLS</span>
           <span class="project-tag">In Production</span>
         </div>
-        <div class="project-title">Safina Portal: School Management System</div>
+        <h3 class="project-title">Safina Portal: School Management System</h3>
         <div class="project-desc">A complete management system for an educational institute: seven user roles, prorated cash billing with trials and suspensions, payroll, library, facility bookings, digital student ID cards and an append-only, trigger-written audit trail that nothing bypasses via the API. Live in production at portal.safinainternational.com ahead of the institute's first intake.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">7</div><div class="project-metric-label">user roles served</div></div>
@@ -2503,7 +2687,7 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Visiting Lecturer, AI &amp; Robotics</div>
+          <h3 class="timeline-role">Visiting Lecturer, AI &amp; Robotics</h3>
           <div class="timeline-date">Aug 2025 - Present</div>
         </div>
         <div class="timeline-company">Pak-Turk Maarif Schools &middot; Multan, Pakistan</div>
@@ -2515,7 +2699,7 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Embedded Systems Engineer</div>
+          <h3 class="timeline-role">Embedded Systems Engineer</h3>
           <div class="timeline-date">Jan 2025 - May 2025</div>
         </div>
         <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
@@ -2528,7 +2712,7 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Robotics Integration Specialist</div>
+          <h3 class="timeline-role">Robotics Integration Specialist</h3>
           <div class="timeline-date">Jan 2024 - May 2024</div>
         </div>
         <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
@@ -2541,7 +2725,7 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Research Associate</div>
+          <h3 class="timeline-role">Research Associate</h3>
           <div class="timeline-date">May 2023 - Dec 2023</div>
         </div>
         <div class="timeline-company">University of Hertfordshire</div>
@@ -2554,7 +2738,7 @@
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Embedded Systems Intern</div>
+          <h3 class="timeline-role">Embedded Systems Intern</h3>
           <div class="timeline-date">Mar 2022 - Apr 2022</div>
         </div>
         <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation &middot; Islamabad</div>
@@ -2574,7 +2758,7 @@
     </div>
     <div class="pub-card reveal spotlight">
       <div>
-        <div class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</div>
+        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
         <div class="pub-authors">Kazmi, M. (2025)</div>
         <div class="pub-venue">Submitted to MDPI Robotics &middot; Under Review</div>
         <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the manuscript (PDF) &rarr;</a>
@@ -2584,7 +2768,7 @@
     </div>
     <div class="pub-card reveal spotlight">
       <div>
-        <div class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</div>
+        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
         <div class="pub-authors">Kazmi, M. (2026)</div>
         <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records &middot; DOI 10.5281/zenodo.21756817</div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -2608,13 +2792,13 @@
       <div class="speaking-card reveal spotlight tilt">
         <img class="speaking-photo" src="assets/speaking.webp" alt="Munawar Kazmi presenting at the University of Hertfordshire" width="700" height="170" loading="lazy" decoding="async">
         <div class="speaking-meta">TALK &middot; UNIVERSITY OF HERTFORDSHIRE</div>
-        <div class="speaking-event">AI &amp; Robotics in Education Conference</div>
+        <h3 class="speaking-event">AI &amp; Robotics in Education Conference</h3>
         <div class="speaking-detail">Presented on HRI and edge AI applications to students and faculty, with live robot demonstrations of the companionship research.</div>
       </div>
       <div class="speaking-card reveal spotlight tilt">
         <img class="speaking-photo" src="assets/teaching.webp" alt="Munawar Kazmi leading a hands-on robotics and ML workshop at Pak-Turk Maarif Schools" width="700" height="170" loading="lazy" decoding="async">
         <div class="speaking-meta">WORKSHOP &middot; PAK-TURK MAARIF SCHOOLS</div>
-        <div class="speaking-event">Hands-On Robotics &amp; ML Workshop</div>
+        <h3 class="speaking-event">Hands-On Robotics &amp; ML Workshop</h3>
         <div class="speaking-detail">Led practical sessions covering gesture control, neural networks, and real-time AI deployment. Teams built and trained working classifiers during the session.</div>
       </div>
     </div>
@@ -2669,9 +2853,9 @@
 
       <div class="contact-links">
         <button type="button" class="copy-btn contact-link" id="copyEmailBtn" data-email="munawarsaeedkazmi1@gmail.com">Copy email</button>
-        <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" class="contact-link">LinkedIn</a>
-        <a href="https://github.com/munawarkazmi" target="_blank" class="contact-link">GitHub</a>
-        <a href="https://medium.com/@munawarkazmi" target="_blank" class="contact-link">Medium</a>
+        <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/munawarkazmi" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+        <a href="https://medium.com/@munawarkazmi" target="_blank" rel="noopener" class="contact-link">Medium</a>
         <a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener" class="contact-link">Download CV</a>
       </div>
     </div>
@@ -2705,11 +2889,25 @@
 
     if (reduced) {
       finish();
-    } else {
-      setTimeout(finish, 1550);
+      return;
     }
-    // absolute failsafe
-    setTimeout(finish, 3000);
+
+    // Hold just long enough for the intro to read as deliberate, then leave
+    // as soon as the page is actually ready - a fixed wait taxes fast
+    // connections for nothing.
+    var MIN = 700, MAX = 1550;
+    var started = Date.now();
+
+    function finishWhenReady() {
+      var waited = Date.now() - started;
+      setTimeout(finish, Math.max(0, MIN - waited));
+    }
+
+    if (document.readyState === 'complete') finishWhenReady();
+    else window.addEventListener('load', finishWhenReady);
+
+    setTimeout(finish, MAX);   // never hold longer than this
+    setTimeout(finish, 3000);  // absolute failsafe
   })();
 </script>
 
@@ -2863,7 +3061,11 @@
       }
     }
 
-    window.addEventListener('resize', resize);
+    // The hero can change size without the window doing so (fonts landing,
+    // the preloader releasing), and the canvas has to follow or it renders
+    // into a stale coordinate space and gets clipped.
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(hero);
+    else window.addEventListener('resize', resize);
     resize();
 
     hero.addEventListener('mousemove', function (e) {
@@ -3015,7 +3217,10 @@
         if (entry.isIntersecting) {
           var id = '#' + entry.target.id;
           navAnchors.forEach(function (a) {
-            a.classList.toggle('active', a.getAttribute('href') === id);
+            var isCurrent = a.getAttribute('href') === id;
+            a.classList.toggle('active', isCurrent);
+            if (isCurrent) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
           });
         }
       });
@@ -3027,22 +3232,32 @@
   /* ============ Count-up animation ============ */
   function animateCountUp(el) {
     var raw = el.textContent.trim();
-    var match = raw.match(/^([^\d]*)([\d]+(?:\.\d+)?)(.*)$/);
+    // Grouped thousands are one number, not "25" followed by ",000" - without
+    // the [\d,]* the counter ran to 25 and then snapped to 25,000.
+    var match = raw.match(/^([^\d]*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
     if (!match) return;
     var prefix = match[1], numStr = match[2], suffix = match[3];
-    var target = parseFloat(numStr);
+    var grouped = numStr.indexOf(',') !== -1;
+    var target = parseFloat(numStr.replace(/,/g, ''));
+    if (!isFinite(target)) return;
     var decimals = numStr.indexOf('.') !== -1 ? numStr.split('.')[1].length : 0;
     if (prefersReducedMotion) {
       el.textContent = prefix + numStr + suffix;
       return;
+    }
+    function format(n) {
+      var s = n.toFixed(decimals);
+      if (!grouped) return s;
+      var parts = s.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.join('.');
     }
     var duration = 1100;
     var start = performance.now();
     function tick(now) {
       var progress = Math.min((now - start) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      var current = (target * eased).toFixed(decimals);
-      el.textContent = prefix + current + suffix;
+      el.textContent = prefix + format(target * eased) + suffix;
       if (progress < 1) requestAnimationFrame(tick);
       else el.textContent = prefix + numStr + suffix;
     }
@@ -3156,21 +3371,34 @@
       filterBtns.forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var filter = btn.dataset.filter;
+      var shown = 0;
       projectCards.forEach(function (card) {
         var cats = (card.dataset.category || '').split(' ');
         var show = filter === 'all' || cats.indexOf(filter) !== -1;
         card.classList.toggle('filtered-out', !show);
+        if (show) shown++;
       });
+      var status = document.getElementById('filterStatus');
+      if (status) {
+        status.textContent = shown + (shown === 1 ? ' project' : ' projects') +
+                             ' shown for ' + btn.textContent.trim() + '.';
+      }
     });
   });
 
-  /* ============ Live commit line for every Now card ============ */
+  /* ============ Live commit line for every Now card ============
+     Fetched only once a card is actually approached. The unauthenticated
+     GitHub API allows 60 requests an hour per IP, so firing three on every
+     page load would exhaust it behind any shared address. */
   (function () {
     if (!window.fetch) return;
     var slots = document.querySelectorAll('.now-commit[data-repo]');
-    Array.prototype.forEach.call(slots, function (el) {
+    if (!slots.length) return;
+
+    function load(el) {
       var repo = el.dataset.repo;
-      if (!repo) return;
+      if (!repo || el.dataset.loaded) return;
+      el.dataset.loaded = '1';
       fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1')
         .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('http ' + res.status)); })
         .then(function (data) {
@@ -3198,8 +3426,69 @@
           el.appendChild(link);
         })
         .catch(function () { /* the static link to the commit history stays in place */ });
-    });
+    }
+
+    var pending = Array.prototype.slice.call(slots);
+    var MARGIN = 400;
+
+    // Geometry check, used by both paths below. Same rule either way: load a
+    // slot once it is within a screen-ish of the viewport, never before.
+    function sweep() {
+      for (var i = pending.length - 1; i >= 0; i--) {
+        var rect = pending[i].getBoundingClientRect();
+        if (rect.top < window.innerHeight + MARGIN && rect.bottom > -MARGIN) {
+          load(pending[i]);
+          pending.splice(i, 1);
+        }
+      }
+      if (!pending.length) window.removeEventListener('scroll', onScroll);
+    }
+
+    var queued = false;
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; sweep(); });
+    }
+
+    // The observer is the cheap path; the scroll listener is the guarantee,
+    // in the same spirit as the reveal failsafe above. Whichever fires first
+    // wins, and the data-loaded flag keeps the fetch to exactly one per repo.
+    if (window.IntersectionObserver) {
+      var commitObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            load(entry.target);
+            var at = pending.indexOf(entry.target);
+            if (at !== -1) pending.splice(at, 1);
+            commitObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: MARGIN + 'px 0px' });
+      Array.prototype.forEach.call(slots, function (el) { commitObserver.observe(el); });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('load', sweep);
+    sweep();
   })();
+
+  /* ============ Click-to-load video embeds ============
+     Nothing is requested from YouTube, and no third-party cookie is set,
+     until a visitor asks for the video. */
+  document.querySelectorAll('.video-facade').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.dataset.video;
+      if (!id) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                  '?autoplay=1&rel=0&playsinline=1';
+      frame.title = btn.dataset.title || 'Video';
+      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    });
+  });
 
   /* ============ Copy-to-clipboard buttons ============ */
   function wireCopyButton(btn, getText) {

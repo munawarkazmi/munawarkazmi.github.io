@@ -13,17 +13,20 @@
   --font-body: 'Inter', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* the topbar is sticky, so "Jump to results" must clear it */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body {
   background: var(--ink);
   color: var(--text-secondary);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 ::selection { background: var(--accent); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
 .topbar {

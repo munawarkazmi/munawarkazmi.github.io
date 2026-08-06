@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plain-language guides · Munawar Kazmi</title>
 <meta name="description" content="Nine short guides explaining each of my engineering and research projects in plain language, with the real data and real model responses that produced the claims.">
+<link rel="canonical" href="https://munawarkazmi.com/projects/guides.html">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:title" content="Plain-language guides · Munawar Kazmi">
+<meta property="og:description" content="Nine short guides explaining each of my engineering and research projects in plain language, with the real data and real model responses that produced the claims.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://munawarkazmi.com/projects/guides.html">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
 <style>
   .guide-list { margin: 0; padding: 0; list-style: none; max-width: 760px; }
@@ -27,8 +41,10 @@
   .guide-title {
     font-family: var(--font-display);
     font-size: 22px;
+    font-weight: 400;
     color: var(--text-primary);
     line-height: 1.25;
+    margin: 0; /* override the shared h2 margin so the flex head stays tight */
   }
   .guide-repo {
     font-size: 12.5px;
@@ -69,7 +85,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">How good could it possibly be?</span>
+          <h2 class="guide-title">How good could it possibly be?</h2>
           <span class="guide-repo">legibility-bounds</span>
         </div>
         <p class="guide-desc">Your planner scores 0.58 in a test room. Is the room hard, or did your planner do badly? Nobody could tell, because searching only ever proves something exists, never that nothing better does. This proves the other half: a level no trajectory can reach, whatever anyone tries next.</p>
@@ -82,7 +98,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">The glass of water problem</span>
+          <h2 class="guide-title">The glass of water problem</h2>
           <span class="guide-repo">plan-failure-bench</span>
         </div>
         <p class="guide-desc">One instruction, a rule about carrying liquids across a carpet, and three AI models that handled it three different ways. How to measure whether a language model knows when a task is impossible, ambiguous or forbidden, without any human or AI judging the answers.</p>
@@ -95,7 +111,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Wrong, or impossible?</span>
+          <h2 class="guide-title">Wrong, or impossible?</h2>
           <span class="guide-repo">llm-nav-shield</span>
         </div>
         <p class="guide-desc">An AI plans a route for a robot and gets it wrong. There are two very different kinds of wrong: a bad route where a good one exists, and a situation with no safe answer at all. Why a system that cannot tell those apart is not a safety system.</p>
@@ -108,7 +124,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">It went exactly where you asked</span>
+          <h2 class="guide-title">It went exactly where you asked</h2>
           <span class="guide-repo">ros2-llm-safety-verifier</span>
         </div>
         <p class="guide-desc">Two models were given the same forty navigation problems. The larger one reached the right destination every single time, and drove into things more than twice as often. Unsafe but on target is the failure that looks most like success.</p>
@@ -121,7 +137,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Well-formed and wrong</span>
+          <h2 class="guide-title">Well-formed and wrong</h2>
           <span class="guide-repo">toolcall-contract</span>
         </div>
         <p class="guide-desc">When an AI operates a system it fills in a form, and everyone checks the shape of that form. Both models tested filled it in perfectly every time, and still asked for objects that do not exist and deliveries that end before they begin.</p>
@@ -134,7 +150,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Someone steps in front of the robot</span>
+          <h2 class="guide-title">Someone steps in front of the robot</h2>
           <span class="guide-repo">ros2-dynamic-path-planning</span>
         </div>
         <p class="guide-desc">Working out a route across a building examined 125,760 possibilities. Recovering after somebody stepped into the corridor examined 256. What it costs a machine to think again, measured honestly enough to report where the faster method loses.</p>
@@ -147,7 +163,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Which side of the line?</span>
+          <h2 class="guide-title">Which side of the line?</h2>
           <span class="guide-repo">exact-predicates</span>
         </div>
         <p class="guide-desc">A question so simple you can answer it by looking, that computers get wrong often enough to corrupt the software built on top of it. Including the honest map of where the danger does not exist.</p>
@@ -160,7 +176,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Motion detection without the magic</span>
+          <h2 class="guide-title">Motion detection without the magic</h2>
           <span class="guide-repo">esp32-cam-motion-detector</span>
         </div>
         <p class="guide-desc">A detector on a ten-dollar board that notices movement using nothing but arithmetic, no AI anywhere. And the headline accuracy figure that did not survive being checked, along with exactly what was wrong with it.</p>
@@ -173,7 +189,7 @@
 
       <li class="guide">
         <div class="guide-head">
-          <span class="guide-title">Nothing is ever deleted</span>
+          <h2 class="guide-title">Nothing is ever deleted</h2>
           <span class="guide-repo">safina-portal</span>
         </div>
         <p class="guide-desc">A receptionist takes cash fees and types the wrong amount. Letting her simply correct it is the tempting answer and the wrong one. Building software that handles other people's money, and other people's mistakes.</p>

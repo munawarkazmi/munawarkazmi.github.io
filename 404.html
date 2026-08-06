@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found · Munawar Kazmi</title>
+<meta name="description" content="That page does not exist on munawarkazmi.com.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0C">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,300&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A0C;
+    --accent: #C9A876;
+    --accent-bright: #E8D5B0;
+    --accent-line: rgba(201, 168, 118, 0.25);
+    --text-primary: #EDEAE3;
+    --text-dim: #9C988F;
+    --hairline: rgba(237, 234, 227, 0.09);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background: var(--ink);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .glow {
+    position: fixed;
+    top: -20%; right: -12%;
+    width: 60vw; height: 60vw;
+    max-width: 780px; max-height: 780px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 168, 118, 0.07), transparent 65%);
+    pointer-events: none;
+  }
+  main { max-width: 560px; position: relative; }
+  .code {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .code::before { content: ''; width: 26px; height: 1px; background: var(--accent); opacity: 0.6; }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  p { color: var(--text-dim); margin-bottom: 2.2rem; }
+  .links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  a {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.8rem 1.6rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.3s ease;
+  }
+  .primary { background: var(--accent); color: var(--ink); }
+  .primary:hover { box-shadow: 0 0 28px rgba(201, 168, 118, 0.35); }
+  .secondary { color: var(--text-primary); border: 1px solid var(--hairline); }
+  .secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(201, 168, 118, 0.12); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  ::selection { background: var(--accent); color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<main>
+  <div class="code">ERROR 404</div>
+  <h1>This page <em>does not exist</em>.</h1>
+  <p>Which is at least a failure that announces itself. Nothing here was moved quietly; the link is either old or mistyped.</p>
+  <div class="links">
+    <a class="primary" href="/">Back to the homepage</a>
+    <a class="secondary" href="/#projects">All projects</a>
+    <a class="secondary" href="/projects/guides.html">Plain-language guides</a>
+  </div>
+</main>
+</body>
+</html>

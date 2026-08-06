@@ -10,9 +10,18 @@ domain.
 
 Featured there:
 
+- [legibility-bounds](https://github.com/munawarkazmi/legibility-bounds) — certified upper bounds on legibility
+- [legible-motion-bench](https://github.com/munawarkazmi/legible-motion-bench) — what clarity costs a robot
+- [plan-failure-bench](https://github.com/munawarkazmi/plan-failure-bench) — how LLM planners fail ([DOI](https://doi.org/10.5281/zenodo.21756817))
+- [llm-nav-shield](https://github.com/munawarkazmi/llm-nav-shield) — detect, recover, or halt
+- [toolcall-contract](https://github.com/munawarkazmi/toolcall-contract) — tool calls that silently aren't right
 - [ROS2 Dynamic Path Planning](https://github.com/munawarkazmi/ros2-dynamic-path-planning)
 - [ROS2 LLM Safety Verifier](https://github.com/munawarkazmi/ros2-llm-safety-verifier)
+- [exact-predicates](https://github.com/munawarkazmi/exact-predicates) — when floating point lies
 - [ESP32-CAM Motion Detector](https://github.com/munawarkazmi/esp32-cam-motion-detector)
 - [Safina Portal](https://github.com/munawarkazmi/safina-portal-showcase)
+
+Plain-language guides to nine of these live at
+[munawarkazmi.com/projects/guides.html](https://munawarkazmi.com/projects/guides.html).
 
 All content and design, all rights reserved.
