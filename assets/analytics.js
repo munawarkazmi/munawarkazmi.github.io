@@ -17,7 +17,7 @@
    *   https://YOURCODE.goatcounter.com  ->  'YOURCODE'
    * Leave empty to disable analytics entirely.
    * ------------------------------------------------------------------ */
-  var SITE_CODE = '';
+  var SITE_CODE = 'munawarkazmi';
 
   if (!SITE_CODE) return;
 
