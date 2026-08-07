@@ -1478,6 +1478,11 @@
   }
   .pub-card:hover { transform: translateY(-4px); border-color: var(--accent-line); box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35); }
 
+  /* Without this the wider cards push their action button onto a second line,
+     so it lands bottom-left on some cards and top-right on others. */
+  .pub-body { flex: 1 1 420px; min-width: 0; }
+  .pub-card > .pub-status { flex-shrink: 0; }
+
   .pub-title {
     font-family: var(--font-display);
     font-size: 1.18rem;
@@ -2776,17 +2781,17 @@
       <h2 class="section-title">Research <em>output</em></h2>
     </div>
     <div class="pub-card reveal spotlight">
-      <div>
+      <div class="pub-body">
         <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
         <div class="pub-authors">Kazmi, M. (2025)</div>
         <div class="pub-venue">MSc thesis research &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
         <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
         <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
       </div>
-      <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-status">Read the paper &rarr;</a>
+      <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the paper: Enhancing Human-Robot Companionship (PDF)">Read the paper &rarr;</a>
     </div>
     <div class="pub-card reveal spotlight">
-      <div>
+      <div class="pub-body">
         <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
         <div class="pub-authors">Kazmi, M. (2026)</div>
         <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records &middot; DOI 10.5281/zenodo.21756817</div>
@@ -2796,10 +2801,10 @@
           <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
         </div>
       </div>
-      <span class="pub-status">Working Paper</span>
+      <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the current draft: plan-failure-bench (PDF)">Read the draft &rarr;</a>
     </div>
     <div class="pub-card reveal spotlight">
-      <div>
+      <div class="pub-body">
         <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
         <div class="pub-authors">Kazmi, M. (2026)</div>
         <div class="pub-venue">Six-page preprint for IEEE Robotics and Automation Letters (RA-L) &middot; 8 scenarios at 4 cost ceilings, widest gap 0.0567, no bound violated &middot; the observer model is exactly reproducible and has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a></div>
@@ -2810,7 +2815,7 @@
           <a href="projects/legibility-bounds.html" class="pub-link">Full story &rarr;</a>
         </div>
       </div>
-      <span class="pub-status">RA-L Preprint</span>
+      <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the preprint: Certified Bounds on Achievable Legibility (PDF)">Read the preprint &rarr;</a>
     </div>
   </div>
 </section>
