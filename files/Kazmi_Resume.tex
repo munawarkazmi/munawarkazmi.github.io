@@ -1,0 +1,134 @@
+% Munawar Kazmi, one-page resume. Every quantitative claim traces to a
+% public repository, the committed manuscript, or an employment record.
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=1.05cm,top=0.8cm,bottom=0.8cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\definecolor{rule}{gray}{0.55}
+\definecolor{dim}{gray}{0.35}
+
+\titleformat{\section}{\normalsize\bfseries\scshape}{}{0pt}{}[{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+\newcommand{\entry}[2]{{\textbf{#1}\hfill {\small #2}\par}}
+\newcommand{\sub}[1]{{\small\color{dim}#1\par}}
+\setlist[itemize]{leftmargin=1.1em,itemsep=0pt,parsep=0pt,topsep=1pt,label=\textbullet}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Munawar Kazmi}\\[3pt]
+{\small
+\href{mailto:munawarsaeedkazmi1@gmail.com}{munawarsaeedkazmi1@gmail.com} \;|\;
+\href{https://munawarkazmi.com}{munawarkazmi.com} \;|\;
+\href{https://github.com/munawarkazmi}{github.com/munawarkazmi} \;|\;
+\href{https://www.linkedin.com/in/munawar-kazmi/}{linkedin.com/in/munawar-kazmi}}
+\end{center}
+
+\vspace{-2pt}
+\section{Profile}
+Robotics and AI engineer (MSc AI and Robotics, Commendation) working on AI reliability and human-robot
+interaction. Two archived preprints (DOIs
+\href{https://doi.org/10.5281/zenodo.21834956}{10.5281/zenodo.21834956},
+\href{https://doi.org/10.5281/zenodo.21756817}{10.5281/zenodo.21756817}); HRI research on the iCub humanoid, under
+review at MDPI Robotics. Every published number is reproducible from a public, CI-tested repository, each with a
+\href{https://munawarkazmi.com/projects/guides.html}{plain-language guide}.
+
+\section{Featured Research}
+
+\entry{legibility-bounds: certified limits on legible motion}{\href{https://github.com/munawarkazmi/legibility-bounds}{github.com/munawarkazmi/legibility-bounds}}
+\sub{Sole author. Python, computational geometry, exact predicates. Preprint for IEEE RA-L, DOI \href{https://doi.org/10.5281/zenodo.21834956}{10.5281/zenodo.21834956}.}
+\begin{itemize}
+\item Proved a ceiling \textbf{no trajectory within the path budget can exceed}, not the clarity one search
+happened to find; \textbf{32 of 32 certified intervals hold, zero violations}, widest gap 0.0567.
+\item The same argument prices safety: \textbf{3 of 8 keep-out pairs certify a positive cost}, the other 5 certify
+nothing and say so, which no comparison of two searches can establish.
+\end{itemize}
+
+\entry{plan-failure-bench}{\href{https://github.com/munawarkazmi/plan-failure-bench}{github.com/munawarkazmi/plan-failure-bench}}
+\sub{Sole author. Python, PDDL, differential testing, CI. Working paper on Zenodo.}
+\begin{itemize}
+\item Designed \textbf{60 proof-carrying instructions} over two symbolic environments; every ground-truth label is
+a mechanical proof re-verified by \textbf{548 CI tests} on each commit.
+\item \textbf{Judge-free scoring}: a deterministic checker, differentially tested against an independent PDDL
+toolchain, assigns one verdict per response; detection is never reported without its paired false positive count.
+\item Ran an \textbf{18-run grid over four models}, plain and semantically obfuscated; the versioned obfuscation
+caught and retired two artefacts of its own first token scheme.
+\end{itemize}
+
+\entry{Trust-calibrated HRI on the iCub humanoid, MSc thesis}{University of Hertfordshire}
+\sub{Isaac Sim digital twin, ROS2, physical deployment. Supervised by Prof.\ Patrick Holthaus.}
+\begin{itemize}
+\item Built a sim-to-real pipeline transferring verbal and non-verbal intent communication to physical hardware;
+measured a \textbf{significant clarity effect} (4.9 vs 5.8 on a 7-point scale, $p=0.017$, $d=0.58$) in user trials.
+\end{itemize}
+
+\section{Selected Projects}
+
+\entry{llm-nav-shield: detect, recover, or halt}{\href{https://github.com/munawarkazmi/llm-nav-shield}{github.com/munawarkazmi/llm-nav-shield}}
+\begin{itemize}
+\item Neurosymbolic shield composing two verified cores: a deterministic verifier caught \textbf{35/35 and 32/32
+unsafe LLM proposals with zero misses} (qwen2.5-7B, Llama-3.3-70B), and a provably-correct planner recovered
+\textbf{38/38} to verified-safe paths, with \textbf{10/10 correct halts} where no safe path exists and
+\textbf{zero unsafe trajectories forwarded}; every number replayed in CI.
+\end{itemize}
+
+\entry{ROS2 dynamic path planning: A* and D* Lite for Nav2}{\href{https://github.com/munawarkazmi/ros2-dynamic-path-planning}{github.com/munawarkazmi/ros2-dynamic-path-planning}}
+\begin{itemize}
+\item ROS-free C++20 planning core with Nav2 plugin adapters; over a seeded 200-trial blocked-route benchmark
+D* Lite replans \textbf{4.3x faster on average, 11x on the median}, path costs matching on \textbf{all 1,716
+measurements}, optimality fuzz-validated against Dijkstra over 185,237 replans.
+\end{itemize}
+
+\section{Experience}
+
+\entry{Full-Stack Software Engineer (Contract), Safina International}{Multan, Pakistan; Jul 2026 - present}
+\begin{itemize}
+\item Sole engineer of the institute's live platform: seven user roles, billing, payroll, and an append-only
+financial ledger enforced by PostgreSQL row-level security.
+\end{itemize}
+
+\entry{Visiting Lecturer, AI and Robotics, Pak-Turk Maarif Schools}{Multan; Aug 2025 - present}
+\vspace{2pt}
+
+\entry{Embedded Systems Engineer (Contract), Muxtronics}{Multan, Pakistan; Jan 2025 - May 2025}
+\begin{itemize}
+\item Deterministic C++ ESP32 firmware and a LoRa mesh with \textbf{sub-3-second alert latency} at 100\,m,
+shipped in a safety-critical product.
+\end{itemize}
+
+\entry{Robotics Integration Specialist, Robot House, University of Hertfordshire}{Hatfield, UK; Jan 2024 - May 2024}
+\vspace{2pt}
+
+\entry{Research Associate, University of Hertfordshire}{Hatfield, UK; May 2023 - Dec 2023}
+\sub{Optimised TensorFlow LLM inference for the Unitree Go1 quadruped, cutting latency 29\% across 200 trials.}
+
+\section{Education}
+\entry{MSc Artificial Intelligence and Robotics, Commendation, University of Hertfordshire}{2023 - 2024}
+\entry{BEng Mechatronics Engineering, National University of Sciences and Technology (NUST)}{2018 - 2022}
+
+\section{Publications}
+{\small
+Kazmi, M. (2026). Certified Bounds on Achievable Legibility under a Path Cost Budget. Preprint for IEEE Robotics
+and Automation Letters, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21834956}{10.5281/zenodo.21834956}.\par
+Kazmi, M. (2026). plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail.
+Working paper, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21756817}{10.5281/zenodo.21756817}.\par
+Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in
+Humanoid Robots. Manuscript under review, MDPI Robotics.}
+
+\section{Technical Skills}
+{\small
+\textbf{Robotics and systems:} C++20, Python, ROS2 (Nav2, plugins), differential and property-based testing, CI/CD, Docker\\
+\textbf{AI and simulation:} PyTorch, TensorFlow, TensorRT, LLM evaluation and integration, Isaac Sim, MuJoCo, Gazebo, Unity\\
+\textbf{Embedded and full-stack:} ESP32, LoRa mesh, bare-metal C/C++, Jetson, React, TypeScript, PostgreSQL}
+
+\end{document}
