@@ -103,4 +103,5 @@
   on('a[href$="Kazmi_Resume.pdf"]', 'click', 'engage/resume-opened', 'Opened the resume');
   on('#copyEmailBtn', 'click', 'engage/email-copied', 'Copied the email address');
   on('#copyCitationBtn', 'click', 'engage/citation-copied', 'Copied the citation');
+  on('a[href$="guides.html"]', 'click', 'engage/guides-opened', 'Opened the plain-language guides');
 })();
