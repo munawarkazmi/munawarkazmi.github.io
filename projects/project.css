@@ -140,3 +140,72 @@ pre.code-block {
   color: #d7d3ca;
   margin: 14px 0;
 }
+
+/* ============ PRINT ============
+   Story pages get the same treatment as the homepage: a reader who prints one
+   is usually taking it somewhere the screen will not follow. The tokens carry
+   most of it, but the topbar's translucent panel, the light-figure plate and
+   the code block all set their colours directly and have to be named. */
+@media print {
+  :root {
+    --ink: #FFFFFF;
+    --ink2: #FFFFFF;
+    --ink3: #FFFFFF;
+    --accent: #6B5220;
+    --accent-bright: #4A3814;
+    --accent-soft: rgba(107, 82, 32, 0.07);
+    --accent-line: rgba(107, 82, 32, 0.40);
+    --text-primary: #14141A;
+    --text-secondary: #3A3A42;
+  }
+
+  @page { margin: 16mm; }
+
+  body { background: #FFFFFF; color: #14141A; }
+  .topbar, .back-to-top { display: none !important; }
+
+  /* The solid accent button carries its label in --ink, which is now white.
+     Without its background it would print white on white. */
+  .btn-primary {
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--accent-line);
+  }
+
+  figure {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+  }
+  figure.light { background: #FFFFFF; }
+
+  pre.code-block {
+    background: #F5F4F1;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    color: #14141A;
+  }
+
+  .footer { border-top: 1px solid rgba(0, 0, 0, 0.18); }
+
+  /* A table that scrolls sideways on screen has nowhere to scroll on paper.
+     These rules are !important because the story pages set their table styles
+     in an inline <style> that would otherwise win on order. */
+  .data-table-scroll { overflow: visible !important; }
+  .data-table { font-size: 0.72rem !important; table-layout: fixed; }
+  .data-table th, .data-table td {
+    white-space: normal !important;
+    word-break: break-word;
+  }
+
+  /* Evidence should not be split down the middle by a page break */
+  figure, .metric, .data-table-scroll, .fig-grid { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+
+  /* A paper copy has to carry its own references */
+  .cta-row a[href^="http"]::after,
+  .block p a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.78em;
+    word-break: break-all;
+    color: var(--text-secondary);
+  }
+}

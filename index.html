@@ -2057,6 +2057,120 @@
     .quote-mark { font-size: 2rem; margin-bottom: 0.2rem; }
     .research-stat { padding: 1.1rem 1.2rem; }
   }
+
+  /* ============ PRINT ============
+     Someone printing this, or saving it as a PDF to send on, is reading it
+     more seriously than most visitors. The screen palette does not survive
+     the trip: the gold emphasis sits at 2.06:1 on white, so "what they mean"
+     and "when they can't" vanish and the headline prints as "Teaching robots
+     to say , and to know".
+
+     Every colour on the page comes from a token and none is hardcoded, so
+     redefining the tokens re-inks the whole document. The values below were
+     each checked against white: the lightest is 7.36:1, so the printed page
+     clears AAA throughout rather than merely being readable. */
+  @media print {
+    :root {
+      --ink: #FFFFFF;
+      --ink2: #FFFFFF;
+      --ink3: #FFFFFF;
+      --paper: #FFFFFF;
+      --accent: #6B5220;
+      --accent-bright: #4A3814;
+      --accent-soft: rgba(107, 82, 32, 0.07);
+      --accent-line: rgba(107, 82, 32, 0.40);
+      --accent-glow: transparent;
+      --text-primary: #14141A;
+      --text-dim: #3F3F47;
+      --text-faint: #55555E;
+      --hairline: rgba(0, 0, 0, 0.20);
+    }
+
+    @page { margin: 16mm; }
+
+    body { background: #FFFFFF; color: #14141A; }
+
+    /* Furniture that means nothing on paper */
+    .preloader, .grain, .scroll-progress, .cursor-dot, .cursor-ring,
+    #siteNav, .skip-link, .back-to-top, .marquee, #heroCanvas,
+    .hero-glow, .gesture-line, .hero-scroll-hint, .contact-glow,
+    .project-filters, .copy-btn, .trust-toggle, .video-facade,
+    .research-video-frame { display: none !important; }
+
+    /* The reveal observer never runs for a print rendering, and nothing
+       on the page may depend on it having run. */
+    .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .js .hero-status, .js .hero-eyebrow, .js .hero-desc, .js .hero-credential,
+    .js .hero-cta-row, .js .stat-row { opacity: 1 !important; transform: none !important; }
+    .pulse-dot { display: none; }
+
+    /* The shimmer on the emphasised words is a gradient painted into the
+       glyphs, with the text itself transparent. Print discards the gradient
+       and keeps the transparency, which is what deletes half the headline.
+       These have to become ordinary coloured text before anything else. */
+    .hero-name em, .hero-name.split em, .hero-name.split em .wi,
+    .contact-title em {
+      background: none !important;
+      -webkit-background-clip: border-box !important;
+      background-clip: border-box !important;
+      color: var(--accent) !important;
+      animation: none !important;
+    }
+    /* The headline words start translated out of a clipping box and are let
+       in by JS; a print rendering must not depend on that having finished. */
+    .hero-name.split .w { overflow: visible; }
+    .hero-name.split .wi { transform: none !important; }
+
+    /* Solid accent buttons carry their label in --ink, which is now white.
+       Without their background they would print white on white. */
+    .btn-primary, .guides-callout-cta {
+      color: var(--accent) !important;
+      background: none !important;
+      border: 1px solid var(--accent-line);
+    }
+
+    /* The tables under these are the evidence, so they must not print folded
+       away. The summary becomes a heading rather than a dead control. */
+    .now-more > summary { list-style: none; color: var(--accent); font-weight: 600; }
+    .now-more > summary::-webkit-details-marker { display: none; }
+    /* A closed <details> is hidden by the UA with content-visibility, not with
+       display, so overriding display alone leaves the tables folded away.
+       ::details-content is the standard handle; the older rules stay for
+       engines that have not adopted it. */
+    details > *:not(summary) { display: block !important; content-visibility: visible !important; }
+    details::details-content { content-visibility: visible !important; block-size: auto !important; }
+
+    /* A table that scrolls sideways on screen has nowhere to scroll on paper:
+       the last column is simply cut off at the edge of the sheet, which loses
+       data silently. Let the cells wrap instead. */
+    .now-table-scroll { overflow: visible !important; }
+    .now-table { font-size: 0.68rem; table-layout: fixed; }
+    .now-table th, .now-table td {
+      white-space: normal;
+      word-break: break-word;
+      padding-right: 0.5rem;
+    }
+
+    /* Evidence should not be split down the middle by a page break. Only
+       things shorter than a page belong here: asking the browser to keep a
+       whole now-card together buys one unsplit card and a mostly empty page
+       before it. */
+    figure, .now-figure, .now-table-scroll, .research-stat, .pub-card,
+    .timeline-item, .testimonial-card, .credential,
+    .speaking-card { break-inside: avoid; }
+    h1, h2, h3 { break-after: avoid; }
+
+    /* A paper copy has to carry its own references. Only the link rows get
+       this: the DOIs and emails elsewhere are already spelled out in the
+       text, and repeating them would be noise. */
+    a.project-link[href^="http"]::after,
+    a.pub-link[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.78em;
+      word-break: break-all;
+      color: var(--text-faint);
+    }
+  }
 </style>
 <script type="application/ld+json">
 {
