@@ -451,7 +451,7 @@
   body.ready .hero-name.split .wi { transform: translateY(0); }
 
   /* staged hero entrance (JS-gated so no-JS users see everything) */
-  .js .hero-status, .js .hero-eyebrow, .js .hero-desc, .js .hero-cta-row, .js .stat-row, .js .hero-scroll-hint {
+  .js .hero-status, .js .hero-eyebrow, .js .hero-desc, .js .hero-credential, .js .hero-cta-row, .js .stat-row, .js .hero-scroll-hint {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.9s ease, transform 0.9s var(--ease-out);
@@ -459,11 +459,12 @@
   .js .hero-status { transition-delay: 0.15s; }
   .js .hero-eyebrow { transition-delay: 0.25s; }
   .js .hero-desc { transition-delay: 0.55s; }
+  .js .hero-credential { transition-delay: 0.62s; }
   .js .hero-cta-row { transition-delay: 0.7s; }
   .js .stat-row { transition-delay: 0.9s; }
   .js .hero-scroll-hint { transition-delay: 1.3s; }
   body.ready .hero-status, body.ready .hero-eyebrow, body.ready .hero-desc,
-  body.ready .hero-cta-row, body.ready .stat-row, body.ready .hero-scroll-hint {
+  body.ready .hero-credential, body.ready .hero-cta-row, body.ready .stat-row, body.ready .hero-scroll-hint {
     opacity: 1;
     transform: translateY(0);
   }
@@ -474,10 +475,17 @@
     line-height: 1.7;
     color: var(--text-dim);
     max-width: 600px;
-    margin-bottom: 2.6rem;
+    margin-bottom: 0.85rem;
   }
 
   .hero-desc strong { color: var(--text-primary); font-weight: 500; }
+
+  .hero-credential {
+    font-size: 0.92rem;
+    color: var(--text-faint);
+    margin-bottom: 2.6rem;
+  }
+  .hero-credential strong { color: var(--text-dim); font-weight: 500; }
 
   .hero-cta-row {
     display: flex;
@@ -623,7 +631,8 @@
     .hero-status { margin-bottom: 1.1rem; font-size: 0.75rem; padding: 0.4rem 0.85rem; }
     .hero-eyebrow { margin-bottom: 1.1rem; font-size: 0.76rem; }
     .hero-name { font-size: clamp(2.05rem, 8.6vw, 2.6rem); margin-bottom: 1.3rem; }
-    .hero-desc { font-size: 0.98rem; margin-bottom: 1.8rem; }
+    .hero-desc { font-size: 0.98rem; margin-bottom: 0.7rem; }
+    .hero-credential { font-size: 0.85rem; margin-bottom: 1.8rem; }
     .hero-cta-row { gap: 0.6rem; }
     .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary {
       padding: 0.72rem 1.15rem;
@@ -849,6 +858,10 @@
     .dual-track { grid-template-columns: 1fr; }
     .gesture-line { display: none; }
     .hero-scroll-hint { display: none; }
+  }
+  /* Eight items stop fitting on one line around 1050px, so the menu has to
+     collapse before then or the bar silently wraps to two rows. */
+  @media (max-width: 1130px) {
     .nav-links {
       display: none;
       position: absolute;
@@ -869,6 +882,7 @@
     .nav-cta { display: inline-block; }
     .nav-toggle { display: block; }
   }
+
   @keyframes menuDrop {
     from { opacity: 0; transform: translateY(-8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -2057,10 +2071,10 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#now">Now</a></li>
     <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="projects/guides.html">Guides</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#publications">Publications</a></li>
     <li><a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
@@ -2079,8 +2093,9 @@
     <div class="hero-eyebrow">ROBOTICS &amp; AI RESEARCH ENGINEER</div>
     <h1 class="hero-name" id="heroName">Teaching robots to say <em>what they mean</em>, and to know <em>when they can't</em>.</h1>
     <p class="hero-desc">
-      I build the systems that make robots worth trusting: benchmarks that prove how LLM planners fail, verifiers that stop unsafe plans before hardware moves, and humanoids that communicate their intentions clearly. <strong>MSc AI &amp; Robotics (Commendation)</strong>, University of Hertfordshire.
+      I build the systems that make robots worth trusting. Benchmarks that prove how LLM planners fail. Verifiers that stop unsafe plans before hardware moves. Humanoids that communicate their intentions clearly.
     </p>
+    <p class="hero-credential"><strong>MSc AI &amp; Robotics (Commendation)</strong> &middot; University of Hertfordshire</p>
     <div class="hero-cta-row">
       <a href="#research" class="btn-primary magnetic">View Research</a>
       <a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener" class="btn-secondary magnetic">Resume (PDF)</a>
