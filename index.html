@@ -1536,14 +1536,25 @@
     color: var(--accent-bright);
   }
 
-  /* ============ SPEAKING ============ */
+  /* ============ SPEAKING & REFERENCES ============ */
   #speaking { background: var(--ink2); }
+
+  /* Two kinds of evidence in one section: what he did in the room,
+     and what the people in it said afterwards. */
+  .group-label {
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 3rem 0 1.1rem;
+  }
+  .group-label:first-of-type { margin-top: 2.4rem; }
 
   .speaking-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    margin-top: 3.5rem;
     perspective: 1200px;
   }
 
@@ -1592,20 +1603,18 @@
   }
 
   /* ============ TESTIMONIALS ============ */
-  #testimonials { background: var(--ink); }
-
   .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    margin-top: 3.5rem;
   }
 
   .testimonial-card {
     border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 2.2rem;
-    background: var(--ink);
+    /* raised off the ink2 section, matching every other card on this page */
+    background: var(--ink3);
     transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
   }
   .testimonial-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
@@ -1964,8 +1973,9 @@
   @media (max-width: 600px) {
     section { padding: 4.5rem 0; }
     #contact { padding: 5rem 0; }
-    .about-grid, .timeline, .skills-grid,
-    .speaking-grid, .testimonials-grid { margin-top: 2.2rem; }
+    .about-grid, .timeline, .skills-grid { margin-top: 2.2rem; }
+    .group-label { margin: 2rem 0 0.9rem; }
+    .group-label:first-of-type { margin-top: 1.8rem; }
     .research-card, .pub-card { margin-top: 2.2rem; }
     .research-card-body { padding: 1.5rem 1.3rem; }
     .project-card { padding: 1.5rem 1.4rem; }
@@ -2290,7 +2300,7 @@
 
       <p class="now-note">The lower end is constructed rather than searched for, threaded from the bound's own high-belief cells and pulled back until it fits the budget, and it beats the vendored local search in 13 of 32 cases by up to 0.1485. The same argument certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, because the constrained search may simply have been worse, so 3 of 8 keep-out pairs certify a positive price and the other 5 certify nothing and are reported as nothing.</p>
 
-      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it, and what survives is one loose constant in the obstacle argument, sampled at a factor of 3.7 looser than the worst real case. That is named in the README as the highest-leverage improvement outstanding. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Drafted for RA-L.</p>
+      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it, and what survives is one loose constant in the obstacle argument, sampled at a factor of 3.7 looser than the worst real case. That is named in the README as the highest-leverage improvement outstanding. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Now written up as a six-page draft, <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a>; the venue is not yet decided.</p>
 
         </div>
       </details>
@@ -2787,15 +2797,29 @@
       </div>
       <span class="pub-status">Working Paper</span>
     </div>
+    <div class="pub-card reveal spotlight">
+      <div>
+        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Six-page draft, venue not yet decided &middot; 8 scenarios at 4 cost ceilings, widest gap 0.0567, no bound violated &middot; the observer model is exactly reproducible and has never been validated against people</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
+          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the draft (PDF) &rarr;</a>
+          <a href="projects/legibility-bounds.html" class="pub-link">Full story &rarr;</a>
+        </div>
+      </div>
+      <span class="pub-status">Venue undecided</span>
+    </div>
   </div>
 </section>
 
 <section id="speaking">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">08</span> SPEAKING &amp; TEACHING</div>
-      <h2 class="section-title">In the <em>room</em></h2>
+      <div class="eyebrow"><span class="eyebrow-num">08</span> SPEAKING &amp; REFERENCES</div>
+      <h2 class="section-title">In the <em>room</em>, and what they <em>say</em></h2>
     </div>
+    <div class="group-label reveal">Talks &amp; teaching</div>
     <div class="speaking-grid" data-stagger>
       <div class="speaking-card reveal spotlight tilt">
         <img class="speaking-photo" src="assets/speaking.webp" alt="Munawar Kazmi presenting at the University of Hertfordshire" width="700" height="170" loading="lazy" decoding="async">
@@ -2810,15 +2834,8 @@
         <div class="speaking-detail">Led practical sessions covering gesture control, neural networks, and real-time AI deployment. Teams built and trained working classifiers during the session.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="testimonials">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">09</span> TESTIMONIALS</div>
-      <h2 class="section-title">What they <em>say</em></h2>
-    </div>
+    <div class="group-label reveal">References</div>
     <div class="testimonials-grid" data-stagger>
       <div class="testimonial-card reveal spotlight">
         <div class="quote-mark">&ldquo;</div>
