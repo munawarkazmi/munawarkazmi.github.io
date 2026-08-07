@@ -2380,9 +2380,9 @@
           </div>
           <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 18px">The deterministic pipeline: label proofs in, one verdict per response out, no judge anywhere.</div>
           <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
-            <img src="projects/img/pfb-confusion-card.png" alt="Two confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, while Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
+            <img src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
           </div>
-          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, opposite failure profiles: the smallest model walks into nearly every trap; the frontier model answers the ideal diagonal. All eighteen runs are on the story page.</div>
+          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. All eighteen runs are on the story page.</div>
         </div>
 
         <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
