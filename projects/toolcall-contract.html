@@ -55,7 +55,7 @@
     <h2>The <em>two layers</em></h2>
     <p>The <strong>structural layer</strong> - does the call parse, name a real tool, satisfy its JSON Schema? - is a standard-library checker with zero runtime dependencies, differentially tested against the mature <code>jsonschema</code> package, pinned exactly. On every structural verdict, every committed and fuzzed case, both checkers run and must agree; a disagreement is a bug in one of them, surfaced, never smoothed. The tests assert the oracle's sharp edges by name: <code>bool</code> is not a number, <code>1.0</code> is a valid integer, <code>True</code> is not a member of <code>enum [1]</code>.</p>
     <p>The <strong>semantic layer</strong> carries the contract rules a schema does not: referential integrity against live catalogs, mutually exclusive parameters, parameters required together or in order, conditionals. It is declared as data beside each tool - and it is where the real failures concentrated.</p>
-    <figure class="light">
+    <figure>
       <img src="img/toolcall_contract_flow.svg" alt="Flowchart: LLM output is parsed, checked against the tool catalog, run through the structural layer twice (hand-written checker and jsonschema oracle, with a disagreement cell that must stay empty), then the semantic contract layer; buckets are parse failure, unknown tool, schema violation, semantic violation, and valid" loading="lazy">
       <figcaption>The pre-registered taxonomy as a pipeline. The structural layer runs twice by design - the hand-written checker beside the independent oracle - and their disagreement cell is a load-bearing zero that fails CI. Bucket counts live in the results, never in the diagram.</figcaption>
     </figure>
@@ -63,7 +63,7 @@
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/toolcall_qwen_layers.png" alt="Left: all 40 qwen tool calls by bucket - 32 valid, 1 parse failure, 0 unknown tools, 0 schema violations, 7 semantic violations. Right: a schema-level check passes 39 of 40 calls while the full contract passes 32" loading="lazy">
       <figcaption>Forty natural robot-operations tasks, one call each from qwen2.5:7b-instruct at temperature 0, raw responses committed and replayed deterministically in CI. The model never hallucinated a tool and never broke a schema - and still produced seven contract violations: nonexistent entities transcribed faithfully into well-typed calls, copied contradictions in time windows and geofences, a dangling conditional.</figcaption>
     </figure>

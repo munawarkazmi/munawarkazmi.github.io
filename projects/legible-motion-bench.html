@@ -98,7 +98,7 @@
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>Everything is 2D and kinematic. A trajectory is a sequence of positions, the robot moves along it at constant speed, and there is no physics engine. That is a scope decision, not a shortcut: physics would improve the pictures and change none of the numbers.</p>
-    <figure class="light">
+    <figure>
       <img src="img/lmb-observer.svg" alt="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" loading="lazy">
       <figcaption>Every step here is deterministic. The only thing being measured that is not deterministic is the planner, or the model, that produced the path in the first place.</figcaption>
     </figure>

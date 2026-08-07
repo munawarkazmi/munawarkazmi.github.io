@@ -59,7 +59,7 @@
 
   <section class="block">
     <h2>The <em>decision flow</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/shield_flow.svg" alt="Flowchart: LLM proposal enters the gate (verifier-safe and at the goal?); pass forwards to the controller; fail goes to the A* fallback on the inflated fine grid, whose result is re-verified by the verifier, the independent oracle, and a goal check before forwarding; no path means halt, and a failed re-verification is the load-bearing fallback_unsafe cell that CI keeps at zero" loading="lazy">
       <figcaption>The whole system in one picture: two ways to a forwarded plan, one honest halt, and one red cell whose emptiness is the entire safety claim. The outcome names are the pre-registered buckets from the code; the counts live in the results below, not in the diagram.</figcaption>
     </figure>
@@ -67,15 +67,15 @@
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/shield_outcomes.png" alt="Bar charts: all 40 qwen proposals by outcome bucket, and the 10 sealed-goal variants all halting" loading="lazy">
       <figcaption>All 40 committed qwen2.5:7b-instruct proposals, replayed deterministically - no model inference at evaluation time. Only 2 were both safe and goal-reaching; 38 were recovered; nothing unsafe was forwarded. The halt suite seals the goal so no safe path exists, and all 10 correctly halt.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/shield_recovery.png" alt="Map showing a rejected unsafe qwen path in red beside the shield's verified recovery path in green" loading="lazy">
       <figcaption>Detect and recover, from committed data: the model's proposal (red) wanders off the map through walls; the shield rejects it, plans on the fine-resolution truth, re-verifies with two independent judges plus a goal check, and forwards the green path instead. Median decision time: 0.48 ms.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/shield_halt.png" alt="Map with the goal sealed inside a ring of obstacles; the model's short stub path is shown and the shield halts" loading="lazy">
       <figcaption>The branch almost no demo has: the goal is sealed, the model's plan is safe but useless, and the shield halts rather than forwarding it or inventing a route. Any other outcome here fails CI.</figcaption>
     </figure>

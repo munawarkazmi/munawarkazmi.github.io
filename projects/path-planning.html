@@ -60,11 +60,11 @@
 
   <section class="block">
     <h2>What the planner <em>sees</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/astar_plan.png" alt="A* global plan across the office map with its 125,760 expanded nodes shown as a blue cloud" loading="lazy">
       <figcaption>A real A* run on the repository's 39.2 m &times; 58.4 m office map: 125,760 expanded nodes (blue cloud) on the way to a 919-cell path. Rendered from actual algorithm output by a committed script.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/replan_obstacle.png" alt="D* Lite repaired route bending around an obstacle that appeared on the original path" loading="lazy">
       <figcaption>Mid-journey, an obstacle appears directly on the route. D* Lite repairs the same journey by expanding just 256 vertices - reusing everything from its previous search that is still valid. This event is what the benchmark measures.</figcaption>
     </figure>
@@ -72,11 +72,11 @@
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/benchmark_summary.png" alt="Histogram and bar chart of replan times: D* Lite 2.21 ms mean versus A* 9.42 ms mean over 1,493 replan events" loading="lazy">
       <figcaption>1,493 replan events across 200 seeded trials, identical maps and obstacles for both planners, replanning work timed in isolation. D* Lite: 2.21 ms mean / 0.245 ms median. A*: 9.42 ms mean / 2.72 ms median. Every event asserts both planners returned equal-cost paths.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/replan_scatter.png" alt="Log-log scatter of every replan event: D* Lite's cost stays in a narrow band while A*'s spans four orders of magnitude" loading="lazy">
       <figcaption>Every event as a point. D* Lite's repair cost stays in a narrow band no matter how expensive the from-scratch search is; the events above the diagonal are the honest flip side - trivial replans where its bookkeeping loses.</figcaption>
     </figure>

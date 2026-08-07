@@ -58,7 +58,7 @@
 
   <section class="block">
     <h2>How it <em>works</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/pipeline.svg" alt="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" loading="lazy">
       <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a frame-to-frame relative difference against a tuned threshold makes the call. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public, and the device reports only what it actually measures at runtime - frames, detections, loop rate, free heap.</figcaption>
     </figure>

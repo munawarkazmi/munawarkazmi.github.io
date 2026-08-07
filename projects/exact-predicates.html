@@ -64,15 +64,15 @@
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/vanishing_determinant.png" alt="Log-log scatter: Fibonacci triples whose true determinant is exactly plus or minus one; double computes it correctly until coordinates reach about 2 to the 26, then returns zeros and garbage values" loading="lazy">
       <figcaption>The vanishing determinant: every point's true determinant is exactly &plusmn;1, by construction. Double arithmetic sees it perfectly - until the coordinates pass ~2<sup>26</sup>, after which it returns zero or garbage in the 10<sup>15</sup> range. Rendered from committed data that CI drift-checks against the committed generator.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/incircle_threshold.png" alt="Curve: percentage of near-collinear quadruples where the double in-circle sign is wrong, zero until scale 2 to the 24 and rising to about 7.5 percent at the bound" loading="lazy">
       <figcaption>Where the bug class actually lives: on the near-collinear in-circle family, double is flawless up to coordinate scale ~2<sup>24</sup> and fails routinely near the bound. Mapping this honestly matters - a corpus built at small scales would have "proven" a danger that doesn't exist there.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/hull_breakage.png" alt="Two panels: counts of float-predicate hull invariant violations across 60 configs, and one config's exact residuals all sitting inside double's rounding-noise band" loading="lazy">
       <figcaption>The same monotone-chain hull algorithm, two predicates, two truths: the float version violates convexity or containment on all 60 committed degenerate configs (left), because the &plusmn;1 residual structure that decides the hull sits entirely inside double's rounding-noise band (right). The exact hull, property-tested on random clouds as well, never violates an invariant.</figcaption>
     </figure>

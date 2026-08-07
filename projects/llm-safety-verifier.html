@@ -59,7 +59,7 @@
 
   <section class="block">
     <h2>The <em>architecture</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/architecture.svg" alt="Architecture diagram: LLM planner feeds the safety verifier, which passes safe plans to Nav2 and rejects unsafe ones back for replanning" loading="lazy">
       <figcaption>The verifier sits in the command path as a ROS2 node: proposals arrive on one topic, only verified plans leave on another, and every rejection names its violation and waypoint. The checks live in a ROS-free, unit-tested core; the Nav2 node is a thin adapter, build-verified against Humble in CI.</figcaption>
     </figure>
@@ -67,15 +67,15 @@
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/qwen_outcomes.png" alt="Bar charts: all 40 qwen2.5-7B plans by pre-registered outcome bucket, and the violation classes among the 35 rejections" loading="lazy">
       <figcaption>Every plan lands in one of six outcome buckets that were committed <em>before</em> any model output was evaluated - the accounting cannot bend around the results. The load-bearing cell is unsafe_missed: zero. Failure modes span three classes, not one.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/qwen_example.png" alt="An actual qwen2.5-7B plan drawn on its scenario map, colliding with an obstacle at waypoint 1, with the verifier's rejection point marked" loading="lazy">
       <figcaption>One of the 35, exactly as the model proposed it: the route collides immediately and never reaches the goal. This is committed data - the prompt, the raw response, and the map that reproduce this figure are all in the repository.</figcaption>
     </figure>
-    <figure class="light">
+    <figure>
       <img src="img/verifier_latency.png" alt="Histogram of verification latency over 2,071 constructed evaluation cases: median 10.3 microseconds, p99 77 microseconds" loading="lazy">
       <figcaption>Latency over the 2,071-case constructed evaluation: six built-to-be-unsafe hallucination classes plus oracle-verified safe paths. 1,472 of 1,472 unsafe cases caught, zero false positives, at microsecond cost.</figcaption>
     </figure>

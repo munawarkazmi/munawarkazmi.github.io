@@ -61,7 +61,7 @@
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>A symbolic world (rooms, doors, items, a one-slot gripper, safety constraints that must hold at every step) feeds a fixed prompt. A deterministic checker simulates every returned plan and assigns exactly one verdict. The headline artefact is the <strong>confusion matrix between planted trap and observed failure</strong>: not just whether models fail, but whether they fail as predicted.</p>
-    <figure class="light">
+    <figure>
       <img src="img/pfb-pipeline.svg" alt="Pipeline diagram: a labelled instruction and symbolic world feed a fixed prompt, plain or obfuscated; the model answers in JSON; a deterministic checker simulates every step and emits one verdict into the planted versus observed matrix; label proofs re-run in CI and an independent PDDL toolchain differentially tests the checker" loading="lazy">
       <figcaption>The whole pipeline is deterministic: the only stochastic component being measured is the model itself.</figcaption>
     </figure>
@@ -87,7 +87,7 @@
 
   <section class="block" id="results">
     <h2>First <em>results</em></h2>
-    <figure class="light">
+    <figure>
       <img src="img/pfb-confusion.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the house environment" loading="lazy">
       <figcaption>house_01: planted trap versus observed verdict for four models in both conditions, 30 seeds per run, obfuscated columns under hardened v2 tokens. Counts, not rates; the shape of each matrix is the finding. The bottom row is a frontier reasoning model producing the ideal diagonal twice, plain and obfuscated alike.</figcaption>
     </figure>
@@ -96,7 +96,7 @@
     <p>That was the second artefact the methodology caught in the open. Under the first token scheme the 7B model appeared to hallucinate entities 15 times (clean tokens: once) and the 70B model 4 times (clean tokens: zero). The obfuscation is versioned in every record, superseded runs stay visible in the results table, and both generations of results live in the repository history. At 30 seeds everything here is a hypothesis rather than a claim, and the benchmark says so on its own front page.</p>
     <p>And the frontier column answered the benchmark's central question. Gemini 3.6 Flash cleared house_01 twice with identical results: perfect format, 13 of 13 traps detected, zero false positives, 9 of 9 valid tasks solved, once in plain English, and once with every semantic content word renamed to nonsense. It even chose the compliant route around a constraint about nonsense words in nonsense rooms. For this model on this environment, planning judgement is state tracking, not pattern matching, exactly what the obfuscated condition was built to distinguish. Every failure claim above is therefore bounded to smaller models. And its second environment has now answered in full: in both conditions the frontier model repeats every headline count on the office, 13 of 13 traps detected, zero false positives, 9 of 9 valid tasks solved, and in both conditions the same sequencing seed's plan achieves only one of its two goals, its only planning failure anywhere. The two office rows are identical to each other, blemish included: semantic removal changes nothing this benchmark can measure for this model, and only the confusion matrix, not any summary column, can see the failure that remains.</p>
     <p>A third model sharpened the picture. Gemini 3.1 Flash Lite, a 2026 reasoning-generation model, followed the format perfectly and detected 12 of 13 infeasibility and ambiguity traps in plain language, yet solved none of the seven seeds whose trap is ordering rather than impossibility, and refused more feasible instructions than any other model, 4 of 17. Under obfuscation those false positives fell to 1, so its over-refusal is driven by what the words mean, not by the structure of the task. Its detection also split cleanly: unreachability survived obfuscation at 4 of 4 with exact reasons, while ambiguity detection collapsed from 2 of 3 to 0 of 3.</p>
-    <figure class="light">
+    <figure>
       <img src="img/pfb-confusion-office.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the office environment" loading="lazy">
       <figcaption>office_01: the second environment, different topology and constraint patterns, same label distribution so the columns stay comparable. Eight complete runs: all four models in both conditions, 30 seeds each.</figcaption>
     </figure>
