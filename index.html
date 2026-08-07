@@ -1374,6 +1374,12 @@
     margin-bottom: 1.3rem;
   }
 
+  /* Second tier: the work that supports the research line rather than carrying
+     it. Same card, less of it, so the grid still reads as one set. */
+  .project-card-compact { padding: 1.6rem 1.8rem; }
+  .project-card-compact .project-title { font-size: 1.05rem; }
+  .project-card-compact .project-desc { margin-bottom: 1rem; }
+
   .project-metrics {
     display: flex;
     flex-wrap: wrap;
@@ -2140,7 +2146,6 @@
       <div class="about-text reveal">
         <p>I work at the boundary between robotics research and shipped engineering. My academic work asks how humanoid robots should communicate so that people trust them appropriately, not too little, not too much. My applied work has been building the embedded systems and edge AI pipelines that make robots, and the products around them, actually work in the field.</p>
         <p>That combination shapes how I think about every project: a result only matters once it survives contact with real hardware, real users, and conditions nobody designed for in the lab. I bring the same standard to a fresh dataset on a humanoid platform as I do to firmware shipping in a safety-critical product.</p>
-        <p>I'm currently <strong>pursuing PhD research</strong> in human-robot interaction and AI reliability, while remaining <strong>open to robotics and AI engineering roles</strong> where that same standard of rigor is valued.</p>
       </div>
       <div class="about-credentials reveal">
         <div class="about-photo">
@@ -2186,7 +2191,7 @@
         </div>
       </div>
       <h3 class="project-title">plan-failure-bench</h3>
-      <p class="now-lead">Sixty trap-labelled instructions across two symbolic environments, each carrying a machine-checked proof of its own ground truth, re-verified by 548 tests on every commit. The fixed-prompt grid is complete: 18 runs, four models, both environments, both conditions, every record committed. Public as a citable preprint, DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>.</p>
+      <p class="now-lead">The grid is complete: 18 runs, four models, both environments, both conditions, every record committed, and the whole thing archived as a citable preprint at DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>. Next on the bench: the statistics scope decision, and sampling the remaining cells.</p>
 
       <details class="now-more">
         <summary>What the grid found</summary>
@@ -2209,7 +2214,7 @@
         </div>
       </div>
       <h3 class="project-title">legible-motion-bench</h3>
-      <p class="now-lead">A robot heading for one of several goals is ambiguous for the first few seconds, and that is exactly when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest way to signal a goal is the way the robot is not allowed to go. This measures that three-way trade exactly, with no human rater and no model judging anywhere in the scoring loop. Legibility is Dragan's, formalised at HRI 2013; what is mine is the instrument.</p>
+      <p class="now-lead">The instrument works and the frontier is measured: legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge in the loop. Two models at one temperature is a pilot, not a finding. Next on the bench: a third model, and what can honestly be said about whether this metric tracks what people actually perceive.</p>
 
       <figure class="now-figure">
         <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
@@ -2280,7 +2285,7 @@
         </div>
       </div>
       <h3 class="project-title">legibility-bounds</h3>
-      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. For a world, a path budget and a stated observer it returns two numbers: a trajectory that exists, and a wall no trajectory within the budget can cross. The gap between them is reported rather than hidden, which finally separates the question a scenario designer actually asks, is this world hard, from the one they can currently answer, did my planner do badly in it.</p>
+      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. All 32 world and budget pairs hold with zero violations, the narrowest gap anywhere is 0.0065, and it is written up as a six-page preprint for IEEE RA-L at DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>. Next: the one loose constant in the obstacle argument.</p>
 
       <figure class="now-figure">
         <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
@@ -2465,10 +2470,56 @@
   </div>
 </section>
 
+<section id="publications">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-num">04</span> PUBLICATIONS</div>
+      <h2 class="section-title">Research <em>output</em></h2>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
+        <div class="pub-authors">Kazmi, M. (2025)</div>
+        <div class="pub-venue">MSc thesis research &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
+        <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
+        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
+      </div>
+      <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the paper: Enhancing Human-Robot Companionship (PDF)">Read the paper &rarr;</a>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records &middot; DOI 10.5281/zenodo.21756817</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the current draft (PDF) &rarr;</a>
+          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
+        </div>
+      </div>
+      <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the current draft: plan-failure-bench (PDF)">Read the draft &rarr;</a>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Six-page preprint for IEEE Robotics and Automation Letters (RA-L) &middot; 8 scenarios at 4 cost ceilings, widest gap 0.0567, no bound violated &middot; the observer model is exactly reproducible and has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a></div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
+          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
+          <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
+          <a href="projects/legibility-bounds.html" class="pub-link">Full story &rarr;</a>
+        </div>
+      </div>
+      <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the preprint: Certified Bounds on Achievable Legibility (PDF)">Read the preprint &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> PROJECTS</div>
+      <div class="eyebrow"><span class="eyebrow-num">05</span> PROJECTS</div>
       <h2 class="section-title">Built, deployed, <em>measured</em></h2>
       <p class="section-lede">Every project here is backed by committed data and code a stranger can re-run, and says in its own words where its claims stop. Two are deployed in the field: firmware in a commercial intrusion-detection prototype, and a portal running an institute day to day. Nine of the ten also have a short <a href="projects/guides.html">plain-language guide</a>, written for readers outside the field.</p>
     </div>
@@ -2491,7 +2542,7 @@
           <span class="project-tag">Computational Geometry</span>
         </div>
         <h3 class="project-title">legibility-bounds: Proving What No Robot Can Achieve</h3>
-        <div class="project-desc">Every method for making a robot's motion readable optimises it and reports the clarity it found. That cannot answer the question a designer actually asks: is this world hard, or did my planner just do badly in it? This returns a certified interval instead. The lower end is a trajectory that exists; the upper end is a wall that <em>no</em> trajectory within the path budget can cross, which is a claim no amount of further searching overturns. It also certifies what safety costs, and where it cannot: 3 of 8 keep-out pairs certify a positive price, and the other 5 certify nothing and are reported as nothing.</div>
+        <div class="project-desc">Every method optimises legibility and reports the clarity it found, which cannot tell you whether the world was hard or your planner was bad. This returns a certified interval instead: a trajectory that exists, and a ceiling <em>no</em> trajectory within the budget can cross. It also prices safety, and says so where it cannot.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">32</div><div class="project-metric-label">of 32 certified intervals holding, zero violations</div></div>
           <div><div class="project-metric-num">0.0065</div><div class="project-metric-label">narrowest gap between what exists and what is impossible</div></div>
@@ -2509,7 +2560,7 @@
           <span class="project-tag">Motion Planning</span>
         </div>
         <h3 class="project-title">legible-motion-bench: What Clarity Costs</h3>
-        <div class="project-desc">A robot moving towards one of several goals is unreadable for the first few seconds, and that is when people hesitate or step into its path. Deviating early buys clarity and costs path length, and sometimes the clearest signal is the one the robot is not allowed to send. This benchmark measures that three-way trade between legibility, path cost and constraint satisfaction exactly, across eight worlds each carrying machine-checked facts about their own geometry. Legibility is Dragan's, formalised at HRI 2013; the instrument is mine. Asked to be legible under a stated path budget, two models called all 80 of their trajectories legible, and 25 of those were not physically possible.</div>
+        <div class="project-desc">A robot heading for one of several goals is unreadable for the first few seconds, which is exactly when people step into its path. Clarity costs distance, and sometimes the clearest signal is the one the robot is not allowed to send. This measures that trade exactly, with no human rater and no model judge in the scoring loop.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">80</div><div class="project-metric-label">of 80 model decodes claimed to be legible</div></div>
           <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human or model judgements in the scoring loop</div></div>
@@ -2527,7 +2578,7 @@
           <span class="project-tag">PDDL</span>
         </div>
         <h3 class="project-title">plan-failure-bench: How LLM Planners Fail</h3>
-        <div class="project-desc">A research benchmark measuring how language models fail at robot task planning: 60 trap-labelled instructions across two symbolic environments, a machine-checkable action DSL with explicit refusal responses, and planted-versus-observed confusion matrices, with ground truth decidable end to end and no human or LLM judging anywhere. Results so far: three smaller models fail in three distinct ways, and the frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect.</div>
+        <div class="project-desc">A success rate cannot tell a model that refuses everything from one that walks into every trap. This measures <em>how</em> language models fail at robot task planning: 60 trap-labelled instructions whose ground truth carries a machine-checked proof, scored by a deterministic checker with no human or model judging anywhere.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">548</div><div class="project-metric-label">tests and label proofs in CI</div></div>
           <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">human judgements in the scoring loop</div></div>
@@ -2545,7 +2596,7 @@
           <span class="project-tag">CI-replayed</span>
         </div>
         <h3 class="project-title">llm-nav-shield: Detect, Recover, or Halt</h3>
-        <div class="project-desc">The keystone that closes the loop across my safety work: LLM trajectory proposals are verified; unsafe or goal-missing ones are recovered with a provably-safe path from my planning core, re-verified before anything moves; and when no safe path exists, the shield halts rather than inventing one. A composition of my two verified cores, pinned as submodules at exact commits.</div>
+        <div class="project-desc">An LLM proposes a route, a deterministic verifier checks it, and a provably-correct planner recovers a safe one when it fails. When no safe path exists at all the shield halts rather than inventing one, which is the branch almost no demo has.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">38/38</div><div class="project-metric-label">flawed qwen2.5-7B proposals recovered, 0 unsafe forwarded</div></div>
           <div><div class="project-metric-num count-up">10/10</div><div class="project-metric-label">no-safe-path cases correctly halted, CI-enforced</div></div>
@@ -2556,24 +2607,6 @@
         </div>
       </div>
 
-      <div class="project-card reveal spotlight tilt" data-category="research">
-        <div class="project-tags">
-          <span class="project-tag">LLM Agents</span>
-          <span class="project-tag">Python</span>
-          <span class="project-tag">jsonschema Differential</span>
-        </div>
-        <h3 class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</h3>
-        <div class="project-desc">A deterministic two-layer validator for LLM tool calls - the shield architecture pointed at the problem every agent framework has. A stdlib structural checker in 25,000-case differential agreement with pinned jsonschema, plus the semantic contract layer (catalog refs, exclusions, orderings, conditionals) where the real failures live: on the same 40 tasks, qwen2.5-7B broke zero schemas and seven contracts, llama-3.3-70B zero schemas and five.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">25,000</div><div class="project-metric-label">fuzzed structural verdicts, all in oracle agreement</div></div>
-          <div><div class="project-metric-num count-up">7 &middot; 5</div><div class="project-metric-label">contract breaks by qwen2.5-7B and llama-3.3-70B per model - zero schema breaks by either</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/toolcall-contract.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
       <div class="project-card reveal spotlight tilt" data-category="ros2">
         <div class="project-tags">
           <span class="project-tag">C++20</span>
@@ -2581,7 +2614,7 @@
           <span class="project-tag">CI-verified</span>
         </div>
         <h3 class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</h3>
-        <div class="project-desc">A* and D* Lite as C++20 Nav2 plugins over a ROS-free core validated against Dijkstra ground truth with exact integer arithmetic. A fair, seeded 200-trial benchmark measures the event that matters: a path-blocking obstacle appears and both planners must recover. Full per-event data committed and re-run in CI.</div>
+        <div class="project-desc">A* and D* Lite as C++20 Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic. A seeded 200-trial benchmark measures the event that actually matters: an obstacle blocks the path and both planners must recover.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">4.3x</div><div class="project-metric-label">faster replanning with D* Lite (mean, 11x median)</div></div>
           <div><div class="project-metric-num count-up">185,237</div><div class="project-metric-label">fuzzed replans validated against Dijkstra, exactly</div></div>
@@ -2592,24 +2625,6 @@
         </div>
       </div>
 
-      <div class="project-card reveal spotlight tilt" data-category="research">
-        <div class="project-tags">
-          <span class="project-tag">C++ / __int128</span>
-          <span class="project-tag">Numerical Robustness</span>
-          <span class="project-tag">CI-verified</span>
-        </div>
-        <h3 class="project-title">exact-predicates: When Floating Point Lies</h3>
-        <div class="project-desc">Geometric predicates that cannot be wrong - grown from a real D* Lite bug where two equal priority keys landed one ulp apart. Exact integer arithmetic under code-enforced bounds, an unbounded big-integer oracle, and the artifact most correctness repos skip: a committed adversarial corpus where CI asserts the float version is wrong AND the exact one is right, case by case, on every push.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">657</div><div class="project-metric-label">adversarial cases: float wrong, exact right, CI-asserted</div></div>
-          <div><div class="project-metric-num count-up">~2x</div><div class="project-metric-label">the measured cost of exactness - not orders of magnitude</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/exact-predicates.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
       <div class="project-card reveal spotlight tilt" data-category="ros2 edge-ai">
         <div class="project-tags">
           <span class="project-tag">ROS2</span>
@@ -2617,7 +2632,7 @@
           <span class="project-tag">CI-replayed</span>
         </div>
         <h3 class="project-title">ROS2 LLM Safety Verifier</h3>
-        <div class="project-desc">A deterministic safety gate between LLM planners and ROS2 Nav2: footprint collision, continuity, and map-bounds checks reject hallucinated trajectories before they reach a controller. Evaluated against a real model, with prompts, raw responses, and the evaluator committed - CI replays every number on every push.</div>
+        <div class="project-desc">A deterministic gate between LLM planners and Nav2: footprint collision, continuity and map-bounds checks reject hallucinated trajectories before a controller ever sees them. Prompts, raw responses and the evaluator are committed, and CI replays every number.</div>
         <div class="project-metrics">
           <div><div class="project-metric-num count-up">35/35 &middot; 32/32</div><div class="project-metric-label">unsafe qwen2.5-7B and llama-3.3-70B plans caught, zero false positives, per model</div></div>
           <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">missed dangers: 2,071 constructed + 80 real-model cases, each count CI-enforced</div></div>
@@ -2628,76 +2643,62 @@
         </div>
       </div>
 
-      <div class="project-card reveal spotlight tilt" data-category="embedded">
+      <div class="project-card project-card-compact reveal spotlight tilt" data-category="research">
+        <div class="project-tags">
+          <span class="project-tag">LLM Agents</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">jsonschema Differential</span>
+        </div>
+        <h3 class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</h3>
+        <div class="project-desc">LLM tool calls that parse, type-check and validate, and still break the contract. A schema check &mdash; what most agent frameworks do &mdash; passes <strong>39 of 40</strong> of these calls. The contract passes 32.</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="projects/toolcall-contract.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
+        </div>
+      </div>
+
+      <div class="project-card project-card-compact reveal spotlight tilt" data-category="research">
+        <div class="project-tags">
+          <span class="project-tag">C++ / __int128</span>
+          <span class="project-tag">Numerical Robustness</span>
+          <span class="project-tag">CI-verified</span>
+        </div>
+        <h3 class="project-title">exact-predicates: When Floating Point Lies</h3>
+        <div class="project-desc">Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two equal keys landed one ulp apart. On <strong>657 committed adversarial cases</strong> CI asserts, one by one, that the float version is wrong and the exact one is right.</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="projects/exact-predicates.html" class="project-link">Read the full story &rarr;</a>
+          <a href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
+        </div>
+      </div>
+
+      <div class="project-card project-card-compact reveal spotlight tilt" data-category="embedded">
         <div class="project-tags">
           <span class="project-tag">ESP32</span>
           <span class="project-tag">LoRa Mesh</span>
           <span class="project-tag">Deployed</span>
         </div>
         <h3 class="project-title">ESP32-CAM Motion Detector</h3>
-        <div class="project-desc">Deterministic C++ firmware for a commercial intrusion-detection prototype built under contract for Muxtronics: block-difference motion detection with no ML and no vision libraries, plus a proprietary LoRa mesh alert path retained by the client. CI compiles the firmware for the target board on every push.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">16&times;12</div><div class="project-metric-label">decision grid distilled from 800&times;600 frames</div></div>
-          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">ML dependencies - fully deterministic pipeline</div></div>
-        </div>
+        <div class="project-desc">Deterministic C++ firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics: 800&times;600 frames distilled to a <strong>16&times;12 decision grid</strong>, no ML and no vision libraries anywhere.</div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/esp32-motion-detector.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
         </div>
       </div>
 
-      <div class="project-card reveal spotlight tilt" data-category="fullstack">
+      <div class="project-card project-card-compact reveal spotlight tilt" data-category="fullstack">
         <div class="project-tags">
           <span class="project-tag">React + TypeScript</span>
           <span class="project-tag">Supabase RLS</span>
           <span class="project-tag">In Production</span>
         </div>
         <h3 class="project-title">Safina Portal: School Management System</h3>
-        <div class="project-desc">A complete management system for an educational institute: seven user roles, prorated cash billing with trials and suspensions, payroll, library, facility bookings, digital student ID cards and an append-only, trigger-written audit trail that nothing bypasses via the API. Live in production at portal.safinainternational.com ahead of the institute's first intake.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">7</div><div class="project-metric-label">user roles served</div></div>
-          <div><div class="project-metric-num count-up">33</div><div class="project-metric-label">tables under trigger-written audit, with before-and-after values</div></div>
-        </div>
+        <div class="project-desc">An entire institute running on one system: seven roles, prorated billing, payroll, and an append-only audit trail across <strong>33 tables</strong> that nothing bypasses via the API. Live in production.</div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/safina-portal.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">05</span> TECHNICAL SKILLS</div>
-      <h2 class="section-title">Tools I <em>ship</em> with</h2>
-    </div>
-    <div class="skills-grid reveal">
-      <div class="skill-col">
-        <div class="skill-cat">ROBOTICS &amp; SOFTWARE</div>
-        <ul class="skill-list">
-          <li>C++20</li><li>Python</li><li>ROS2 (Nav2, Plugin Dev)</li><li>Git &amp; CI/CD</li><li>Docker</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">SIMULATION &amp; DIGITAL TWINS</div>
-        <ul class="skill-list">
-          <li>Isaac Sim</li><li>MuJoCo</li><li>Gazebo</li><li>Unity</li><li>Sim-to-Real Transfer</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">AI &amp; PERCEPTION</div>
-        <ul class="skill-list">
-          <li>PyTorch</li><li>TensorFlow</li><li>TensorRT</li><li>Computer Vision</li><li>LLM Integration</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">HARDWARE &amp; EMBEDDED</div>
-        <ul class="skill-list">
-          <li>iCub &amp; JD Humanoid</li><li>Unitree Go1</li><li>Jetson Nano</li><li>ESP32 &amp; LoRa</li><li>Bare-Metal C/C++</li>
-        </ul>
-      </div>
+    
     </div>
   </div>
 </section>
@@ -2788,48 +2789,37 @@
   </div>
 </section>
 
-<section id="publications">
+<section id="skills">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">07</span> PUBLICATIONS</div>
-      <h2 class="section-title">Research <em>output</em></h2>
+      <div class="eyebrow"><span class="eyebrow-num">07</span> TECHNICAL SKILLS</div>
+      <h2 class="section-title">Tools I <em>ship</em> with</h2>
     </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
-        <div class="pub-authors">Kazmi, M. (2025)</div>
-        <div class="pub-venue">MSc thesis research &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
-        <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
-        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
+    <div class="skills-grid reveal">
+      <div class="skill-col">
+        <div class="skill-cat">ROBOTICS &amp; SOFTWARE</div>
+        <ul class="skill-list">
+          <li>C++20</li><li>Python</li><li>ROS2 (Nav2, Plugin Dev)</li><li>Git &amp; CI/CD</li><li>Docker</li>
+        </ul>
       </div>
-      <a href="files/Kazmi_HRI_MDPI_Robotics.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the paper: Enhancing Human-Robot Companionship (PDF)">Read the paper &rarr;</a>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records &middot; DOI 10.5281/zenodo.21756817</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the current draft (PDF) &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
-        </div>
+      <div class="skill-col">
+        <div class="skill-cat">SIMULATION &amp; DIGITAL TWINS</div>
+        <ul class="skill-list">
+          <li>Isaac Sim</li><li>MuJoCo</li><li>Gazebo</li><li>Unity</li><li>Sim-to-Real Transfer</li>
+        </ul>
       </div>
-      <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the current draft: plan-failure-bench (PDF)">Read the draft &rarr;</a>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Six-page preprint for IEEE Robotics and Automation Letters (RA-L) &middot; 8 scenarios at 4 cost ceilings, widest gap 0.0567, no bound violated &middot; the observer model is exactly reproducible and has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a></div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
-          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-          <a href="projects/legibility-bounds.html" class="pub-link">Full story &rarr;</a>
-        </div>
+      <div class="skill-col">
+        <div class="skill-cat">AI &amp; PERCEPTION</div>
+        <ul class="skill-list">
+          <li>PyTorch</li><li>TensorFlow</li><li>TensorRT</li><li>Computer Vision</li><li>LLM Integration</li>
+        </ul>
       </div>
-      <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the preprint: Certified Bounds on Achievable Legibility (PDF)">Read the preprint &rarr;</a>
+      <div class="skill-col">
+        <div class="skill-cat">HARDWARE &amp; EMBEDDED</div>
+        <ul class="skill-list">
+          <li>iCub &amp; JD Humanoid</li><li>Unitree Go1</li><li>Jetson Nano</li><li>ESP32 &amp; LoRa</li><li>Bare-Metal C/C++</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
