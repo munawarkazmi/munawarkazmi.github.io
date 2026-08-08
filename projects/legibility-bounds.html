@@ -85,7 +85,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">32/32</div><div class="metric-label">certified intervals holding across every world and budget pair, zero violations</div></div>
-      <div class="metric"><div class="metric-num">0.0065</div><div class="metric-label">narrowest gap anywhere between what exists and what is impossible</div></div>
+      <div class="metric"><div class="metric-num">0.0064</div><div class="metric-label">narrowest gap anywhere between what exists and what is impossible</div></div>
       <div class="metric"><div class="metric-num">13/32</div><div class="metric-label">cases where the constructed trajectory beats the vendored local search, by up to 0.1485</div></div>
     </div>
   </header>
@@ -118,14 +118,14 @@
         <thead><tr><th>World</th><th>Budget</th><th>Achieved</th><th>Bound</th><th>Gap</th></tr></thead>
         <tbody>
           <tr><td>fan_middle</td><td>1.25</td><td>0.4343</td><td>0.4909</td><td class="mark">0.0567</td></tr>
-          <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8047</td><td class="mark">0.0462</td></tr>
+          <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8041</td><td class="mark">0.0456</td></tr>
           <tr><td>fan_outer</td><td>1.10</td><td>0.6410</td><td>0.6692</td><td>0.0282</td></tr>
-          <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8777</td><td>0.0270</td></tr>
-          <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5931</td><td>0.0144</td></tr>
+          <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8776</td><td>0.0269</td></tr>
+          <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5915</td><td>0.0128</td></tr>
         </tbody>
       </table>
     </div>
-    <p>All 32 world and budget pairs hold, with zero violations. The narrowest gap anywhere in the suite is 0.0065. Read a row as a sentence: in <code>fan_middle</code> at a 25 per cent budget, a trajectory scoring 0.4343 exists, nothing can exceed 0.4909, and the true optimum is somewhere in between. A planner returning 0.43 in that world is not doing badly. The world is hard, and now that can be stated rather than suspected.</p>
+    <p>All 32 world and budget pairs hold, with zero violations. The narrowest gap anywhere in the suite is 0.0064. Read a row as a sentence: in <code>fan_middle</code> at a 25 per cent budget, a trajectory scoring 0.4343 exists, nothing can exceed 0.4909, and the true optimum is somewhere in between. A planner returning 0.43 in that world is not doing badly. The world is hard, and now that can be stated rather than suspected.</p>
   </section>
 
   <section class="block">
@@ -136,9 +136,11 @@
 
   <section class="block">
     <h2>What is <em>not</em> settled</h2>
-    <p>Where the remaining width lives was measured rather than argued. Refining the lattice closes 55 to 79 per cent of it, which means most of the gap is discretisation and will yield to compute. What survives is one loose constant in the obstacle argument, currently sampled at a factor of 3.7 looser than the worst case actually observed. That is named in the README as the highest-leverage improvement outstanding, rather than left for a reader to discover.</p>
+    <p>Where the remaining width lives was measured rather than argued. Refining the lattice closes 55 to 79 per cent of it, which means most of the gap is discretisation and will yield to compute.</p>
+    <p>What was thought to survive was one loose constant in the obstacle argument, and this page used to name it as the highest-leverage improvement outstanding. That was wrong, and the way it was wrong is worth stating. A sharper argument brought the wrapping factor from 9.28 cell radii to 6.14, which closed 1.6 per cent of the suite's total width: twenty of the thirty two pairs draw nothing from that argument at all and cannot move however tight it becomes. Refinement is worth some forty times as much.</p>
+    <p>The looseness had also been measured against a quantity the bound does not claim, between two arbitrary points of a cell rather than from a point to its own lattice point, and sampled from a box wider than the cell. Both flattered it. Corrected, the constant is loose by a factor of 6.2 rather than 3.7, and no sampled point in any world tested is separated from its own lattice point at all, so the wrapping argument never binds here. Where the width in the obstacle worlds actually lives is therefore an open question again, which is a worse position than this page previously claimed and a truer one.</p>
     <p>The honest ceiling on all of it: the observer model is exactly specified and exactly reproducible, and it has never been validated against people. These are therefore certified bounds on a <em>stated objective</em>, not on what a human watching the robot would actually infer. The proof is only as meaningful as the definition it quantifies over, and saying so is part of the result.</p>
-    <p>The work is now written up as a six-page draft, <a href="../files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a>. It states the same numbers as this page (8 scenarios at 4 cost ceilings, a widest gap of 0.0567, no bound violated) and carries its own limitations section rather than leaving them to a reviewer to find. It is written for IEEE Robotics and Automation Letters, and it is citable: DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>, archived under CC BY 4.0 with the code and the plain-language guide recorded as related works.</p>
+    <p>The work is now written up as a six-page draft, <a href="../files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a>. It states the same headline numbers as this page (8 scenarios at 4 cost ceilings, a widest gap of 0.0567, no bound violated) and carries its own limitations section rather than leaving them to a reviewer to find. The archived copy predates the correction described above: it still gives the wrapping factor as 9.28 and its looseness as 3.7, and still calls a sharper constant the highest-leverage improvement outstanding. The source in the repository has been updated and a revised version will be deposited. Until it is, the paragraphs above are the current statement and the PDF is not. It is written for IEEE Robotics and Automation Letters, and it is citable: DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>, archived under CC BY 4.0 with the code and the plain-language guide recorded as related works.</p>
     <p>It was written alongside the code rather than after it, with a working log that tracks each part honestly. Nothing is marked done that cannot be inspected in the repository.</p>
     <p><a href="../files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">Read the preprint (PDF) &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">Cite via DOI &nearr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener">Working log &nearr;</a></p>
   </section>

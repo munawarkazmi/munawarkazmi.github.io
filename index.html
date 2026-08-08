@@ -2490,7 +2490,7 @@
         </div>
       </div>
       <h3 class="project-title">legibility-bounds</h3>
-      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. All 32 world and budget pairs hold with zero violations, the narrowest gap anywhere is 0.0065, and it is written up as a six-page preprint for IEEE RA-L at DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>. Next: the one loose constant in the obstacle argument.</p>
+      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. All 32 world and budget pairs hold with zero violations, the narrowest gap anywhere is 0.0064, and it is written up as a six-page preprint for IEEE RA-L at DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>. The loose constant this card named as next has been sharpened, and it was worth 1.6 per cent. Next: finding where the width in obstacle worlds actually lives, now that it is not there.</p>
 
       <figure class="now-figure">
         <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
@@ -2507,18 +2507,18 @@
           <thead><tr><th>World</th><th>Budget</th><th>Achieved</th><th>Bound</th><th>Gap</th></tr></thead>
           <tbody>
             <tr><td>fan_middle</td><td>1.25</td><td>0.4343</td><td>0.4909</td><td class="mark">0.0567</td></tr>
-            <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8047</td><td class="mark">0.0462</td></tr>
+            <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8041</td><td class="mark">0.0456</td></tr>
             <tr><td>fan_outer</td><td>1.10</td><td>0.6410</td><td>0.6692</td><td>0.0282</td></tr>
-            <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8777</td><td>0.0270</td></tr>
-            <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5931</td><td>0.0144</td></tr>
+            <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8776</td><td>0.0269</td></tr>
+            <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5915</td><td>0.0128</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest; the narrowest gap anywhere in the suite is 0.0065. The upper end is the half no search can supply, because it quantifies over every admissible trajectory rather than the ones somebody tried, and no better optimiser weakens it.</p>
+      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest; the narrowest gap anywhere in the suite is 0.0064. The upper end is the half no search can supply, because it quantifies over every admissible trajectory rather than the ones somebody tried, and no better optimiser weakens it.</p>
 
       <p class="now-note">The lower end is constructed rather than searched for, threaded from the bound's own high-belief cells and pulled back until it fits the budget, and it beats the vendored local search in 13 of 32 cases by up to 0.1485. The same argument certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, because the constrained search may simply have been worse, so 3 of 8 keep-out pairs certify a positive price and the other 5 certify nothing and are reported as nothing.</p>
 
-      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it, and what survives is one loose constant in the obstacle argument, sampled at a factor of 3.7 looser than the worst real case. That is named in the README as the highest-leverage improvement outstanding. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Now written up as a six-page preprint for IEEE Robotics and Automation Letters, <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a> and citable at DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>.</p>
+      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it. What was thought to survive was one loose constant in the obstacle argument, named here and in the README as the highest-leverage improvement outstanding. Sharpening it, from a wrapping factor of 9.28 cell radii to 6.14, closed 1.6 per cent of the total width, because twenty of the thirty two pairs draw nothing from that argument and cannot move however tight it gets. Its looseness was also being measured against the wrong quantity, between two arbitrary points of a cell rather than from a point to its own lattice point, which flattered it: corrected, it is loose by 6.2 rather than 3.7, and never actually binds in any world tested. So that claim was wrong, and where the width in obstacle worlds lives is open again. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Now written up as a six-page preprint for IEEE Robotics and Automation Letters, <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a> and citable at DOI <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a>.</p>
 
         </div>
       </details>

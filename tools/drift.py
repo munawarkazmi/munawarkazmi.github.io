@@ -59,8 +59,8 @@ CLAIMS = [
     dict(label="complete runs in the grid", site="index.html", shown="eighteen runs",
          repo="plan-failure-bench", pattern=r"grid \| 18\b|\b18, every record"),
 
-    dict(label="narrowest certified gap", site="index.html", shown="0.0065",
-         repo="legibility-bounds", pattern=r"0\.0065"),
+    dict(label="narrowest certified gap", site="index.html", shown="0.0064",
+         repo="legibility-bounds", pattern=r"0\.0064"),
     dict(label="widest certified gap", site="index.html", shown="0.0567",
          repo="legibility-bounds", pattern=r"0\.0567"),
     dict(label="construction beats local search by", site="index.html", shown="0.1485",
