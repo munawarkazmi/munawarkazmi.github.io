@@ -1,0 +1,4 @@
+# Python leaves these behind when a tool here is imported rather than run,
+# which happens when the checks are exercised from a test harness.
+__pycache__/
+*.pyc

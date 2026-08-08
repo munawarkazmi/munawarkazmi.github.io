@@ -55,6 +55,8 @@ nothing is worse than no check.
 from __future__ import annotations
 
 import argparse
+import ast
+import csv
 import json
 import re
 import subprocess
@@ -97,6 +99,97 @@ def _witness_margin(repo: Path) -> float:
     )
 
 
+def _csv_rows(repo: Path, rel: str) -> list[dict]:
+    with (repo / rel).open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def _buckets(text: str) -> dict[str, int]:
+    """The indented `name  count` lines these repositories write summaries as."""
+    out: dict[str, int] = {}
+    for line in text.splitlines():
+        m = re.match(r"\s+([a-z_]+)\s+(\d+)", line)
+        if m:
+            out.setdefault(m.group(1), int(m.group(2)))
+    return out
+
+
+def _pfb_instructions(repo: Path) -> int:
+    return sum(
+        len(_json(repo, f"instructions/seeds_{s}.json"))
+        for s in ("house_01", "office_01")
+    )
+
+
+def _pfb_runs(repo: Path) -> int:
+    """How many complete runs the grid has, read off its own manifest.
+
+    The manifest is a list literal in the repository's results builder rather
+    than a record, so it is parsed rather than imported: importing would drag
+    in that project's dependencies, and a checker that needs another project
+    installed to run is a checker that stops being run.
+    """
+    tree = ast.parse(_text(repo, "tools/build_paper_results.py"))
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == "RUNS":
+                    return len(ast.literal_eval(node.value))
+    raise LookupError("no RUNS assignment in tools/build_paper_results.py")
+
+
+def _shield_recovered(repo: Path) -> str:
+    rows = _csv_rows(repo, "reports/results/shield_eval.csv")
+    qwen = [r for r in rows if r["suite"] == "qwen"]
+    recovered = [r for r in qwen if r["bucket"].startswith("recovered_from_")]
+    flawed = [r for r in qwen if r["bucket"] != "forwarded_safe"]
+    return f"{len(recovered)}/{len(flawed)}"
+
+
+def _shield_halted(repo: Path) -> str:
+    rows = _csv_rows(repo, "reports/results/shield_eval.csv")
+    sealed = [r for r in rows if r["suite"] == "sealed_goal"]
+    halted = [r for r in sealed if r["bucket"] == "halted_no_safe_path"]
+    return f"{len(halted)}/{len(sealed)}"
+
+
+def _toolcall_schema_passes(repo: Path) -> str:
+    """What a plain schema check would let through, which is the site's point.
+
+    A schema check sees structure only, so it passes every call the contract
+    passes and every call only the contract catches. The site quotes the qwen
+    run, which is also the one whose contract figure it gives alongside.
+    """
+    text = _text(repo, "reports/qwen2.5-7b-instruct_summary.txt")
+    total = int(re.search(r"(\d+) cases", text).group(1))
+    b = _buckets(text)
+    return f"{b['valid'] + b['semantic_violation']} of {total}"
+
+
+def _dstar_speedup(repo: Path) -> str:
+    text = _text(repo, "reports/results/replan_benchmark_summary.txt")
+    v = float(
+        re.search(r"speedup \(mean A\* / mean D\*\): ([\d.]+)x", text).group(1)
+    )
+    return f"{v:.1f}x"
+
+
+def _verifier_caught(repo: Path) -> str:
+    parts = []
+    for model in ("qwen2.5-7b-instruct", "llama-3.3-70b-versatile"):
+        b = _buckets(
+            _text(repo, f"reports/results/llm_eval_{model}_summary.txt")
+        )
+        caught, missed = b["unsafe_caught"], b["unsafe_missed"]
+        parts.append(f"{caught}/{caught + missed}")
+    return " &middot; ".join(parts)
+
+
+def _verifier_cases(repo: Path) -> str:
+    text = _text(repo, "reports/results/verifier_eval_summary.txt")
+    return f"{int(re.search(r'(\d+) cases', text).group(1)):,}"
+
+
 def _predicate_cases(repo: Path) -> int:
     """The adversarial corpus, summed from its own component counts.
 
@@ -129,14 +222,31 @@ def _predicate_cases(repo: Path) -> int:
 #            publishes no machine-readable record, and reported as `weak`
 #            rather than as `ok` so the summary does not overstate itself.
 #
+#   pattern
+#   + enforced
+#            a grep, but not a bare one: the upstream repository has a stated
+#            mechanism that fails if its own prose drifts from the truth, and
+#            `enforced` names it. Matching that prose therefore means
+#            something, so it reads as ok with the mechanism quoted. Only use
+#            this where the mechanism has been read and is real.
+#
+# Thirteen of the fifteen claims read records. One is grep-plus-enforced. One
+# is a bare grep, and is marked in place with why.
+#
 # `note` records a derivation where the site aggregates repo figures.
 CLAIMS = [
     dict(label="tests and label proofs", site="index.html", shown="548",
-         repo="plan-failure-bench", pattern=r"\b548\b"),
+         repo="plan-failure-bench", pattern=r"\b548\b",
+         enforced="that repo's CI collects the suite and fails the build unless "
+                  "its README, paper and STATUS all quote the count"),
     dict(label="instructions", site="index.html", shown=">60<",
-         repo="plan-failure-bench", pattern=r"Instructions \| 60\b|\b60, each with a proof"),
+         repo="plan-failure-bench", fmt=">{}<", value=_pfb_instructions),
     dict(label="complete runs in the grid", site="index.html", shown="eighteen runs",
-         repo="plan-failure-bench", pattern=r"grid \| 18\b|\b18, every record"),
+         repo="plan-failure-bench",
+         value=lambda r: "eighteen runs" if _pfb_runs(r) == 18
+         else f"{_pfb_runs(r)} runs",
+         note="the site spells this one, so a change reads as a mismatch and "
+              "wants a human to reword rather than a number substituted"),
 
     dict(label="narrowest certified gap", site="index.html", shown="0.0064",
          repo="legibility-bounds", fmt="{:.4f}",
@@ -150,27 +260,37 @@ CLAIMS = [
          repo="legibility-bounds", value=_witness_wins),
 
     dict(label="flawed proposals recovered", site="index.html", shown="38/38",
-         repo="llm-nav-shield", pattern=r"recovered_from_unsafe\s+35",
-         note="site shows 38 = 35 recovered_from_unsafe + 3 recovered_from_off_goal"),
+         repo="llm-nav-shield", value=_shield_recovered,
+         note="recovered_from_unsafe plus recovered_from_off_goal, over every "
+              "qwen case that was not already safe"),
     dict(label="no-safe-path cases halted", site="index.html", shown="10/10",
-         repo="llm-nav-shield", pattern=r"\b10\b"),
+         repo="llm-nav-shield", value=_shield_halted),
 
     dict(label="adversarial predicate cases", site="index.html", shown="657",
          repo="exact-predicates", value=_predicate_cases,
          note="summed from the four corpora, which is all the summary states"),
 
     dict(label="schema passes n of 40", site="index.html", shown="39 of 40",
-         repo="toolcall-contract", pattern=r"39 ?/ ?40|39 of 40"),
+         repo="toolcall-contract", value=_toolcall_schema_passes,
+         note="what structure alone lets through: the calls the contract "
+              "passes, plus the ones only the contract catches"),
 
+    # The one claim on this site with nothing committed behind it. The figure
+    # lives in that repository's README and in no record: the fuzzer prints it
+    # when run and the output is not kept, so there is nothing to compare
+    # against and the grep is all there is. Committing the fuzz summary there
+    # is what would fix this, not more code here.
     dict(label="fuzzed replans vs Dijkstra", site="index.html", shown="185,237",
          repo="ros2-dynamic-path-planning", pattern=r"185,?237"),
     dict(label="D* Lite mean speedup", site="index.html", shown="4.3x",
-         repo="ros2-dynamic-path-planning", pattern=r"4\.3\s?[x×]"),
+         repo="ros2-dynamic-path-planning", value=_dstar_speedup,
+         note="rounded from the summary's 4.27x, as the site rounds it"),
 
     dict(label="unsafe plans caught, both models", site="index.html", shown="35/35 &middot; 32/32",
-         repo="ros2-llm-safety-verifier", pattern=r"35 / 0.*32 / 0|unsafe caught"),
+         repo="ros2-llm-safety-verifier", value=_verifier_caught,
+         note="caught over caught plus missed, per model, in the site's order"),
     dict(label="constructed verifier cases", site="index.html", shown="2,071",
-         repo="ros2-llm-safety-verifier", pattern=r"2,?071"),
+         repo="ros2-llm-safety-verifier", value=_verifier_cases),
 ]
 
 # --- figures, and the sources that invalidate them -----------------------
@@ -292,10 +412,18 @@ def check_claims() -> tuple[int, int, int]:
         if c["repo"] not in prose_cache:
             prose_cache[c["repo"]] = repo_prose(repo)
         if re.search(c["pattern"], prose_cache[c["repo"]], re.S):
-            print(f"  {YELLOW}weak{OFF}     {c['label']}: {c['shown']} still appears in "
-                  f"{c['repo']} prose, which does not mean it is still true{note}")
-            ok += 1
-            weak += 1
+            if c.get("enforced"):
+                # Still a grep, but not a bare one: the upstream repository
+                # has a stated mechanism that fails if its own prose drifts
+                # from the truth, so matching that prose means something.
+                print(f"  {GREEN}ok{OFF}       {c['label']}: {c['shown']} matches "
+                      f"{c['repo']} prose, pinned upstream: {c['enforced']}")
+                ok += 1
+            else:
+                print(f"  {YELLOW}weak{OFF}     {c['label']}: {c['shown']} still appears in "
+                      f"{c['repo']} prose, which does not mean it is still true{note}")
+                ok += 1
+                weak += 1
         else:
             print(f"  {RED}DRIFT{OFF}    {c['label']}: the site says {c['shown']}, but "
                   f"/{c['pattern']}/ no longer matches anything in {c['repo']}")
