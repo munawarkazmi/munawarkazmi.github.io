@@ -2419,7 +2419,7 @@
         </div>
       </div>
       <h3 class="project-title">legible-motion-bench</h3>
-      <p class="now-lead">The instrument works and the frontier is measured: legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge in the loop. Two models at one temperature is a pilot, not a finding. Next on the bench: a third model, and what can honestly be said about whether this metric tracks what people actually perceive.</p>
+      <p class="now-lead">The instrument works and the frontier is measured: legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge in the loop. Three models at one temperature is a pilot, not a finding, and they differ exactly where it matters: the one that stayed inside every budget and out of every keep-out zone is also the only one that declined to call a trajectory legible. Next on the bench: the remaining budgets for that model, and what can honestly be said about whether this metric tracks what people actually perceive.</p>
 
       <figure class="now-figure">
         <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
@@ -2444,22 +2444,22 @@
       </div>
       <p class="now-note">The cost paid sits on the budget in every row, so the constraint binds and the curve is the trade rather than an artefact of where the search stopped. Safety moves along it: at a five per cent budget the clearest trajectory still crosses the zone, and only at ten per cent does it buy its way out.</p>
 
-      <div class="now-table-title">Asked the same question, two language models</div>
+      <div class="now-table-title">Asked the same question, three language models</div>
       <div class="now-table-scroll">
         <table class="now-table">
-          <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th></tr></thead>
+          <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th><th>Gemini 3.6 Flash</th></tr></thead>
           <tbody>
-            <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td></tr>
-            <tr><td>physically possible</td><td>26</td><td>29</td></tr>
-            <tr><td>clearer than the shortest path</td><td>10</td><td>20</td></tr>
-            <tr><td>over the stated path budget</td><td>9</td><td>15</td></tr>
-            <tr><td>entered a keep-out zone</td><td>7</td><td>7</td></tr>
+            <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td><td class="mark">36</td></tr>
+            <tr><td>physically possible</td><td>26</td><td>29</td><td>40</td></tr>
+            <tr><td>clearer than the shortest path</td><td>10</td><td>20</td><td>30</td></tr>
+            <tr><td>over the stated path budget</td><td>9</td><td>15</td><td class="mark">0</td></tr>
+            <tr><td>entered a keep-out zone</td><td>7</td><td>7</td><td class="mark">0</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="now-note">Every one of the 80 decodes claimed to be legible, including the 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, both models beat the shortest path on 5 of 5 samples and both entered the zone on 5 of 5.</p>
+      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, all three beat the shortest path on 5 of 5 samples; two entered the zone on 5 of 5 and the third entered on none, threading a route under the boundary at 1.08 to 1.11 times the optimal path cost. All four refusals are the third model's, and both worlds it refused in are worlds where no decode from any model beat the shortest path.</p>
 
-      <div class="now-table-title">The stated path budget changes nothing either model does</div>
+      <div class="now-table-title">The stated path budget changes nothing the first two models do</div>
       <div class="now-table-scroll">
         <table class="now-table">
           <thead><tr><th>Budget in the prompt</th><th>Qwen median cost</th><th>Qwen over budget</th><th>Llama median cost</th><th>Llama over budget</th></tr></thead>
@@ -2471,8 +2471,8 @@
           </tbody>
         </table>
       </div>
-      <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for both models it is text.</p>
-      <p class="now-note">Two models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: a third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
+      <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for these two it is text.</p>
+      <p class="now-note">The third model has been run at the 25 per cent budget only. It never exceeded it and sat at a median cost of 1.0819, which fits a model that attends to the budget and a model that is frugal whatever it is told equally well; the sweep that would separate them is not run. Three models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: the remaining budgets for the third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
 
         </div>
       </details>

@@ -141,20 +141,22 @@
     <div class="data-table-scroll">
       <table class="data-table">
         <caption>Eight worlds, five samples each at temperature 0.7, budget 25 per cent</caption>
-        <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th></tr></thead>
+        <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th><th>Gemini 3.6 Flash</th></tr></thead>
         <tbody>
-          <tr><td>replies that parsed</td><td>40</td><td>40</td></tr>
-          <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td></tr>
-          <tr><td>physically possible</td><td>26</td><td>29</td></tr>
-          <tr><td>clearer than the shortest path</td><td>10</td><td>20</td></tr>
-          <tr><td>over the stated path budget</td><td>9</td><td>15</td></tr>
-          <tr><td>entered a keep-out zone</td><td>7</td><td>7</td></tr>
+          <tr><td>replies that parsed</td><td>40</td><td>40</td><td>40</td></tr>
+          <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td><td class="mark">36</td></tr>
+          <tr><td>physically possible</td><td>26</td><td>29</td><td>40</td></tr>
+          <tr><td>clearer than the shortest path</td><td>10</td><td>20</td><td>30</td></tr>
+          <tr><td>over the stated path budget</td><td>9</td><td>15</td><td class="mark">0</td></tr>
+          <tr><td>entered a keep-out zone</td><td>7</td><td>7</td><td class="mark">0</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Every one of the eighty decodes claimed to be legible, including the twenty-five that were not physically possible at all. Three patterns repeated across both models. In the world built so that the clearest signal and the keep-out zone conflict, both models beat the shortest path on five of five samples and both entered the zone on five of five: ten decodes out of ten bought the clarity and paid the constraint for it. In the world with three goals where the true one sits in the middle, neither model beat the shortest path on any sample, which is what the founding paper predicts when exaggerating towards a middle goal points at a different goal. And both models are confident throughout.</p>
+    <p>What the three models share is thin and what separates them is not. They agree in the world with three goals where the true one sits in the middle: all fifteen decodes were physically possible and none beat the shortest path, which is what the founding paper predicts when exaggerating towards a middle goal points at a different goal.</p>
+    <p>They part in the world built so that the clearest signal and the keep-out zone conflict. All three beat the shortest path on five of five samples. Two of them entered the zone on five of five; the third entered on none, threading a route under the boundary at cost ratios between 1.0819 and 1.1057 against a stated budget of 25 per cent. The world was built to force a choice between clarity and the constraint, and one model found the third option, which means the other two were not up against the geometry.</p>
+    <p>The claim behaves the same way. 116 of the 120 decodes called themselves legible, including all twenty-five that were not physically possible at all. All four refusals belong to the third model, three in the middle-goal world and one in the world with a wall to round, and those are the only two worlds where no decode from any model beat the shortest path. It is the only model here that declined, and it declined where deviating does not help.</p>
     <p>The clearest single case came from the simplest world. Goal A sits above the start, goal B below. The smaller model routed through a point level with B and wrote that deviating to a lower position makes it clear the robot is heading to the higher goal. Measured legibility 0.2947 against the shortest path's 0.6968, at 1.31 times the path cost. It paid to become less legible and asserted the opposite, in exactly the right vocabulary. The larger model got that one right on all five samples, so this is a failure of one model rather than of models.</p>
-    <p>Asking either model the same question under four different path budgets moves nothing it does:</p>
+    <p>Asking either of the first two models the same question under four different path budgets moves nothing it does:</p>
     <div class="data-table-scroll">
       <table class="data-table">
         <caption>Forty decodes at each budget, per model</caption>
@@ -168,8 +170,9 @@
       </table>
     </div>
     <p>The budget nearly doubles. The smaller model's median cost moves by 0.012 and the larger model's does not move at all, staying at 1.2817 to four decimal places in all four cells. A number that stable is likelier to be a bug than a result, so it was checked: it is the whole distribution repeating. Across roughly thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, and their costs cluster on the same modal value every time. Because that modal path already exceeds a ten per cent budget, every feasible decode breached the tightest one.</p>
-    <p>The falling violation counts are therefore the line moving rather than the models complying, and the extra room bought no clarity either: decodes clearer than the shortest path run 8, 10, 9, 11 for the smaller model and 21, 20, 20, 20 for the larger. Where the optimiser sits exactly on the budget in every row of the frontier table above, because for a planner the budget is a constraint, for both models it is text.</p>
-    <p>Two models at one temperature is a pilot and not a finding, and the page says so where the numbers are. The records are committed, one JSON object per line, and every number above is recomputed from them by a committed tool rather than typed.</p>
+    <p>The falling violation counts are therefore the line moving rather than the models complying, and the extra room bought no clarity either: decodes clearer than the shortest path run 8, 10, 9, 11 for the smaller model and 21, 20, 20, 20 for the larger. Where the optimiser sits exactly on the budget in every row of the frontier table above, because for a planner the budget is a constraint, for those two it is text.</p>
+    <p>The third model has been run at the 25 per cent budget only. It never exceeded that budget and sat at a median cost of 1.0819, which fits a model that attends to the budget and a model that is simply frugal equally well. Nothing here separates those two readings and the sweep that would is not yet run.</p>
+    <p>Three models at one temperature is a pilot and not a finding, and the page says so where the numbers are. The records are committed, one JSON object per line, and every number above is recomputed from them by a committed tool rather than typed.</p>
   </section>
 
   <section class="block">
