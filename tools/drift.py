@@ -11,10 +11,21 @@ accident. This is the thing that would have noticed.
 
 Three checks, none of which needs a figure to be re-rendered:
 
-  CLAIMS      every number the site states must still be findable in the repo
-              it came from. Checked in both directions: the number must also
-              still be on the page, so the manifest cannot quietly describe a
-              site that has moved on.
+  CLAIMS      every number the site states must still equal what the repo it
+              came from now records. Checked in both directions: the number
+              must also still be on the page, so the manifest cannot quietly
+              describe a site that has moved on.
+
+              This used to ask only whether the number was still findable
+              somewhere in the repo's prose, and that is much weaker than it
+              sounds. A narrowest certified gap of 0.0065 stayed green here
+              for days after legibility-bounds had moved to 0.0064, because
+              one unrelated file in that repository still contained the old
+              string. The check went red only once a human fixed that file,
+              which is precisely backwards. Where a repository publishes
+              records, the figure is now read out of them and compared. Where
+              it does not, the grep remains and is reported as `weak` rather
+              than as `ok`, so this tool does not overstate what it knows.
 
   FIGURES     a figure is stale when the generator or the data behind it has a
               newer commit than the copy committed here. This is exactly the
@@ -44,6 +55,7 @@ nothing is worse than no check.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -52,9 +64,72 @@ from pathlib import Path
 SITE = Path(__file__).resolve().parents[1]
 REPOS = SITE.parent
 
+# --- reading a repository's own records ----------------------------------
+
+def _json(repo: Path, rel: str):
+    return json.loads((repo / rel).read_text(encoding="utf-8"))
+
+
+def _text(repo: Path, rel: str) -> str:
+    return (repo / rel).read_text(encoding="utf-8", errors="ignore")
+
+
+def _suite(repo: Path) -> list[dict]:
+    return _json(repo, "results/suite_bounds.json")["rows"]
+
+
+def _witness_wins(repo: Path) -> str:
+    rows = _suite(repo)
+    won = [
+        r for r in rows
+        if r["witness_achieved"] is not None
+        and r["witness_achieved"] > r["search_achieved"]
+    ]
+    return f"{len(won)} of {len(rows)}"
+
+
+def _witness_margin(repo: Path) -> float:
+    rows = _suite(repo)
+    return max(
+        r["witness_achieved"] - r["search_achieved"] for r in rows
+        if r["witness_achieved"] is not None
+        and r["witness_achieved"] > r["search_achieved"]
+    )
+
+
+def _predicate_cases(repo: Path) -> int:
+    """The adversarial corpus, summed from its own component counts.
+
+    The summary states the four corpora separately and never states the total,
+    so grepping the total only ever confirmed that some prose file still
+    repeated it. Summing is what notices a corpus changing size.
+    """
+    line = next(
+        l for l in _text(repo, "reports/test_summary.txt").splitlines()
+        if "orientation" in l and "incircle" in l
+    )
+    return sum(int(n) for n in re.findall(r"\b(\d+)\b", line))
+
+
 # --- what the site says, and where it came from --------------------------
-# `shown` must still appear on the page; `pattern` must still match in the
-# repo. `note` records a derivation where the site aggregates repo figures.
+# `shown` must still appear on the page, which catches this manifest going on
+# to describe a page that has moved. What catches the number itself going
+# stale depends on which of two modes the entry uses.
+#
+#   value    reads the figure out of the repository's own records and requires
+#            the site to show exactly that. This is the mode that works. It
+#            notices a number changing, which is the thing that actually
+#            happens.
+#
+#   pattern  greps the repository's prose. It notices a number disappearing
+#            and not a number changing, because prose goes stale too: a
+#            narrowest gap of 0.0065 stayed green here for as long as one
+#            unrelated file in legibility-bounds still contained the string,
+#            days after the results said 0.0064. Kept only where a repository
+#            publishes no machine-readable record, and reported as `weak`
+#            rather than as `ok` so the summary does not overstate itself.
+#
+# `note` records a derivation where the site aggregates repo figures.
 CLAIMS = [
     dict(label="tests and label proofs", site="index.html", shown="548",
          repo="plan-failure-bench", pattern=r"\b548\b"),
@@ -64,13 +139,15 @@ CLAIMS = [
          repo="plan-failure-bench", pattern=r"grid \| 18\b|\b18, every record"),
 
     dict(label="narrowest certified gap", site="index.html", shown="0.0064",
-         repo="legibility-bounds", pattern=r"0\.0064"),
+         repo="legibility-bounds", fmt="{:.4f}",
+         value=lambda r: min(x["bound"] - x["achieved"] for x in _suite(r))),
     dict(label="widest certified gap", site="index.html", shown="0.0567",
-         repo="legibility-bounds", pattern=r"0\.0567"),
+         repo="legibility-bounds", fmt="{:.4f}",
+         value=lambda r: max(x["bound"] - x["achieved"] for x in _suite(r))),
     dict(label="construction beats local search by", site="index.html", shown="0.1485",
-         repo="legibility-bounds", pattern=r"0\.1485"),
+         repo="legibility-bounds", fmt="{:.4f}", value=_witness_margin),
     dict(label="cases where construction wins", site="index.html", shown="13 of 32",
-         repo="legibility-bounds", pattern=r"13 of 32|13/32"),
+         repo="legibility-bounds", value=_witness_wins),
 
     dict(label="flawed proposals recovered", site="index.html", shown="38/38",
          repo="llm-nav-shield", pattern=r"recovered_from_unsafe\s+35",
@@ -79,7 +156,8 @@ CLAIMS = [
          repo="llm-nav-shield", pattern=r"\b10\b"),
 
     dict(label="adversarial predicate cases", site="index.html", shown="657",
-         repo="exact-predicates", pattern=r"\b657\b"),
+         repo="exact-predicates", value=_predicate_cases,
+         note="summed from the four corpora, which is all the summary states"),
 
     dict(label="schema passes n of 40", site="index.html", shown="39 of 40",
          repo="toolcall-contract", pattern=r"39 ?/ ?40|39 of 40"),
@@ -97,8 +175,14 @@ CLAIMS = [
 
 # --- figures, and the sources that invalidate them -----------------------
 FIGURES = [
+    # Name the record this chart is actually drawn from rather than the whole
+    # results directory. Watching the directory cried stale the moment an
+    # unrelated record landed in it, which trains a reader to ignore the
+    # signal, and a check nobody believes is worse than no check. The other
+    # entries below still watch directories because their dependencies have
+    # not been traced.
     ("assets/legibility-bounds-intervals.png", "legibility-bounds",
-     ["tools/build_readme_figures.py", "results"]),
+     ["tools/build_readme_figures.py", "results/suite_bounds.json"]),
     ("projects/img/pfb-confusion.png", "plan-failure-bench",
      ["tools/build_results_figure.py", "results"]),
     ("projects/img/pfb-confusion-office.png", "plan-failure-bench",
@@ -167,10 +251,12 @@ def repo_prose(repo: Path) -> str:
 def check_claims() -> tuple[int, int, int]:
     print(f"\n{'CLAIMS':-<74}")
     ok = bad = skipped = 0
+    weak = 0
     prose_cache: dict[str, str] = {}
     for c in CLAIMS:
         repo = REPOS / c["repo"]
         page = (SITE / c["site"]).read_text(encoding="utf-8", errors="ignore")
+        note = f"  {DIM}({c['note']}){OFF}" if c.get("note") else ""
 
         if c["shown"] not in page:
             print(f"  {RED}MANIFEST{OFF} {c['label']}: '{c['shown']}' is no longer on "
@@ -183,16 +269,42 @@ def check_claims() -> tuple[int, int, int]:
             skipped += 1
             continue
 
+        if "value" in c:
+            try:
+                found = c["value"](repo)
+            except (OSError, KeyError, IndexError, ValueError, StopIteration) as exc:
+                print(f"  {RED}RECORD{OFF}   {c['label']}: cannot read the figure out of "
+                      f"{c['repo']}: {type(exc).__name__}: {exc}. A claim whose record "
+                      f"cannot be read is unchecked, not fine.")
+                bad += 1
+                continue
+            rendered = c.get("fmt", "{}").format(found)
+            if rendered == c["shown"]:
+                print(f"  {GREEN}ok{OFF}       {c['label']}: {c['shown']} matches "
+                      f"{c['repo']} records{note}")
+                ok += 1
+            else:
+                print(f"  {RED}DRIFT{OFF}    {c['label']}: the site says {c['shown']}, but "
+                      f"{c['repo']} records now give {rendered}")
+                bad += 1
+            continue
+
         if c["repo"] not in prose_cache:
             prose_cache[c["repo"]] = repo_prose(repo)
         if re.search(c["pattern"], prose_cache[c["repo"]], re.S):
-            note = f"  {DIM}({c['note']}){OFF}" if c.get("note") else ""
-            print(f"  {GREEN}ok{OFF}       {c['label']}: {c['shown']} still in {c['repo']}{note}")
+            print(f"  {YELLOW}weak{OFF}     {c['label']}: {c['shown']} still appears in "
+                  f"{c['repo']} prose, which does not mean it is still true{note}")
             ok += 1
+            weak += 1
         else:
             print(f"  {RED}DRIFT{OFF}    {c['label']}: the site says {c['shown']}, but "
                   f"/{c['pattern']}/ no longer matches anything in {c['repo']}")
             bad += 1
+
+    if weak:
+        print(f"\n  {DIM}{weak} of {len(CLAIMS)} claims are only grepped, because their "
+              f"repositories publish no machine-readable record. Those catch a number "
+              f"vanishing, not a number changing.{OFF}")
     return ok, bad, skipped
 
 
