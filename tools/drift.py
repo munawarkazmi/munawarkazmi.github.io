@@ -31,6 +31,10 @@ Three checks, none of which needs a figure to be re-rendered:
 
   SITEMAP     every <lastmod> must equal the page's last commit date.
 
+  DASHES      no en dash or em dash in any tracked text file, as a
+              character or as an HTML entity. Banned throughout this
+              project, and every route in is a quiet one.
+
 Exit status is 1 if anything drifted, so it can gate a commit.
 
 The sibling repos are expected next to this one. When one is missing the check
@@ -269,13 +273,71 @@ def check_sitemap(write: bool) -> tuple[int, int, int]:
     return ok, bad, 0
 
 
+def tracked_text_files(exts) -> list[str]:
+    """Paths git is tracking, filtered to text this project actually wrote."""
+    try:
+        out = subprocess.run(["git", "ls-files"], cwd=SITE,
+                             capture_output=True, text=True, timeout=30)
+    except Exception:
+        return []
+    return [line for line in out.stdout.splitlines()
+            if Path(line).suffix.lower() in exts]
+
+
+def check_dashes() -> tuple[int, int, int]:
+    """No en dash or em dash anywhere in the site's own text.
+
+    Every way they arrive is quiet. A paste out of a word processor, an
+    HTML entity that looks like markup rather than punctuation, or a
+    LaTeX "--" that only becomes an en dash once it is typeset. One
+    reached a published table that way and was found by reading the
+    rendered page, which is not a repeatable way to find anything.
+
+    Only tracked files are read, so a vendored dependency cannot fail
+    this for text nobody here wrote.
+    """
+    print(f"\n{'DASHES':-<74}")
+    banned = {
+        "en dash": "–",
+        "em dash": "—",
+        "horizontal bar": "―",
+        "&ndash;": "&ndash;",
+        "&mdash;": "&mdash;",
+        "&#8211;": "&#8211;",
+        "&#8212;": "&#8212;",
+    }
+    exts = {".html", ".md", ".css", ".js", ".json", ".xml", ".txt", ".svg"}
+    files = tracked_text_files(exts)
+    if not files:
+        print(f"  {YELLOW}SKIP{OFF}     no tracked text files found")
+        return 0, 0, 1
+
+    ok = bad = 0
+    for rel in files:
+        try:
+            text = (SITE / rel).read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        found = {name: text.count(ch) for name, ch in banned.items() if ch in text}
+        if found:
+            print(f"  {RED}DASH{OFF}     {rel}: "
+                  + ", ".join(f"{n} x{c}" for n, c in found.items()))
+            bad += 1
+        else:
+            ok += 1
+    if not bad:
+        print(f"  {GREEN}ok{OFF}       {ok} tracked text files, no en or em dashes")
+    return ok, bad, 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--write-sitemap", action="store_true",
                     help="rewrite sitemap.xml's lastmod dates from git")
     args = ap.parse_args()
 
-    results = [check_claims(), check_figures(), check_sitemap(args.write_sitemap)]
+    results = [check_claims(), check_figures(), check_sitemap(args.write_sitemap),
+               check_dashes()]
     ok = sum(r[0] for r in results)
     bad = sum(r[1] for r in results)
     skipped = sum(r[2] for r in results)
