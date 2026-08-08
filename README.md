@@ -24,4 +24,11 @@ Featured there:
 Plain-language guides to nine of these live at
 [munawarkazmi.com/projects/guides.html](https://munawarkazmi.com/projects/guides.html).
 
+Every number on the site comes from one of those repositories.
+[tools/drift.py](tools/drift.py) checks that they still agree: it fails if a
+stated figure no longer appears upstream, if a chart's generator or data has
+been committed more recently than the copy served here, or if the sitemap
+dates have fallen behind the pages. It is a check, not a build step; the page
+is still the code in this repository.
+
 All content and design, all rights reserved.
