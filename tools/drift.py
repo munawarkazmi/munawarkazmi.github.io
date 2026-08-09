@@ -182,6 +182,12 @@ def _toolcall_schema_passes(repo: Path) -> str:
     return f"{b['valid'] + b['semantic_violation']} of {total}"
 
 
+def _fuzz_replans(repo: Path) -> str:
+    text = _text(repo, "reports/results/fuzz_summary.txt")
+    n = int(re.search(r"(\d+) validated replans", text).group(1))
+    return f"{n:,}"
+
+
 def _dstar_speedup(repo: Path) -> str:
     text = _text(repo, "reports/results/replan_benchmark_summary.txt")
     v = float(
@@ -291,13 +297,10 @@ CLAIMS = [
          note="what structure alone lets through: the calls the contract "
               "passes, plus the ones only the contract catches"),
 
-    # The one claim on this site with nothing committed behind it. The figure
-    # lives in that repository's README and in no record: the fuzzer prints it
-    # when run and the output is not kept, so there is nothing to compare
-    # against and the grep is all there is. Committing the fuzz summary there
-    # is what would fix this, not more code here.
     dict(label="fuzzed replans vs Dijkstra", site="index.html", shown="185,237",
-         repo="ros2-dynamic-path-planning", pattern=r"185,?237"),
+         repo="ros2-dynamic-path-planning", value=_fuzz_replans,
+         note="the fuzzer used to only print this; it now writes a summary and "
+              "this reads it, which was the last claim here with no record"),
     dict(label="D* Lite mean speedup", site="index.html", shown="4.3x",
          repo="ros2-dynamic-path-planning", value=_dstar_speedup,
          note="rounded from the summary's 4.27x, as the site rounds it"),
@@ -402,14 +405,19 @@ FIGURES = [
      ["tools/render_figures.py", "reports"]),
     ("projects/img/toolcall_qwen_layers.png", "toolcall-contract",
      ["tools/render_figures.py", "reports"]),
+    # Named to the benchmark CSV these are drawn from, not to the whole reports
+    # directory. Watching the directory called all four stale the moment a fuzz
+    # summary landed beside them, which is the second time a directory-wide
+    # entry has cried wolf here. A signal that fires on things it does not
+    # depend on gets ignored, and then misses the one that matters.
     ("projects/img/astar_plan.png", "ros2-dynamic-path-planning",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py", "reports/results/replan_benchmark.csv"]),
     ("projects/img/benchmark_summary.png", "ros2-dynamic-path-planning",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py", "reports/results/replan_benchmark.csv"]),
     ("projects/img/replan_obstacle.png", "ros2-dynamic-path-planning",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py", "reports/results/replan_benchmark.csv"]),
     ("projects/img/replan_scatter.png", "ros2-dynamic-path-planning",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py", "reports/results/replan_benchmark.csv"]),
     ("projects/img/qwen_example.png", "ros2-llm-safety-verifier",
      ["core/tools/render_figures.py", "reports"]),
     ("projects/img/qwen_outcomes.png", "ros2-llm-safety-verifier",
