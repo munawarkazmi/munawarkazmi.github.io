@@ -154,6 +154,25 @@ def _pfb_runs(repo: Path) -> int:
     raise LookupError("no RUNS assignment in tools/build_paper_results.py")
 
 
+def _pfb_figure_runs(listname: str):
+    """The result files one of plan-failure-bench's confusion figures reads.
+
+    Read off the generator's own named list rather than copied into the
+    manifest here. Those grids are eight files each and the set changes when a
+    model is added, so a copy would be one more thing to keep in step, which is
+    the failure this whole tool exists to catch.
+    """
+    def sources(repo: Path) -> list[str]:
+        tree = ast.parse(_text(repo, "tools/build_results_figure.py"))
+        for node in tree.body:
+            if isinstance(node, ast.Assign):
+                for target in node.targets:
+                    if isinstance(target, ast.Name) and target.id == listname:
+                        return [path for _, path in ast.literal_eval(node.value)]
+        raise LookupError(f"no {listname} in tools/build_results_figure.py")
+    return sources
+
+
 def _shield_recovered(repo: Path) -> str:
     rows = _csv_rows(repo, "reports/results/shield_eval.csv")
     qwen = [r for r in rows if r["suite"] == "qwen"]
@@ -385,26 +404,40 @@ FIGURES = [
     # not been traced.
     ("assets/legibility-bounds-intervals.png", "legibility-bounds",
      ["tools/build_readme_figures.py", "results/suite_bounds.json"]),
+    # Each grid reads its own eight or three runs, taken from the generator's
+    # own list so adding a model there cannot leave this describing the old set.
     ("projects/img/pfb-confusion.png", "plan-failure-bench",
-     ["tools/build_results_figure.py", "results"]),
+     ["tools/build_results_figure.py", _pfb_figure_runs("RUNS")]),
     ("projects/img/pfb-confusion-office.png", "plan-failure-bench",
-     ["tools/build_results_figure.py", "results"]),
+     ["tools/build_results_figure.py", _pfb_figure_runs("OFFICE_RUNS")]),
     ("projects/img/pfb-confusion-card.png", "plan-failure-bench",
-     ["tools/build_results_figure.py", "results"]),
+     ["tools/build_results_figure.py", _pfb_figure_runs("HEADLINE_RUNS")]),
+
     ("projects/img/hull_breakage.png", "exact-predicates",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/figure_data/hull_violations.txt",
+      "reports/figure_data/hull_residuals.txt", "corpus/hull_degenerate.txt"]),
     ("projects/img/incircle_threshold.png", "exact-predicates",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/figure_data/incircle_sweep.txt"]),
     ("projects/img/vanishing_determinant.png", "exact-predicates",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/figure_data/fib_orientation.txt"]),
+
+    # fig_halt and fig_recovery draw trajectories, so they depend on the
+    # vendored scenarios and parsed proposals as well as the outcome table.
+    # Those live in the deps/verifier submodule, and a path inside a submodule
+    # has no history in the parent, so naming one watches nothing at all. The
+    # gitlink is what moves when the dependency is updated, so that is named.
     ("projects/img/shield_halt.png", "llm-nav-shield",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/results/dumps", "deps/verifier"]),
     ("projects/img/shield_outcomes.png", "llm-nav-shield",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/results/shield_eval.csv"]),
     ("projects/img/shield_recovery.png", "llm-nav-shield",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "reports/results/shield_eval.csv",
+      "reports/results/dumps", "deps/verifier"]),
+
+    # Replays the dataset rather than reading a report, so reports/ was never
+    # one of its inputs at all.
     ("projects/img/toolcall_qwen_layers.png", "toolcall-contract",
-     ["tools/render_figures.py", "reports"]),
+     ["tools/render_figures.py", "datasets/qwen2.5-7b-instruct.jsonl"]),
     # Named to the benchmark CSV these are drawn from, not to the whole reports
     # directory. Watching the directory called all four stale the moment a fuzz
     # summary landed beside them, which is the second time a directory-wide
@@ -419,11 +452,14 @@ FIGURES = [
     ("projects/img/replan_scatter.png", "ros2-dynamic-path-planning",
      ["core/tools/render_figures.py", "reports/results/replan_benchmark.csv"]),
     ("projects/img/qwen_example.png", "ros2-llm-safety-verifier",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py",
+      "reports/results/llm_eval_qwen2.5-7b-instruct.csv",
+      "llm_eval/parsed", "llm_eval/scenarios"]),
     ("projects/img/qwen_outcomes.png", "ros2-llm-safety-verifier",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py",
+      "reports/results/llm_eval_qwen2.5-7b-instruct.csv"]),
     ("projects/img/verifier_latency.png", "ros2-llm-safety-verifier",
-     ["core/tools/render_figures.py", "reports"]),
+     ["core/tools/render_figures.py", "reports/results/verifier_eval.csv"]),
 ]
 
 SITEMAP_PAGES = {
@@ -604,7 +640,18 @@ def check_figures() -> tuple[int, int, int]:
             continue
 
         here = git_date(SITE, site_rel)
-        upstream = [(s, git_date(repo, s)) for s in sources]
+        # A source is a path, or a callable returning the paths read off the
+        # generator's own manifest so this one cannot fall behind it.
+        paths: list[str] = []
+        try:
+            for s in sources:
+                paths.extend(s(repo) if callable(s) else [s])
+        except (OSError, LookupError, SyntaxError, ValueError) as exc:
+            print(f"  {RED}SOURCES{OFF}  {site_rel}: cannot resolve what this is "
+                  f"built from in {repo_name}: {type(exc).__name__}: {exc}")
+            bad += 1
+            continue
+        upstream = [(s, git_date(repo, s)) for s in paths]
         newest = max((d for _, d in upstream if d), default=None)
         if not here or not newest:
             print(f"  {YELLOW}SKIP{OFF}     {site_rel}: no commit history to compare")
