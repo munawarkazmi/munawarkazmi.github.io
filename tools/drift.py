@@ -9,7 +9,8 @@ confusion-matrix card sat on the homepage for two days describing two models
 after the benchmark had moved to three, and nothing noticed; it surfaced by
 accident. This is the thing that would have noticed.
 
-Three checks, none of which needs a figure to be re-rendered:
+Five checks. The count in this line said three while four were listed, which is
+its own small illustration of the problem, so it is now stated once and here.
 
   CLAIMS      every number the site states must still equal what the repo it
               came from now records. Checked in both directions: the number
@@ -26,6 +27,20 @@ Three checks, none of which needs a figure to be re-rendered:
               records, the figure is now read out of them and compared. Where
               it does not, the grep remains and is reported as `weak` rather
               than as `ok`, so this tool does not overstate what it knows.
+
+  DOCUMENTS   every PDF this site serves, checked over two hops. It must be
+              byte for byte the artifact committed upstream, and that artifact
+              must not be older than the source it is built from.
+
+              The second hop is the one that matters and the one that would be
+              easy to leave out. The plain-language guide served here was
+              byte-identical to the copy in legibility-bounds, and both had
+              been stale for three days: the PDF was built on 6 August and its
+              source was rewritten twice afterwards. A byte comparison alone
+              called that fine while it served a narrowest gap of 0.0065, a
+              detour of 2.53 and a looseness of 3.7, every one retracted. Two
+              documents went stale before either hop was checked at all, and
+              both were found by opening them rather than by this tool.
 
   FIGURES     a figure is stale when the generator or the data behind it has a
               newer commit than the copy committed here. This is exactly the
@@ -57,6 +72,7 @@ from __future__ import annotations
 import argparse
 import ast
 import csv
+import hashlib
 import json
 import re
 import subprocess
@@ -293,6 +309,69 @@ CLAIMS = [
          repo="ros2-llm-safety-verifier", value=_verifier_cases),
 ]
 
+# --- documents this site serves, and what they are built from ------------
+# A served PDF has two ways of going stale and both have happened here.
+#
+#   the copy hop    the file served from this repository must be byte for byte
+#                   the artifact committed upstream. This catches the site
+#                   falling behind a repository that has moved on.
+#
+#   the build hop   that upstream artifact must not be older than the source it
+#                   is built from. This catches a repository whose own
+#                   committed PDF was never rebuilt.
+#
+# The second is the one that actually bit. The plain-language guide served here
+# was byte-identical to the copy in legibility-bounds, and both had been stale
+# for three days: the PDF was built on 6 August and the source was rewritten
+# twice after that. A check on the copy hop alone would have called it fine,
+# while it served a narrowest gap of 0.0065, a detour of 2.53 and a looseness
+# of 3.7, every one of them retracted. Neither hop was checked at all until
+# now, and both stale documents were found by opening them.
+#
+# `artifact` is None where a repository deliberately does not commit its build
+# output. The copy hop cannot be checked there, and the build hop is measured
+# against the copy served here instead. `repo` is None where the source lives
+# in this repository rather than a sibling.
+DOCUMENTS = [
+    dict(served="files/legibility-bounds-explained.pdf", repo="legibility-bounds",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex", "docs/img"]),
+    # paper.pdf and paper-named.pdf are gitignored there as build outputs, so
+    # there is no upstream artifact to compare against and only the source
+    # dates can say anything.
+    dict(served="files/legibility-bounds-paper.pdf", repo="legibility-bounds",
+         artifact=None,
+         sources=["paper/paper.tex", "paper/generated"]),
+    dict(served="files/plan-failure-bench-explained.pdf", repo="plan-failure-bench",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex", "docs/img"]),
+    dict(served="files/llm-nav-shield-explained.pdf", repo="llm-nav-shield",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/exact-predicates-explained.pdf", repo="exact-predicates",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/toolcall-contract-explained.pdf", repo="toolcall-contract",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/path-planning-explained.pdf", repo="ros2-dynamic-path-planning",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/llm-safety-verifier-explained.pdf", repo="ros2-llm-safety-verifier",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/esp32-motion-detector-explained.pdf", repo="esp32-cam-motion-detector",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    dict(served="files/safina-portal-explained.pdf", repo="safina-portal-showcase",
+         artifact="docs/explainer/explainer.pdf",
+         sources=["docs/explainer/explainer.tex"]),
+    # Source and build both live here, so this one is a build hop only. It
+    # still needed rebuilding by hand when the paper's DOI changed under it.
+    dict(served="files/Kazmi_Resume.pdf", repo=None, artifact=None,
+         sources=["files/Kazmi_Resume.tex"]),
+]
+
 # --- figures, and the sources that invalidate them -----------------------
 FIGURES = [
     # Name the record this chart is actually drawn from rather than the whole
@@ -436,6 +515,72 @@ def check_claims() -> tuple[int, int, int]:
     return ok, bad, skipped
 
 
+def _sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check_documents() -> tuple[int, int, int]:
+    print(f"\n{'DOCUMENTS':-<74}")
+    ok = bad = skipped = 0
+    for doc in DOCUMENTS:
+        served = SITE / doc["served"]
+        name = doc["served"]
+        repo = SITE if doc["repo"] is None else REPOS / doc["repo"]
+
+        if not served.is_file():
+            print(f"  {RED}MANIFEST{OFF} {name} is listed here but not in the site")
+            bad += 1
+            continue
+        if not repo.exists():
+            print(f"  {YELLOW}SKIP{OFF}     {name}: {doc['repo']} not found beside the site")
+            skipped += 1
+            continue
+
+        # The copy hop.
+        artifact = repo / doc["artifact"] if doc["artifact"] else None
+        if artifact is not None:
+            if not artifact.is_file():
+                print(f"  {RED}MANIFEST{OFF} {name}: {doc['artifact']} is not in "
+                      f"{doc['repo']}, so there is nothing to compare against")
+                bad += 1
+                continue
+            if _sha(served) != _sha(artifact):
+                print(f"  {RED}DIVERGED{OFF} {name} is not the copy committed in "
+                      f"{doc['repo']} at {doc['artifact']}. One of them is behind.")
+                bad += 1
+                continue
+
+        # The build hop. Where an artifact is committed upstream its own date
+        # is the reference; otherwise the served copy's date here is all there
+        # is, which is weaker because it moves whenever the file is touched.
+        if artifact is not None:
+            built = git_date(repo, doc["artifact"])
+            built_where = f"{doc['repo']}/{doc['artifact']}"
+        else:
+            built = git_date(SITE, doc["served"])
+            built_where = name
+
+        dates = [(s, git_date(repo, s)) for s in doc["sources"]]
+        newest = max((d for _, d in dates if d), default=None)
+        if not built or not newest:
+            print(f"  {YELLOW}SKIP{OFF}     {name}: no commit dates to compare")
+            skipped += 1
+            continue
+
+        if built < newest:
+            culprit = ", ".join(s for s, d in dates if d == newest)
+            print(f"  {RED}STALE{OFF}    {name}: built {built}, but {culprit} "
+                  f"changed {newest}. Rebuild it rather than re-saving it.")
+            bad += 1
+            continue
+
+        how = "matches upstream, " if artifact is not None else ""
+        print(f"  {GREEN}ok{OFF}       {name}: {how}{built_where} {built} "
+              f">= sources {newest}")
+        ok += 1
+    return ok, bad, skipped
+
+
 def check_figures() -> tuple[int, int, int]:
     print(f"\n{'FIGURES':-<74}")
     ok = bad = skipped = 0
@@ -576,8 +721,8 @@ def main() -> int:
                     help="rewrite sitemap.xml's lastmod dates from git")
     args = ap.parse_args()
 
-    results = [check_claims(), check_figures(), check_sitemap(args.write_sitemap),
-               check_dashes()]
+    results = [check_claims(), check_documents(), check_figures(),
+               check_sitemap(args.write_sitemap), check_dashes()]
     ok = sum(r[0] for r in results)
     bad = sum(r[1] for r in results)
     skipped = sum(r[2] for r in results)
