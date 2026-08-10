@@ -2457,22 +2457,23 @@
           </tbody>
         </table>
       </div>
-      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, all three beat the shortest path on 5 of 5 samples; two entered the zone on 5 of 5 and the third entered on none, threading a route under the boundary at 1.08 to 1.11 times the optimal path cost. All four refusals are the third model's, and both worlds it refused in are worlds where no decode from any model beat the shortest path.</p>
+      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, all three beat the shortest path on 5 of 5 samples; two entered the zone on 5 of 5 and the third entered on none, threading a route under the boundary at 1.08 to 1.11 times the optimal path cost. All four refusals are the third model's, which reads like a model that knows when deviating cannot help. It is not that: asked the same worlds at a 100 per cent budget it declines nothing at all, and in the middle-goal world it returns the identical straight line under both budgets, called not legible on 3 of 5 samples at the tighter one and legible on 5 of 5 at the looser. Same world, same motion; only the number in the prompt changed.</p>
 
-      <div class="now-table-title">The stated path budget changes nothing the first two models do</div>
+      <div class="now-table-title">The stated path budget changes nothing two of the three do</div>
       <div class="now-table-scroll">
         <table class="now-table">
-          <thead><tr><th>Budget in the prompt</th><th>Qwen median cost</th><th>Qwen over budget</th><th>Llama median cost</th><th>Llama over budget</th></tr></thead>
+          <thead><tr><th>Budget in the prompt</th><th>Qwen median</th><th>Qwen over</th><th>Llama median</th><th>Llama over</th><th>Gemini median</th><th>Gemini over</th></tr></thead>
           <tbody>
-            <tr><td>10 per cent</td><td>1.1663</td><td>17</td><td class="mark">1.2817</td><td>30</td></tr>
-            <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td class="mark">1.2817</td><td>15</td></tr>
-            <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td class="mark">1.2817</td><td>10</td></tr>
-            <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td class="mark">1.2817</td><td>0</td></tr>
+            <tr><td>10 per cent</td><td>1.1663</td><td>17</td><td class="mark">1.2817</td><td>30</td><td>not run</td><td>not run</td></tr>
+            <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td class="mark">1.2817</td><td>15</td><td>1.0819</td><td>0</td></tr>
+            <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td class="mark">1.2817</td><td>10</td><td>not run</td><td>not run</td></tr>
+            <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td class="mark">1.2817</td><td>0</td><td class="mark">1.1539</td><td>0</td></tr>
           </tbody>
         </table>
       </div>
       <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for these two it is text.</p>
-      <p class="now-note">The third model has been run at the 25 per cent budget only. It never exceeded it and sat at a median cost of 1.0819, which fits a model that attends to the budget and a model that is frugal whatever it is told equally well; the sweep that would separate them is not run. Three models at one temperature is a pilot, not a finding, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: the remaining budgets for the third model, and what can honestly be said about whether this metric measures what people actually perceive.</p>
+      <p class="now-note">The third model is the exception, and it is why the second budget was worth running. Its median cost rises from 1.0819 to 1.1539 when the stated budget goes from 25 to 100 per cent, and it rises in seven of the eight worlds. Where the extra room buys something it takes much more of it: the keep-out world goes from 1.0819 to 1.4139 and its legibility from 0.7710 to 0.8496, with no keep-out entry at either budget. Where deviating cannot help it spends nothing extra. For this model the budget is a constraint; for the other two it is text.</p>
+      <p class="now-note">Three models at one temperature is a pilot, not a finding, the third was swept at two budgets rather than four, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: what can honestly be said about whether this metric measures what people actually perceive.</p>
 
         </div>
       </details>
