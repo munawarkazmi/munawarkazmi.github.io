@@ -358,11 +358,11 @@ DOCUMENTS = [
     dict(served="files/legibility-bounds-explained.pdf", repo="legibility-bounds",
          artifact="docs/explainer/explainer.pdf",
          sources=["docs/explainer/explainer.tex", "docs/img"]),
-    # paper.pdf and paper-named.pdf are gitignored there as build outputs, so
-    # there is no upstream artifact to compare against and only the source
-    # dates can say anything.
+    # The signed build is committed upstream now, so this is a byte comparison
+    # rather than a date one. It was the last served document checked on dates
+    # alone, which go green when a file is touched rather than rebuilt.
     dict(served="files/legibility-bounds-paper.pdf", repo="legibility-bounds",
-         artifact=None,
+         artifact="paper/paper-named.pdf",
          sources=["paper/paper.tex", "paper/generated"]),
     dict(served="files/plan-failure-bench-explained.pdf", repo="plan-failure-bench",
          artifact="docs/explainer/explainer.pdf",
