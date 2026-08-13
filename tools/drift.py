@@ -364,6 +364,13 @@ DOCUMENTS = [
     dict(served="files/legibility-bounds-paper.pdf", repo="legibility-bounds",
          artifact="paper/paper-named.pdf",
          sources=["paper/paper.tex", "paper/generated"]),
+    # The named build, produced by `make named` from the same source as the
+    # anonymised submission. Its sources include generated/, because both
+    # results tables and the figure are written there from the record files
+    # rather than typed, so a rerun of the tools has to invalidate this.
+    dict(served="files/legible-motion-bench-paper.pdf", repo="legible-motion-bench",
+         artifact="paper/paper-named.pdf",
+         sources=["paper/paper.tex", "paper/generated", "paper/references.bib"]),
     dict(served="files/plan-failure-bench-explained.pdf", repo="plan-failure-bench",
          artifact="docs/explainer/explainer.pdf",
          sources=["docs/explainer/explainer.tex", "docs/img"]),
