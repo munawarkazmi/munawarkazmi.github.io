@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>degregorio-blowup · Munawar Kazmi</title>
+<meta name="description" content="Blowup profiles in the Okamoto, Sakajo and Wunsch family of one dimensional Euler models: two structurally distinct blowups, a profile the dynamics selects, and an exact relation at a stagnation point verified to 1e-14.">
+<link rel="canonical" href="https://munawarkazmi.com/projects/degregorio-blowup.html">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:title" content="degregorio-blowup · Munawar Kazmi">
+<meta property="og:description" content="Blowup profiles in the Okamoto, Sakajo and Wunsch family of one dimensional Euler models: two structurally distinct blowups, a profile the dynamics selects, and an exact relation at a stagnation point verified to 1e-14.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://munawarkazmi.com/projects/degregorio-blowup.html">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fraunces-italic-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fraunces-normal-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-normal-latin.woff2" crossorigin>
+<link rel="stylesheet" href="project.css">
+<style>
+  .data-table-scroll { overflow-x: auto; margin: 1.6rem 0; }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .data-table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.74rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.7rem;
+  }
+  .data-table th {
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 0 1.2rem 0.5rem 0;
+    border-bottom: 1px solid rgba(237, 234, 227, 0.09);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 0.45rem 1.2rem 0.45rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(237, 234, 227, 0.045);
+    white-space: nowrap;
+  }
+  .data-table td:first-child { color: var(--text-primary); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .mark { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#projects">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Fluid Dynamics · Singularity Formation · Spectral Methods</div>
+    <h1>Two ways to <em>become infinite</em></h1>
+    <p class="lede">Whether a fluid can tear itself apart in finite time is a Clay Millennium Prize problem, and nobody can answer it in three dimensions. So the field builds technique on one dimensional models that keep the fight between vortex stretching and transport and discard the geometry. This is a study of one such family, and it turns out the blowup happens in two structurally different ways, only one of which anybody had reason to expect.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/munawarkazmi/degregorio-blowup" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-secondary" href="../files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">1e&minus;14</div><div class="metric-label">agreement between an exact relation derived in three lines and the simulation that tests it</div></div>
+      <div class="metric"><div class="metric-num">19/19</div><div class="metric-label">checks against closed forms, conserved quantities and convergence rates predicted in advance</div></div>
+      <div class="metric"><div class="metric-num">16/16</div><div class="metric-label">random starting waves reaching the same profile, agreeing to seven digits</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>Constantin, Lax and Majda wrote down a one dimensional model of vortex stretching in 1985 and solved it in closed form. It blows up. De Gregorio added the transport term back in 1990, and transport is a calming influence: it slides the sharpening part of the wave away from the region doing the sharpening. Okamoto, Sakajo and Wunsch embedded both in a single family with a parameter <code>a</code> that dials transport from absent to full.</p>
+    <p>Both ends of that dial are known exactly, and that is what makes the family worth using as an instrument. At <code>a = 0</code> the 1985 solution gives a blowup at time exactly 2. At <code>a = 1</code> something sharper happens: every multiple of <code>sin x</code> is a steady state, so the critical case carries a whole line of equilibria and a particular wave sits still forever.</p>
+    <p>Everything between the two ends has to be computed. This project computes it, and the first result is that the answer is not one thing.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>Two <em>regimes</em></h2>
+    <figure>
+      <img src="../assets/degregorio-blowup-regimes.png" alt="Two panels showing the same wave at three moments, when its height has grown ten, a hundred and a thousand times over, with each snapshot divided by its own peak height. On the left at a equals 0.4 the three curves narrow visibly. On the right at a equals 0.8 they lie on top of one another." loading="lazy">
+      <figcaption>The same wave at three moments, each snapshot divided by its own height so that only the shape remains. On the left the shape keeps changing. On the right it has stopped, and the three curves lie on top of one another.</figcaption>
+    </figure>
+    <p>Blowup occurs for every <code>a</code> below one, always with rate exponent one, and the time it takes stretches from 2 to about 57 as the dial approaches the critical case. But the manner of it splits in two.</p>
+    <p>At low <code>a</code> the peak <strong>narrows</strong> as it grows, concentrating into an ever thinner spike. This is the intuitive picture and it is what the 1985 solution does. At <code>a</code> around 0.8 the peak grows and its shape <strong>stops changing entirely</strong>. Divide out the height and snapshots spanning four decades of growth agree to within 4 parts in a thousand, while the peak location locks to five decimal places.</p>
+    <p>The distinction is quantitative rather than impressionistic. In the general self similar ansatz the peak width scales like a power of the time remaining, and a frozen profile is exactly the case where that power is zero. Measured against the exact value of one at <code>a = 0</code>, the method returns 1.058; by <code>a = 0.8</code> it reads 0.0012 and is indistinguishable from zero.</p>
+  </section>
+
+  <section class="block">
+    <h2>A shape that can be <em>solved for</em></h2>
+    <p>A frozen profile is worth having because it turns a runaway simulation into a fixed problem. Substituting the ansatz into the equation, the profile satisfies a fixed point of the very nonlinearity that drives the evolution, which can be solved by Newton's method in seconds rather than chased to ever larger amplitudes.</p>
+    <p>That equation admits <strong>no free scaling</strong>. Multiplying a solution by a constant does not give another one, so the equation determines the profile's height outright rather than leaving it as a fitted parameter. The height is therefore a prediction, and it is independently measurable from a simulation by watching how fast the peak grows.</p>
+    <p>The two computations share nothing but the value of <code>a</code>. They agree to five parts in a million.</p>
+    <p>The profile is also linearly stable, which is why the dynamics finds it. Renormalising time turns the profile into a fixed point of a flow, so the eigenvalues of the linearisation are growth rates directly. Exactly two lie outside the open left half plane, and both are forced by symmetry rather than being instabilities: one at exactly 1 with the profile itself as eigenvector, from the freedom to shift the blowup time, and one at exactly 0 from translation. Both are confirmed to 1e&minus;11 or better. Nothing else is unstable.</p>
+  </section>
+
+  <section class="block">
+    <h2>An exact <em>relation</em></h2>
+    <p>Rearranged, the profile equation says that the shape can only be singular where the fluid's own velocity vanishes. A stagnation point: the one place the flow is not going anywhere. Setting the velocity to zero in the equation also forces the profile to vanish there, which the computation confirms to 5e&minus;15.</p>
+    <p>Expanding about such a point gives the local exponent in terms of a single number, the Hilbert transform of the profile evaluated there. That in turn fixes how rough the profile is and how fast its Fourier coefficients decay. Where the profile has a simple zero, matching the linear terms closes the whole thing in elementary form:</p>
+    <p style="font-size:1.05rem"><code>c = 1 / (1 &minus; a)</code></p>
+    <p>Three lines of algebra, no computation. At <code>a = 0.8</code> it says 5, and the simulation agrees to fourteen decimal places. In a problem where almost nothing closes in exact form, that one does.</p>
+    <p>The relation predicts the decay exponent from one local measurement, and the prediction can be checked against the spectrum independently. Across a range where the predicted values span 4.2 down to 2.5, far too wide to agree by accident:</p>
+    <div class="data-table-scroll">
+      <table class="data-table">
+        <caption>Predicted against measured decay exponent</caption>
+        <thead><tr><th>a</th><th>Predicted</th><th>Measured</th><th>Relative difference</th></tr></thead>
+        <tbody>
+          <tr><td>0.75</td><td>4.213</td><td>4.167</td><td>0.011</td></tr>
+          <tr><td>0.78</td><td>3.329</td><td>3.305</td><td class="mark">0.007</td></tr>
+          <tr><td>0.80</td><td>3.002</td><td>2.976</td><td>0.009</td></tr>
+          <tr><td>0.82</td><td>2.770</td><td>2.741</td><td>0.011</td></tr>
+          <tr><td>0.85</td><td>2.520</td><td>2.483</td><td>0.015</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A consequence worth stating plainly: the profile is <strong>not smooth</strong>. Its curvature jumps across the stagnation point, from &minus;2.27 to +2.27, so it is <code>C&sup1;&#39;&sup1;</code> and no better. Other work in this family proves the blowup profiles are smooth, and both statements are correct. That work is on the infinite line; this is on a circle, where the velocity has zero mean and must therefore vanish somewhere, so a stagnation point is forced and the roughness has nowhere else to go.</p>
+  </section>
+
+  <section class="block">
+    <h2>What is <em>not</em> settled</h2>
+    <p>None of this is a proof. It is careful computation with the checks written down and the failures kept, which is a different thing. A computer assisted proof here would need interval arithmetic producing certified enclosures, and the fact that the profile is only <code>C&sup1;&#39;&sup1;</code> makes that harder rather than easier.</p>
+    <p>The critical limit is open. As <code>a</code> approaches one the blowup time diverges, but the rate could not be determined: the measured exponent wanders between 0.64 and 0.82 rather than settling, and no functional form fits. What was established is <em>why</em> that is hard rather than merely unfinished. The linearisation about the critical steady state has purely imaginary spectrum, with the manifold of equilibria in its kernel, so there is no spectral gap anywhere. Quasi steady elimination is invalid, mode truncation converges only algebraically, and there is no centre manifold to reduce onto because the centre subspace is everything. A two mode reduction does close in exact form, via a Liouville equation, and gives the wrong exponent, which is the sharpest available demonstration that a finite reduction misses the mechanism rather than approximating it.</p>
+    <p>Two smaller things are open. The second stagnation constant, the one that actually sets the roughness, resisted every closed form tried and appears to be genuinely global. And an open set of sign changing starting waves turns out not to blow up at all, decaying instead like one over time, with the shape never settling; what organises that region is not understood.</p>
+    <p>The work is written up as a twenty page paper, <a href="../files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener">readable here</a>, with the same headline numbers as this page and its own limitations section. <strong>Priority is unconfirmed.</strong> Seven closely related papers were read for overlap and none contains the exact relation, but that list grew twice while it was being compiled, so it should be read as the nearest work found rather than as a survey. An enquiry has gone to one of the authors working most directly on this family, and the paper stays off arXiv until there is an answer. If the relation turns out to be known, the right outcome is a citation rather than a preprint.</p>
+    <p>Where a claim on this page was withdrawn, the repository says so. A decay exponent first reported as 3.045 was wrong, and the correction is recorded next to it along with the reason: a fitting window that straddled two regions biased in opposite directions. Four separate constants were retracted the same way, all of them produced by extrapolating a straight line through data that was gently curved.</p>
+    <p><a href="../files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener">Read the paper (PDF) &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/munawarkazmi/degregorio-blowup/blob/main/FINDINGS.md" target="_blank" rel="noopener">Findings, including the retractions &nearr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/munawarkazmi/degregorio-blowup/commits/main" target="_blank" rel="noopener">Commit history &nearr;</a></p>
+  </section>
+
+  <footer class="footer">
+    <a href="https://github.com/munawarkazmi/degregorio-blowup" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener">Plain-language guide (PDF)</a>
+    &ensp;·&ensp;
+    <a href="../index.html#projects">Back to all projects</a>
+  </footer>
+</div>
+
+<script src="../assets/analytics.js" defer></script>
+</body>
+</html>
