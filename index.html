@@ -119,7 +119,7 @@
   body.no-scroll { overflow: hidden; }
 
   a { color: inherit; }
-  img { max-width: 100%; display: block; }
+  img { max-width: 100%; height: auto; display: block; }
 
   ::selection { background: var(--accent); color: var(--ink); }
 
@@ -2323,7 +2323,7 @@
       <p class="now-lead">A benchmark that measures legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge anywhere in the loop. Asked to plan in the same worlds, three language models claimed legibility for 116 of 120 trajectories, including all 25 that were not physically possible. Three models at one temperature is a pilot, not a finding. Next on the bench: whether this metric tracks what people actually perceive.</p>
 
       <figure class="now-figure">
-        <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
+        <img width="1760" height="480" src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
         <figcaption>One world, four planners, one clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing; the three legible trajectories commit early and cut straight through it. The bars are the observer's belief, and they are the same numbers the tables are computed from rather than a second drawing of them.</figcaption>
       </figure>
 
@@ -2365,7 +2365,7 @@
       <p class="now-lead">The benchmark above measures what a planner achieved. This certifies what <em>nothing</em> could achieve: an upper bound that quantifies over every admissible trajectory rather than the ones somebody tried. All 32 world and budget pairs hold with zero violations, and the narrowest gap anywhere is 0.0064. Six pages, submitted to IEEE RA-L in August 2026, preprint at DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>. Next: where the remaining width in obstacle worlds actually lives.</p>
 
       <figure class="now-figure">
-        <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
+        <img width="1736" height="813" src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
         <figcaption>Every band is a certified interval. The circle is a trajectory that exists, the diamond is a wall nothing can cross, and the tick is the shortest path for contrast. The optimum lies inside every band, and no bound is violated.</figcaption>
       </figure>
 
@@ -2414,7 +2414,7 @@
 
         <div style="margin:18px 0 6px">
           <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
-            <img src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
+            <img width="1840" height="640" src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
           </div>
           <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. Label proofs in, one verdict per response out, no judge anywhere. All eighteen runs, and the pipeline that produced them, are on the story page.</div>
         </div>

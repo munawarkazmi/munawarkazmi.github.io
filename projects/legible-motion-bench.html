@@ -100,7 +100,7 @@
     <h2>The <em>design</em></h2>
     <p>Everything is 2D and kinematic. A trajectory is a sequence of positions, the robot moves along it at constant speed, and there is no physics engine. That is a scope decision, not a shortcut: physics would improve the pictures and change none of the numbers.</p>
     <figure>
-      <img src="img/lmb-observer.svg" alt="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" loading="lazy">
+      <img width="980" height="430" src="img/lmb-observer.svg" alt="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" loading="lazy">
       <figcaption>Every step here is deterministic. The only thing being measured that is not deterministic is the planner, or the model, that produced the path in the first place.</figcaption>
     </figure>
     <p>The observer is the load-bearing part. It is Boltzmann-rational in the Dragan form: a person who assumes the robot is efficient scores each candidate goal by how much the motion so far has cost relative to the best it could have done. Nothing learns. Given a world and a path, the belief is a deterministic function of the two.</p>
@@ -112,7 +112,7 @@
   <section class="block" id="results">
     <h2>The <em>frontier</em></h2>
     <figure class="light">
-      <img src="../assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the observer's belief in each goal" loading="lazy">
+      <img width="1760" height="480" src="../assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the observer's belief in each goal" loading="lazy">
       <figcaption>One world, four planners, one shared clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing. The three legible trajectories commit early and cut through it. Because speed is constant, the ones that paid for clarity are still moving when the direct one has arrived. The bars are the observer's own scored samples, not a second computation drawn beside them.</figcaption>
     </figure>
     <p>The optimiser searches waypoints under a ceiling on the cost ratio, and sweeping that ceiling turns a single trajectory into a curve. On a world where a pillar sits between the start and both goals and a keep-out zone covers the space above it:</p>

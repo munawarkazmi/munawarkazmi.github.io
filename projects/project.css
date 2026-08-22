@@ -164,6 +164,7 @@ figure {
   border-radius: 16px; padding: 14px; margin: 22px 0;
 }
 figure.light { background: #f6f4ef; }
+img { max-width: 100%; height: auto; }
 figure img { width: 100%; height: auto; display: block; border-radius: 8px; }
 figcaption { font-size: 13px; color: var(--text-secondary); padding: 12px 6px 2px; line-height: 1.5; }
 .fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
