@@ -395,6 +395,16 @@ DOCUMENTS = [
     dict(served="files/safina-portal-explained.pdf", repo="safina-portal-showcase",
          artifact="docs/explainer/explainer.pdf",
          sources=["docs/explainer/explainer.tex"]),
+    # Served for two weeks with no entry here at all, which is the failure
+    # this section exists to prevent: the gap was in the manifest rather than
+    # in a check, so nothing could go red. The local directory is `degregorio`
+    # while the repository is `degregorio-blowup`, so `repo` is the directory.
+    dict(served="files/degregorio-blowup-explained.pdf", repo="degregorio",
+         artifact="docs/explainer/degregorio-blowup-explained.pdf",
+         sources=["docs/explainer/degregorio-blowup-explained.tex"]),
+    dict(served="files/degregorio-blowup-paper.pdf", repo="degregorio",
+         artifact="paper/degregorio.pdf",
+         sources=["paper/degregorio.tex"]),
     # Source and build both live here, so this one is a build hop only. It
     # still needed rebuilding by hand when the paper's DOI changed under it.
     dict(served="files/Kazmi_Resume.pdf", repo=None, artifact=None,
