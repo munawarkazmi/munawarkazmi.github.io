@@ -21,7 +21,7 @@ Featured there:
 - [ESP32-CAM Motion Detector](https://github.com/munawarkazmi/esp32-cam-motion-detector)
 - [Safina Portal](https://github.com/munawarkazmi/safina-portal-showcase)
 
-Plain-language guides to nine of these live at
+Plain-language guides to ten of these live at
 [munawarkazmi.com/projects/guides.html](https://munawarkazmi.com/projects/guides.html).
 
 Every number on the site comes from one of those repositories.
