@@ -1055,13 +1055,7 @@
     color: var(--text-faint);
   }
 
-  .research-photos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-    max-width: 680px;
-  }
+  .research-photo-single { max-width: 340px; margin-bottom: 1.8rem; }
 
   .research-photo {
     position: relative;
@@ -1253,7 +1247,6 @@
   }
 
   @media (max-width: 600px) {
-    .research-photos { grid-template-columns: 1fr; }
     .research-videos-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 0.8rem; }
   }
 
@@ -2560,20 +2553,14 @@
         <h3 class="research-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
         <div class="research-supervisor">MSc Thesis &middot; University of Hertfordshire &middot; Supervised by Dr Patrick Holthaus</div>
 
-        <div class="research-photos">
-          <div class="research-photo">
-            <img src="assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
-            <div class="research-photo-caption">JD humanoid &middot; EZ-Robot &middot; the study platform</div>
-          </div>
-          <div class="research-photo">
-            <img src="assets/icub.webp" alt="iCub humanoid photographed during a lab visit" width="400" height="260" loading="lazy" decoding="async">
-            <div class="research-photo-caption">iCub humanoid &middot; IIT &middot; photographed on a lab visit, not a platform I worked on</div>
-          </div>
+        <div class="research-photo research-photo-single">
+          <img src="assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
+          <div class="research-photo-caption">JD humanoid &middot; EZ-Robot &middot; the study platform</div>
         </div>
 
-        <p class="research-desc">I built a full sim-to-real pipeline on the JD humanoid, developing a high-fidelity Isaac Sim digital twin and engineering the hardware integration. The trust-calibration study, comparing verbal and gestural strategies for conveying a robot need-state, was conducted on that platform with 20 participants in a counterbalanced, RoSAS-validated design under UH ethical approval cSPECS/CL/UH/05098. The scenario was deliberately mundane: the robot had to communicate that it needed recharging.</p>
+        <p class="research-desc">A full sim-to-real pipeline on the JD humanoid, from an Isaac Sim digital twin through ROS2 hardware integration, built so that a gestural and a spoken condition could be delivered identically to 20 participants. Counterbalanced, RoSAS-validated, under UH ethical approval cSPECS/CL/UH/05098. The scenario was deliberately mundane: the robot had to communicate that it needed recharging.</p>
 
-        <p class="research-desc">Verbal communication produced significantly clearer intent conveyance than gestural cues alone, with comparable engagement and warmth across both modalities, evidence that hybrid verbal-gestural strategies are the right design target for companion robots.</p>
+        <p class="research-desc">Speech conveyed intent significantly more clearly than gesture, while engagement and warmth held comparable across both. Every gestural failure was a failure of joint attention rather than of communication, which is why the design target is hybrid rather than either one alone.</p>
 
         <div class="research-stats">
           <div class="research-stat">
@@ -2594,47 +2581,9 @@
           </div>
         </div>
 
-        <div class="trust-demo">
-          <div class="trust-demo-label">TRY IT &middot; VERBAL VS. NON-VERBAL</div>
-          <div class="trust-toggle" role="group" aria-label="Communication condition toggle">
-            <button type="button" class="trust-toggle-btn active" id="trustVerbalBtn" aria-pressed="true">Verbal</button>
-            <button type="button" class="trust-toggle-btn" id="trustNonverbalBtn" aria-pressed="false">Non-verbal</button>
-          </div>
-          <div class="trust-caption" id="trustCaption">Robot states its need directly</div>
-          <div class="trust-bar-row">
-            <span>Intent identification accuracy</span>
-            <span class="trust-bar-val" id="trustVal">95%</span>
-          </div>
-          <div class="trust-bar-track"><div class="trust-bar-fill" id="trustBar" style="width:95%;"></div></div>
-        </div>
-
-        <div class="research-videos">
-          <div class="research-videos-label">SEE IT IN ACTION &middot; JD HUMANOID</div>
-          <div class="research-videos-grid">
-            <div class="research-video">
-              <div class="research-video-frame">
-                <button type="button" class="video-facade" data-video="oaMcdPCNy4Q" data-title="Verbal communication condition demo">
-                  <span class="video-facade-play" aria-hidden="true"></span>
-                  <span>Play &middot; verbal condition</span>
-                </button>
-              </div>
-              <div class="research-video-caption"><strong>Verbal condition</strong> &middot; robot states its need directly</div>
-            </div>
-            <div class="research-video">
-              <div class="research-video-frame">
-                <button type="button" class="video-facade" data-video="rUIRjTfs2_E" data-title="Non-verbal communication condition demo">
-                  <span class="video-facade-play" aria-hidden="true"></span>
-                  <span>Play &middot; non-verbal condition</span>
-                </button>
-              </div>
-              <div class="research-video-caption"><strong>Non-verbal condition</strong> &middot; robot communicates via gesture</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="research-quote">
-          "Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic&hellip; a valuable asset to academic or professional institutions."
-          <div class="research-quote-attr">Dr Patrick Holthaus &middot; Reader in Interactive Assistive Technology, University of Hertfordshire &middot; MSc Supervisor</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:18px">
+          <a href="projects/hri-companionship.html" class="project-link">Read the full story &rarr;</a>
+          <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="project-link">Read the paper (PDF) &rarr;</a>
         </div>
       </div>
     </div>

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbal vs non-verbal HRI · Munawar Kazmi</title>
+<meta name="description" content="A within-subjects study on the JD humanoid comparing gesture and speech for conveying a robot need state: verbal was clearer (d = 0.58, p = 0.017), engagement was statistically comparable, and every gestural failure was a failure of joint attention.">
+<link rel="canonical" href="https://munawarkazmi.com/projects/hri-companionship.html">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:title" content="Verbal vs non-verbal HRI · Munawar Kazmi">
+<meta property="og:description" content="A within-subjects study on the JD humanoid comparing gesture and speech for conveying a robot need state: verbal was clearer (d = 0.58, p = 0.017), engagement was statistically comparable, and every gestural failure was a failure of joint attention.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://munawarkazmi.com/projects/hri-companionship.html">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fraunces-italic-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fraunces-normal-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-normal-latin.woff2" crossorigin>
+<link rel="stylesheet" href="project.css">
+<style>
+  .data-table-scroll { overflow-x: auto; margin: 1.6rem 0; }
+  .research-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    max-width: 680px;
+  }
+  .research-photo {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+  }
+  .research-photo img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.6s ease, transform 0.8s var(--ease-out);
+  }
+  .research-photo:hover img { filter: grayscale(0%) contrast(1.05); transform: scale(1.05); }
+  .research-photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(10,10,12,0.88), transparent);
+    padding: 1rem 1rem 0.6rem;
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+  .trust-demo {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .trust-demo-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.2rem;
+  }
+  .trust-toggle {
+    display: inline-flex;
+    background: var(--ink2);
+    border-radius: 6px;
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 1.1rem;
+  }
+  .trust-toggle-btn {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .trust-toggle-btn.active { background: var(--accent); color: var(--ink); }
+  .trust-caption { font-size: 0.84rem; color: var(--text-dim); margin-bottom: 1.1rem; }
+  .trust-bar-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    max-width: 420px;
+  }
+  .trust-bar-val { color: var(--text-primary); font-weight: 500; }
+  .trust-bar-track {
+    max-width: 420px;
+    height: 8px;
+    background: var(--ink2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .trust-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    border-radius: 4px;
+    transition: width 0.7s var(--ease-out);
+  }
+  .research-videos {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .research-videos-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.4rem;
+  }
+  .research-videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 480px;
+  }
+  .research-video {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    background: var(--ink2);
+    transition: border-color 0.3s ease;
+  }
+  .research-video:hover { border-color: var(--accent-line); }
+  .research-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #000;
+  }
+  .research-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-facade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    background: radial-gradient(circle at 50% 42%, #1c1c20, #0a0a0c 72%);
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+  .video-facade:hover { background: radial-gradient(circle at 50% 42%, #24242a, #0a0a0c 72%); color: var(--text-primary); }
+  .video-facade-play {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-line);
+    background: rgba(201, 168, 118, 0.1);
+    display: grid;
+    place-items: center;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-out);
+  }
+  .video-facade:hover .video-facade-play {
+    border-color: var(--accent);
+    background: rgba(201, 168, 118, 0.18);
+    transform: scale(1.07);
+  }
+  .video-facade-play::after {
+    content: '';
+    width: 0; height: 0;
+    margin-left: 4px;
+    border-left: 13px solid var(--accent);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+  .research-video-caption {
+    padding: 0.9rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .research-video-caption strong { color: var(--text-primary); font-weight: 500; }
+  @media (max-width: 640px) {
+    .research-photos, .research-videos-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#research">&larr; All projects</a>
+    <a href="../index.html">Munawar Kazmi</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Human-Robot Interaction · Trust Calibration · Sim-to-Real</div>
+    <h1>Say it, or <em>show it</em></h1>
+    <p class="lede">A companion robot has to be able to tell a person what it needs. This study asked whether pointing or speaking does that better, using a scenario chosen to be as mundane as the problem really is: the robot needs recharging. Speech won on clarity by a medium-to-large margin. On engagement the two were indistinguishable, which is the more interesting half of the result.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+      <a class="btn-secondary" href="#results">Jump to results</a>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="metric-num">95%</div><div class="metric-label">intent identified correctly in the verbal condition, 19 of 20 participants</div></div>
+      <div class="metric"><div class="metric-num">80%</div><div class="metric-label">intent identified correctly from gesture alone, 16 of 20</div></div>
+      <div class="metric"><div class="metric-num">d = 0.58</div><div class="metric-label">effect size on clarity, t(19) = 2.61, p = 0.017</div></div>
+      <div class="metric"><div class="metric-num">p = 0.12</div><div class="metric-label">engagement difference, not significant: the modalities were comparable</div></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The <em>question</em></h2>
+    <p>Humanoid robots are being proposed for domestic, healthcare and educational settings, all of which require a robot to communicate a need to a person who is not an engineer. There are two obvious ways to do it, gesture and speech, and the literature has good work on each separately. Holthaus et al. give a systematic typology of communicative robot signals and state plainly that the effectiveness of gesture versus speech for building user trust is under-studied. That gap is what this study is aimed at.</p>
+    <p>Two questions, fixed before any data was collected. How well do non-verbal gestural cues convey robot intent compared with speech? And do the two modalities differ in the social attributes a person then attributes to the robot, measured as competence, warmth and discomfort on the Robotic Social Attributes Scale? The hypothesis was that speech would win on clarity and that the two would be comparable on warmth and engagement.</p>
+  </section>
+
+  <section class="block">
+    <h2>The <em>platform</em></h2>
+    <div class="research-photos">
+      <div class="research-photo">
+        <img src="../assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
+        <div class="research-photo-caption">JD humanoid · EZ-Robot · the study platform</div>
+      </div>
+      <div class="research-photo">
+        <img src="../assets/icub.webp" alt="iCub humanoid photographed during a lab visit" width="400" height="260" loading="lazy" decoding="async">
+        <div class="research-photo-caption">iCub humanoid · IIT · photographed on a lab visit, not a platform I worked on</div>
+      </div>
+    </div>
+    <p>The study ran on the JD humanoid from EZ-Robot, at the University of Hertfordshire Robot House. Getting a scripted gestural sequence and a spoken alert to run reliably on the same platform, in front of a participant, on a schedule, is most of the work: I built a high-fidelity Isaac Sim digital twin to develop and rehearse the behaviours, engineered the hardware integration through ROS2, and deployed PyTorch-based non-verbal communication models onto the robot's real-time control loop.</p>
+    <p>The digital twin is not decoration. A gestural condition that has to be identical for twenty participants cannot be tuned live in front of them, and a pointing sequence that reads as intentional rather than mechanical takes many iterations to get right. Doing that in simulation and transferring it is what made the two conditions comparable.</p>
+  </section>
+
+  <section class="block">
+    <h2>The <em>design</em></h2>
+    <p>Within-subjects and counterbalanced: all twenty participants saw both conditions, with presentation order counterbalanced against order and learning effects. Twenty participants, ten female and ten male, mean age 23.4 (SD 3.2, range 18 to 35), recruited by opportunity sampling at Hertfordshire, with anyone holding professional robotics or HRI experience excluded and no financial incentive offered. Ethical approval was granted by the University of Hertfordshire Ethics Committee, reference cSPECS/CL/UH/05098, and every participant gave written informed consent.</p>
+    <p><strong>Non-verbal condition.</strong> The robot performed a scripted referential pointing sequence, modelled on the object-directed pointing that dogs use to communicate need states without a shared language. No speech at all.</p>
+    <p><strong>Verbal condition.</strong> The robot waved to establish joint attention, then spoke a single synthesised utterance: "I'm running low on battery. Could you please plug me into the charger?" No gestures beyond the opening wave.</p>
+    <p>After each condition, participants completed the Robotic Social Attributes Scale, eighteen items on a seven-point scale across three orthogonal factors, plus a single-item clarity rating and a forced-choice question recording what they believed the robot wanted. Sessions ran about twenty five minutes and closed with a semi-structured interview, transcribed and thematically analysed by two independent coders who reached a Cohen's kappa of 0.74 before consensus discussion.</p>
+  </section>
+
+  <section class="block" id="results">
+    <h2>The <em>results</em></h2>
+    <div class="data-table-scroll">
+      <table class="data-table">
+        <caption>Non-verbal against verbal, paired-samples t-tests, df = 19</caption>
+        <thead><tr><th>Measure</th><th>Non-verbal</th><th>Verbal</th><th>t(19)</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>Clarity</td><td>4.9 (SD 1.1)</td><td>5.8 (SD 0.9)</td><td>2.61</td><td>0.017</td></tr>
+          <tr><td>Engagement</td><td>4.7 (SD 1.0)</td><td>5.2 (SD 0.8)</td><td>1.60</td><td>0.120</td></tr>
+          <tr><td>Intent identified</td><td>80% (16/20)</td><td>95% (19/20)</td><td>not applicable</td><td>not applicable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="trust-demo">
+      <div class="trust-demo-label">TRY IT · VERBAL VS. NON-VERBAL</div>
+      <div class="trust-toggle" role="group" aria-label="Communication condition toggle">
+        <button type="button" class="trust-toggle-btn active" id="trustVerbalBtn" aria-pressed="true">Verbal</button>
+        <button type="button" class="trust-toggle-btn" id="trustNonverbalBtn" aria-pressed="false">Non-verbal</button>
+      </div>
+      <div class="trust-caption" id="trustCaption">Robot states its need directly</div>
+      <div class="trust-bar-row">
+        <span>Intent identification accuracy</span>
+        <span class="trust-bar-val" id="trustVal">95%</span>
+      </div>
+      <div class="trust-bar-track"><div class="trust-bar-fill" id="trustBar" style="width:95%;"></div></div>
+    </div>
+
+    <p style="margin-top:2rem">Speech was clearer, at a medium-to-large effect size. The part worth dwelling on is <em>how</em> gesture failed. All three non-verbal misidentifications were failures of joint attention to the charger: participants understood that the robot wanted something and settled on the wrong object. That is referential ambiguity rather than communicative collapse, and it is exactly the failure mode Holthaus et al. predict when object salience is not established by context beforehand. Gesture is context-contingent in a way speech is not.</p>
+    <p>Engagement told the opposite story, and its null result is the more useful one. The difference did not reach significance, which suggests engagement is driven by broader features of the interaction scenario rather than by communicative modality. A robot that gestures is not less engaging for being less clear. On the RoSAS subscales both conditions produced positive competence and warmth profiles with low discomfort, so neither strategy read as threatening; warmth was marginally higher in the non-verbal condition, though not significantly so.</p>
+  </section>
+
+  <section class="block">
+    <h2>See it <em>running</em></h2>
+    <div class="research-videos">
+      <div class="research-videos-label">JD HUMANOID · BOTH CONDITIONS</div>
+      <div class="research-videos-grid">
+        <div class="research-video">
+          <div class="research-video-frame">
+            <button type="button" class="video-facade" data-video="oaMcdPCNy4Q" data-title="Verbal communication condition demo">
+              <span class="video-facade-play" aria-hidden="true"></span>
+              <span>Play · verbal condition</span>
+            </button>
+          </div>
+          <div class="research-video-caption"><strong>Verbal condition</strong> · robot states its need directly</div>
+        </div>
+        <div class="research-video">
+          <div class="research-video-frame">
+            <button type="button" class="video-facade" data-video="rUIRjTfs2_E" data-title="Non-verbal communication condition demo">
+              <span class="video-facade-play" aria-hidden="true"></span>
+              <span>Play · non-verbal condition</span>
+            </button>
+          </div>
+          <div class="research-video-caption"><strong>Non-verbal condition</strong> · robot communicates via gesture</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>What people <em>said</em></h2>
+    <p><strong>Trust through mimicry, in the non-verbal condition.</strong> Participants who rated the gestural phase highly described the movement as human-like and attributed thinking to a contemplative pause the robot made: "It was like it was thinking about how to tell me." That is trust grounded in perceived shared intentionality rather than in accurate information transfer, which is a different thing to be building on.</p>
+    <p><strong>Clarity through speech, in the verbal condition.</strong> Directness was cited consistently: "It just told me what it needed, no guessing." The criticisms were of the synthesised voice rather than of the strategy, which suggests speech quality could moderate the advantage over a relationship longer than twenty five minutes.</p>
+    <p><strong>Complementarity, unprompted, across both.</strong> Several participants proposed combining the two without being asked: "If it pointed and then said what it wanted, that would be perfect." A design recommendation that participants reach on their own, before anybody suggests it to them, is worth more than the same recommendation derived from the means.</p>
+  </section>
+
+  <section class="block">
+    <h2>What this <em>does not</em> show</h2>
+    <p>Twenty participants is a pilot. It is consistent with prototyping norms in HRI and it is not enough for definitive inference: detecting an effect of d = 0.58 at alpha = 0.05, two-tailed, with 80% power would need about 55. Everything here is reported as exploratory for that reason, and the effect sizes are given precisely so that a replication can be powered properly.</p>
+    <p>One laboratory, one robot, one need state. A low-battery request is a narrow slice of what a companion robot has to communicate, and a scripted pointing sequence is a narrow slice of what gesture can do. The interview themes are hypothesis-generating rather than confirmatory, from twenty conversations coded by two people. Nothing here speaks to how any of it holds up over weeks rather than minutes, which is the timescale companionship actually lives on.</p>
+    <p>The PDF is the article-format write-up of this MSc thesis research. It is not published.</p>
+  </section>
+
+  <footer class="footer">
+    <a href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the paper (PDF) &rarr;</a>
+    &ensp;·&ensp;
+    <a href="../index.html#research">Back to the research</a>
+  </footer>
+</div>
+
+<script>
+  var trustData = {
+    verbal: { val: '95%', caption: 'Robot states its need directly', width: '95%' },
+    nonverbal: { val: '80%', caption: 'Robot communicates via gesture only', width: '80%' }
+  };
+  var trustVerbalBtn = document.getElementById('trustVerbalBtn');
+  var trustNonverbalBtn = document.getElementById('trustNonverbalBtn');
+  var trustBar = document.getElementById('trustBar');
+  var trustVal = document.getElementById('trustVal');
+  var trustCaption = document.getElementById('trustCaption');
+
+  function setTrustState(key) {
+    var d = trustData[key];
+    if (!d || !trustBar) return;
+    trustBar.style.width = d.width;
+    trustVal.textContent = d.val;
+    trustCaption.textContent = d.caption;
+    var isVerbal = key === 'verbal';
+    trustVerbalBtn.classList.toggle('active', isVerbal);
+    trustVerbalBtn.setAttribute('aria-pressed', isVerbal);
+    trustNonverbalBtn.classList.toggle('active', !isVerbal);
+    trustNonverbalBtn.setAttribute('aria-pressed', !isVerbal);
+  }
+
+  if (trustVerbalBtn && trustNonverbalBtn) {
+    trustVerbalBtn.addEventListener('click', function () { setTrustState('verbal'); });
+    trustNonverbalBtn.addEventListener('click', function () { setTrustState('nonverbal'); });
+  }
+
+  /* The video is a facade until it is asked for: nothing is requested from
+     YouTube, and no third-party cookie is set, until a visitor clicks. */
+  document.querySelectorAll('.video-facade').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.dataset.video;
+      if (!id) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                  '?autoplay=1&rel=0&playsinline=1';
+      frame.title = btn.dataset.title || 'Video';
+      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    });
+  });
+</script>
+<script src="../assets/analytics.js" defer></script>
+</body>
+</html>
