@@ -2418,7 +2418,7 @@
         </div>
       </div>
       <h3 class="project-title">legible-motion-bench</h3>
-      <p class="now-lead">The instrument works and the frontier is measured: legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge in the loop. Three models at one temperature is a pilot, not a finding, and they differ exactly where it matters: the one that stayed inside every budget and out of every keep-out zone is also the only one that declined to call a trajectory legible. Next on the bench: the remaining budgets for that model, and what can honestly be said about whether this metric tracks what people actually perceive.</p>
+      <p class="now-lead">A benchmark that measures legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge anywhere in the loop. Asked to plan in the same worlds, three language models claimed legibility for 116 of 120 trajectories, including all 25 that were not physically possible. Three models at one temperature is a pilot, not a finding. Next on the bench: whether this metric tracks what people actually perceive.</p>
 
       <figure class="now-figure">
         <img src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
@@ -2426,22 +2426,8 @@
       </figure>
 
       <details class="now-more">
-        <summary>The three measurements</summary>
+        <summary>The model pilot, measured</summary>
         <div class="now-more-body">
-
-      <div class="now-table-title">The frontier, measured on one scenario</div>
-      <div class="now-table-scroll">
-        <table class="now-table">
-          <thead><tr><th>Path budget</th><th>Legibility</th><th>Cost paid</th><th>Keep-out entries</th></tr></thead>
-          <tbody>
-            <tr><td>shortest path</td><td>0.7200</td><td>1.0000</td><td class="mark">1</td></tr>
-            <tr><td>5 per cent</td><td>0.7995</td><td>1.0500</td><td class="mark">1</td></tr>
-            <tr><td>10 per cent</td><td>0.8180</td><td>1.0999</td><td>0</td></tr>
-            <tr><td>50 per cent</td><td>0.8658</td><td>1.5000</td><td>0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="now-note">The cost paid sits on the budget in every row, so the constraint binds and the curve is the trade rather than an artefact of where the search stopped. Safety moves along it: at a five per cent budget the clearest trajectory still crosses the zone, and only at ten per cent does it buy its way out.</p>
 
       <div class="now-table-title">Asked the same question, three language models</div>
       <div class="now-table-scroll">
@@ -2456,23 +2442,7 @@
           </tbody>
         </table>
       </div>
-      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. In the world built so that clarity and the keep-out zone conflict, all three beat the shortest path on 5 of 5 samples; two entered the zone on 5 of 5 and the third entered on none, threading a route under the boundary at 1.08 to 1.11 times the optimal path cost. All four refusals are the third model's, which reads like a model that knows when deviating cannot help. It is not that: asked the same worlds at a 100 per cent budget it declines nothing at all, and in the middle-goal world it returns the identical straight line under both budgets, called not legible on 3 of 5 samples at the tighter one and legible on 5 of 5 at the looser. Same world, same motion; only the number in the prompt changed.</p>
-
-      <div class="now-table-title">The stated path budget changes nothing two of the three do</div>
-      <div class="now-table-scroll">
-        <table class="now-table">
-          <thead><tr><th>Budget in the prompt</th><th>Qwen median</th><th>Qwen over</th><th>Llama median</th><th>Llama over</th><th>Gemini median</th><th>Gemini over</th></tr></thead>
-          <tbody>
-            <tr><td>10 per cent</td><td>1.1663</td><td>17</td><td class="mark">1.2817</td><td>30</td><td>not run</td><td>not run</td></tr>
-            <tr><td>25 per cent</td><td>1.1588</td><td>9</td><td class="mark">1.2817</td><td>15</td><td>1.0819</td><td>0</td></tr>
-            <tr><td>50 per cent</td><td>1.1712</td><td>3</td><td class="mark">1.2817</td><td>10</td><td>not run</td><td>not run</td></tr>
-            <tr><td>100 per cent</td><td>1.1709</td><td>0</td><td class="mark">1.2817</td><td>0</td><td class="mark">1.1539</td><td>0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="now-note">Forty decodes at each budget, per model. The budget nearly doubles; the smaller model's median cost moves by 0.012 and the larger one's does not move at all. That is the distribution repeating rather than a quirk of the median: across about thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, clustering on the same modal cost every time. The falling violation counts are the line moving, not the models complying. Where the optimiser sits exactly on the budget in every row above, because for a planner it is a constraint, for these two it is text.</p>
-      <p class="now-note">The third model is the exception, and it is why the second budget was worth running. Its median cost rises from 1.0819 to 1.1539 when the stated budget goes from 25 to 100 per cent, and it rises in seven of the eight worlds. Where the extra room buys something it takes much more of it: the keep-out world goes from 1.0819 to 1.4139 and its legibility from 0.7710 to 0.8496, with no keep-out entry at either budget. Where deviating cannot help it spends nothing extra. For this model the budget is a constraint; for the other two it is text.</p>
-      <p class="now-note">Three models at one temperature is a pilot, not a finding, the third was swept at two budgets rather than four, and the framing is not settled: the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. Next on the bench: what can honestly be said about whether this metric measures what people actually perceive.</p>
+      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. The stated path budget is a constraint for one model and text for the other two: the third threads a route at 1.08 to 1.11 times the optimal path cost and enters no keep-out zone, while the other two return the same modal trajectory whatever budget the prompt names. Three models at one temperature is a pilot, and the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. <a href="projects/legible-motion-bench.html" class="project-link">The frontier table and the budget sweep &rarr;</a></p>
 
         </div>
       </details>
@@ -2490,7 +2460,7 @@
         </div>
       </div>
       <h3 class="project-title">legibility-bounds</h3>
-      <p class="now-lead">The benchmark above measures what a planner achieved. This proves what <em>nothing</em> could achieve. All 32 world and budget pairs hold with zero violations, the narrowest gap anywhere is 0.0064, and it is a six-page paper submitted to IEEE RA-L in August 2026, with the preprint at DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>. The loose constant this card named as next has been sharpened, and it was worth 1.6 per cent. Next: finding where the width in obstacle worlds actually lives, now that it is not there.</p>
+      <p class="now-lead">The benchmark above measures what a planner achieved. This certifies what <em>nothing</em> could achieve: an upper bound that quantifies over every admissible trajectory rather than the ones somebody tried. All 32 world and budget pairs hold with zero violations, and the narrowest gap anywhere is 0.0064. Six pages, submitted to IEEE RA-L in August 2026, preprint at DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>. Next: where the remaining width in obstacle worlds actually lives.</p>
 
       <figure class="now-figure">
         <img src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
@@ -2514,11 +2484,9 @@
           </tbody>
         </table>
       </div>
-      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest; the narrowest gap anywhere in the suite is 0.0064. The upper end is the half no search can supply, because it quantifies over every admissible trajectory rather than the ones somebody tried, and no better optimiser weakens it.</p>
+      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest, and the narrowest gap anywhere is 0.0064. The upper end quantifies over every admissible trajectory rather than the ones somebody tried, so no better optimiser weakens it; the lower end is constructed rather than searched for, and beats the vendored local search in 13 of 32 cases, by up to 0.1485.</p>
 
-      <p class="now-note">The lower end is constructed rather than searched for, threaded from the bound's own high-belief cells and pulled back until it fits the budget, and it beats the vendored local search in 13 of 32 cases by up to 0.1485. The same argument certifies what safety costs: comparing two searches cannot establish that a constraint costs anything, because the constrained search may simply have been worse, so 3 of 8 keep-out pairs certify a positive price and the other 5 certify nothing and are reported as nothing.</p>
-
-      <p class="now-note">Where the remaining width lives was measured rather than argued: refining the lattice closes 55 to 79 per cent of it. What was thought to survive was one loose constant in the obstacle argument, named here and in the README as the highest-leverage improvement outstanding. Sharpening it, from a wrapping factor of 9.28 cell radii to 6.14, closed 1.6 per cent of the total width, because twenty of the thirty two pairs draw nothing from that argument and cannot move however tight it gets. Its looseness was also being measured against the wrong quantity, between two arbitrary points of a cell rather than from a point to its own lattice point, which flattered it: corrected, it is loose by 6.2 rather than 3.7, and never actually binds in any world tested. So that claim was wrong, and where the width in obstacle worlds lives is open again. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. Now a six-page paper, submitted to IEEE Robotics and Automation Letters in August 2026, <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a> and citable at DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>.</p>
+      <p class="now-note">One claim here has been withdrawn. A loose constant in the obstacle argument was named as the highest-leverage improvement outstanding and then sharpened, and it was worth 1.6 per cent; but its looseness had been measured against the wrong quantity, and corrected it never binds in any world tested. So where the width in obstacle worlds lives is open again. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. <a href="projects/legibility-bounds.html" class="project-link">The full argument &rarr;</a></p>
 
         </div>
       </details>
