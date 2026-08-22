@@ -159,7 +159,6 @@
     }
     .preloader { display: none !important; }
     .cursor-dot, .cursor-ring { display: none !important; }
-    .marquee-track { animation: none !important; }
   }
 
   ::-webkit-scrollbar { width: 6px; }
@@ -619,7 +618,7 @@
     display: flex;
     gap: 3.2rem;
     flex-wrap: wrap;
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding-top: 2.4rem;
     border-top: 1px solid var(--hairline);
   }
@@ -700,45 +699,10 @@
   }
 
   /* ============ MARQUEE ============ */
-  .marquee {
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-    background: var(--ink2);
-    overflow: hidden;
-    padding: 1.15rem 0;
-    position: relative;
-    z-index: 1;
-  }
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 46s linear infinite;
-    will-change: transform;
-  }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
-  .marquee-item {
-    display: flex;
-    align-items: center;
-    padding-right: 2.6rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.14em;
-    color: var(--text-faint);
-    white-space: nowrap;
-    font-weight: 400;
-  }
-  .marquee-item::before {
-    content: '';
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0.55;
-    margin-right: 2.6rem;
-    flex-shrink: 0;
-  }
   @keyframes marquee { to { transform: translateX(-50%); } }
 
   /* ============ SECTION SCAFFOLDING ============ */
-  section { padding: 7rem 0; position: relative; }
+  section { padding: 5.5rem 0; position: relative; }
 
   .eyebrow {
     display: flex;
@@ -816,7 +780,7 @@
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 5rem;
-    margin-top: 3.5rem;
+    margin-top: 2.4rem;
     align-items: start;
   }
 
@@ -876,35 +840,6 @@
     color: var(--text-dim);
   }
 
-  .dual-track {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .track-card {
-    background: var(--ink3);
-    border: 1px solid var(--hairline);
-    border-radius: 6px;
-    padding: 1.6rem 1.7rem;
-    transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
-  }
-  .track-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-
-  .track-label {
-    font-size: 0.76rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.6rem;
-  }
-
-  .track-text {
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
 
   @media (max-width: 980px) {
     .wrap, nav, #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -946,7 +881,7 @@
   #research { background: var(--ink); }
 
   .research-card {
-    margin-top: 3.5rem;
+    margin-top: 2.4rem;
     background: var(--ink3);
     border: 1px solid var(--hairline);
     border-radius: 8px;
@@ -959,7 +894,7 @@
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
   }
 
-  .research-card-body { padding: 3rem; }
+  .research-card-body { padding: 2.2rem 2.4rem; }
 
   .research-platform-tag {
     display: inline-block;
@@ -1253,7 +1188,7 @@
   /* ============ EXPERIENCE ============ */
   #experience { background: var(--ink2); }
 
-  .timeline { margin-top: 3.5rem; position: relative; }
+  .timeline { margin-top: 2.4rem; position: relative; }
   .timeline::before {
     content: '';
     position: absolute;
@@ -1526,7 +1461,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: var(--hairline);
-    margin-top: 3.5rem;
+    margin-top: 2.4rem;
     border: 1px solid var(--hairline);
     border-radius: 8px;
     overflow: hidden;
@@ -1577,10 +1512,10 @@
   #publications { background: var(--ink); }
 
   .pub-card {
-    margin-top: 3.5rem;
+    margin-top: 2.4rem;
     border: 1px solid var(--hairline);
     border-radius: 8px;
-    padding: 2.4rem 2.6rem;
+    padding: 1.7rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -1604,7 +1539,7 @@
   }
 
   .pub-authors { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.3rem; }
-  .pub-venue { font-size: 0.84rem; color: var(--text-faint); margin-bottom: 1rem; }
+  .pub-venue { font-size: 0.84rem; color: var(--text-faint); margin-bottom: 0.75rem; }
 
   .pub-link {
     display: inline-block;
@@ -1692,7 +1627,7 @@
     width: calc(100% + 4rem);
     margin: -2rem -2rem 1.5rem -2rem;
     max-width: none;
-    height: 170px;
+    height: 132px;
     object-fit: cover;
     filter: grayscale(15%) contrast(1.05);
     transition: filter 0.6s ease, transform 0.8s var(--ease-out);
@@ -2088,7 +2023,7 @@
      Section rhythm tuned for a 1440px canvas costs roughly a screen of
      scrolling per section on a phone. Same content, proportionate spacing. */
   @media (max-width: 600px) {
-    section { padding: 4.5rem 0; }
+    section { padding: 3.75rem 0; }
     #contact { padding: 5rem 0; }
     .about-grid, .timeline, .skills-grid { margin-top: 2.2rem; }
     .group-label { margin: 2rem 0 0.9rem; }
@@ -2139,7 +2074,7 @@
 
     /* Furniture that means nothing on paper */
     .preloader, .grain, .scroll-progress, .cursor-dot, .cursor-ring,
-    #siteNav, .skip-link, .back-to-top, .marquee, #heroCanvas,
+    #siteNav, .skip-link, .back-to-top, #heroCanvas,
     .hero-glow, .gesture-line, .hero-scroll-hint, .contact-glow,
     .project-filters, .copy-btn, .trust-toggle, .video-facade,
     .research-video-frame { display: none !important; }
@@ -2336,26 +2271,6 @@
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack">
-    <span class="marquee-item">ROS2</span>
-    <span class="marquee-item">ISAAC SIM</span>
-    <span class="marquee-item">C++20</span>
-    <span class="marquee-item">PYTORCH</span>
-    <span class="marquee-item">TENSORRT</span>
-    <span class="marquee-item">JD HUMANOID</span>
-    <span class="marquee-item">UNITREE GO1</span>
-    <span class="marquee-item">JETSON</span>
-    <span class="marquee-item">ESP32 &middot; LoRa</span>
-    <span class="marquee-item">MUJOCO</span>
-    <span class="marquee-item">GAZEBO</span>
-    <span class="marquee-item">UNITY</span>
-    <span class="marquee-item">SIM-TO-REAL</span>
-    <span class="marquee-item">EDGE AI</span>
-    <span class="marquee-item">HUMAN-ROBOT INTERACTION</span>
-  </div>
-</div>
-
 <section id="about">
   <div class="wrap">
     <div class="reveal">
@@ -2378,16 +2293,6 @@
         <div class="credential">
           <h3 class="credential-degree">BEng Mechatronics Engineering</h3>
           <div class="credential-meta">NUST · 2018-2022</div>
-        </div>
-        <div class="dual-track">
-          <div class="track-card spotlight">
-            <div class="track-label">FOR ACADEMIC CONTACTS</div>
-            <div class="track-text">Actively applying to PhD programmes in HRI, AI reliability, and trust calibration. Happy to share research proposals on request.</div>
-          </div>
-          <div class="track-card spotlight">
-            <div class="track-label">FOR HIRING TEAMS</div>
-            <div class="track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. Happy to talk through work authorisation and timing directly.</div>
-          </div>
         </div>
       </div>
     </div>
@@ -2505,13 +2410,9 @@
 
         <div style="margin:18px 0 6px">
           <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
-            <img src="projects/img/pfb-pipeline.svg" alt="Pipeline flowchart: labelled instruction and symbolic world feed a fixed prompt, plain or obfuscated; the model answers in JSON; a deterministic checker emits one verdict into the planted versus observed matrix" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
-          </div>
-          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 18px">The deterministic pipeline: label proofs in, one verdict per response out, no judge anywhere.</div>
-          <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
             <img src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
           </div>
-          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. All eighteen runs are on the story page.</div>
+          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. Label proofs in, one verdict per response out, no judge anywhere. All eighteen runs, and the pipeline that produced them, are on the story page.</div>
         </div>
 
         <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
@@ -2623,7 +2524,7 @@
       <div class="pub-body">
         <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
         <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Six-page paper submitted to IEEE Robotics and Automation Letters (RA-L), August 2026 &middot; 8 scenarios at 4 cost ceilings, widest gap 0.0567, no bound violated &middot; the observer model is exactly reproducible and has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a></div>
+        <div class="pub-venue">Six-page paper submitted to IEEE Robotics and Automation Letters (RA-L), August 2026 &middot; 8 scenarios at 4 cost ceilings, no bound violated &middot; the observer model has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a></div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
           <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
@@ -2637,7 +2538,7 @@
       <div class="pub-body">
         <h3 class="pub-title">The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family: A Control Variate for its Spectral Exponent</h3>
         <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Twenty-three-page note, not yet submitted &middot; narrower than it was: the frozen profile is due to Lushnikov, Silantyev and Siegel, and its existence and nonlinear stability to Chen, along with the stagnation point relation. An overlap search that had missed the pole dynamics literature entirely found all of it, and the repository retracts what did not survive &middot; what the note contributes is the measurement: the two constants that set the spectral exponent are read from the same profile and carry the same discretisation error, one of them is known exactly, so regressing the unknown against the known across resolutions cancels the error without needing its size or its rate, collapsing the spread by a factor of 800 and giving the exponent to five digits</div>
+        <div class="pub-venue">Twenty-three-page note, not yet submitted &middot; narrower than it was: the frozen profile is Lushnikov, Silantyev and Siegel's, and its stability and the stagnation point relation are Chen's; an overlap search that had missed the pole dynamics literature found all of it, and the repository retracts what did not survive &middot; what remains is the measurement: two constants read off the same profile carry the same discretisation error and one is known exactly, so regressing the unknown against the known cancels it, collapsing the spread 800-fold and giving the exponent to five digits</div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
           <a href="files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the draft (PDF) &rarr;</a>
@@ -2830,7 +2731,7 @@
         </div>
         <div class="timeline-company">Safina International (Contract) &middot; Multan, Pakistan</div>
         <ul class="timeline-bullets">
-          <li>Sole engineer of the institute's live platform, <a href="projects/safina-portal.html">Safina Portal</a>: <strong>seven user roles</strong>, prorated billing, payroll, and an append-only financial ledger enforced by PostgreSQL row-level security across <strong>33 audited tables</strong>.</li>
+          <li>Sole engineer of the institute's live platform, <a href="projects/safina-portal.html">Safina Portal</a>, in production across <strong>seven user roles</strong> and <strong>33 audited tables</strong>.</li>
         </ul>
       </div>
 
@@ -2867,8 +2768,7 @@
         </div>
         <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
         <ul class="timeline-bullets">
-          <li>Architected a gesture recognition and motion planning pipeline in Unity/C++ for the JD humanoid, integrated through ROS2 and run against physical hardware.</li>
-          <li>Deployed PyTorch-based non-verbal communication models onto the JD humanoid's real-time control loop and measured their communicative effect: <a href="files/Kazmi_HRI_MSc_Thesis.pdf#page=5" target="_blank" rel="noopener"><strong>a significant clarity effect (4.9 versus 5.8 on a 1 to 7 scale, p = 0.017, d = 0.58)</strong></a>, with engagement statistically comparable across modalities.</li>
+          <li>Built the gesture recognition and motion planning pipeline for the JD humanoid in Unity and C++, integrated through ROS2, and deployed PyTorch non-verbal communication models onto its real-time control loop. The study that ran on it measured <a href="projects/hri-companionship.html"><strong>a significant clarity effect, d = 0.58</strong></a>.</li>
         </ul>
       </div>
 
@@ -3472,13 +3372,6 @@
         setTimeout(function () { btn.style.transition = ''; }, 500);
       });
     });
-  })();
-
-  /* ============ Marquee: duplicate content for seamless loop ============ */
-  (function () {
-    var track = document.getElementById('marqueeTrack');
-    if (!track) return;
-    track.innerHTML += track.innerHTML;
   })();
 
   /* ============ Trust calibration toggle ============ */
