@@ -702,7 +702,7 @@
   @keyframes marquee { to { transform: translateX(-50%); } }
 
   /* ============ SECTION SCAFFOLDING ============ */
-  section { padding: 5.5rem 0; position: relative; }
+  section { padding: 4.25rem 0; position: relative; }
 
   .eyebrow {
     display: flex;
@@ -880,7 +880,7 @@
   }
 
   /* ============ FEATURED RESEARCH ============ */
-  #research { background: var(--ink); }
+  #work { background: var(--ink); }
 
   .research-card {
     margin-top: 2.4rem;
@@ -1299,7 +1299,6 @@
   .timeline-bullets strong { color: var(--text-primary); font-weight: 500; }
 
   /* ============ PROJECTS ============ */
-  #projects { background: var(--ink); }
 
   .project-filters {
     display: flex;
@@ -1879,7 +1878,6 @@
   .back-to-top:hover { border-color: var(--accent); color: var(--accent); }
   /* ============ Now section ============ */
   .now-card {
-    max-width: 860px;
     border: 1px solid var(--hairline);
     background: rgba(24, 24, 27, 0.5);
     border-radius: 14px;
@@ -1911,6 +1909,19 @@
     padding-top: 1rem;
   }
   .now-commit-msg { color: var(--accent); font-style: italic; }
+  .now-meta {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+  }
+  .work-divider { margin-top: 5rem; }
+  .work-subhead {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .work-subhead em { font-style: italic; color: var(--accent); }
   .now-lead {
     color: var(--text-dim);
     font-size: 0.95rem;
@@ -2213,10 +2224,8 @@
   <a href="#hero" class="nav-name">Munawar Kazmi</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
-    <li><a href="#now">Now</a></li>
-    <li><a href="#research">Research</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#publications">Publications</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="projects/guides.html">Guides</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#speaking">Speaking</a></li>
@@ -2242,7 +2251,7 @@
     </p>
     <p class="hero-credential"><strong>MSc AI &amp; Robotics (Commendation)</strong> &middot; University of Hertfordshire</p>
     <div class="hero-cta-row">
-      <a href="#research" class="btn-primary magnetic">View Research</a>
+      <a href="#work" class="btn-primary magnetic">View Research</a>
       <a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener" class="btn-secondary magnetic">Resume (PDF)</a>
       <a href="#contact" class="btn-secondary magnetic">Get in Touch</a>
     </div>
@@ -2303,20 +2312,20 @@
   </div>
 </section>
 
-<section id="now">
+<section id="work">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">02</span> NOW</div>
-      <h2 class="section-title">On the bench <em>right now</em></h2>
-      <p class="section-lede">Active research, updated as it lands. The latest commit is fetched live from GitHub, so the freshness claim checks itself.</p>
+      <div class="eyebrow"><span class="eyebrow-num">02</span> WORK</div>
+      <h2 class="section-title">Reliable planners, <em>legible robots</em></h2>
+      <p class="section-lede">Two research lines and the engineering underneath them: how language model planners fail, measured against machine-checked ground truth, and how humanoid robots should communicate so people can calibrate their trust. Every figure is backed by committed data a stranger can re-run, every card says where its claims stop, and the commit dates come live from GitHub.</p>
     </div>
+
     <div class="now-card reveal spotlight">
       <div class="now-head">
         <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/legible-motion-bench.html" class="project-link">Read the full story &rarr;</a>
           <a href="https://github.com/munawarkazmi/legible-motion-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="project-link">Working paper status &nearr;</a>
-          <a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
       </div>
       <h3 class="project-title">legible-motion-bench</h3>
@@ -2357,8 +2366,8 @@
         <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/legibility-bounds.html" class="project-link">Read the full story &rarr;</a>
+          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="project-link">Preprint (PDF) &rarr;</a>
           <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener" class="project-link">Working log &nearr;</a>
-          <a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">Commit history &nearr;</a>
         </div>
       </div>
       <h3 class="project-title">legibility-bounds</h3>
@@ -2395,172 +2404,88 @@
 
       <div class="now-commit" data-repo="munawarkazmi/legibility-bounds"><a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
-  </div>
-</section>
 
-<section id="research">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">03</span> FEATURED RESEARCH</div>
-      <h2 class="section-title">Two research lines: <em>reliable planners</em>, <em>legible robots</em></h2>
-      <p class="section-lede">How language model planners fail, measured against machine-checked ground truth; and how humanoid robots should communicate so people can calibrate their trust.</p>
-    </div>
-
-    <div class="research-card reveal spotlight">
-      <div class="research-card-body">
-        <span class="research-platform-tag">Symbolic environments &middot; PDDL &middot; 4 LLMs &middot; CI-proved labels</span>
-        <h3 class="research-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
-        <div class="research-supervisor">Sole author &middot; Working paper &middot; DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a></div>
-
-        <div style="margin:18px 0 6px">
-          <div style="border-radius:8px;overflow:hidden;border:1px solid var(--hairline)">
-            <img width="1840" height="640" src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" style="width:100%;height:auto;display:block" loading="lazy" decoding="async">
-          </div>
-          <div style="font-size:0.82rem;color:var(--text-dim);margin:8px 0 4px">Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. Label proofs in, one verdict per response out, no judge anywhere. All eighteen runs, and the pipeline that produced them, are on the story page.</div>
-        </div>
-
-        <p class="research-desc">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. The headline artefact is the confusion matrix between planted trap and observed verdict.</p>
-
-        <p class="research-desc">Across an 18-run grid over four models, the models fail in distinct, stable ways: a frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect, while smaller models split between silent compliance and surface-anchored refusal.</p>
-
-        <div class="research-stats">
-          <div class="research-stat">
-            <div class="research-stat-num count-up">60</div>
-            <div class="research-stat-label">Instructions, each with a machine-checked proof of ground truth</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num count-up">18</div>
-            <div class="research-stat-label">Complete model runs, every record committed</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num count-up">548</div>
-            <div class="research-stat-label">Tests and label proofs, re-run on every commit</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num">0</div>
-            <div class="research-stat-label">Human or LLM judgements in the scoring loop</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px">
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/plan-failure-bench.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener" class="project-link">Repository &rarr;</a>
           <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="project-link">Preprint (DOI) &rarr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener" class="project-link">Repository &nearr;</a>
         </div>
-
-        <div class="now-commit" data-repo="munawarkazmi/plan-failure-bench"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
       </div>
+      <h3 class="project-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
+      <div class="now-meta">Sole author &middot; Working paper &middot; Symbolic environments, PDDL, 4 LLMs, CI-proved labels</div>
+      <p class="now-lead">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. Across an 18-run grid over four models the failures are distinct and stable: a frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect, while smaller models split between silent compliance and surface-anchored refusal.</p>
+
+      <figure class="now-figure">
+        <img width="1840" height="640" src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" loading="lazy" decoding="async">
+        <figcaption>Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. All eighteen runs, and the pipeline that produced them, are on the story page.</figcaption>
+      </figure>
+
+      <div class="research-stats">
+        <div class="research-stat">
+          <div class="research-stat-num count-up">60</div>
+          <div class="research-stat-label">Instructions, each with a machine-checked proof of ground truth</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num count-up">18</div>
+          <div class="research-stat-label">Complete model runs, every record committed</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num count-up">548</div>
+          <div class="research-stat-label">Tests and label proofs, re-run on every commit</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num">0</div>
+          <div class="research-stat-label">Human or LLM judgements in the scoring loop</div>
+        </div>
+      </div>
+
+      <div class="now-commit" data-repo="munawarkazmi/plan-failure-bench"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
     </div>
 
-    <div class="research-card reveal spotlight">
-      <div class="research-card-body">
-        <span class="research-platform-tag">JD Humanoid &middot; Isaac Sim &middot; ROS2</span>
-        <h3 class="research-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
-        <div class="research-supervisor">MSc Thesis &middot; University of Hertfordshire &middot; Supervised by Dr Patrick Holthaus</div>
-
-        <div class="research-photo research-photo-single">
-          <img src="assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
-          <div class="research-photo-caption">JD humanoid &middot; EZ-Robot &middot; the study platform</div>
-        </div>
-
-        <p class="research-desc">A full sim-to-real pipeline on the JD humanoid, from an Isaac Sim digital twin through ROS2 hardware integration, built so that a gestural and a spoken condition could be delivered identically to 20 participants. Counterbalanced, RoSAS-validated, under UH ethical approval cSPECS/CL/UH/05098. The scenario was deliberately mundane: the robot had to communicate that it needed recharging.</p>
-
-        <p class="research-desc">Speech conveyed intent significantly more clearly than gesture, while engagement and warmth held comparable across both. Every gestural failure was a failure of joint attention rather than of communication, which is why the design target is hybrid rather than either one alone.</p>
-
-        <div class="research-stats">
-          <div class="research-stat">
-            <div class="research-stat-num count-up">d&nbsp;=&nbsp;0.58</div>
-            <div class="research-stat-label">Effect size, clarity: verbal vs. gestural (p&nbsp;=&nbsp;0.017)</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num count-up">95%</div>
-            <div class="research-stat-label">Intent identification accuracy, verbal condition</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num count-up">80%</div>
-            <div class="research-stat-label">Intent identification accuracy, gestural condition</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat-num count-up">N=20</div>
-            <div class="research-stat-label">Within-subjects, counterbalanced, RoSAS-validated</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:18px">
+    <div class="now-card reveal spotlight">
+      <div class="now-head">
+        <span class="now-live">MSc thesis &middot; 2025</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
           <a href="projects/hri-companionship.html" class="project-link">Read the full story &rarr;</a>
           <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="project-link">Read the paper (PDF) &rarr;</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <h3 class="project-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
+      <div class="now-meta">University of Hertfordshire &middot; Supervised by Dr Patrick Holthaus &middot; JD humanoid, Isaac Sim, ROS2</div>
 
-<section id="publications">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> PUBLICATIONS</div>
-      <h2 class="section-title">Research <em>output</em></h2>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
-        <div class="pub-authors">Kazmi, M. (2025)</div>
-        <div class="pub-venue">MSc thesis research &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
-        <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
-        <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
+      <div class="research-photo research-photo-single">
+        <img src="assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
+        <div class="research-photo-caption">JD humanoid &middot; EZ-Robot &middot; the study platform</div>
       </div>
-      <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the paper: Enhancing Human-Robot Companionship (PDF)">Read the paper &rarr;</a>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records &middot; DOI 10.5281/zenodo.21756817</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the current draft (PDF) &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
-        </div>
-      </div>
-      <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the current draft: plan-failure-bench (PDF)">Read the draft &rarr;</a>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Six-page paper submitted to IEEE Robotics and Automation Letters (RA-L), August 2026 &middot; 8 scenarios at 4 cost ceilings, no bound violated &middot; the observer model has never been validated against people &middot; DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a></div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
-          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-          <a href="projects/legibility-bounds.html" class="pub-link">Full story &rarr;</a>
-        </div>
-      </div>
-      <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the preprint: Certified Bounds on Achievable Legibility (PDF)">Read the preprint &rarr;</a>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family: A Control Variate for its Spectral Exponent</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Twenty-three-page note, not yet submitted &middot; narrower than it was: the frozen profile is Lushnikov, Silantyev and Siegel's, and its stability and the stagnation point relation are Chen's; an overlap search that had missed the pole dynamics literature found all of it, and the repository retracts what did not survive &middot; what remains is the measurement: two constants read off the same profile carry the same discretisation error and one is known exactly, so regressing the unknown against the known cancels it, collapsing the spread 800-fold and giving the exponent to five digits</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener" class="pub-link">Read the plain-language guide (PDF) &rarr;</a>
-          <a href="files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the draft (PDF) &rarr;</a>
-          <a href="https://github.com/munawarkazmi/degregorio-blowup/blob/main/FINDINGS.md" target="_blank" rel="noopener" class="pub-link">Findings, including the retractions &rarr;</a>
-          <a href="projects/degregorio-blowup.html" class="pub-link">Full story &rarr;</a>
-        </div>
-      </div>
-      <a href="files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener" class="pub-status" aria-label="Read the draft: The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family (PDF)">Read the draft &rarr;</a>
-    </div>
-  </div>
-</section>
 
-<section id="projects">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">05</span> PROJECTS</div>
-      <h2 class="section-title">Built, deployed, <em>measured</em></h2>
-      <p class="section-lede">Every project here is backed by committed data and code a stranger can re-run, and says in its own words where its claims stop. Two are deployed in the field: firmware in a commercial intrusion-detection prototype, and a portal running an institute day to day. Each one also has a short <a href="projects/guides.html">plain-language guide</a>, written for readers outside the field.</p>
+      <p class="now-lead">A full sim-to-real pipeline on the JD humanoid, from an Isaac Sim digital twin through ROS2 hardware integration, built so that a gestural and a spoken condition could be delivered identically to 20 participants. Counterbalanced, RoSAS-validated, under UH ethical approval cSPECS/CL/UH/05098. The scenario was deliberately mundane: the robot had to communicate that it needed recharging. Speech conveyed intent significantly more clearly than gesture, while engagement and warmth held comparable across both, and every gestural failure was a failure of joint attention rather than of communication. That is why the design target is hybrid rather than either one alone.</p>
+
+      <div class="research-stats">
+        <div class="research-stat">
+          <div class="research-stat-num count-up">d&nbsp;=&nbsp;0.58</div>
+          <div class="research-stat-label">Effect size, clarity: verbal vs. gestural (p&nbsp;=&nbsp;0.017)</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num count-up">95%</div>
+          <div class="research-stat-label">Intent identification accuracy, verbal condition</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num count-up">80%</div>
+          <div class="research-stat-label">Intent identification accuracy, gestural condition</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-stat-num count-up">N=20</div>
+          <div class="research-stat-label">Within-subjects, counterbalanced, RoSAS-validated</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-divider reveal">
+      <h3 class="work-subhead">Built, deployed, <em>measured</em></h3>
+      <p class="section-lede">Eight more, two of them deployed in the field: firmware in a commercial intrusion-detection prototype, and a portal running an institute day to day.</p>
     </div>
 
     <div class="project-filters" role="group" aria-label="Filter projects by category">
@@ -2705,24 +2630,80 @@
           <a href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
         </div>
       </div>
-    
+
     </div>
 
     <a class="guides-callout reveal spotlight" href="projects/guides.html">
       <div>
         <div class="guides-callout-label">Plain-language guides</div>
         <h3 class="guides-callout-title">Ten projects, explained <em>without the jargon</em></h3>
-        <p class="guides-callout-text">Written for someone who has never read a research paper. The same numbers, the same stated limits, and the same claims I have withdrawn, all without the vocabulary. Each guide is committed alongside the code it describes, so it cannot drift from the project it explains.</p>
+        <p class="guides-callout-text">Written for someone who has never read a research paper. The same numbers, the same stated limits, and the same claims I have withdrawn, without the vocabulary.</p>
       </div>
       <span class="guides-callout-cta">Read the guides &rarr;</span>
     </a>
   </div>
 </section>
 
+<section id="publications">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow"><span class="eyebrow-num">03</span> PUBLICATIONS</div>
+      <h2 class="section-title">Research <em>output</em></h2>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
+        <div class="pub-authors">Kazmi, M. (2025)</div>
+        <div class="pub-venue">MSc thesis &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+          <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
+          <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Submitted to IEEE Robotics and Automation Letters (RA-L), August 2026 &middot; 8 scenarios at 4 cost ceilings, no bound violated &middot; the observer model has never been validated against people</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
+          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the current draft (PDF) &rarr;</a>
+          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
+          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card reveal spotlight">
+      <div class="pub-body">
+        <h3 class="pub-title">The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family: A Control Variate for its Spectral Exponent</h3>
+        <div class="pub-authors">Kazmi, M. (2026)</div>
+        <div class="pub-venue">Twenty-three-page note, not yet submitted &middot; narrower than it was: the frozen profile is Lushnikov, Silantyev and Siegel's and its stability and the stagnation point relation are Chen's, an overlap search that had missed the pole dynamics literature found all of it, and the repository retracts what did not survive &middot; what remains is the measurement, which collapses the spread on the spectral exponent 800-fold</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <a href="files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the draft (PDF) &rarr;</a>
+          <a href="files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener" class="pub-link">Plain-language guide (PDF) &rarr;</a>
+          <a href="https://github.com/munawarkazmi/degregorio-blowup/blob/main/FINDINGS.md" target="_blank" rel="noopener" class="pub-link">Findings, including the retractions &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="experience">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">06</span> EXPERIENCE</div>
+      <div class="eyebrow"><span class="eyebrow-num">04</span> EXPERIENCE</div>
       <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
     </div>
 
@@ -2760,7 +2741,7 @@
         <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
         <ul class="timeline-bullets">
           <li>Engineered deterministic C++ firmware for real-time image processing on ESP32 for a commercial intrusion-detection prototype.</li>
-          <li>Architected the LoRa mesh protocol that carried alerts off the device in the field. It stays the company's property rather than part of the public firmware, and the field-trial figures this entry used to quote are <a href="projects/esp32-motion-detector.html">retracted</a> along with the rest.</li>
+          <li>Architected the LoRa mesh protocol that carried alerts off the device. It stays the company's property, and the field-trial figures this entry used to quote are <a href="projects/esp32-motion-detector.html">retracted</a>.</li>
         </ul>
       </div>
 
@@ -2806,7 +2787,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">07</span> TECHNICAL SKILLS</div>
+      <div class="eyebrow"><span class="eyebrow-num">05</span> TECHNICAL SKILLS</div>
       <h2 class="section-title">Tools I <em>ship</em> with</h2>
     </div>
     <div class="skills-grid reveal">
@@ -2841,7 +2822,7 @@
 <section id="speaking">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">08</span> SPEAKING &amp; REFERENCES</div>
+      <div class="eyebrow"><span class="eyebrow-num">06</span> SPEAKING &amp; REFERENCES</div>
       <h2 class="section-title">In the <em>room</em>, and what they <em>say</em></h2>
     </div>
     <div class="group-label reveal">Talks &amp; teaching</div>

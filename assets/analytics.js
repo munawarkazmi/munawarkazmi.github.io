@@ -69,8 +69,8 @@
    * where a request can be cancelled.
    */
   var MILESTONES = [
-    ['research', 'Reached: Research'],
-    ['projects', 'Reached: Projects'],
+    ['work', 'Reached: Work'],
+    ['publications', 'Reached: Publications'],
     ['experience', 'Reached: Experience'],
     ['contact', 'Reached: Contact']
   ];
