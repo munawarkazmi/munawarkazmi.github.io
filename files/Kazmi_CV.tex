@@ -1,0 +1,171 @@
+% Two-page academic CV. The one-page resume for engineering roles is
+% Kazmi_Resume.tex beside this file. Both are built with pdflatex and both are
+% checked by tools/drift.py, which fails when a PDF is older than its source.
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=1.75cm,top=1.5cm,bottom=1.4cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\definecolor{rule}{gray}{0.55}
+\definecolor{dim}{gray}{0.35}
+
+\titleformat{\section}{\normalsize\bfseries\scshape}{}{0pt}{}[{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+
+\newcommand{\entry}[2]{{\textbf{#1}\hfill {\small #2}\par}}
+\newcommand{\sub}[1]{{\small\color{dim}#1\par}}
+\newcommand{\gap}{\vspace{4pt}}
+\setlist[itemize]{leftmargin=1.1em,itemsep=1pt,parsep=0pt,topsep=2pt,label=\textbullet}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Munawar Kazmi}\\[2pt]
+{\normalsize Curriculum Vitae}\\[3pt]
+{\small
+\href{mailto:munawarsaeedkazmi1@gmail.com}{munawarsaeedkazmi1@gmail.com} \;|\;
+\href{https://munawarkazmi.com}{munawarkazmi.com} \;|\;
+\href{https://github.com/munawarkazmi}{github.com/munawarkazmi} \;|\;
+\href{https://orcid.org/0009-0004-6565-6067}{orcid.org/0009-0004-6565-6067}}
+\end{center}
+
+\section{Research Interests}
+Human-robot interaction and trust calibration; legible robot motion; the reliability and verification of
+language-model planners. I work on how a robot should communicate so that people trust it appropriately, and on
+how to detect, with machine-checked evidence, when a planner is operating outside what it can do.
+
+\section{Education}
+\entry{MSc Artificial Intelligence and Robotics, Commendation}{2023 - 2024}
+\sub{University of Hertfordshire, UK. Thesis: \emph{Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal
+Communication Cues in Humanoid Robots}. Supervisor: Dr Patrick Holthaus.}
+\gap
+\entry{BEng Mechatronics Engineering}{2018 - 2022}
+\sub{National University of Sciences and Technology (NUST), Pakistan.}
+
+\section{Publications and Preprints}
+{\small
+Kazmi, M. (2026). \emph{Certified Bounds on Achievable Legibility under a Path Cost Budget}. Submitted to IEEE Robotics
+and Automation Letters, August 2026. Preprint, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21834955}{10.5281/zenodo.21834955}.\par\gap
+Kazmi, M. (2026). \emph{plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail}.
+Working paper, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21756817}{10.5281/zenodo.21756817}.\par\gap
+Kazmi, M. (2025). \emph{Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in
+Humanoid Robots}. MSc thesis research, University of Hertfordshire.\par\gap
+Kazmi, M. (2026). \emph{The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family: A Control Variate for its
+Spectral Exponent}. Working note, not yet submitted.}
+
+\section{Research Projects}
+
+\entry{legibility-bounds: certified limits on legible motion}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/legibility-bounds}{github.com/munawarkazmi/legibility-bounds}}
+\sub{Sole author. Python, computational geometry, exact predicates.}
+\begin{itemize}
+\item Proved a ceiling \textbf{no trajectory within the path budget can exceed}, where a search can only report the clarity
+it happened to find. \textbf{32 of 32 certified intervals hold with zero violations}; the widest gap is 0.0567 and the
+narrowest 0.0064.
+\item The same argument prices safety: \textbf{3 of 8 keep-out pairs certify a positive cost}; the other 5 certify nothing and
+are reported as nothing.
+\item Stated limit: the observer model is exactly reproducible and has not been validated against people.
+\end{itemize}
+\gap
+\entry{plan-failure-bench}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/plan-failure-bench}{github.com/munawarkazmi/plan-failure-bench}}
+\sub{Sole author. Python, PDDL, differential testing, CI.}
+\begin{itemize}
+\item Designed \textbf{60 proof-carrying instructions} over two symbolic environments; every ground-truth label is a
+mechanical proof re-verified by \textbf{548 CI tests} on each commit.
+\item \textbf{Judge-free scoring}: a deterministic checker, differentially tested against an independent PDDL toolchain,
+assigns one verdict per response. Detection is never reported without its paired false positive count.
+\item Ran an \textbf{18-run grid over four models}, plain and semantically obfuscated; versioning the obfuscation caught
+and retired two artefacts of its own first token scheme.
+\end{itemize}
+\gap
+\entry{legible-motion-bench (pilot)}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/legible-motion-bench}{github.com/munawarkazmi/legible-motion-bench}}
+\begin{itemize}
+\item Measures legibility against path cost and constraint satisfaction, computed exactly, with no human rater and
+no model judge. In a three-model pilot the models called \textbf{116 of 120} of their own trajectories legible,
+including all 25 that were not physically possible. One temperature and three models: a pilot, not a finding.
+\end{itemize}
+\gap
+\entry{Verbal and non-verbal intent communication on the JD humanoid}{2023 - 2025}
+\sub{MSc thesis study, University of Hertfordshire. Isaac Sim digital twin, ROS2, physical deployment. Ethics approval cSPECS/CL/UH/05098.}
+\begin{itemize}
+\item Built a sim-to-real pipeline so that a gestural and a spoken condition could be delivered identically to
+\textbf{20 participants}, within-subjects and counterbalanced, measured on the Robotic Social Attributes Scale.
+\item Speech conveyed intent more clearly than gesture (4.9 against 5.8 on a 7-point scale, $p=0.017$, $d=0.58$), while
+engagement and warmth were comparable. Every gestural failure was a failure of joint attention.
+\end{itemize}
+
+\newpage
+\section{Research Experience}
+\entry{Robotics Integration Specialist, Robot House, University of Hertfordshire}{Jan 2024 - May 2024}
+\sub{Built the gesture recognition and motion planning pipeline for the JD humanoid in Unity and C++, integrated through
+ROS2, and deployed PyTorch non-verbal communication models onto its real-time control loop.}
+\gap
+\entry{Research Associate, University of Hertfordshire}{May 2023 - Dec 2023}
+\sub{Fine-tuned and optimised TensorFlow models for real-time inference on the Unitree Go1 quadruped, then integrated them
+into the platform's control loop within the latency budget a walking controller leaves for perception.}
+
+\section{Teaching}
+\entry{Visiting Lecturer, UCLTILS}{Multan, Pakistan; Sep 2026 - present}
+\sub{Teach Computing Principles and Logic, a first-year module of the University of London BSc Artificial Intelligence:
+computing systems, propositional and first-order logic, automata, grammars and computability.}
+\gap
+\entry{Visiting Lecturer, AI and Robotics, Pak-Turk Maarif Schools}{Multan, Pakistan; Aug 2025 - present}
+\sub{Designed and teach an applied machine learning curriculum for 30+ students with no prior background, taking project
+teams through training and evaluating their own classifiers.}
+
+\section{Research Software}
+{\small
+\textbf{llm-nav-shield.} Composes a verifier and a provably correct planner: 38/38 flawed LLM proposals recovered to
+verified-safe paths, 10/10 correct halts where no safe path exists, zero unsafe trajectories forwarded.\par\gap
+\textbf{ROS2 LLM safety verifier.} A deterministic gate between LLM planners and Nav2: 35/35 and 32/32 unsafe
+proposals caught across two models, with zero misses over 2,071 constructed cases.\par\gap
+\textbf{ROS2 path planning.} A* and D* Lite as C++20 Nav2 plugins over a ROS-free core; D* Lite replans 4.3x faster on
+average over a seeded 200-trial benchmark, with optimality fuzz-validated against Dijkstra over 185,237 replans.\par\gap
+\textbf{exact-predicates.} Exact geometric predicates in C++: 657 adversarial cases where floating point is wrong and
+the exact version is right, each asserted in CI.\par\gap
+\textbf{toolcall-contract.} A contract checker for LLM tool calls: of 40 model calls a schema check passes 39 and the
+contract passes 32.}
+
+\section{Engineering Experience}
+\entry{Full-Stack Software Engineer (Contract), Safina International}{Multan, Pakistan; Jul 2026 - present}
+\sub{Sole engineer of a live seven-role school management platform: billing, payroll and an append-only audit trail
+across 33 tables under PostgreSQL row-level security.}
+\gap
+\entry{Embedded Systems Engineer (Contract), Muxtronics}{Multan, Pakistan; Jan 2025 - May 2025}
+\sub{Deterministic C++ firmware for real-time image processing on ESP32, and the LoRa mesh protocol that carried alerts
+off the device, for a commercial intrusion-detection prototype.}
+\gap
+\entry{Embedded Systems Intern, National Centre of Robotics and Automation}{Mar 2022 - Apr 2022}
+\sub{Islamabad, Pakistan. Optimised bare-metal C firmware for embedded controllers, validated across 100+ safety-critical test cycles.}
+
+\section{Talks}
+{\small
+\emph{HRI and edge AI applications}, AI and Robotics in Education Conference, University of Hertfordshire. Talk with live
+robot demonstrations of the companionship research.\par\gap
+\emph{Hands-on robotics and machine learning}, Pak-Turk Maarif Schools. Workshop on gesture control, neural networks
+and real-time deployment, in which teams built and trained working classifiers.}
+
+\section{Service and Memberships}
+{\small
+Student Representative, University of Hertfordshire, 2023 - 2024.\par\gap
+Member, University of Hertfordshire Computer Science Chapter (BCS student chapter), 2023 - 2024.}
+
+\section{Technical Skills}
+{\small
+\textbf{Robotics and systems:} C++20, Python, ROS2 (Nav2, plugin development), differential and property-based testing, CI/CD, Docker\\
+\textbf{AI and simulation:} PyTorch, TensorFlow, TensorRT, LLM evaluation and integration, Isaac Sim, MuJoCo, Gazebo, Unity\\
+\textbf{Embedded and full-stack:} ESP32, LoRa mesh, bare-metal C/C++, Jetson Nano, React, TypeScript, PostgreSQL}
+
+\section{Referees}
+{\small
+Dr Patrick Holthaus, Reader in Interactive Assistive Technology, University of Hertfordshire (MSc supervisor).
+Further referees and contact details on request.}
+
+\end{document}

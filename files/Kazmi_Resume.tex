@@ -1,7 +1,8 @@
-% Munawar Kazmi, one-page resume. Every quantitative claim traces to a
-% public repository, the committed manuscript, or an employment record.
+% One-page resume for engineering roles. The two-page academic version is
+% Kazmi_CV.tex beside this file. Both are built with pdflatex and both are
+% checked by tools/drift.py, which fails when a PDF is older than its source.
 \documentclass[10pt]{article}
-\usepackage[a4paper,margin=1.05cm,top=0.8cm,bottom=0.8cm]{geometry}
+\usepackage[a4paper,margin=1.45cm,top=1.2cm,bottom=1.1cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -17,117 +18,109 @@
 \definecolor{dim}{gray}{0.35}
 
 \titleformat{\section}{\normalsize\bfseries\scshape}{}{0pt}{}[{\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
 
 \newcommand{\entry}[2]{{\textbf{#1}\hfill {\small #2}\par}}
 \newcommand{\sub}[1]{{\small\color{dim}#1\par}}
 \setlist[itemize]{leftmargin=1.1em,itemsep=0pt,parsep=0pt,topsep=1pt,label=\textbullet}
+\newcommand{\gap}{\vspace{3pt}}
 
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries Munawar Kazmi}\\[3pt]
+{\LARGE\bfseries Munawar Kazmi}\\[2pt]
+{\normalsize Robotics and AI Engineer}\\[3pt]
 {\small
 \href{mailto:munawarsaeedkazmi1@gmail.com}{munawarsaeedkazmi1@gmail.com} \;|\;
 \href{https://munawarkazmi.com}{munawarkazmi.com} \;|\;
 \href{https://github.com/munawarkazmi}{github.com/munawarkazmi} \;|\;
-\href{https://www.linkedin.com/in/munawar-kazmi/}{LinkedIn} \;|\;
-\href{https://orcid.org/0009-0004-6565-6067}{orcid.org/0009-0004-6565-6067}}
+\href{https://www.linkedin.com/in/munawar-kazmi/}{LinkedIn}}
 \end{center}
 
 \vspace{-2pt}
 \section{Profile}
-Robotics and AI engineer (MSc AI and Robotics, Commendation) working on AI reliability and human-robot
-interaction. Two archived, citable preprints and HRI research on the JD humanoid.
-Every published number is reproducible from a public, CI-tested repository, each with a
-\href{https://munawarkazmi.com/projects/guides.html}{plain-language guide}.
+Robotics and AI engineer (MSc AI and Robotics, Commendation). I build ROS2 planners, embedded firmware and
+verification layers for robots that plan with language models, and I have two systems running in the field.
+Every number below is reproducible from a public, CI-tested repository. Open to roles in the UK, EU and USA.
 
-\section{Featured Research}
-
-\entry{legibility-bounds: certified limits on legible motion}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/legibility-bounds}{github.com/munawarkazmi/legibility-bounds}}
-\sub{Sole author. Python, computational geometry, exact predicates. Preprint for IEEE RA-L.}
-\begin{itemize}
-\item Proved a ceiling \textbf{no trajectory within the path budget can exceed}, not the clarity one search
-happened to find; \textbf{32 of 32 certified intervals hold, zero violations}, widest gap 0.0567.
-\item The same argument prices safety: \textbf{3 of 8 keep-out pairs certify a positive cost}, the other 5 certify
-nothing and say so, which no comparison of two searches can establish.
-\end{itemize}
-
-\entry{plan-failure-bench}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/plan-failure-bench}{github.com/munawarkazmi/plan-failure-bench}}
-\sub{Sole author. Python, PDDL, differential testing, CI. Working paper on Zenodo.}
-\begin{itemize}
-\item Designed \textbf{60 proof-carrying instructions} over two symbolic environments; every ground-truth label is
-a mechanical proof re-verified by \textbf{548 CI tests} on each commit.
-\item \textbf{Judge-free scoring}: a deterministic checker, differentially tested against an independent PDDL
-toolchain, assigns one verdict per response; detection is never reported without its paired false positive count.
-\item Ran an \textbf{18-run grid over four models}, plain and semantically obfuscated; the versioned obfuscation
-caught and retired two artefacts of its own first token scheme.
-\end{itemize}
-
-\entry{Trust-calibrated HRI on the JD humanoid, MSc thesis}{2023 - 2024 \;\textperiodcentered\; University of Hertfordshire}
-\sub{Isaac Sim digital twin, ROS2, physical deployment. Supervised by Dr Patrick Holthaus.}
-\begin{itemize}
-\item Built a sim-to-real pipeline transferring verbal and non-verbal intent communication to physical hardware;
-measured a \textbf{significant clarity effect} (4.9 vs 5.8 on a 7-point scale, $p=0.017$, $d=0.58$) in user trials.
-\end{itemize}
-
-\section{Selected Projects}
-
-\entry{llm-nav-shield: detect, recover, or halt}{2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/llm-nav-shield}{github.com/munawarkazmi/llm-nav-shield}}
-\begin{itemize}
-\item Neurosymbolic shield composing two verified cores: a deterministic verifier caught \textbf{35/35 and 32/32
-unsafe LLM proposals with zero misses} (qwen2.5-7B, Llama-3.3-70B), and a provably-correct planner recovered
-\textbf{38/38} to verified-safe paths, with \textbf{10/10 correct halts} where no safe path exists and
-\textbf{zero unsafe trajectories forwarded}; every number replayed in CI.
-\end{itemize}
-
-\entry{ROS2 path planning: A* and D* Lite for Nav2}{2025 - 2026 \;\textperiodcentered\; \href{https://github.com/munawarkazmi/ros2-dynamic-path-planning}{github.com/munawarkazmi/ros2-dynamic-path-planning}}
-\begin{itemize}
-\item ROS-free C++20 planning core with Nav2 plugin adapters; over a seeded 200-trial blocked-route benchmark
-D* Lite replans \textbf{4.3x faster on average, 11x on the median}, path costs matching on \textbf{all 1,716
-measurements}, optimality fuzz-validated against Dijkstra over 185,237 replans.
-\end{itemize}
+\section{Technical Skills}
+{\small
+\textbf{Robotics and systems:} C++20, Python, ROS2 (Nav2, plugin development), differential and property-based testing, CI/CD, Docker\\
+\textbf{AI and simulation:} PyTorch, TensorFlow, TensorRT, LLM evaluation and integration, Isaac Sim, MuJoCo, Gazebo, Unity\\
+\textbf{Embedded and full-stack:} ESP32, LoRa mesh, bare-metal C/C++, Jetson Nano, React, TypeScript, PostgreSQL}
 
 \section{Experience}
 
 \entry{Full-Stack Software Engineer (Contract), Safina International}{Multan, Pakistan; Jul 2026 - present}
-\sub{Sole engineer of a live seven-role platform: billing, payroll, append-only ledger under PostgreSQL RLS.}
-
-\entry{Visiting Lecturer, AI and Robotics, Pak-Turk Maarif Schools}{Multan; Aug 2025 - present}
 \begin{itemize}
-\item Designed and taught an applied ML curriculum for \textbf{30+ students}; project teams reached \textbf{92\%
-model accuracy}, a \textbf{28\% average error reduction} over their first working baseline.
+\item Sole engineer of the institute's live management platform: \textbf{seven user roles}, prorated billing, payroll and
+an append-only audit trail across \textbf{33 tables} under PostgreSQL row-level security.
 \end{itemize}
 
+\gap
 \entry{Embedded Systems Engineer (Contract), Muxtronics}{Multan, Pakistan; Jan 2025 - May 2025}
-\sub{Deterministic C++ ESP32 firmware and a LoRa mesh, sub-3-second alert latency at 100\,m, shipped in a safety-critical product.}
+\begin{itemize}
+\item Wrote deterministic C++ firmware for real-time image processing on ESP32-CAM for a commercial
+intrusion-detection prototype: 800x600 frames reduced to a \textbf{16x12 decision grid}, no ML and no vision libraries.
+\item Designed the LoRa mesh protocol that carried alerts off the device.
+\end{itemize}
 
-\entry{Robotics Integration Specialist, Robot House, University of Hertfordshire}{Hatfield, UK; Jan 2024 - May 2024}
-\vspace{2pt}
+\gap
+\entry{Robotics Integration Specialist, Robot House, Univ. of Hertfordshire}{UK; Jan 2024 - May 2024}
+\begin{itemize}
+\item Built the gesture recognition and motion planning pipeline for the JD humanoid in Unity and C++, integrated
+through ROS2, and deployed PyTorch models onto its real-time control loop for a 20-participant user study.
+\end{itemize}
 
+\gap
 \entry{Research Associate, University of Hertfordshire}{Hatfield, UK; May 2023 - Dec 2023}
-\sub{Optimised TensorFlow LLM inference for the Unitree Go1 quadruped, cutting latency 29\% across 200 trials.}
-\vspace{2pt}
+\begin{itemize}
+\item Optimised TensorFlow models for real-time inference on the Unitree Go1 quadruped and integrated them into its
+control loop, within the latency budget a walking controller leaves for perception.
+\end{itemize}
 
+\gap
+\entry{Visiting Lecturer, UCLTILS and Pak-Turk Maarif Schools}{Multan, Pakistan; Aug 2025 - present}
+\sub{Computing Principles and Logic on the University of London BSc Artificial Intelligence (from Sep 2026), and an applied ML curriculum for 30+ school students.}
+
+\gap
 \entry{Embedded Systems Intern, National Centre of Robotics and Automation}{Islamabad; Mar 2022 - Apr 2022}
+\sub{Optimised bare-metal C firmware for embedded controllers, validated across 100+ safety-critical test cycles.}
+
+\section{Engineering Projects}
+
+\entry{ROS2 path planning: A* and D* Lite for Nav2}{\href{https://github.com/munawarkazmi/ros2-dynamic-path-planning}{github.com/munawarkazmi/ros2-dynamic-path-planning}}
+\begin{itemize}
+\item ROS-free C++20 planning core with Nav2 plugin adapters. Over a seeded 200-trial blocked-route benchmark D* Lite
+replans \textbf{4.3x faster on average}, with optimality fuzz-validated against Dijkstra over \textbf{185,237 replans}.
+\end{itemize}
+
+\gap
+\entry{LLM safety verifier and llm-nav-shield}{\href{https://github.com/munawarkazmi/llm-nav-shield}{github.com/munawarkazmi/llm-nav-shield}}
+\begin{itemize}
+\item A deterministic gate between LLM planners and Nav2 caught \textbf{35/35 and 32/32 unsafe proposals} from two models
+with zero misses; a provably correct planner then recovered \textbf{38/38} to verified-safe paths and halted in
+\textbf{10/10} cases where no safe path exists. Every number is replayed in CI.
+\end{itemize}
+
+\gap
+\entry{exact-predicates and toolcall-contract}{\href{https://github.com/munawarkazmi/exact-predicates}{github.com/munawarkazmi/exact-predicates}}
+\begin{itemize}
+\item Exact geometric predicates in C++, grown from a real D* Lite bug: \textbf{657 adversarial cases} where floating point is
+wrong and the exact version is right. A contract checker for LLM tool calls: of 40 model calls a schema check
+passes 39 and the contract passes 32.
+\end{itemize}
+
+\section{Research}
+{\small
+\textbf{legibility-bounds} (sole author, submitted to IEEE RA-L, 2026): certified upper bounds on legible robot motion;
+32 of 32 intervals hold with zero violations. DOI \href{https://doi.org/10.5281/zenodo.21834955}{10.5281/zenodo.21834955}.\par
+\textbf{plan-failure-bench} (sole author, working paper, 2026): 60 proof-carrying instructions and 548 CI tests measuring
+how LLM planners fail, with no human or LLM judge. DOI \href{https://doi.org/10.5281/zenodo.21756817}{10.5281/zenodo.21756817}.\par
+\textbf{MSc thesis} (2025): speech against gesture on the JD humanoid, N = 20; a significant clarity effect, $d=0.58$, $p=0.017$.}
 
 \section{Education}
 \entry{MSc Artificial Intelligence and Robotics, Commendation, University of Hertfordshire}{2023 - 2024}
 \entry{BEng Mechatronics Engineering, National University of Sciences and Technology (NUST)}{2018 - 2022}
-
-\section{Publications}
-{\small
-Kazmi, M. (2026). Certified Bounds on Achievable Legibility under a Path Cost Budget. Preprint for IEEE Robotics
-and Automation Letters, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21834955}{10.5281/zenodo.21834955}.\par
-Kazmi, M. (2026). plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail.
-Working paper, Zenodo. DOI \href{https://doi.org/10.5281/zenodo.21756817}{10.5281/zenodo.21756817}.\par
-Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in
-Humanoid Robots. MSc thesis research, University of Hertfordshire.}
-
-\section{Technical Skills}
-{\small
-\textbf{Robotics and systems:} C++20, Python, ROS2 (Nav2, plugins), differential and property-based testing, CI/CD, Docker\\
-\textbf{AI and simulation:} PyTorch, TensorFlow, TensorRT, LLM evaluation and integration, Isaac Sim, MuJoCo, Gazebo, Unity\\
-\textbf{Embedded and full-stack:} ESP32, LoRa mesh, bare-metal C/C++, Jetson, React, TypeScript, PostgreSQL}
 
 \end{document}
