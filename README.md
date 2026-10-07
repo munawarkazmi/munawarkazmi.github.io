@@ -1,6 +1,6 @@
 # munawarkazmi.com
 
-The personal portfolio of **Munawar Kazmi**, Robotics & AI Research Engineer.
+The personal portfolio of **Munawar Kazmi**, Robotics & AI Engineer.
 
 Hand-written HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies:
 the page you see is the code in this repository, served by GitHub Pages behind a custom

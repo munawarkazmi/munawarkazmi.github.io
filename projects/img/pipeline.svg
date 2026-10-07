@@ -24,7 +24,7 @@
 
   <rect x="690" y="90" width="165" height="105" rx="14" fill="#24262C"/>
   <text x="772" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#E8D5B0">LoRa mesh alert</text>
-  <text x="772" y="148" text-anchor="middle" font-size="12" fill="#C3BFB6">under 3 s over 100 m</text>
+  <text x="772" y="148" text-anchor="middle" font-size="12" fill="#C3BFB6">carries alerts off the device</text>
   <text x="772" y="166" text-anchor="middle" font-size="12" fill="#979289">firmware confidential</text>
 
   <line x1="195" y1="142" x2="232" y2="142" stroke="#8B877D" stroke-width="2.5" marker-end="url(#arr)"/>

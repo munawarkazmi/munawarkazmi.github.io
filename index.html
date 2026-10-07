@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="5I5lqNTOpN7VVbSs31lBwRdbHxBGvP_rTF_GBlq-x4E" />
-<meta name="description" content="Munawar Kazmi · Robotics & AI Research Engineer. MSc AI & Robotics (Commendation), University of Hertfordshire. Human-robot interaction, LLM planner reliability, legible motion, edge AI deployment.">
+<meta name="description" content="Munawar Kazmi · Robotics & AI Engineer. ROS2 planners, embedded firmware and verification layers for robots that plan with language models, and the research behind them. MSc AI & Robotics (Commendation), University of Hertfordshire.">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#0A0A0C">
+<meta name="theme-color" content="#FCFCFD">
 <link rel="canonical" href="https://munawarkazmi.com/">
-<meta property="og:title" content="Munawar Kazmi · Robotics & AI Research Engineer">
-<meta property="og:description" content="Benchmarks that measure how LLM planners fail, verifiers that stop unsafe plans before hardware moves, and humanoids that communicate their intentions clearly. MSc (Commendation), University of Hertfordshire.">
+<meta property="og:title" content="Munawar Kazmi · Robotics & AI Engineer">
+<meta property="og:description" content="ROS2 planners, embedded firmware and verifiers that stop unsafe plans before hardware moves, and benchmarks that measure where LLM planners fail. MSc (Commendation), University of Hertfordshire.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Munawar Kazmi, Robotics & AI Research Engineer: teaching robots to say what they mean, and to know when they can't.">
+<meta property="og:image:alt" content="Munawar Kazmi, Robotics & AI Engineer: teaching robots to say what they mean, and to know when they can't.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://munawarkazmi.com/">
 <meta property="og:site_name" content="Munawar Kazmi">
@@ -22,2150 +22,218 @@
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-<title>Munawar Kazmi · Robotics &amp; AI Research Engineer</title>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-italic-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-latin.woff2" crossorigin>
-<script>document.documentElement.classList.add('js');</script>
+<title>Munawar Kazmi · Robotics &amp; AI Engineer</title>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-500-latin.woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
 <style>
-/* Self-hosted, so rendering text contacts no third party. Both families
-   are under the SIL Open Font License; the licences sit beside the files
-   in assets/fonts/. The weight ranges are declared rather than listed
-   because these are variable fonts: one file covers 300-600, and Fraunces
-   keeps its optical-size axis, which .hero-name relies on. */
-  @font-face {
-    font-family: 'Fraunces';
-    font-style: italic;
-    font-weight: 300 600;
-    font-display: swap;
-    src: url(assets/fonts/fraunces-italic-latin.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-  @font-face {
-    font-family: 'Fraunces';
-    font-style: italic;
-    font-weight: 300 600;
-    font-display: swap;
-    src: url(assets/fonts/fraunces-italic-latin-ext.woff2) format('woff2');
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-  @font-face {
-    font-family: 'Fraunces';
-    font-style: normal;
-    font-weight: 300 600;
-    font-display: swap;
-    src: url(assets/fonts/fraunces-normal-latin.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-  @font-face {
-    font-family: 'Fraunces';
-    font-style: normal;
-    font-weight: 300 600;
-    font-display: swap;
-    src: url(assets/fonts/fraunces-normal-latin-ext.woff2) format('woff2');
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 600;
-    font-display: swap;
-    src: url(assets/fonts/inter-normal-latin.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 600;
-    font-display: swap;
-    src: url(assets/fonts/inter-normal-latin-ext.woff2) format('woff2');
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-
-  :root {
-    --ink: #0A0A0C;
-    --ink2: #121214;
-    --ink3: #18181B;
-    --paper: #F7F5F0;
-    --accent: #C9A876;
-    --accent-bright: #E8D5B0;
-    --accent-soft: rgba(201, 168, 118, 0.12);
-    --accent-line: rgba(201, 168, 118, 0.25);
-    --accent-glow: rgba(201, 168, 118, 0.07);
-    --text-primary: #EDEAE3;
-    --text-dim: #9C988F;
-    --text-faint: #8B877D;
-    --hairline: rgba(237, 234, 227, 0.09);
-    --font-display: 'Fraunces', serif;
-    --font-body: 'Inter', sans-serif;
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-
-  body {
-    background: var(--ink);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-weight: 400;
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body.no-scroll { overflow: hidden; }
-
-  a { color: inherit; }
-  img { max-width: 100%; height: auto; display: block; }
-
-  ::selection { background: var(--accent); color: var(--ink); }
-
-  :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  .skip-link {
-    position: absolute;
-    top: -100px;
-    left: 1rem;
-    background: var(--accent);
-    color: var(--ink);
-    padding: 0.8rem 1.4rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    z-index: 1200;
-    transition: top 0.2s ease;
-  }
-  .skip-link:focus { top: 1rem; }
-
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
-    .reveal, .js .reveal {
-      opacity: 1 !important;
-      transform: none !important;
-      filter: none !important;
-    }
-    .preloader { display: none !important; }
-    .cursor-dot, .cursor-ring { display: none !important; }
-  }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--ink); }
-  ::-webkit-scrollbar-thumb { background: #3a3831; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
-
-  .wrap {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
-  /* ============ FILM GRAIN ============ */
-  .grain {
-    position: fixed;
-    inset: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 500;
-    pointer-events: none;
-    opacity: 0.032;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* ============ PRELOADER ============ */
-  .preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.85s var(--ease-inout), visibility 0s linear 0.85s;
-  }
-  html:not(.js) .preloader { display: none; }
-  .preloader.done {
-    transform: translateY(-100%);
-    visibility: hidden;
-  }
-  .preloader-inner { text-align: center; }
-  .preloader-mask {
-    overflow: hidden;
-    padding-bottom: 0.15em;
-    margin-bottom: 1.2rem;
-  }
-  .preloader-name {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    color: var(--text-primary);
-    transform: translateY(110%);
-    animation: preRise 0.9s 0.15s var(--ease-out) forwards;
-  }
-  .preloader-name em { font-style: italic; color: var(--accent); font-weight: 300; }
-  .preloader-line {
-    width: min(220px, 40vw);
-    height: 1px;
-    background: var(--hairline);
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .preloader-line span {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: preLine 0.9s 0.5s var(--ease-inout) forwards;
-  }
-  .preloader-tag {
-    margin-top: 1.1rem;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.28em;
-    color: var(--text-faint);
-    opacity: 0;
-    animation: preFade 0.7s 0.85s ease forwards;
-  }
-  @keyframes preRise { to { transform: translateY(0); } }
-  @keyframes preLine { to { transform: scaleX(1); } }
-  @keyframes preFade { to { opacity: 1; } }
-
-  /* ============ CUSTOM CURSOR ============ */
-  .cursor-dot, .cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 1100;
-    border-radius: 50%;
-    opacity: 0;
-  }
-  .cursor-dot {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(201, 168, 118, 0.5);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s ease, background 0.3s ease;
-  }
-  body.cursor-on .cursor-dot, body.cursor-on .cursor-ring { opacity: 1; }
-  body.cursor-hover .cursor-ring {
-    width: 58px; height: 58px;
-    border-color: rgba(201, 168, 118, 0.9);
-    background: rgba(201, 168, 118, 0.06);
-  }
-  body.cursor-hover .cursor-dot { opacity: 0.4; }
-  @media (hover: hover) and (pointer: fine) {
-    body.cursor-on, body.cursor-on a, body.cursor-on button { cursor: none; }
-  }
-
-  /* ============ SCROLL PROGRESS ============ */
-  .scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 2px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
-    transform-origin: left;
-    transform: scaleX(0);
-    z-index: 400;
-    pointer-events: none;
-  }
-
-  /* ============ NAV ============ */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 300;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem 4rem;
-    background: rgba(10, 10, 12, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid transparent;
-    transition: transform 0.45s var(--ease-out), background 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
-  }
-  body.scrolled nav {
-    background: rgba(10, 10, 12, 0.82);
-    border-bottom-color: var(--hairline);
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
-  }
-  body.nav-hidden nav { transform: translateY(-100%); }
-
-  .nav-name {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    color: var(--text-primary);
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-  .nav-name::after {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    align-self: center;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a:not(.nav-cta) {
-    font-size: 0.86rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.01em;
-    transition: color 0.25s ease;
-    background-image: linear-gradient(var(--accent), var(--accent));
-    background-size: 0% 1px;
-    background-repeat: no-repeat;
-    background-position: left calc(100% + 4px);
-    transition: color 0.25s ease, background-size 0.35s var(--ease-out);
-    padding-bottom: 5px;
-  }
-
-  .nav-links a:not(.nav-cta):hover { color: var(--text-primary); background-size: 100% 1px; }
-  .nav-links a.active { color: var(--accent); background-size: 100% 1px; }
-
-  .nav-cta {
-    font-size: 0.84rem;
-    font-weight: 500;
-    color: var(--ink) !important;
-    background: var(--accent);
-    padding: 0.55rem 1.3rem;
-    border-radius: 3px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-  .nav-cta:hover { box-shadow: 0 0 24px rgba(201, 168, 118, 0.35); }
-
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
-
-  /* ============ HERO ============ */
-  #hero {
-    min-height: 100vh;
-    min-height: 100svh; /* mobile browser chrome must not push the CTAs off-screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 7rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  #heroCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 55vw; height: 55vw;
-    max-width: 800px; max-height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-glow), transparent 65%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero-glow.g1 { top: -18%; right: -12%; animation: glowFloat 14s ease-in-out infinite alternate; }
-  .hero-glow.g2 { bottom: -30%; left: -15%; opacity: 0.7; animation: glowFloat 18s 2s ease-in-out infinite alternate-reverse; }
-  @keyframes glowFloat {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-4%, 5%) scale(1.12); }
-  }
-
-  .hero-inner { max-width: 1180px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-
-  .hero-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    border: 1px solid var(--hairline);
-    background: rgba(24, 24, 27, 0.5);
-    padding: 0.45rem 1rem;
-    border-radius: 30px;
-    margin-bottom: 1.6rem;
-    letter-spacing: 0.02em;
-  }
-  .pulse-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #7FBF7F;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .pulse-dot::after {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 1px solid rgba(127, 191, 127, 0.6);
-    animation: pulse 2.2s ease-out infinite;
-  }
-  @keyframes pulse {
-    0% { transform: scale(0.5); opacity: 1; }
-    100% { transform: scale(1.6); opacity: 0; }
-  }
-
-  .hero-eyebrow {
-    font-size: 0.84rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    margin-bottom: 1.75rem;
-  }
-
-  .hero-name {
-    font-family: var(--font-display);
-    font-optical-sizing: auto;
-    font-size: clamp(2.6rem, 6vw, 5.4rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    max-width: 880px;
-    margin-bottom: 1.9rem;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    font-weight: 300;
-    background: linear-gradient(110deg, var(--accent) 25%, var(--accent-bright) 50%, var(--accent) 75%);
-    background-size: 220% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 7s linear infinite;
-  }
-  @keyframes shimmer {
-    from { background-position: 120% 0; }
-    to { background-position: -120% 0; }
-  }
-
-  /* word-split animation */
-  /* background-clip:text doesn't reach inline-block children, so when the
-     headline is split into word spans the gradient moves onto each span */
-  .hero-name.split em { background: none; animation: none; color: var(--accent); }
-  .hero-name.split em .wi {
-    background: linear-gradient(110deg, var(--accent) 25%, var(--accent-bright) 50%, var(--accent) 75%);
-    background-size: 220% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 7s linear infinite;
-  }
-  .hero-name.split .w { display: inline-block; overflow: hidden; padding-bottom: 0.13em; margin-bottom: -0.13em; vertical-align: bottom; }
-  .hero-name.split .wi { display: inline-block; transform: translateY(115%); transition: transform 1s var(--ease-out) calc(0.25s + var(--i, 0) * 0.05s); }
-  body.ready .hero-name.split .wi { transform: translateY(0); }
-
-  /* staged hero entrance (JS-gated so no-JS users see everything) */
-  .js .hero-status, .js .hero-eyebrow, .js .hero-desc, .js .hero-credential, .js .hero-cta-row, .js .stat-row, .js .hero-scroll-hint {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.9s ease, transform 0.9s var(--ease-out);
-  }
-  .js .hero-status { transition-delay: 0.15s; }
-  .js .hero-eyebrow { transition-delay: 0.25s; }
-  .js .hero-desc { transition-delay: 0.55s; }
-  .js .hero-credential { transition-delay: 0.62s; }
-  .js .hero-cta-row { transition-delay: 0.7s; }
-  .js .stat-row { transition-delay: 0.9s; }
-  .js .hero-scroll-hint { transition-delay: 1.3s; }
-  body.ready .hero-status, body.ready .hero-eyebrow, body.ready .hero-desc,
-  body.ready .hero-credential, body.ready .hero-cta-row, body.ready .stat-row, body.ready .hero-scroll-hint {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .hero-desc {
-    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin-bottom: 0.85rem;
-  }
-
-  .hero-desc strong { color: var(--text-primary); font-weight: 500; }
-
-  .hero-credential {
-    font-size: 0.92rem;
-    color: var(--text-faint);
-    margin-bottom: 2.6rem;
-  }
-  .hero-credential strong { color: var(--text-dim); font-weight: 500; }
-
-  .hero-cta-row {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary, .btn-secondary {
-    position: relative;
-    display: inline-block;
-    font-size: 0.88rem;
-    font-weight: 500;
-    padding: 0.85rem 1.8rem;
-    border-radius: 3px;
-    text-decoration: none;
-    letter-spacing: 0.01em;
-    overflow: hidden;
-    will-change: transform;
-  }
-
-  .btn-primary {
-    color: var(--ink);
-    background: var(--accent);
-    transition: box-shadow 0.3s ease;
-  }
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -80%;
-    width: 60%; height: 100%;
-    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.55s var(--ease-out);
-  }
-  .btn-primary:hover::before { left: 130%; }
-  .btn-primary:hover { box-shadow: 0 0 32px rgba(201, 168, 118, 0.4); }
-
-  .btn-secondary {
-    color: var(--text-primary);
-    background: transparent;
-    border: 1px solid var(--text-faint);
-    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
-  }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-
-  .gesture-line {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 340px;
-    height: 340px;
-    opacity: 0;
-    animation: fadeIn 1.4s 1.4s ease forwards;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .gesture-line svg { width: 100%; height: 100%; overflow: visible; }
-  .gesture-path {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1;
-    stroke-linecap: round;
-    opacity: 0.5;
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    animation: draw 2.2s 1.6s var(--ease-inout) forwards;
-  }
-  .gesture-dot {
-    fill: var(--accent);
-    opacity: 0;
-    animation: dotFade 0.6s 3.6s ease forwards;
-  }
-
-  .stat-row {
-    display: flex;
-    gap: 3.2rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-    padding-top: 2.4rem;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .stat { display: flex; flex-direction: column; gap: 0.3rem; }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 1.85rem;
-    font-weight: 400;
-  }
-  .stat-label {
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    max-width: 160px;
-  }
-
-  .hero-scroll-hint {
-    position: absolute;
-    bottom: 2.2rem;
-    left: 50%;
-    margin-left: -12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    z-index: 1;
-  }
-  .hero-scroll-hint .mouse {
-    width: 22px; height: 36px;
-    border: 1px solid var(--text-faint);
-    border-radius: 12px;
-    position: relative;
-  }
-  .hero-scroll-hint .mouse::after {
-    content: '';
-    position: absolute;
-    top: 7px; left: 50%;
-    width: 3px; height: 7px;
-    margin-left: -1.5px;
-    border-radius: 2px;
-    background: var(--accent);
-    animation: scrollNudge 1.8s ease-in-out infinite;
-  }
-  @keyframes scrollNudge {
-    0%, 100% { transform: translateY(0); opacity: 1; }
-    55% { transform: translateY(9px); opacity: 0.2; }
-    60% { transform: translateY(0); opacity: 0; }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn { to { opacity: 1; } }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes dotFade { to { opacity: 0.9; } }
-
-  /* On a phone the hero has to stay close to one screen, or the first
-     project is two deliberate swipes away. Same content, tighter metrics. */
-  @media (max-width: 600px) {
-    #hero { padding-top: 6rem; padding-bottom: 3rem; }
-    .hero-status { margin-bottom: 1.1rem; font-size: 0.75rem; padding: 0.4rem 0.85rem; }
-    .hero-eyebrow { margin-bottom: 1.1rem; font-size: 0.76rem; }
-    .hero-name { font-size: clamp(2.05rem, 8.6vw, 2.6rem); margin-bottom: 1.3rem; }
-    .hero-desc { font-size: 0.98rem; margin-bottom: 0.7rem; }
-    .hero-credential { font-size: 0.85rem; margin-bottom: 1.8rem; }
-    .hero-cta-row { gap: 0.6rem; }
-    .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary {
-      padding: 0.72rem 1.15rem;
-      font-size: 0.82rem;
-    }
-    /* number beside label, rather than three tall stacked blocks */
-    .stat-row { flex-direction: column; gap: 1rem; margin-top: 2.2rem; padding-top: 1.6rem; }
-    .stat { flex-direction: row; align-items: baseline; gap: 0.9rem; }
-    .stat-num { font-size: 1.45rem; min-width: 66px; flex-shrink: 0; }
-    .stat-label { max-width: none; flex: 1; font-size: 0.76rem; line-height: 1.45; }
-  }
-
-  /* ============ MARQUEE ============ */
-  @keyframes marquee { to { transform: translateX(-50%); } }
-
-  /* ============ SECTION SCAFFOLDING ============ */
-  section { padding: 4.25rem 0; position: relative; }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 26px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.6;
-  }
-  .eyebrow-num {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--text-faint);
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-    font-weight: 400;
-    line-height: 1.15;
-    max-width: 700px;
-    margin-bottom: 1.2rem;
-  }
-
-  .section-title em { font-style: italic; color: var(--accent); font-weight: 300; }
-
-  .section-lede {
-    font-size: 1.02rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    max-width: 560px;
-    line-height: 1.7;
-  }
-
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(26px);
-    filter: blur(5px);
-    transition: opacity 0.9s ease, transform 0.9s var(--ease-out), filter 0.9s ease;
-  }
-  .js .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
-
-  /* spotlight cards: gold glow follows the mouse via --mx / --my */
-  .spotlight {
-    position: relative;
-  }
-  .spotlight::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(201, 168, 118, 0.09), transparent 65%);
-    opacity: 0;
-    transition: opacity 0.45s ease;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .spotlight:hover::before { opacity: 1; }
-  .spotlight > * { position: relative; z-index: 1; }
-
-  /* ============ ABOUT ============ */
-  #about { background: var(--ink2); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 5rem;
-    margin-top: 2.4rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    font-size: 1.02rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    line-height: 1.8;
-    margin-bottom: 1.4rem;
-  }
-
-  .about-text strong { color: var(--text-primary); font-weight: 500; }
-
-  .about-credentials {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-
-  .about-photo {
-    width: 140px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--hairline);
-    position: relative;
-  }
-
-  .about-photo img {
-    width: 140px;
-    height: 140px;
-    max-width: 140px;
-    max-height: 140px;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(25%) contrast(1.05) brightness(0.96);
-    transition: filter 0.6s ease, transform 0.6s var(--ease-out);
-  }
-  .about-photo:hover img { filter: grayscale(0%) contrast(1.05) brightness(1); transform: scale(1.06); }
-
-  .credential {
-    border-left: 1px solid var(--accent-line);
-    padding-left: 1.4rem;
-    transition: border-color 0.3s ease, padding-left 0.3s var(--ease-out);
-  }
-  .credential:hover { border-color: var(--accent); padding-left: 1.7rem; }
-
-  .credential-degree {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-  }
-
-  .credential-meta {
-    font-size: 0.86rem;
-    color: var(--text-dim);
-  }
-
-
-  @media (max-width: 980px) {
-    .wrap, nav, #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .dual-track { grid-template-columns: 1fr; }
-    .gesture-line { display: none; }
-    .hero-scroll-hint { display: none; }
-  }
-  /* Ten items at a 2rem gap wrap to a second row just under 1200px, so the
-     menu collapses at 1240 rather than meeting that edge exactly. Measured
-     rather than guessed: the list is 912px, the name 146px, and at 1245 the
-     two clear each other by 53px. */
-  @media (max-width: 1240px) {
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      background: var(--ink2);
-      border-bottom: 1px solid var(--hairline);
-      padding: 0.5rem 1.5rem 1.2rem;
-    }
-    .nav-links.open { display: flex; animation: menuDrop 0.35s var(--ease-out); }
-    .nav-links li { width: 100%; padding: 0.75rem 0; border-bottom: 1px solid var(--hairline); }
-    .nav-links li:last-child { border-bottom: none; padding-top: 1rem; }
-    .nav-links a { display: block; }
-    .nav-cta { display: inline-block; }
-    .nav-toggle { display: block; }
-  }
-
-  @keyframes menuDrop {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ============ FEATURED RESEARCH ============ */
-  #work { background: var(--ink); }
-
-  .research-card {
-    margin-top: 2.4rem;
-    background: var(--ink3);
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-  .research-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-line);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  }
-
-  .research-card-body { padding: 2.2rem 2.4rem; }
-
-  .research-platform-tag {
-    display: inline-block;
-    font-size: 0.78rem;
-    color: var(--accent);
-    border: 1px solid var(--accent-line);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-  }
-
-  .research-title {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-    max-width: 640px;
-  }
-
-  .research-supervisor {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    margin-bottom: 1.8rem;
-  }
-
-  .research-desc {
-    font-size: 0.98rem;
-    color: var(--text-dim);
-    line-height: 1.75;
-    max-width: 680px;
-    margin-bottom: 1.6rem;
-  }
-
-  .research-platform-note {
-    background: var(--ink2);
-    border-left: 2px solid var(--accent);
-    padding: 1.1rem 1.4rem;
-    margin: 1.8rem 0;
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    line-height: 1.65;
-    max-width: 680px;
-  }
-
-  .research-platform-note strong { color: var(--text-primary); font-weight: 500; }
-
-  .research-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--hairline);
-    margin-top: 2rem;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .research-stat {
-    background: var(--ink3);
-    padding: 1.6rem 1.8rem;
-    transition: background 0.3s ease;
-  }
-  .research-stat:hover { background: #1d1d21; }
-
-  .research-stat-num {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-
-  .research-stat-label {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    line-height: 1.4;
-  }
-
-  .research-quote {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--hairline);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-    max-width: 600px;
-  }
-
-  .research-quote-attr {
-    margin-top: 1rem;
-    font-family: var(--font-body);
-    font-style: normal;
-    font-size: 0.84rem;
-    color: var(--text-faint);
-  }
-
-  .research-photo-single { max-width: 340px; margin-bottom: 1.8rem; }
-
-  .research-photo {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--hairline);
-  }
-
-  .research-photo img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(20%) contrast(1.05);
-    transition: filter 0.6s ease, transform 0.8s var(--ease-out);
-  }
-  .research-photo:hover img { filter: grayscale(0%) contrast(1.05); transform: scale(1.05); }
-
-  .research-photo-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(10,10,12,0.88), transparent);
-    padding: 1rem 1rem 0.6rem;
-    font-size: 0.78rem;
-    color: var(--text-primary);
-    letter-spacing: 0.01em;
-  }
-
-  .trust-demo {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--hairline);
-  }
-  .trust-demo-label {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin-bottom: 1.2rem;
-  }
-  .trust-toggle {
-    display: inline-flex;
-    background: var(--ink2);
-    border-radius: 6px;
-    padding: 4px;
-    gap: 4px;
-    margin-bottom: 1.1rem;
-  }
-  .trust-toggle-btn {
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    background: transparent;
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .trust-toggle-btn.active { background: var(--accent); color: var(--ink); }
-  .trust-caption { font-size: 0.84rem; color: var(--text-dim); margin-bottom: 1.1rem; }
-  .trust-bar-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-    max-width: 420px;
-  }
-  .trust-bar-val { color: var(--text-primary); font-weight: 500; }
-  .trust-bar-track {
-    max-width: 420px;
-    height: 8px;
-    background: var(--ink2);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .trust-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
-    border-radius: 4px;
-    transition: width 0.7s var(--ease-out);
-  }
-
-  .research-videos {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .research-videos-label {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin-bottom: 1.4rem;
-  }
-
-  .research-videos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    max-width: 480px;
-  }
-
-  .research-video {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--hairline);
-    background: var(--ink2);
-    transition: border-color 0.3s ease;
-  }
-  .research-video:hover { border-color: var(--accent-line); }
-
-  .research-video-frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    background: #000;
-  }
-
-  .research-video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  /* Click-to-load facade: YouTube is only contacted once a visitor asks for
-     the video, so the page sets no third-party cookies and loads ~2.5s faster. */
-  .video-facade {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9rem;
-    background: radial-gradient(circle at 50% 42%, #1c1c20, #0a0a0c 72%);
-    color: var(--text-dim);
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    transition: background 0.35s ease, color 0.35s ease;
-  }
-  .video-facade:hover { background: radial-gradient(circle at 50% 42%, #24242a, #0a0a0c 72%); color: var(--text-primary); }
-  .video-facade-play {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    border: 1px solid var(--accent-line);
-    background: rgba(201, 168, 118, 0.1);
-    display: grid;
-    place-items: center;
-    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-out);
-  }
-  .video-facade:hover .video-facade-play {
-    border-color: var(--accent);
-    background: rgba(201, 168, 118, 0.18);
-    transform: scale(1.07);
-  }
-  .video-facade-play::after {
-    content: '';
-    width: 0; height: 0;
-    margin-left: 4px;
-    border-left: 13px solid var(--accent);
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-  }
-
-  .research-video-caption {
-    padding: 0.9rem 1rem;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  .research-video-caption strong { color: var(--text-primary); font-weight: 500; }
-
-  @media (max-width: 980px) {
-    .research-card-body { padding: 2rem; }
-    .research-stats { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 600px) {
-    .research-videos-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 0.8rem; }
-  }
-
-  /* ============ EXPERIENCE ============ */
-  #experience { background: var(--ink2); }
-
-  .timeline { margin-top: 2.4rem; position: relative; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    width: 1px;
-    background: var(--hairline);
-  }
-  .timeline::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent-bright));
-    transform: scaleY(var(--tlp, 0));
-    transform-origin: top;
-  }
-  html:not(.js) .timeline::after { transform: scaleY(1); }
-
-  .timeline-item {
-    position: relative;
-    padding-left: 2.6rem;
-    padding-bottom: 3rem;
-  }
-  .timeline-item:last-child { padding-bottom: 0; }
-
-  .timeline-dot {
-    position: absolute;
-    left: -4px;
-    top: 0.4rem;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-    z-index: 1;
-  }
-  .js .timeline-item.reveal .timeline-dot { transform: scale(0); transition: transform 0.5s 0.35s var(--ease-out); }
-  .js .timeline-item.reveal.visible .timeline-dot { transform: scale(1); }
-  .timeline-dot::after {
-    content: '';
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    border: 1px solid var(--accent-line);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .timeline-item:hover .timeline-dot::after { opacity: 1; }
-
-  .timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .timeline-role {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-
-  .timeline-date {
-    font-size: 0.82rem;
-    color: var(--text-faint);
-  }
-
-  .timeline-company {
-    font-size: 0.9rem;
-    color: var(--accent);
-    margin-bottom: 0.9rem;
-  }
-
-  .timeline-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .timeline-bullets li {
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    line-height: 1.65;
-    padding-left: 1.1rem;
-    position: relative;
-    max-width: 680px;
-  }
-
-  .timeline-bullets li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.65em;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--text-faint);
-  }
-
-  .timeline-bullets strong { color: var(--text-primary); font-weight: 500; }
-
-  /* ============ PROJECTS ============ */
-
-  .project-filters {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-  .project-filter-btn {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    padding: 0.5rem 1.1rem;
-    border: 1px solid var(--hairline);
-    border-radius: 20px;
-    background: transparent;
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease-out);
-  }
-  .project-filter-btn:hover { border-color: var(--accent-line); color: var(--text-primary); transform: translateY(-2px); }
-  .project-filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--ink); }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-    perspective: 1200px;
-  }
-  .project-card.filtered-out { display: none; }
-
-  .project-card {
-    background: var(--ink3);
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 2rem;
-    transition: border-color 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.3s ease;
-    will-change: transform;
-  }
-  .project-card:hover { border-color: var(--accent-line); box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); }
-  html.no-tilt .project-card:hover { transform: translateY(-4px); }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .project-tag {
-    font-size: 0.74rem;
-    color: var(--text-dim);
-    border: 1px solid var(--hairline);
-    padding: 0.25rem 0.65rem;
-    border-radius: 20px;
-    transition: border-color 0.25s ease, color 0.25s ease;
-  }
-  .project-card:hover .project-tag { border-color: var(--accent-line); color: var(--text-primary); }
-
-  .project-title {
-    font-family: var(--font-display);
-    font-size: 1.18rem;
-    font-weight: 500;
-    margin-bottom: 0.8rem;
-  }
-
-  .project-desc {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    line-height: 1.65;
-    margin-bottom: 1.3rem;
-  }
-
-  /* Second tier: the work that supports the research line rather than carrying
-     it. Same card, less of it, so the grid still reads as one set. */
-  .project-card-compact { padding: 1.6rem 1.8rem; }
-  .project-card-compact .project-title { font-size: 1.05rem; }
-  .project-card-compact .project-desc { margin-bottom: 1rem; }
-
-  .project-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .project-metric-num {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    color: var(--accent);
-  }
-
-  .project-metric-label {
-    font-size: 0.74rem;
-    color: var(--text-faint);
-  }
-
-  .project-link {
-    font-size: 0.84rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent-line);
-    padding-bottom: 2px;
-    transition: border-color 0.25s ease, color 0.25s ease;
-  }
-  .project-link:hover { color: var(--accent); border-color: var(--accent); }
-
-  @media (max-width: 980px) {
-    .projects-grid { grid-template-columns: 1fr; }
-  }
-
-  /* The guides are a different mode of reading, not more projects, so this is
-     deliberately not shaped like a project card. */
-  .guides-callout {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 1.6rem;
-    padding: 1.8rem 2rem;
-    border: 1px solid var(--accent-line);
-    border-radius: 10px;
-    background: linear-gradient(115deg, rgba(201, 168, 118, 0.08), rgba(201, 168, 118, 0.02) 55%, transparent);
-    text-decoration: none;
-    transition: border-color 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.3s ease;
-  }
-  .guides-callout:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
-  }
-  .guides-callout-label {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-  }
-  .guides-callout-title {
-    font-family: var(--font-display); font-size: 1.35rem; font-weight: 500;
-    color: var(--text-primary); margin-bottom: 0.55rem;
-  }
-  .guides-callout-title em { font-style: italic; font-weight: 300; color: var(--accent); }
-  .guides-callout-text { font-size: 0.9rem; color: var(--text-dim); max-width: 640px; line-height: 1.65; }
-  .guides-callout-cta {
-    flex-shrink: 0; font-size: 0.86rem; font-weight: 500;
-    color: var(--ink); background: var(--accent);
-    padding: 0.75rem 1.5rem; border-radius: 3px; white-space: nowrap;
-    transition: box-shadow 0.3s ease;
-  }
-  .guides-callout:hover .guides-callout-cta { box-shadow: 0 0 26px rgba(201, 168, 118, 0.4); }
-
-  @media (max-width: 600px) {
-    .guides-callout { padding: 1.4rem; gap: 1.1rem; }
-    .guides-callout-title { font-size: 1.12rem; }
-    .guides-callout-cta { width: 100%; text-align: center; }
-  }
-
-  /* ============ SKILLS ============ */
-  #skills { background: var(--ink2); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--hairline);
-    margin-top: 2.4rem;
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .skill-col { background: var(--ink2); padding: 2rem 1.8rem; transition: background 0.35s ease; }
-  .skill-col:hover { background: var(--ink3); }
-
-  .skill-cat {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.03em;
-    margin-bottom: 1.2rem;
-  }
-
-  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .skill-list li {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    position: relative;
-    padding-left: 0;
-    transition: color 0.25s ease, padding-left 0.3s var(--ease-out);
-  }
-  .skill-list li::before {
-    content: '→';
-    position: absolute;
-    left: -2px;
-    color: var(--accent);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  .skill-list li:hover { color: var(--text-primary); padding-left: 1.2rem; }
-  .skill-list li:hover::before { opacity: 1; }
-
-  @media (max-width: 980px) {
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    /* two narrow columns read better here than four full-width blocks
-       that spend 1,400px of scroll on 57 words */
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .skill-col { padding: 1.4rem 1.2rem; }
-    .skill-list li { font-size: 0.84rem; }
-  }
-
-  /* ============ PUBLICATIONS ============ */
-  #publications { background: var(--ink); }
-
-  .pub-card {
-    margin-top: 2.4rem;
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 1.7rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap;
-    transition: transform 0.35s var(--ease-out), border-color 0.35s ease, box-shadow 0.35s ease;
-  }
-  .pub-card:hover { transform: translateY(-4px); border-color: var(--accent-line); box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35); }
-
-  /* Without this the wider cards push their action button onto a second line,
-     so it lands bottom-left on some cards and top-right on others. */
-  .pub-body { flex: 1 1 420px; min-width: 0; }
-  .pub-card > .pub-status { flex-shrink: 0; }
-
-  .pub-title {
-    font-family: var(--font-display);
-    font-size: 1.18rem;
-    font-weight: 500;
-    max-width: 600px;
-    margin-bottom: 0.5rem;
-  }
-
-  .pub-authors { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.3rem; }
-  .pub-venue { font-size: 0.84rem; color: var(--text-faint); margin-bottom: 0.75rem; }
-
-  .pub-link {
-    display: inline-block;
-    font-size: 0.84rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent-line);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .pub-link:hover { color: var(--accent); border-color: var(--accent); }
-
-  .copy-btn {
-    font-family: var(--font-body);
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  .pub-copy-btn {
-    display: inline-block;
-    margin-top: 0.8rem;
-    margin-left: 1rem;
-    font-size: 0.84rem;
-    color: var(--text-dim);
-    border-bottom: 1px solid var(--hairline);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .pub-copy-btn:hover { color: var(--text-primary); border-color: var(--accent-line); }
-
-  .pub-status {
-    display: inline-block;
-    font-size: 0.76rem;
-    color: var(--accent);
-    border: 1px solid var(--accent-line);
-    padding: 0.3rem 0.85rem;
-    border-radius: 20px;
-    white-space: nowrap;
-    text-decoration: none;
-    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
-  }
-  a.pub-status:hover {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--accent-bright);
-  }
-
-  /* ============ SPEAKING & REFERENCES ============ */
-  #speaking { background: var(--ink2); }
-
-  /* Two kinds of evidence in one section: what he did in the room,
-     and what the people in it said afterwards. */
-  .group-label {
-    font-size: 0.76rem;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 3rem 0 1.1rem;
-  }
-  .group-label:first-of-type { margin-top: 2.4rem; }
-
-  .speaking-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    perspective: 1200px;
-  }
-
-  .speaking-card {
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 2rem;
-    overflow: hidden;
-    transition: transform 0.3s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
-    will-change: transform;
-    background: var(--ink2);
-  }
-  .speaking-card:hover { border-color: var(--accent-line); box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); }
-  html.no-tilt .speaking-card:hover { transform: translateY(-4px); }
-
-  .speaking-photo {
-    display: block;
-    width: calc(100% + 4rem);
-    margin: -2rem -2rem 1.5rem -2rem;
-    max-width: none;
-    height: 132px;
-    object-fit: cover;
-    filter: grayscale(15%) contrast(1.05);
-    transition: filter 0.6s ease, transform 0.8s var(--ease-out);
-  }
-  .speaking-card:hover .speaking-photo { filter: grayscale(0%) contrast(1.05); }
-
-  .speaking-meta {
-    font-size: 0.76rem;
-    color: var(--accent);
-    letter-spacing: 0.03em;
-    margin-bottom: 0.8rem;
-  }
-
-  .speaking-event {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.7rem;
-  }
-
-  .speaking-detail { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; }
-
-  @media (max-width: 980px) {
-    .speaking-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ============ TESTIMONIALS ============ */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .testimonial-card {
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 2.2rem;
-    /* raised off the ink2 section, matching every other card on this page */
-    background: var(--ink3);
-    transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
-  }
-  .testimonial-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-
-  .quote-mark {
-    font-family: var(--font-display);
-    font-size: 2.6rem;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .testimonial-text {
-    font-size: 0.94rem;
-    color: var(--text-dim);
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-
-  .author-name { font-size: 0.92rem; font-weight: 500; color: var(--text-primary); }
-  .author-role { font-size: 0.8rem; color: var(--text-faint); margin-top: 0.2rem; }
-
-  @media (max-width: 980px) {
-    .testimonials-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ============ CONTACT ============ */
-  #contact {
-    background: var(--ink2);
-    text-align: center;
-    padding: 8rem 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-glow {
-    position: absolute;
-    left: 50%; top: 40%;
-    width: 70vw; height: 70vw;
-    max-width: 900px; max-height: 900px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-glow), transparent 60%);
-    pointer-events: none;
-    animation: glowFloat 16s ease-in-out infinite alternate;
-  }
-
-  #contact .wrap { position: relative; z-index: 1; }
-
-  .contact-eyebrow {
-    font-size: 0.84rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-    font-weight: 400;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-  }
-  .contact-title em {
-    font-style: italic;
-    font-weight: 300;
-    background: linear-gradient(110deg, var(--accent) 25%, var(--accent-bright) 50%, var(--accent) 75%);
-    background-size: 220% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 7s linear infinite;
-  }
-
-  .contact-sub {
-    font-size: 1.02rem;
-    color: var(--text-dim);
-    max-width: 540px;
-    margin: 0 auto 3rem;
-    line-height: 1.7;
-  }
-
-  .contact-tracks {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    max-width: 720px;
-    margin: 0 auto 3rem;
-    text-align: left;
-  }
-
-  .contact-track-card {
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 1.8rem;
-    background: var(--ink2);
-    transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
-  }
-  .contact-track-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-
-  .contact-track-label {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.03em;
-    margin-bottom: 0.7rem;
-  }
-
-  .contact-track-text {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-  }
-
-  .contact-track-link {
-    font-size: 0.86rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent-line);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .contact-track-link:hover { color: var(--accent); border-color: var(--accent); }
-
-  .contact-email-big {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: clamp(1.15rem, 2.6vw, 1.8rem);
-    font-weight: 400;
-    color: var(--text-primary);
-    text-decoration: none;
-    margin-bottom: 3rem;
-    position: relative;
-    padding-bottom: 6px;
-    transition: color 0.3s ease;
-    word-break: break-all;
-  }
-  .contact-email-big::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 100%; height: 1px;
-    background: var(--accent);
-    transform: scaleX(0.25);
-    transform-origin: left;
-    opacity: 0.5;
-    transition: transform 0.5s var(--ease-out), opacity 0.3s ease;
-  }
-  .contact-email-big:hover { color: var(--accent); }
-  .contact-email-big:hover::after { transform: scaleX(1); opacity: 1; }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 2.2rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-
-  .contact-link {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-  .contact-link:hover { color: var(--accent); }
-
-  @media (max-width: 980px) {
-    .contact-tracks { grid-template-columns: 1fr; }
-  }
-
-  /* ============ FOOTER ============ */
-  footer {
-    background: var(--ink2);
-    border-top: 1px solid var(--hairline);
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: var(--text-faint);
-  }
-  @media (max-width: 600px) {
-    footer { flex-direction: column; gap: 0.6rem; padding: 2rem 1.5rem; text-align: center; }
-  }
-
-  /* ============ BACK TO TOP ============ */
-  .back-to-top {
-    position: fixed;
-    right: 1.6rem;
-    bottom: 1.6rem;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--hairline);
-    background: rgba(24, 24, 27, 0.8);
-    backdrop-filter: blur(10px);
-    color: var(--text-dim);
-    font-size: 1rem;
-    cursor: pointer;
-    z-index: 350;
-    opacity: 0;
-    transform: translateY(12px);
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s var(--ease-out), border-color 0.3s ease, color 0.3s ease;
-  }
-  .back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .back-to-top:hover { border-color: var(--accent); color: var(--accent); }
-  /* ============ Now section ============ */
-  .now-card {
-    border: 1px solid var(--hairline);
-    background: rgba(24, 24, 27, 0.5);
-    border-radius: 14px;
-    padding: 2rem 2.2rem;
-    margin-top: 2.4rem;
-  }
-  .now-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.1rem;
-  }
-  .now-live {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .now-commit {
-    font-size: 0.85rem;
-    color: var(--text-faint);
-    border-top: 1px solid var(--hairline);
-    padding-top: 1rem;
-  }
-  .now-commit-msg { color: var(--accent); font-style: italic; }
-  .now-meta {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    margin-top: 0.5rem;
-  }
-  .work-divider { margin-top: 5rem; }
-  .work-subhead {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-  }
-  .work-subhead em { font-style: italic; color: var(--accent); }
-  .now-lead {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin: 0.5rem 0 1.5rem;
-  }
-  .now-figure {
-    margin: 0 0 1.5rem;
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--ink2);
-  }
-  .now-figure img { display: block; width: 100%; height: auto; }
-  .now-figure figcaption {
-    font-size: 0.82rem;
-    color: var(--text-faint);
-    padding: 0.7rem 0.9rem;
-    border-top: 1px solid var(--hairline);
-  }
-  .now-table-title {
-    font-size: 0.74rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 1.6rem 0 0.6rem;
-  }
-  .now-table-scroll { overflow-x: auto; }
-  .now-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .now-table th {
-    text-align: left;
-    font-weight: 400;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    padding: 0 1.1rem 0.45rem 0;
-    border-bottom: 1px solid var(--hairline);
-    white-space: nowrap;
-  }
-  .now-table td {
-    padding: 0.42rem 1.1rem 0.42rem 0;
-    color: var(--text-dim);
-    border-bottom: 1px solid rgba(237, 234, 227, 0.045);
-    white-space: nowrap;
-  }
-  .now-table td:first-child { color: var(--text-primary); }
-  .now-table tr:last-child td { border-bottom: none; }
-  .now-table .mark { color: var(--accent); }
-  .now-note {
-    font-size: 0.85rem;
-    color: var(--text-faint);
-    margin: 0.9rem 0 0;
-  }
-
-  /* The measurements stay on the page in full; they just don't cost every
-     visitor 1,200 words before they reach the projects. */
-  .now-more { margin-top: 1.4rem; border-top: 1px solid var(--hairline); }
-  .now-more > summary {
-    list-style: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 1rem 0 0.2rem;
-    font-size: 0.74rem;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent);
-    transition: color 0.25s ease;
-  }
-  .now-more > summary::-webkit-details-marker { display: none; }
-  .now-more > summary::after {
-    content: '';
-    width: 6px; height: 6px;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
-    transform: translateY(-2px) rotate(45deg);
-    transition: transform 0.3s var(--ease-out);
-  }
-  .now-more[open] > summary::after { transform: translateY(1px) rotate(-135deg); }
-  .now-more > summary:hover { color: var(--accent-bright); }
-  .now-more-body { padding-top: 0.6rem; }
-  .now-more[open] > .now-more-body { animation: nowOpen 0.45s var(--ease-out); }
-  @keyframes nowOpen {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: none; }
-  }
-  .now-more-body > .now-table-title:first-child { margin-top: 0.6rem; }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px; height: 1px;
-    margin: -1px; padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  @media (max-width: 640px) {
-    .now-card { padding: 1.4rem 1.2rem; }
-  }
-
-  /* ============ MOBILE DENSITY ============
-     Section rhythm tuned for a 1440px canvas costs roughly a screen of
-     scrolling per section on a phone. Same content, proportionate spacing. */
-  @media (max-width: 600px) {
-    section { padding: 3.75rem 0; }
-    #contact { padding: 5rem 0; }
-    .about-grid, .timeline, .skills-grid { margin-top: 2.2rem; }
-    .group-label { margin: 2rem 0 0.9rem; }
-    .group-label:first-of-type { margin-top: 1.8rem; }
-    .research-card, .pub-card { margin-top: 2.2rem; }
-    .research-card-body { padding: 1.5rem 1.3rem; }
-    .project-card { padding: 1.5rem 1.4rem; }
-    .pub-card { padding: 1.6rem 1.4rem; gap: 1rem; }
-    .testimonial-card { padding: 1.6rem 1.4rem; }
-    .speaking-card { padding: 1.5rem; }
-    .speaking-photo { width: calc(100% + 3rem); margin: -1.5rem -1.5rem 1.2rem -1.5rem; height: 150px; }
-    .timeline-item { padding-bottom: 2.2rem; }
-    .quote-mark { font-size: 2rem; margin-bottom: 0.2rem; }
-    .research-stat { padding: 1.1rem 1.2rem; }
-  }
-
-  /* ============ PRINT ============
-     Someone printing this, or saving it as a PDF to send on, is reading it
-     more seriously than most visitors. The screen palette does not survive
-     the trip: the gold emphasis sits at 2.06:1 on white, so "what they mean"
-     and "when they can't" vanish and the headline prints as "Teaching robots
-     to say , and to know".
-
-     Every colour on the page comes from a token and none is hardcoded, so
-     redefining the tokens re-inks the whole document. The values below were
-     each checked against white: the lightest is 7.36:1, so the printed page
-     clears AAA throughout rather than merely being readable. */
-  @media print {
-    :root {
-      --ink: #FFFFFF;
-      --ink2: #FFFFFF;
-      --ink3: #FFFFFF;
-      --paper: #FFFFFF;
-      --accent: #6B5220;
-      --accent-bright: #4A3814;
-      --accent-soft: rgba(107, 82, 32, 0.07);
-      --accent-line: rgba(107, 82, 32, 0.40);
-      --accent-glow: transparent;
-      --text-primary: #14141A;
-      --text-dim: #3F3F47;
-      --text-faint: #55555E;
-      --hairline: rgba(0, 0, 0, 0.20);
-    }
-
-    @page { margin: 16mm; }
-
-    body { background: #FFFFFF; color: #14141A; }
-
-    /* Furniture that means nothing on paper */
-    .preloader, .grain, .scroll-progress, .cursor-dot, .cursor-ring,
-    #siteNav, .skip-link, .back-to-top, #heroCanvas,
-    .hero-glow, .gesture-line, .hero-scroll-hint, .contact-glow,
-    .project-filters, .copy-btn, .trust-toggle, .video-facade,
-    .research-video-frame { display: none !important; }
-
-    /* The reveal observer never runs for a print rendering, and nothing
-       on the page may depend on it having run. */
-    .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
-    .js .hero-status, .js .hero-eyebrow, .js .hero-desc, .js .hero-credential,
-    .js .hero-cta-row, .js .stat-row { opacity: 1 !important; transform: none !important; }
-    .pulse-dot { display: none; }
-
-    /* The shimmer on the emphasised words is a gradient painted into the
-       glyphs, with the text itself transparent. Print discards the gradient
-       and keeps the transparency, which is what deletes half the headline.
-       These have to become ordinary coloured text before anything else. */
-    .hero-name em, .hero-name.split em, .hero-name.split em .wi,
-    .contact-title em {
-      background: none !important;
-      -webkit-background-clip: border-box !important;
-      background-clip: border-box !important;
-      color: var(--accent) !important;
-      animation: none !important;
-    }
-    /* The headline words start translated out of a clipping box and are let
-       in by JS; a print rendering must not depend on that having finished. */
-    .hero-name.split .w { overflow: visible; }
-    .hero-name.split .wi { transform: none !important; }
-
-    /* Solid accent buttons carry their label in --ink, which is now white.
-       Without their background they would print white on white. */
-    .btn-primary, .guides-callout-cta {
-      color: var(--accent) !important;
-      background: none !important;
-      border: 1px solid var(--accent-line);
-    }
-
-    /* The tables under these are the evidence, so they must not print folded
-       away. The summary becomes a heading rather than a dead control. */
-    .now-more > summary { list-style: none; color: var(--accent); font-weight: 600; }
-    .now-more > summary::-webkit-details-marker { display: none; }
-    /* A closed <details> is hidden by the UA with content-visibility, not with
-       display, so overriding display alone leaves the tables folded away.
-       ::details-content is the standard handle; the older rules stay for
-       engines that have not adopted it. */
-    details > *:not(summary) { display: block !important; content-visibility: visible !important; }
-    details::details-content { content-visibility: visible !important; block-size: auto !important; }
-
-    /* A table that scrolls sideways on screen has nowhere to scroll on paper:
-       the last column is simply cut off at the edge of the sheet, which loses
-       data silently. Let the cells wrap instead. */
-    .now-table-scroll { overflow: visible !important; }
-    .now-table { font-size: 0.68rem; table-layout: fixed; }
-    .now-table th, .now-table td {
-      white-space: normal;
-      word-break: break-word;
-      padding-right: 0.5rem;
-    }
-
-    /* Evidence should not be split down the middle by a page break. Only
-       things shorter than a page belong here: asking the browser to keep a
-       whole now-card together buys one unsplit card and a mostly empty page
-       before it. */
-    figure, .now-figure, .now-table-scroll, .research-stat, .pub-card,
-    .timeline-item, .testimonial-card, .credential,
-    .speaking-card { break-inside: avoid; }
-    h1, h2, h3 { break-after: avoid; }
-
-    /* A paper copy has to carry its own references. Only the link rows get
-       this: the DOIs and emails elsewhere are already spelled out in the
-       text, and repeating them would be noise. */
-    a.project-link[href^="http"]::after,
-    a.pub-link[href^="http"]::after {
-      content: " (" attr(href) ")";
-      font-size: 0.78em;
-      word-break: break-all;
-      color: var(--text-faint);
-    }
-  }
+/* ============ HOME PAGE ============
+   Shared tokens, fonts and buttons live in assets/site.css. Everything here
+   is layout for this page only. */
+
+/* ---- header ---- */
+.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 24px; padding-top: 14px; padding-bottom: 14px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 17px; font-weight: 600; text-decoration: none; }
+.brand-mark { width: 10px; height: 10px; background: var(--accent); }
+.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--text); text-decoration: none; }
+.site-nav a:hover { color: var(--accent); }
+.site-nav a.nav-contact { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---- hero ---- */
+.hero { padding-top: clamp(24px, 4vw, 56px); padding-bottom: clamp(48px, 5vw, 80px); display: flex; flex-direction: column; gap: clamp(40px, 5vw, 72px); }
+.hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 40px 64px; }
+.hero-copy { flex: 5 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.status { display: flex; align-items: baseline; gap: 10px; }
+.status-dot { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+h1 { font-size: clamp(40px, 5.4vw, 68px); line-height: 1.04; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
+h1 .hl { color: var(--accent); }
+.lead { max-width: 54ch; font-size: 19px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+.cred { font-size: 15px; color: var(--muted); }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 4px; }
+
+.hero-figure { flex: 4 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.plot { position: relative; aspect-ratio: 520 / 340; background: var(--panel); border: 1px solid var(--line); }
+.plot svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.plot-label { position: absolute; font-family: var(--mono); font-size: 12px; line-height: 1; color: var(--text); }
+.plot-label.is-warn { color: var(--warn-ink); }
+.p-zone-bg { fill: var(--bg); }
+.p-zone-edge { fill: none; stroke: var(--warn); stroke-width: 1.2; }
+.p-hatch { stroke: var(--warn); stroke-width: 1.6; }
+.p-short { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 6; stroke-linejoin: round; }
+.p-legible { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+.p-entry { fill: none; stroke: var(--warn); stroke-width: 2.4; }
+.p-start { fill: var(--ink); }
+.p-goal { fill: var(--accent); }
+.p-other { fill: var(--bg); stroke: var(--muted); stroke-width: 2; }
+.legend { display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.4; color: var(--text); }
+.legend-item { display: flex; align-items: center; gap: 12px; }
+.key { flex: 0 0 28px; display: flex; justify-content: center; }
+.key-short { width: 28px; border-top: 2px dashed var(--ink); }
+.key-legible { width: 28px; height: 3px; background: var(--accent); }
+.key-entry { width: 12px; height: 12px; border-radius: 50%; border: 2.4px solid var(--warn); }
+.fig-note { font-family: var(--mono); font-size: 12px; line-height: 1.5; color: var(--muted); }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 28px 32px; padding-top: 28px; border-top: 1px solid var(--ink); }
+.stat { display: flex; flex-direction: column; gap: 8px; }
+.stat-num { font-family: var(--mono); font-size: clamp(26px, 2.8vw, 36px); line-height: 1.1; font-weight: 500; }
+.stat-text { font-size: 15px; line-height: 1.45; color: var(--muted); }
+
+/* ---- sections ---- */
+.section { border-top: 1px solid var(--line); }
+.section-inner { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 64px; padding-bottom: 40px; }
+h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; font-weight: 500; letter-spacing: -0.02em; text-wrap: balance; }
+.section-head p { flex: 1 1 400px; max-width: 640px; margin-left: auto; color: var(--text); text-wrap: pretty; }
+.anchor { display: block; height: 0; }
+
+/* ---- engineering ---- */
+.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 20px 32px; padding-top: 24px; border-top: 1px solid var(--ink); }
+.stack-item { display: flex; flex-direction: column; gap: 6px; }
+.stack-item p { font-size: 15px; line-height: 1.5; }
+.group-label { padding: 48px 0 12px; }
+.rows { border-bottom: 1px solid var(--line); }
+.row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 40px; padding: 22px 0; border-top: 1px solid var(--line); }
+.rows > .row:first-child { border-top-color: var(--ink); }
+.row-name { flex: 3 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.row-name a { align-self: flex-start; padding: 4px 0; font-size: 18px; font-weight: 600; text-underline-offset: 4px; }
+.row-name a:hover { color: var(--accent); }
+.row-tags { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.row-tags .live { color: var(--ok); font-weight: 500; }
+.row-desc { flex: 5 1 340px; min-width: 0; font-size: 16px; color: var(--text); text-wrap: pretty; }
+.row-metric { flex: 3 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 12px; }
+.row-num { flex: 0 0 auto; font-family: var(--mono); font-size: 24px; line-height: 1.2; font-weight: 500; }
+.row-num.is-long { font-size: 17px; }
+.row-what { font-size: 15px; line-height: 1.4; color: var(--muted); }
+.after-rows { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px; padding-top: 28px; }
+.after-rows p { flex: 1 1 400px; max-width: 70ch; font-size: 16px; color: var(--text); text-wrap: pretty; }
+.after-rows .cta-row { padding-top: 0; }
+
+/* ---- research ---- */
+.entry { display: flex; flex-wrap: wrap; gap: 32px 72px; padding: 40px 0; border-top: 1px solid var(--line); }
+.entry:last-child { padding-bottom: 0; }
+.entry-body { flex: 7 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.chip { padding: 2px 8px; border: 1px solid var(--ink); color: var(--ink); }
+h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; }
+.entry-body p { max-width: 60ch; color: var(--text); text-wrap: pretty; }
+.entry-body p.stops { font-size: 15px; color: var(--muted); }
+.stops b { font-weight: 600; color: var(--ink); }
+.links { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; }
+.entry-fig { flex: 5 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.entry-fig p { font-size: 15px; line-height: 1.45; color: var(--muted); }
+
+.chart { display: flex; flex-direction: column; gap: 12px; font-family: var(--mono); font-size: 13px; line-height: 1.2; }
+.chart-row { display: grid; gap: 12px; align-items: center; }
+.chart-val { text-align: right; }
+.ivl .chart-row { grid-template-columns: 96px minmax(0, 1fr) 52px; }
+.ivl-track { position: relative; height: 16px; }
+.ivl-track::before { content: ''; position: absolute; left: 0; right: 0; top: 7.5px; height: 1px; background: var(--line); }
+.ivl-band { position: absolute; top: 2px; height: 12px; min-width: 4px; background: var(--accent); }
+.ivl-axis { align-items: start; color: var(--muted); font-size: 12px; }
+.ivl-ticks { display: flex; justify-content: space-between; padding-top: 6px; border-top: 1px solid var(--ink); }
+.ivl-axis .chart-val { padding-top: 6px; }
+.bar { height: 16px; background: var(--track); }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+.bar.is-neutral > span { background: var(--neutral); }
+.duo .chart-row { grid-template-columns: 64px minmax(0, 1fr) 40px; }
+.thesis-fig { display: flex; align-items: center; gap: 20px; }
+.thesis-fig img { flex: 0 0 104px; width: 104px; height: 104px; object-fit: cover; object-position: 50% 20%; border: 1px solid var(--line); }
+.thesis-fig .chart { flex: 1 1 auto; min-width: 0; }
+.pairs { gap: 14px; }
+.pairs .chart-row { grid-template-columns: 136px minmax(0, 1fr) 24px; gap: 4px 12px; }
+.pairs .bar { height: 10px; }
+.swatches { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 15px; line-height: 1.4; color: var(--muted); }
+.swatch { display: inline-flex; align-items: center; gap: 8px; }
+.swatch::before { content: ''; width: 12px; height: 12px; background: var(--accent); }
+.swatch.is-neutral::before { background: var(--neutral); }
+
+.quad { flex: 5 1 320px; min-width: 0; align-self: flex-start; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.quad > div { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.quad > div:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--line); }
+.quad > div:nth-child(even) { padding-left: 16px; }
+.quad > div:nth-last-child(-n+2) { border-bottom: 0; }
+.quad-num { font-family: var(--mono); font-size: 30px; line-height: 1.1; font-weight: 500; }
+.quad-num.is-accent { color: var(--accent); }
+.quad p { font-size: 15px; line-height: 1.4; color: var(--muted); }
+
+/* ---- about ---- */
+.about { display: flex; flex-wrap: wrap; gap: 56px 88px; }
+.about-me { flex: 4 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+.bio { display: flex; flex-direction: column; gap: 20px; }
+.bio img { width: 132px; height: 132px; object-fit: cover; border: 1px solid var(--line); }
+.bio p { max-width: 56ch; color: var(--text); text-wrap: pretty; }
+.facts { display: flex; flex-direction: column; gap: 12px; }
+.fact { display: flex; flex-direction: column; gap: 2px; }
+.fact b { font-weight: 600; }
+.fact span { font-size: 15px; color: var(--muted); }
+.xp { flex: 5 1 420px; min-width: 0; }
+.xp .label { padding-bottom: 14px; }
+.xp-item { display: flex; flex-direction: column; gap: 4px; padding: 18px 0; border-top: 1px solid var(--line); }
+.xp .label + .xp-item { border-top-color: var(--ink); }
+.xp-item:last-child { padding-bottom: 0; }
+.xp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 24px; }
+.xp-head b { font-weight: 600; }
+.xp-head span { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.xp-org { font-size: 15px; color: var(--muted); }
+.xp-item p { margin-top: 4px; font-size: 15px; color: var(--text); }
+
+/* ---- references and talks ---- */
+.refs-inner { display: flex; flex-direction: column; gap: 56px; }
+.refs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 40px 48px; }
+.ref { display: flex; flex-direction: column; gap: 20px; padding-top: 20px; border-top: 1px solid var(--ink); }
+.ref figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 15px; }
+.ref figcaption b { font-weight: 600; }
+.ref figcaption span { color: var(--muted); }
+.talks-wrap { display: flex; flex-direction: column; gap: 20px; }
+.talks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px 48px; }
+.talk { display: flex; flex-direction: column; gap: 16px; }
+.talk img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; border: 1px solid var(--line); }
+.talk-text { display: flex; flex-direction: column; gap: 4px; }
+.talk-text b { font-weight: 600; }
+.talk-text span { font-size: 15px; color: var(--muted); }
+.talk-text p { margin-top: 4px; font-size: 15px; color: var(--text); }
+
+/* ---- contact ---- */
+.contact { background: var(--inverse-bg); color: var(--inverse-ink); }
+.contact-inner { padding-top: clamp(56px, 7vw, 104px); padding-bottom: 32px; display: flex; flex-direction: column; gap: 48px; }
+.contact h2 { max-width: 16ch; font-size: clamp(36px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.025em; }
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 32px 64px; }
+.door { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--inverse-line); }
+.door .label { color: var(--inverse-muted); }
+.door p { max-width: 46ch; color: var(--inverse-text); text-wrap: pretty; }
+.door-links { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.door-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; text-underline-offset: 4px; }
+.contact a:hover { color: var(--inverse-muted); }
+.contact :focus-visible { outline-color: var(--inverse-ink); }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.mail a { font-family: var(--mono); font-size: clamp(15px, 2.2vw, 26px); line-height: 1.6; text-underline-offset: 6px; overflow-wrap: anywhere; }
+.copy-btn { min-height: 44px; padding: 0 16px; background: transparent; color: var(--inverse-ink); border: 1px solid var(--inverse-line); font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
+.copy-btn:hover { border-color: var(--inverse-ink); }
+.site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 32px; padding-top: 20px; border-top: 1px solid var(--inverse-line); }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.site-footer a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--inverse-text); text-underline-offset: 4px; }
+.site-footer small { font-family: var(--mono); font-size: 13px; color: var(--inverse-muted); }
+
+/* ---- phone ---- */
+@media (max-width: 480px) {
+  .site-nav { gap: 0 16px; }
+  .site-nav .nav-about { display: none; }
+  .thesis-fig { align-items: flex-start; }
+  .thesis-fig img { flex-basis: 84px; width: 84px; height: 84px; }
+}
+
+/* ---- print ---- */
+@media print {
+  .site-nav, .cta-row, .copy-btn { display: none !important; }
+  .contact { background: none; color: var(--ink); }
+  .contact .label, .door p, .site-footer a, .site-footer small { color: var(--text); }
+  .door, .site-footer { border-top-color: var(--line); }
+  .entry, .row, .xp-item, .ref, .talk { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -2175,8 +243,8 @@
   "url": "https://munawarkazmi.com/",
   "identifier": "https://orcid.org/0009-0004-6565-6067",
   "image": "https://munawarkazmi.com/assets/headshot.jpg",
-  "jobTitle": "Robotics & AI Research Engineer",
-  "description": "Robotics and AI research engineer working on human-robot interaction, LLM planner reliability, and legible robot motion.",
+  "jobTitle": "Robotics & AI Engineer",
+  "description": "Robotics and AI engineer working on robot planning and verification, LLM planner reliability, and human-robot interaction.",
   "email": "mailto:munawarsaeedkazmi1@gmail.com",
   "knowsAbout": [
     "Human-Robot Interaction",
@@ -2203,1343 +271,457 @@
 </head>
 <body>
 
-<div class="preloader" id="preloader" aria-hidden="true">
-  <div class="preloader-inner">
-    <div class="preloader-mask">
-      <div class="preloader-name">Munawar <em>Kazmi</em></div>
-    </div>
-    <div class="preloader-line"><span></span></div>
-    <div class="preloader-tag">ROBOTICS &amp; AI</div>
-  </div>
-</div>
-
-<div class="grain" aria-hidden="true"></div>
-<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<nav id="siteNav">
-  <a href="#hero" class="nav-name">Munawar Kazmi</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="projects/guides.html">Guides</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#speaking">Speaking</a></li>
-    <li><a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
-    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
-  </ul>
-  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
-</nav>
+<header class="wrap site-header">
+  <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Munawar Kazmi</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#engineering">Engineering</a>
+    <a href="#research">Research</a>
+    <a class="nav-about" href="#about">About</a>
+    <a href="files/Kazmi_Resume.pdf">Resume</a>
+    <a class="nav-contact" href="#contact">Contact</a>
+  </nav>
+</header>
 
 <main id="main-content">
 
-<section id="hero">
-  <canvas id="heroCanvas" aria-hidden="true"></canvas>
-  <div class="hero-glow g1" aria-hidden="true"></div>
-  <div class="hero-glow g2" aria-hidden="true"></div>
-
-  <div class="hero-inner">
-    <div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span> Open to PhD &amp; engineering opportunities</div>
-    <div class="hero-eyebrow">ROBOTICS &amp; AI RESEARCH ENGINEER</div>
-    <h1 class="hero-name" id="heroName">Teaching robots to say <em>what they mean</em>, and to know <em>when they can't</em>.</h1>
-    <p class="hero-desc">
-      I build the systems that make robots worth trusting. Benchmarks that prove how LLM planners fail. Verifiers that stop unsafe plans before hardware moves. Humanoids that communicate their intentions clearly.
-    </p>
-    <p class="hero-credential"><strong>MSc AI &amp; Robotics (Commendation)</strong> &middot; University of Hertfordshire</p>
-    <div class="hero-cta-row">
-      <a href="#work" class="btn-primary magnetic">View Research</a>
-      <a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener" class="btn-secondary magnetic">Resume (PDF)</a>
-      <a href="#contact" class="btn-secondary magnetic">Get in Touch</a>
-    </div>
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-num count-up">116 of 120</div>
-        <div class="stat-label">Trajectories the models called legible, including all 25 that were impossible</div>
+<section id="top" class="wrap hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="status label">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Open to robotics and AI engineering roles, and PhD positions</span>
       </div>
-      <div class="stat">
-        <div class="stat-num count-up">32 of 32</div>
-        <div class="stat-label">Certified legibility bounds holding, zero violations, submitted to IEEE RA-L</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num count-up">2</div>
-        <div class="stat-label">Robot platforms deployed on, JD humanoid &amp; Unitree Go1</div>
+      <h1>Teaching robots to say <span class="hl">what they mean</span>, and to know <span class="hl">when they can't</span>.</h1>
+      <p class="lead">I'm a robotics and AI engineer. I build ROS2 planners, embedded firmware and verification layers that stop unsafe plans before hardware moves, and the benchmarks that measure where language-model planners fail.</p>
+      <p class="cred">MSc AI &amp; Robotics (Commendation), University of Hertfordshire. C++20, Python, ROS2, PyTorch.</p>
+      <div class="cta-row">
+        <a class="btn" href="#engineering">See what I've built</a>
+        <a class="btn-outline" href="#research">Read the research</a>
+        <a class="btn-outline" href="files/Kazmi_Resume.pdf">Resume (PDF)</a>
       </div>
     </div>
+
+    <figure class="hero-figure">
+      <div class="plot">
+        <svg viewBox="0 0 520 340" aria-hidden="true">
+          <defs>
+            <pattern id="keepout" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line class="p-hatch" x1="0" y1="0" x2="0" y2="9"/>
+            </pattern>
+          </defs>
+          <rect class="p-zone-bg" x="190" y="110" width="130" height="96"/>
+          <rect x="190" y="110" width="130" height="96" fill="url(#keepout)" opacity="0.55"/>
+          <rect class="p-zone-edge" x="190" y="110" width="130" height="96"/>
+          <path class="p-short" d="M64 270 L326 212 L452 70"/>
+          <path class="p-legible" d="M64 270 C 120 180, 250 110, 452 70"/>
+          <circle class="p-entry" cx="190" cy="159" r="10"/>
+          <rect class="p-start" x="56" y="262" width="16" height="16"/>
+          <circle class="p-goal" cx="452" cy="70" r="9"/>
+          <circle class="p-other" cx="452" cy="270" r="8"/>
+        </svg>
+        <span class="plot-label" style="left: 9%; top: 85%">start</span>
+        <span class="plot-label" style="left: 76%; top: 8%">goal A</span>
+        <span class="plot-label" style="left: 76%; top: 86%">goal B</span>
+        <span class="plot-label is-warn" style="left: 36.5%; top: 24%">keep-out zone</span>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="key"><span class="key-short"></span></span><span>Shortest safe path. A watcher can't tell A from B until late.</span></div>
+        <div class="legend-item"><span class="key"><span class="key-legible"></span></span><span>Legible path. It commits to A early.</span></div>
+        <div class="legend-item"><span class="key"><span class="key-entry"></span></span><span>And cuts through the keep-out zone to do it.</span></div>
+      </div>
+      <figcaption class="fig-note">Schematic of the trade-off legible-motion-bench measures. Illustration, not data.</figcaption>
+    </figure>
   </div>
 
-  <div class="gesture-line" aria-hidden="true">
-    <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
-      <path class="gesture-path" d="M 50 260 Q 110 90 190 110 T 300 75" />
-      <circle class="gesture-dot" cx="300" cy="75" r="4" />
-      <circle class="gesture-dot" cx="50" cy="260" r="3" style="animation-delay: 1.7s;" />
-    </svg>
-  </div>
-
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <div class="mouse"></div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">01</span> ABOUT</div>
-      <h2 class="section-title">Engineer first. <em>Researcher</em> by conviction.</h2>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-text">systems in the field: a portal running an institute, firmware in a commercial prototype.</div>
     </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I work at the boundary between robotics research and shipped engineering. My academic work asks how humanoid robots should communicate so that people trust them appropriately, not too little, not too much. My applied work has been building the embedded systems and edge AI pipelines that make robots, and the products around them, actually work in the field.</p>
-        <p>That combination shapes how I think about every project: a result only matters once it survives contact with real hardware, real users, and conditions nobody designed for in the lab. I bring the same standard to a fresh dataset on a humanoid platform as I do to firmware shipping in a safety-critical product.</p>
-      </div>
-      <div class="about-credentials reveal">
-        <div class="about-photo">
-          <img src="assets/headshot.webp" alt="Portrait of Munawar Kazmi" width="400" height="400" loading="lazy" decoding="async">
-        </div>
-        <div class="credential">
-          <h3 class="credential-degree">MSc AI &amp; Robotics</h3>
-          <div class="credential-meta">Commendation · University of Hertfordshire · 2023-2024</div>
-        </div>
-        <div class="credential">
-          <h3 class="credential-degree">BEng Mechatronics Engineering</h3>
-          <div class="credential-meta">NUST · 2018-2022</div>
-        </div>
-      </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-text">missed dangers in the LLM safety verifier across 2,071 constructed and 80 real-model cases.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">548</div>
+      <div class="stat-text">tests and label proofs re-run on every commit of plan-failure-bench.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">32/32</div>
+      <div class="stat-text">certified legibility bounds hold with zero violations. Submitted to IEEE RA-L.</div>
     </div>
   </div>
 </section>
 
-<section id="work">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">02</span> WORK</div>
-      <h2 class="section-title">Reliable planners, <em>legible robots</em></h2>
-      <p class="section-lede">Two research lines and the engineering underneath them: how language model planners fail, measured against machine-checked ground truth, and how humanoid robots should communicate so people can calibrate their trust. Every figure is backed by committed data a stranger can re-run, every card says where its claims stop, and the commit dates come live from GitHub.</p>
+<section id="engineering" class="section">
+  <span id="work" class="anchor"></span>
+  <div class="wrap section-inner">
+    <div class="section-head">
+      <h2>Engineering</h2>
+      <p>Two systems running in the field, and a planning and verification stack for robots that take instructions from language models. Every project has its code, its tests and its limits on its own page.</p>
     </div>
 
-    <div class="now-card reveal spotlight">
-      <div class="now-head">
-        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/legible-motion-bench.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/legible-motion-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="project-link">Working paper status &nearr;</a>
+    <div class="stack">
+      <div class="stack-item">
+        <div class="label">Robotics and software</div>
+        <p>C++20, Python, ROS2 (Nav2, plugin development), Git and CI/CD, Docker</p>
+      </div>
+      <div class="stack-item">
+        <div class="label">Simulation</div>
+        <p>Isaac Sim, MuJoCo, Gazebo, Unity, sim-to-real transfer</p>
+      </div>
+      <div class="stack-item">
+        <div class="label">AI and perception</div>
+        <p>PyTorch, TensorFlow, TensorRT, computer vision, LLM integration</p>
+      </div>
+      <div class="stack-item">
+        <div class="label">Hardware and embedded</div>
+        <p>JD humanoid, Unitree Go1, Jetson Nano, ESP32 and LoRa, bare-metal C/C++</p>
+      </div>
+    </div>
+
+    <div class="label group-label">In the field</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/safina-portal.html">Safina Portal</a>
+          <span class="row-tags"><span class="live">In production</span> · React, TypeScript, Supabase</span>
+        </div>
+        <p class="row-desc">A school management system that runs Safina International day to day: seven roles, prorated billing, payroll, and an append-only audit trail. I am the sole engineer. <a class="text-link" href="https://github.com/munawarkazmi/safina-portal-showcase">Showcase repo</a></p>
+        <div class="row-metric"><span class="row-num">33</span><span class="row-what">audited tables nothing bypasses through the API</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/esp32-motion-detector.html">ESP32-CAM motion detector</a>
+          <span class="row-tags"><span class="live">Deployed</span> · C++, ESP32, LoRa mesh</span>
+        </div>
+        <p class="row-desc">Deterministic firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics. No ML and no vision libraries anywhere. <a class="text-link" href="https://github.com/munawarkazmi/esp32-cam-motion-detector">Code</a></p>
+        <div class="row-metric"><span class="row-num">16×12</span><span class="row-what">decision grid distilled from 800×600 frames</span></div>
+      </div>
+    </div>
+
+    <div class="label group-label">Robot planning and verification</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/path-planning.html">ROS2 deterministic planning</a>
+          <span class="row-tags">C++20 · Nav2 plugins · CI-verified</span>
+        </div>
+        <p class="row-desc">A* and D* Lite as Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic across 185,237 fuzzed replans. <a class="text-link" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning">Code</a></p>
+        <div class="row-metric"><span class="row-num">4.3x</span><span class="row-what">faster mean replanning with D* Lite when an obstacle blocks the path</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/llm-safety-verifier.html">ROS2 LLM safety verifier</a>
+          <span class="row-tags">ROS2 · Nav2 · CI-replayed</span>
+        </div>
+        <p class="row-desc">A deterministic gate between LLM planners and Nav2. Collision, continuity and map-bounds checks reject hallucinated trajectories before a controller sees them. <a class="text-link" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier">Code</a></p>
+        <div class="row-metric"><span class="row-num is-long">35/35 &middot; 32/32</span><span class="row-what">unsafe plans caught from two models, zero false positives</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/llm-nav-shield.html">llm-nav-shield</a>
+          <span class="row-tags">Neurosymbolic · safe autonomy</span>
+        </div>
+        <p class="row-desc">An LLM proposes a route, a deterministic verifier checks it, and a provably correct planner recovers a safe one. When no safe path exists it halts, in 10/10 such cases, and invents nothing. <a class="text-link" href="https://github.com/munawarkazmi/llm-nav-shield">Code</a></p>
+        <div class="row-metric"><span class="row-num">38/38</span><span class="row-what">flawed proposals recovered, none unsafe forwarded</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/exact-predicates.html">exact-predicates</a>
+          <span class="row-tags">C++ · numerical robustness</span>
+        </div>
+        <p class="row-desc">Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two equal keys landed one ulp apart. Exactness costs about 2x here, not orders of magnitude. <a class="text-link" href="https://github.com/munawarkazmi/exact-predicates">Code</a></p>
+        <div class="row-metric"><span class="row-num">657</span><span class="row-what">adversarial cases where float is wrong and exact is right</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/toolcall-contract.html">toolcall-contract</a>
+          <span class="row-tags">LLM agents · Python</span>
+        </div>
+        <p class="row-desc">LLM tool calls that parse, type-check and validate, and still break the contract. A schema check, which is what most agent frameworks do, passes 39 of 40 of these calls. <a class="text-link" href="https://github.com/munawarkazmi/toolcall-contract">Code</a></p>
+        <div class="row-metric"><span class="row-num">32/40</span><span class="row-what">pass the contract</span></div>
+      </div>
+    </div>
+
+    <div class="after-rows">
+      <p>Every project is also explained without the jargon, with the same numbers and the same stated limits. A side interest in numerical analysis lives there too: a note on finite-time blowup in one-dimensional fluid models.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://github.com/munawarkazmi">All code on GitHub</a>
+        <a class="btn-outline" href="projects/guides.html">Plain-language guides</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="section">
+  <div class="wrap section-inner">
+    <div class="section-head">
+      <h2>Research</h2>
+      <p>Two lines of work: how language-model planners fail, measured against machine-checked ground truth, and how robots should move and speak so people can calibrate their trust. Every figure is backed by committed data a stranger can re-run. <a class="text-link" href="files/Kazmi_CV.pdf">Academic CV (PDF)</a></p>
+    </div>
+
+    <article class="entry">
+      <div class="entry-body">
+        <div class="entry-meta label"><span class="chip">Submitted</span><span>IEEE RA-L, Aug 2026</span></div>
+        <h3>Certified bounds on achievable legibility under a path cost budget</h3>
+        <p>A benchmark measures what a planner achieved. This certifies what nothing could achieve: an upper bound on legibility over every admissible trajectory, not only the ones somebody tried. All 32 world and budget pairs hold with zero violations, and the narrowest gap anywhere is 0.0064.</p>
+        <p class="stops"><b>Where it stops.</b> The observer model is exactly reproducible and has never been validated against people, so these are bounds on a stated objective, not on what a human would infer.</p>
+        <div class="links">
+          <a class="text-link" href="projects/legibility-bounds.html">Full story</a>
+          <a class="text-link" href="files/legibility-bounds-paper.pdf">Preprint (PDF)</a>
+          <a class="text-link" href="https://doi.org/10.5281/zenodo.21834955">DOI</a>
+          <a class="text-link" href="files/legibility-bounds-explained.pdf">Plain-language guide</a>
         </div>
       </div>
-      <h3 class="project-title">legible-motion-bench</h3>
-      <p class="now-lead">A benchmark that measures legibility against path cost against constraint satisfaction, computed exactly, with no human rater and no model judge anywhere in the loop. Asked to plan in the same worlds, three language models claimed legibility for 116 of 120 trajectories, including all 25 that were not physically possible. Three models at one temperature is a pilot, not a finding. Next on the bench: whether this metric tracks what people actually perceive.</p>
-
-      <figure class="now-figure">
-        <img width="1760" height="480" src="assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the watching observer's belief in each goal" loading="lazy">
-        <figcaption>One world, four planners, one clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing; the three legible trajectories commit early and cut straight through it. The bars are the observer's belief, and they are the same numbers the tables are computed from rather than a second drawing of them.</figcaption>
+      <figure class="entry-fig">
+        <figcaption class="label">Certified intervals, by world</figcaption>
+        <div class="chart ivl">
+          <div class="chart-row"><span>door_pair</span><div class="ivl-track"><div class="ivl-band" style="left: 75.1%; width: 4.5%"></div></div><span class="chart-val">0.0269</span></div>
+          <div class="chart-row"><span>narrow_gap</span><div class="ivl-track"><div class="ivl-band" style="left: 59.7%; width: 7.6%"></div></div><span class="chart-val">0.0456</span></div>
+          <div class="chart-row"><span>fan_outer</span><div class="ivl-track"><div class="ivl-band" style="left: 40.2%; width: 4.7%"></div></div><span class="chart-val">0.0282</span></div>
+          <div class="chart-row"><span>wall_choice</span><div class="ivl-track"><div class="ivl-band" style="left: 29.8%; width: 2.1%"></div></div><span class="chart-val">0.0128</span></div>
+          <div class="chart-row"><span>fan_middle</span><div class="ivl-track"><div class="ivl-band" style="left: 5.7%; width: 9.5%"></div></div><span class="chart-val">0.0567</span></div>
+          <div class="chart-row ivl-axis"><span>legibility</span><div class="ivl-ticks"><span>0.4</span><span>0.6</span><span>0.8</span><span>1.0</span></div><span class="chart-val">gap</span></div>
+        </div>
+        <p>Each bar runs from a trajectory that exists to a ceiling nothing can exceed. Five of the eight worlds, each at the budget where its interval is widest.</p>
       </figure>
+    </article>
 
-      <details class="now-more">
-        <summary>The model pilot, measured</summary>
-        <div class="now-more-body">
-
-      <div class="now-table-title">Asked the same question, three language models</div>
-      <div class="now-table-scroll">
-        <table class="now-table">
-          <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th><th>Gemini 3.6 Flash</th></tr></thead>
-          <tbody>
-            <tr><td>called legible by the model</td><td class="mark">40</td><td class="mark">40</td><td class="mark">36</td></tr>
-            <tr><td>physically possible</td><td>26</td><td>29</td><td>40</td></tr>
-            <tr><td>clearer than the shortest path</td><td>10</td><td>20</td><td>30</td></tr>
-            <tr><td>over the stated path budget</td><td>9</td><td>15</td><td class="mark">0</td></tr>
-            <tr><td>entered a keep-out zone</td><td>7</td><td>7</td><td class="mark">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="now-note">116 of the 120 decodes claimed to be legible, including all 25 that were not physically possible. The stated path budget is a constraint for one model and text for the other two: the third threads a route at 1.08 to 1.11 times the optimal path cost and enters no keep-out zone, while the other two return the same modal trajectory whatever budget the prompt names. Three models at one temperature is a pilot, and the founding paper already notes that legibility pushes trajectories towards obstacles, so this narrows existing work rather than opening new ground. <a href="projects/legible-motion-bench.html" class="project-link">The frontier table and the budget sweep &rarr;</a></p>
-
-        </div>
-      </details>
-
-      <div class="now-commit" data-repo="munawarkazmi/legible-motion-bench"><a href="https://github.com/munawarkazmi/legible-motion-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
-    </div>
-
-    <div class="now-card reveal spotlight">
-      <div class="now-head">
-        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/legibility-bounds.html" class="project-link">Read the full story &rarr;</a>
-          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="project-link">Preprint (PDF) &rarr;</a>
-          <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener" class="project-link">Working log &nearr;</a>
+    <article class="entry">
+      <div class="entry-body">
+        <div class="entry-meta label"><span class="chip">Working paper</span><span>Sole author, preprint on Zenodo</span></div>
+        <h3>plan-failure-bench: a machine-checkable benchmark of how language model planners fail</h3>
+        <p>Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a proof re-verified in CI. A deterministic checker scores each response, with no human or LLM judge. Across 18 runs on four models the failures are distinct and stable: a frontier reasoning model survives full semantic obfuscation, while smaller models split between silent compliance and surface-anchored refusal.</p>
+        <p class="stops"><b>Where it stops.</b> Two symbolic PDDL environments and four models. Detection is never reported without its paired false positive count.</p>
+        <div class="links">
+          <a class="text-link" href="projects/plan-failure-bench.html">Full story</a>
+          <a class="text-link" href="https://doi.org/10.5281/zenodo.21756817">Preprint (DOI)</a>
+          <a class="text-link" href="https://github.com/munawarkazmi/plan-failure-bench">Repository</a>
         </div>
       </div>
-      <h3 class="project-title">legibility-bounds</h3>
-      <p class="now-lead">The benchmark above measures what a planner achieved. This certifies what <em>nothing</em> could achieve: an upper bound that quantifies over every admissible trajectory rather than the ones somebody tried. All 32 world and budget pairs hold with zero violations, and the narrowest gap anywhere is 0.0064. Six pages, submitted to IEEE RA-L in August 2026, preprint at DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>. Next: where the remaining width in obstacle worlds actually lives.</p>
+      <div class="quad">
+        <div><div class="quad-num">60</div><p>instructions, each with a machine-checked proof of ground truth</p></div>
+        <div><div class="quad-num">18</div><p>complete model runs, every record committed</p></div>
+        <div><div class="quad-num">548</div><p>tests and label proofs, re-run on every commit</p></div>
+        <div><div class="quad-num is-accent">0</div><p>human or LLM judgements in the scoring loop</p></div>
+      </div>
+    </article>
 
-      <figure class="now-figure">
-        <img width="1736" height="813" src="assets/legibility-bounds-intervals.png" alt="Certified legibility intervals for eight worlds: each band runs from a circle marking a trajectory that exists to a diamond marking a bound nothing can exceed, with the shortest path marked separately for contrast" loading="lazy">
-        <figcaption>Every band is a certified interval. The circle is a trajectory that exists, the diamond is a wall nothing can cross, and the tick is the shortest path for contrast. The optimum lies inside every band, and no bound is violated.</figcaption>
+    <article class="entry">
+      <div class="entry-body">
+        <div class="entry-meta label"><span class="chip">MSc thesis · 2025</span><span>University of Hertfordshire, supervised by Dr Patrick Holthaus</span></div>
+        <h3>Enhancing human-robot companionship: verbal and non-verbal communication cues in humanoid robots</h3>
+        <p>A full sim-to-real pipeline on the JD humanoid, from an Isaac Sim digital twin through ROS2 hardware integration, built so a gestural and a spoken condition could be delivered identically to 20 participants. Speech conveyed intent significantly more clearly than gesture, while engagement and warmth held comparable across both.</p>
+        <p class="stops"><b>Where it stops.</b> One deliberately mundane scenario, the robot asking to be recharged, with 20 participants. Every gestural failure was a failure of joint attention, which is why the design target is hybrid.</p>
+        <div class="links">
+          <a class="text-link" href="projects/hri-companionship.html">Full story</a>
+          <a class="text-link" href="files/Kazmi_HRI_MSc_Thesis.pdf">Thesis (PDF)</a>
+        </div>
+      </div>
+      <figure class="entry-fig">
+        <figcaption class="label">Intent identified correctly</figcaption>
+        <div class="thesis-fig">
+          <img src="assets/jd-robot.webp" width="800" height="773" alt="The JD humanoid robot used in the study" loading="lazy" decoding="async">
+          <div class="chart duo">
+            <div class="chart-row"><span>Speech</span><div class="bar"><span style="width: 95%"></span></div><span class="chart-val">95%</span></div>
+            <div class="chart-row"><span>Gesture</span><div class="bar is-neutral"><span style="width: 80%"></span></div><span class="chart-val">80%</span></div>
+          </div>
+        </div>
+        <p>Clarity effect d = 0.58, p = 0.017. Within-subjects, counterbalanced, RoSAS-validated, N = 20.</p>
       </figure>
+    </article>
 
-      <details class="now-more">
-        <summary>The certified intervals</summary>
-        <div class="now-more-body">
-
-      <div class="now-table-title">The widest interval in each world</div>
-      <div class="now-table-scroll">
-        <table class="now-table">
-          <thead><tr><th>World</th><th>Budget</th><th>Achieved</th><th>Bound</th><th>Gap</th></tr></thead>
-          <tbody>
-            <tr><td>fan_middle</td><td>1.25</td><td>0.4343</td><td>0.4909</td><td class="mark">0.0567</td></tr>
-            <tr><td>narrow_gap</td><td>1.50</td><td>0.7584</td><td>0.8041</td><td class="mark">0.0456</td></tr>
-            <tr><td>fan_outer</td><td>1.10</td><td>0.6410</td><td>0.6692</td><td>0.0282</td></tr>
-            <tr><td>door_pair</td><td>1.50</td><td>0.8507</td><td>0.8776</td><td>0.0269</td></tr>
-            <tr><td>wall_choice</td><td>1.10</td><td>0.5787</td><td>0.5915</td><td>0.0128</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="now-note">All 32 world and budget pairs hold, with zero violations. Each row shows the world at the budget where its interval is widest, and the narrowest gap anywhere is 0.0064. The upper end quantifies over every admissible trajectory rather than the ones somebody tried, so no better optimiser weakens it; the lower end is constructed rather than searched for, and beats the vendored local search in 13 of 32 cases, by up to 0.1485.</p>
-
-      <p class="now-note">One claim here has been withdrawn. A loose constant in the obstacle argument was named as the highest-leverage improvement outstanding and then sharpened, and it was worth 1.6 per cent; but its looseness had been measured against the wrong quantity, and corrected it never binds in any world tested. So where the width in obstacle worlds lives is open again. The honest ceiling on all of it: the observer model is exactly reproducible and has never been validated against people, so these are certified bounds on a stated objective, not on what a human watching would actually infer. <a href="projects/legibility-bounds.html" class="project-link">The full argument &rarr;</a></p>
-
-        </div>
-      </details>
-
-      <div class="now-commit" data-repo="munawarkazmi/legibility-bounds"><a href="https://github.com/munawarkazmi/legibility-bounds/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
-    </div>
-
-    <div class="now-card reveal spotlight">
-      <div class="now-head">
-        <span class="now-live"><span class="pulse-dot" aria-hidden="true"></span> In active development</span>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/plan-failure-bench.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="project-link">Preprint (DOI) &rarr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener" class="project-link">Repository &nearr;</a>
+    <article class="entry">
+      <div class="entry-body">
+        <div class="entry-meta label"><span class="chip">Pilot</span><span>In active development</span></div>
+        <h3>legible-motion-bench: do language models know when their motion is legible?</h3>
+        <p>Measures legibility against path cost and constraint satisfaction, computed exactly, with no human rater and no model judge. Asked to plan in the same worlds, three language models called 116 of their 120 trajectories legible, including all 25 that were not physically possible.</p>
+        <p class="stops"><b>Where it stops.</b> Three models at one temperature is a pilot, not a finding. Next: whether the metric tracks what people actually perceive.</p>
+        <div class="links">
+          <a class="text-link" href="projects/legible-motion-bench.html">Full story</a>
+          <a class="text-link" href="https://github.com/munawarkazmi/legible-motion-bench">Repository</a>
         </div>
       </div>
-      <h3 class="project-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
-      <div class="now-meta">Sole author &middot; Working paper &middot; Symbolic environments, PDDL, 4 LLMs, CI-proved labels</div>
-      <p class="now-lead">Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a mechanical proof re-verified in CI on each commit. A deterministic checker, differentially tested against an independent PDDL toolchain, scores every response with no human or LLM judge anywhere, and detection is never reported without its paired false positive count. Across an 18-run grid over four models the failures are distinct and stable: a frontier reasoning model survives full semantic obfuscation on both environments, one sequencing seed short of perfect, while smaller models split between silent compliance and surface-anchored refusal.</p>
-
-      <figure class="now-figure">
-        <img width="1840" height="640" src="projects/img/pfb-confusion-card.png" alt="Three confusion matrices on the same 30 instructions: Qwen 2.5 7B sends nearly every trap to precondition violation, Gemini 3.1 Flash Lite splits between walking in and calling them infeasible, and Gemini 3.6 Flash produces the ideal diagonal" loading="lazy" decoding="async">
-        <figcaption>Same 30 instructions, three failure shapes: the smallest model walks into nearly every trap, the mid-tier model splits between walking in and declaring them infeasible, and the frontier model answers the ideal diagonal. All eighteen runs, and the pipeline that produced them, are on the story page.</figcaption>
+      <figure class="entry-fig">
+        <figcaption class="label">Claimed vs possible, of 40 decodes</figcaption>
+        <div class="chart pairs">
+          <div class="chart-row">
+            <span>Qwen 2.5 7B</span><div class="bar is-neutral"><span style="width: 100%"></span></div><span class="chart-val">40</span>
+            <span></span><div class="bar"><span style="width: 65%"></span></div><span class="chart-val">26</span>
+          </div>
+          <div class="chart-row">
+            <span>Llama 3.3 70B</span><div class="bar is-neutral"><span style="width: 100%"></span></div><span class="chart-val">40</span>
+            <span></span><div class="bar"><span style="width: 72.5%"></span></div><span class="chart-val">29</span>
+          </div>
+          <div class="chart-row">
+            <span>Gemini 3.6 Flash</span><div class="bar is-neutral"><span style="width: 90%"></span></div><span class="chart-val">36</span>
+            <span></span><div class="bar"><span style="width: 100%"></span></div><span class="chart-val">40</span>
+          </div>
+        </div>
+        <div class="swatches"><span class="swatch is-neutral">called legible by the model</span><span class="swatch">physically possible</span></div>
       </figure>
-
-      <div class="research-stats">
-        <div class="research-stat">
-          <div class="research-stat-num count-up">60</div>
-          <div class="research-stat-label">Instructions, each with a machine-checked proof of ground truth</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num count-up">18</div>
-          <div class="research-stat-label">Complete model runs, every record committed</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num count-up">548</div>
-          <div class="research-stat-label">Tests and label proofs, re-run on every commit</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num">0</div>
-          <div class="research-stat-label">Human or LLM judgements in the scoring loop</div>
-        </div>
-      </div>
-
-      <div class="now-commit" data-repo="munawarkazmi/plan-failure-bench"><a href="https://github.com/munawarkazmi/plan-failure-bench/commits/main" target="_blank" rel="noopener" class="project-link">See the latest commits on GitHub &nearr;</a></div>
-    </div>
-
-    <div class="now-card reveal spotlight">
-      <div class="now-head">
-        <span class="now-live">MSc thesis &middot; 2025</span>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/hri-companionship.html" class="project-link">Read the full story &rarr;</a>
-          <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="project-link">Read the paper (PDF) &rarr;</a>
-        </div>
-      </div>
-      <h3 class="project-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
-      <div class="now-meta">University of Hertfordshire &middot; Supervised by Dr Patrick Holthaus &middot; JD humanoid, Isaac Sim, ROS2</div>
-
-      <div class="research-photo research-photo-single">
-        <img src="assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
-        <div class="research-photo-caption">JD humanoid &middot; EZ-Robot &middot; the study platform</div>
-      </div>
-
-      <p class="now-lead">A full sim-to-real pipeline on the JD humanoid, from an Isaac Sim digital twin through ROS2 hardware integration, built so that a gestural and a spoken condition could be delivered identically to 20 participants. Counterbalanced, RoSAS-validated, under UH ethical approval cSPECS/CL/UH/05098. The scenario was deliberately mundane: the robot had to communicate that it needed recharging. Speech conveyed intent significantly more clearly than gesture, while engagement and warmth held comparable across both, and every gestural failure was a failure of joint attention rather than of communication. That is why the design target is hybrid rather than either one alone.</p>
-
-      <div class="research-stats">
-        <div class="research-stat">
-          <div class="research-stat-num count-up">d&nbsp;=&nbsp;0.58</div>
-          <div class="research-stat-label">Effect size, clarity: verbal vs. gestural (p&nbsp;=&nbsp;0.017)</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num count-up">95%</div>
-          <div class="research-stat-label">Intent identification accuracy, verbal condition</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num count-up">80%</div>
-          <div class="research-stat-label">Intent identification accuracy, gestural condition</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num count-up">N=20</div>
-          <div class="research-stat-label">Within-subjects, counterbalanced, RoSAS-validated</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="work-divider reveal">
-      <h3 class="work-subhead">Built, deployed, <em>measured</em></h3>
-      <p class="section-lede">Eight more, two of them deployed in the field: firmware in a commercial intrusion-detection prototype, and a portal running an institute day to day.</p>
-    </div>
-
-    <div class="project-filters" role="group" aria-label="Filter projects by category">
-      <button type="button" class="project-filter-btn active" data-filter="all">All</button>
-      <button type="button" class="project-filter-btn" data-filter="research">Research</button>
-      <button type="button" class="project-filter-btn" data-filter="ros2">ROS2</button>
-      <button type="button" class="project-filter-btn" data-filter="edge-ai">Edge AI</button>
-      <button type="button" class="project-filter-btn" data-filter="embedded">Embedded</button>
-      <button type="button" class="project-filter-btn" data-filter="fullstack">Full-stack</button>
-    </div>
-    <p class="visually-hidden" role="status" aria-live="polite" id="filterStatus"></p>
-
-    <div class="projects-grid" data-stagger>
-      <div class="project-card reveal spotlight tilt" data-category="research ros2">
-        <div class="project-tags">
-          <span class="project-tag">Neurosymbolic</span>
-          <span class="project-tag">Safe Autonomy</span>
-          <span class="project-tag">CI-replayed</span>
-        </div>
-        <h3 class="project-title">llm-nav-shield: Detect, Recover, or Halt</h3>
-        <div class="project-desc">An LLM proposes a route, a deterministic verifier checks it, and a provably-correct planner recovers a safe one when it fails. When no safe path exists at all the shield halts rather than inventing one, which is the branch almost no demo has.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">38/38</div><div class="project-metric-label">flawed qwen2.5-7B proposals recovered, 0 unsafe forwarded</div></div>
-          <div><div class="project-metric-num count-up">10/10</div><div class="project-metric-label">no-safe-path cases correctly halted, CI-enforced</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/llm-nav-shield.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal spotlight tilt" data-category="ros2">
-        <div class="project-tags">
-          <span class="project-tag">C++20</span>
-          <span class="project-tag">ROS2 Nav2</span>
-          <span class="project-tag">CI-verified</span>
-        </div>
-        <h3 class="project-title">ROS2 Autonomous Navigation &amp; Deterministic Planning</h3>
-        <div class="project-desc">A* and D* Lite as C++20 Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic. A seeded 200-trial benchmark measures the event that actually matters: an obstacle blocks the path and both planners must recover.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">4.3x</div><div class="project-metric-label">faster replanning with D* Lite (mean, 11x median)</div></div>
-          <div><div class="project-metric-num count-up">185,237</div><div class="project-metric-label">fuzzed replans validated against Dijkstra, exactly</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/path-planning.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal spotlight tilt" data-category="ros2 edge-ai">
-        <div class="project-tags">
-          <span class="project-tag">ROS2</span>
-          <span class="project-tag">LLM</span>
-          <span class="project-tag">CI-replayed</span>
-        </div>
-        <h3 class="project-title">ROS2 LLM Safety Verifier</h3>
-        <div class="project-desc">A deterministic gate between LLM planners and Nav2: footprint collision, continuity and map-bounds checks reject hallucinated trajectories before a controller ever sees them. Prompts, raw responses and the evaluator are committed, and CI replays every number.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">35/35 &middot; 32/32</div><div class="project-metric-label">unsafe qwen2.5-7B and llama-3.3-70B plans caught, zero false positives, per model</div></div>
-          <div><div class="project-metric-num count-up">0</div><div class="project-metric-label">missed dangers: 2,071 constructed + 80 real-model cases, each count CI-enforced</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/llm-safety-verifier.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal spotlight tilt" data-category="research">
-        <div class="project-tags">
-          <span class="project-tag">C++ / __int128</span>
-          <span class="project-tag">Numerical Robustness</span>
-          <span class="project-tag">CI-verified</span>
-        </div>
-        <h3 class="project-title">exact-predicates: When Floating Point Lies</h3>
-        <div class="project-desc">Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two equal keys landed one ulp apart. CI asserts, case by case, that the float version is wrong and the exact one is right.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">657</div><div class="project-metric-label">adversarial cases: float wrong, exact right, CI-asserted</div></div>
-          <div><div class="project-metric-num count-up">~2x</div><div class="project-metric-label">the measured cost of exactness, not orders of magnitude</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/exact-predicates.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal spotlight tilt" data-category="research">
-        <div class="project-tags">
-          <span class="project-tag">Nonlinear PDE</span>
-          <span class="project-tag">Spectral Methods</span>
-          <span class="project-tag">Singularity Formation</span>
-        </div>
-        <h3 class="project-title">degregorio-blowup: Two Ways to Become Infinite</h3>
-        <div class="project-desc">Whether a fluid can tear itself apart in finite time is a Millennium Prize problem, so the field builds technique on one dimensional models instead. In this family the blowup happens two structurally different ways. In the frozen one the exponent that sets the roughness is read off a constant the grid smears by 2e-2; a second constant carries the same error and is known exactly, so regressing one against the other cancels it and collapses the spread <strong>800-fold</strong>.</div>
-        <div class="project-metrics">
-          <div><div class="project-metric-num count-up">19/19</div><div class="project-metric-label">checks against closed forms, conserved quantities and convergence rates predicted in advance</div></div>
-          <div><div class="project-metric-num count-up">16/16</div><div class="project-metric-label">random starting waves reaching the same blowup profile, agreeing to seven digits</div></div>
-        </div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/degregorio-blowup.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/degregorio-blowup" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card project-card-compact reveal spotlight tilt" data-category="research">
-        <div class="project-tags">
-          <span class="project-tag">LLM Agents</span>
-          <span class="project-tag">Python</span>
-          <span class="project-tag">jsonschema Differential</span>
-        </div>
-        <h3 class="project-title">toolcall-contract: Tool Calls That Silently Aren't Right</h3>
-        <div class="project-desc">LLM tool calls that parse, type-check and validate, and still break the contract. A schema check, which is what most agent frameworks do, passes <strong>39 of 40</strong> of these calls. The contract passes 32.</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/toolcall-contract.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card project-card-compact reveal spotlight tilt" data-category="embedded">
-        <div class="project-tags">
-          <span class="project-tag">ESP32</span>
-          <span class="project-tag">LoRa Mesh</span>
-          <span class="project-tag">Deployed</span>
-        </div>
-        <h3 class="project-title">ESP32-CAM Motion Detector</h3>
-        <div class="project-desc">Deterministic C++ firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics: 800&times;600 frames distilled to a <strong>16&times;12 decision grid</strong>, no ML and no vision libraries anywhere.</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/esp32-motion-detector.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-      <div class="project-card project-card-compact reveal spotlight tilt" data-category="fullstack">
-        <div class="project-tags">
-          <span class="project-tag">React + TypeScript</span>
-          <span class="project-tag">Supabase RLS</span>
-          <span class="project-tag">In Production</span>
-        </div>
-        <h3 class="project-title">Safina Portal: School Management System</h3>
-        <div class="project-desc">An entire institute running on one system: seven roles, prorated billing, payroll, and an append-only audit trail across <strong>33 tables</strong> that nothing bypasses via the API. Live in production.</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="projects/safina-portal.html" class="project-link">Read the full story &rarr;</a>
-          <a href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener" class="project-link">GitHub &nearr;</a>
-        </div>
-      </div>
-
-    </div>
-
-    <a class="guides-callout reveal spotlight" href="projects/guides.html">
-      <div>
-        <div class="guides-callout-label">Plain-language guides</div>
-        <h3 class="guides-callout-title">Ten projects, explained <em>without the jargon</em></h3>
-        <p class="guides-callout-text">Written for someone who has never read a research paper. The same numbers, the same stated limits, and the same claims I have withdrawn, without the vocabulary.</p>
-      </div>
-      <span class="guides-callout-cta">Read the guides &rarr;</span>
-    </a>
+    </article>
   </div>
 </section>
 
-<section id="publications">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">03</span> PUBLICATIONS</div>
-      <h2 class="section-title">Research <em>output</em></h2>
-    </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots</h3>
-        <div class="pub-authors">Kazmi, M. (2025)</div>
-        <div class="pub-venue">MSc thesis &middot; University of Hertfordshire &middot; N=20, within-subjects, counterbalanced, RoSAS-validated</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
-          <a href="files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener" class="pub-link">Read the paper (PDF) &rarr;</a>
-          <button type="button" class="copy-btn pub-copy-btn" id="copyCitationBtn" data-citation="Kazmi, M. (2025). Enhancing Human-Robot Companionship: Comparing Verbal and Non-Verbal Communication Cues in Humanoid Robots. University of Hertfordshire.">Copy citation</button>
-        </div>
+<section id="about" class="section">
+  <div class="wrap section-inner about">
+    <div class="about-me">
+      <h2>Engineer first. Researcher by conviction.</h2>
+      <div class="bio">
+        <img src="assets/headshot.webp" width="800" height="800" alt="Portrait of Munawar Kazmi" loading="lazy" decoding="async">
+        <p>I work at the boundary between robotics research and shipped engineering. My academic work asks how humanoid robots should communicate so that people trust them appropriately: not too little, not too much. My applied work is the embedded systems and edge AI pipelines that make robots work in the field.</p>
+        <p>A result only matters to me once it survives real hardware, real users, and conditions nobody designed for in the lab.</p>
+      </div>
+      <div class="facts">
+        <div class="label">Education</div>
+        <div class="fact"><b>MSc AI &amp; Robotics, Commendation</b><span>University of Hertfordshire, 2023-2024</span></div>
+        <div class="fact"><b>BEng Mechatronics Engineering</b><span>NUST, 2018-2022</span></div>
       </div>
     </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">Certified Bounds on Achievable Legibility under a Path Cost Budget</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Submitted to IEEE Robotics and Automation Letters (RA-L), August 2026 &middot; 8 scenarios at 4 cost ceilings, no bound violated &middot; the observer model has never been validated against people</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/legibility-bounds-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the preprint (PDF) &rarr;</a>
-          <a href="files/legibility-bounds-explained.pdf" target="_blank" rel="noopener" class="pub-link">Plain-language guide (PDF) &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-        </div>
+
+    <div class="xp">
+      <div class="label">Experience</div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Visiting Lecturer</b><span>Sep 2026 - Present</span></div>
+        <div class="xp-org">UCLTILS · Multan, Pakistan</div>
+        <p>Teach Computing Principles and Logic, a first-year module of the University of London BSc Artificial Intelligence taught at UCLTILS.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Full-Stack Software Engineer</b><span>Jul 2026 - Present</span></div>
+        <div class="xp-org">Safina International (Contract) · Multan, Pakistan</div>
+        <p>Sole engineer of the institute's live platform, in production across seven user roles and 33 audited tables.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Visiting Lecturer, AI &amp; Robotics</b><span>Aug 2025 - Present</span></div>
+        <div class="xp-org">Pak-Turk Maarif Schools · Multan, Pakistan</div>
+        <p>Designed and teach an ML curriculum for 30+ students with no prior background, taking teams through training and evaluating their own classifiers on custom tasks.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Embedded Systems Engineer</b><span>Jan 2025 - May 2025</span></div>
+        <div class="xp-org">Muxtronics (Contract) · Multan, Pakistan</div>
+        <p>Deterministic C++ firmware for real-time image processing on ESP32, and the LoRa mesh protocol that carried alerts off the device, for a commercial intrusion-detection prototype.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Robotics Integration Specialist</b><span>Jan 2024 - May 2024</span></div>
+        <div class="xp-org">Robot House · University of Hertfordshire</div>
+        <p>Built the gesture recognition and motion planning pipeline for the JD humanoid in Unity and C++, integrated through ROS2, and deployed PyTorch non-verbal communication models onto its real-time control loop.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Research Associate</b><span>May 2023 - Dec 2023</span></div>
+        <div class="xp-org">University of Hertfordshire</div>
+        <p>Fine-tuned and optimised TensorFlow models for real-time inference on the Unitree Go1 quadruped, to the latency budget a walking controller leaves for perception.</p>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head"><b>Embedded Systems Intern</b><span>Mar 2022 - Apr 2022</span></div>
+        <div class="xp-org">NCRA, National Centre of Robotics &amp; Automation · Islamabad</div>
+        <p>Optimised bare-metal C firmware for embedded controllers at the national robotics centre, validated across 100+ safety-critical test cycles.</p>
       </div>
     </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">plan-failure-bench: A Machine-Checkable Benchmark of How Language Model Planners Fail</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Working paper, updated as the research completes &middot; results tables generated from the committed records</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the current draft (PDF) &rarr;</a>
-          <a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener" class="pub-link">Section status &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener" class="pub-link">Cite via DOI &rarr;</a>
-        </div>
-      </div>
+  </div>
+</section>
+
+<section id="references" class="section">
+  <div class="wrap section-inner refs-inner">
+    <h2>References</h2>
+    <div class="refs">
+      <figure class="ref">
+        <blockquote>“He actively sought feedback and incorporated it into his work, demonstrating a commitment to continuous improvement. His innovative approach, coupled with a strong foundation in research and development, positions him as a valuable asset to academic or professional institutions.”</blockquote>
+        <figcaption><b>Dr Patrick Holthaus</b><span>Reader in Interactive Assistive Technology, University of Hertfordshire. MSc supervisor.</span></figcaption>
+      </figure>
+      <figure class="ref">
+        <blockquote>“Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, leading the ESP32-CAM prototype from concept to a working product.”</blockquote>
+        <figcaption><b>Umer Waheed Bukhari</b><span>CEO, Muxtronics</span></figcaption>
+      </figure>
+      <figure class="ref">
+        <blockquote>“Money cannot be quietly deleted: a wrong payment is corrected by a recorded reversal, so the record of what happened survives. And every change anyone makes is logged automatically. He proposed both of these himself. I did not ask for them, and I did not know to.”</blockquote>
+        <figcaption><b>Irum Moin</b><span>Principal, Safina International. <a class="text-link" href="files/Kazmi_Reference_Safina.pdf">Full reference (PDF)</a></span></figcaption>
+      </figure>
     </div>
-    <div class="pub-card reveal spotlight">
-      <div class="pub-body">
-        <h3 class="pub-title">The Frozen Blowup Profile of the Okamoto, Sakajo and Wunsch Family: A Control Variate for its Spectral Exponent</h3>
-        <div class="pub-authors">Kazmi, M. (2026)</div>
-        <div class="pub-venue">Twenty-three-page note, not yet submitted &middot; narrower than it was: the frozen profile is Lushnikov, Silantyev and Siegel's and its stability and the stagnation point relation are Chen's, an overlap search that had missed the pole dynamics literature found all of it, and the repository retracts what did not survive &middot; what remains is the measurement, which collapses the spread on the spectral exponent 800-fold</div>
-        <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <a href="files/degregorio-blowup-paper.pdf" target="_blank" rel="noopener" class="pub-link">Read the draft (PDF) &rarr;</a>
-          <a href="files/degregorio-blowup-explained.pdf" target="_blank" rel="noopener" class="pub-link">Plain-language guide (PDF) &rarr;</a>
-          <a href="https://github.com/munawarkazmi/degregorio-blowup/blob/main/FINDINGS.md" target="_blank" rel="noopener" class="pub-link">Findings, including the retractions &rarr;</a>
+
+    <div class="talks-wrap">
+      <div class="label">Talks and teaching</div>
+      <div class="talks">
+        <div class="talk">
+          <img src="assets/speaking.webp" width="1400" height="654" alt="Munawar Kazmi presenting at the University of Hertfordshire" loading="lazy" decoding="async">
+          <div class="talk-text">
+            <b>AI &amp; Robotics in Education Conference</b>
+            <span>Talk · University of Hertfordshire</span>
+            <p>Presented on HRI and edge AI applications to students and faculty, with live robot demonstrations of the companionship research.</p>
+          </div>
+        </div>
+        <div class="talk">
+          <img src="assets/teaching.webp" width="1179" height="652" alt="Munawar Kazmi leading a hands-on robotics and ML workshop at Pak-Turk Maarif Schools" loading="lazy" decoding="async">
+          <div class="talk-text">
+            <b>Hands-on robotics and ML workshop</b>
+            <span>Workshop · Pak-Turk Maarif Schools</span>
+            <p>Led practical sessions covering gesture control, neural networks and real-time AI deployment. Teams built and trained working classifiers during the session.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">04</span> EXPERIENCE</div>
-      <h2 class="section-title">From <em>lab</em> to deployed hardware</h2>
-    </div>
-
-    <div class="timeline" id="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Full-Stack Software Engineer</h3>
-          <div class="timeline-date">Jul 2026 - Present</div>
-        </div>
-        <div class="timeline-company">Safina International (Contract) &middot; Multan, Pakistan</div>
-        <ul class="timeline-bullets">
-          <li>Sole engineer of the institute's live platform, <a href="projects/safina-portal.html">Safina Portal</a>, in production across <strong>seven user roles</strong> and <strong>33 audited tables</strong>.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Visiting Lecturer, AI &amp; Robotics</h3>
-          <div class="timeline-date">Aug 2025 - Present</div>
-        </div>
-        <div class="timeline-company">Pak-Turk Maarif Schools &middot; Multan, Pakistan</div>
-        <ul class="timeline-bullets">
-          <li>Designed and teach an ML curriculum for <strong>30+ students</strong> with no prior background, taking teams through training and evaluating their own classifiers on custom tasks.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Embedded Systems Engineer</h3>
-          <div class="timeline-date">Jan 2025 - May 2025</div>
-        </div>
-        <div class="timeline-company">Muxtronics (Contract) &middot; Multan, Pakistan</div>
-        <ul class="timeline-bullets">
-          <li>Engineered deterministic C++ firmware for real-time image processing on ESP32 for a commercial intrusion-detection prototype.</li>
-          <li>Architected the LoRa mesh protocol that carried alerts off the device. It stays the company's property, and the field-trial figures this entry used to quote are <a href="projects/esp32-motion-detector.html">retracted</a>.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Robotics Integration Specialist</h3>
-          <div class="timeline-date">Jan 2024 - May 2024</div>
-        </div>
-        <div class="timeline-company">Robot House &middot; University of Hertfordshire</div>
-        <ul class="timeline-bullets">
-          <li>Built the gesture recognition and motion planning pipeline for the JD humanoid in Unity and C++, integrated through ROS2, and deployed PyTorch non-verbal communication models onto its real-time control loop. The study that ran on it measured <a href="projects/hri-companionship.html"><strong>a significant clarity effect, d = 0.58</strong></a>.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Research Associate</h3>
-          <div class="timeline-date">May 2023 - Dec 2023</div>
-        </div>
-        <div class="timeline-company">University of Hertfordshire</div>
-        <ul class="timeline-bullets">
-          <li>Fine-tuned and optimised TensorFlow models for real-time inference on the <strong>Unitree Go1</strong> quadruped, then integrated them into the platform's control loop. The work was inference latency and runtime stability, to the budget a walking controller leaves for perception.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <h3 class="timeline-role">Embedded Systems Intern</h3>
-          <div class="timeline-date">Mar 2022 - Apr 2022</div>
-        </div>
-        <div class="timeline-company">NCRA, National Centre of Robotics &amp; Automation &middot; Islamabad</div>
-        <ul class="timeline-bullets">
-          <li>Optimised bare-metal C firmware for embedded controllers at the national robotics centre, validated across <strong>100+ safety-critical test cycles</strong>.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">05</span> TECHNICAL SKILLS</div>
-      <h2 class="section-title">Tools I <em>ship</em> with</h2>
-    </div>
-    <div class="skills-grid reveal">
-      <div class="skill-col">
-        <div class="skill-cat">ROBOTICS &amp; SOFTWARE</div>
-        <ul class="skill-list">
-          <li>C++20</li><li>Python</li><li>ROS2 (Nav2, Plugin Dev)</li><li>Git &amp; CI/CD</li><li>Docker</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">SIMULATION &amp; DIGITAL TWINS</div>
-        <ul class="skill-list">
-          <li>Isaac Sim</li><li>MuJoCo</li><li>Gazebo</li><li>Unity</li><li>Sim-to-Real Transfer</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">AI &amp; PERCEPTION</div>
-        <ul class="skill-list">
-          <li>PyTorch</li><li>TensorFlow</li><li>TensorRT</li><li>Computer Vision</li><li>LLM Integration</li>
-        </ul>
-      </div>
-      <div class="skill-col">
-        <div class="skill-cat">HARDWARE &amp; EMBEDDED</div>
-        <ul class="skill-list">
-          <li>JD Humanoid</li><li>Unitree Go1</li><li>Jetson Nano</li><li>ESP32 &amp; LoRa</li><li>Bare-Metal C/C++</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="speaking">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><span class="eyebrow-num">06</span> SPEAKING &amp; REFERENCES</div>
-      <h2 class="section-title">In the <em>room</em>, and what they <em>say</em></h2>
-    </div>
-    <div class="group-label reveal">Talks &amp; teaching</div>
-    <div class="speaking-grid" data-stagger>
-      <div class="speaking-card reveal spotlight tilt">
-        <img class="speaking-photo" src="assets/speaking.webp" alt="Munawar Kazmi presenting at the University of Hertfordshire" width="700" height="170" loading="lazy" decoding="async">
-        <div class="speaking-meta">TALK &middot; UNIVERSITY OF HERTFORDSHIRE</div>
-        <h3 class="speaking-event">AI &amp; Robotics in Education Conference</h3>
-        <div class="speaking-detail">Presented on HRI and edge AI applications to students and faculty, with live robot demonstrations of the companionship research.</div>
-      </div>
-      <div class="speaking-card reveal spotlight tilt">
-        <img class="speaking-photo" src="assets/teaching.webp" alt="Munawar Kazmi leading a hands-on robotics and ML workshop at Pak-Turk Maarif Schools" width="700" height="170" loading="lazy" decoding="async">
-        <div class="speaking-meta">WORKSHOP &middot; PAK-TURK MAARIF SCHOOLS</div>
-        <h3 class="speaking-event">Hands-On Robotics &amp; ML Workshop</h3>
-        <div class="speaking-detail">Led practical sessions covering gesture control, neural networks, and real-time AI deployment. Teams built and trained working classifiers during the session.</div>
-      </div>
-    </div>
-
-    <div class="group-label reveal">References</div>
-    <div class="testimonials-grid" data-stagger>
-      <div class="testimonial-card reveal spotlight">
-        <div class="quote-mark">&ldquo;</div>
-        <div class="testimonial-text">Munawar demonstrated remarkable technical proficiency, creativity, and a strong work ethic. He actively sought feedback and incorporated it into his work, demonstrating a commitment to continuous improvement. His innovative approach, coupled with a strong foundation in research and development, positions him as a valuable asset to academic or professional institutions.</div>
-        <div class="author-name">Dr Patrick Holthaus</div>
-        <div class="author-role">Reader in Interactive Assistive Technology &middot; University of Hertfordshire &middot; MSc Supervisor</div>
-      </div>
-      <div class="testimonial-card reveal spotlight">
-        <div class="quote-mark">&ldquo;</div>
-        <div class="testimonial-text">Munawar demonstrated exceptional skill in embedded AI deployment during his contract at Muxtronics, leading the ESP32-CAM prototype from concept to a working product - a true asset for any robotics team.</div>
-        <div class="author-name">Umer Waheed Bukhari</div>
-        <div class="author-role">CEO &middot; Muxtronics</div>
-      </div>
-      <div class="testimonial-card reveal spotlight">
-        <div class="quote-mark">&ldquo;</div>
-        <div class="testimonial-text">He built the system that now runs this institute, and he built it by himself. Money cannot be quietly deleted: a wrong payment is corrected by a recorded reversal, so the record of what happened survives. And every change anyone makes is logged automatically. He proposed both of these himself. I did not ask for them, and I did not know to.</div>
-        <div class="author-name">Irum Moin</div>
-        <div class="author-role">Principal &middot; Safina International &middot; <a href="files/Kazmi_Reference_Safina.pdf" target="_blank" rel="noopener">read the full reference (PDF)</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="reveal">
-      <div class="contact-eyebrow">GET IN TOUCH</div>
-      <h2 class="contact-title">Let's build<br><em>something real.</em></h2>
-      <p class="contact-sub">Open to PhD research collaboration in HRI and AI reliability, and to robotics and AI engineering roles in the UK, EU, and USA.</p>
-
-      <div class="contact-tracks" data-stagger>
-        <div class="contact-track-card reveal spotlight">
-          <div class="contact-track-label">ACADEMIC &amp; RESEARCH CONTACTS</div>
-          <div class="contact-track-text">Pursuing PhD opportunities in human-robot interaction and AI reliability. Happy to share full research proposals.</div>
-          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Research%20Inquiry" class="contact-track-link">Email about research &rarr;</a>
-        </div>
-        <div class="contact-track-card reveal spotlight">
-          <div class="contact-track-label">HIRING TEAMS</div>
-          <div class="contact-track-text">Open to robotics and AI engineering roles in the UK, EU, and USA. Sponsorship welcome.</div>
-          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Role%20Inquiry" class="contact-track-link">Email about roles &rarr;</a>
+<section id="contact" class="contact">
+  <div class="wrap contact-inner">
+    <h2>Let's build something real.</h2>
+    <div class="doors">
+      <div class="door">
+        <div class="label">Hiring teams</div>
+        <p>I am open to robotics and AI engineering roles in the UK, EU and USA. Sponsorship welcome.</p>
+        <div class="door-links">
+          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Role%20Inquiry">Email about roles</a>
+          <a href="files/Kazmi_Resume.pdf">One-page resume (PDF)</a>
         </div>
       </div>
-
-      <a href="mailto:munawarsaeedkazmi1@gmail.com" class="contact-email-big">munawarsaeedkazmi1@gmail.com</a>
-
-      <div class="contact-links">
-        <button type="button" class="copy-btn contact-link" id="copyEmailBtn" data-email="munawarsaeedkazmi1@gmail.com">Copy email</button>
-        <a href="https://www.linkedin.com/in/munawar-kazmi/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-        <a href="https://github.com/munawarkazmi" target="_blank" rel="noopener" class="contact-link">GitHub</a>
-        <a href="https://orcid.org/0009-0004-6565-6067" target="_blank" rel="noopener" class="contact-link">ORCID</a>
-        <a href="https://medium.com/@munawarkazmi" target="_blank" rel="noopener" class="contact-link">Medium</a>
-        <a href="files/Kazmi_Resume.pdf" target="_blank" rel="noopener" class="contact-link">Download CV</a>
+      <div class="door">
+        <div class="label">Supervisors and research groups</div>
+        <p>I am pursuing a PhD in human-robot interaction and AI reliability, and I'm happy to share full research proposals.</p>
+        <div class="door-links">
+          <a href="mailto:munawarsaeedkazmi1@gmail.com?subject=Research%20Inquiry">Email about research</a>
+          <a href="files/Kazmi_CV.pdf">Academic CV (PDF)</a>
+        </div>
       </div>
     </div>
+    <div class="mail">
+      <a href="mailto:munawarsaeedkazmi1@gmail.com">munawarsaeedkazmi1@gmail.com</a>
+      <button class="copy-btn" id="copyEmailBtn" type="button" data-copy="munawarsaeedkazmi1@gmail.com">Copy email</button>
+    </div>
+    <footer class="site-footer">
+      <nav aria-label="Profiles">
+        <a href="https://www.linkedin.com/in/munawar-kazmi/">LinkedIn</a>
+        <a href="https://github.com/munawarkazmi">GitHub</a>
+        <a href="https://orcid.org/0009-0004-6565-6067">ORCID</a>
+        <a href="https://medium.com/@munawarkazmi">Medium</a>
+      </nav>
+      <small>© 2026 Munawar Kazmi · Robotics &amp; AI Engineer</small>
+    </footer>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <div>&copy; 2026 Munawar Kazmi</div>
-  <div>Robotics &amp; AI Research Engineer</div>
-</footer>
-
-<button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
-
 <script>
-  /* ============ CRITICAL: preloader + hero entrance ============
-     Kept in its own script block so a failure in the effects
-     script below can never leave the page hidden. */
-  (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var pre = document.getElementById('preloader');
-    document.body.classList.add('no-scroll');
-
-    function finish() {
-      if (document.body.classList.contains('ready')) return;
-      if (pre) pre.classList.add('done');
-      document.body.classList.remove('no-scroll');
-      document.body.classList.add('ready');
-    }
-
-    if (reduced) {
-      finish();
-      return;
-    }
-
-    // Hold just long enough for the intro to read as deliberate, then leave
-    // as soon as the page is actually ready - a fixed wait taxes fast
-    // connections for nothing.
-    var MIN = 700, MAX = 1550;
-    var started = Date.now();
-
-    function finishWhenReady() {
-      var waited = Date.now() - started;
-      setTimeout(finish, Math.max(0, MIN - waited));
-    }
-
-    if (document.readyState === 'complete') finishWhenReady();
-    else window.addEventListener('load', finishWhenReady);
-
-    setTimeout(finish, MAX);   // never hold longer than this
-    setTimeout(finish, 3000);  // absolute failsafe
-  })();
+(function () {
+  'use strict';
+  /* Copy the address, and say so in the button itself for two seconds.
+     If the clipboard is unavailable the mailto link beside it still works,
+     so a failure here changes nothing. */
+  var btn = document.getElementById('copyEmailBtn');
+  if (!btn || !navigator.clipboard) return;
+  var idle = btn.textContent;
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = idle; }, 2000);
+    });
+  });
+})();
 </script>
-
-<script>
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  /* ============ Hero headline word-split ============ */
-  (function () {
-    if (prefersReducedMotion) return;
-    var h1 = document.getElementById('heroName');
-    if (!h1) return;
-    var idx = 0;
-    function split(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
-        if (child.nodeType === 3) {
-          var frag = document.createDocumentFragment();
-          child.textContent.split(/(\s+)/).forEach(function (part) {
-            if (!part) return;
-            if (/^\s+$/.test(part)) {
-              frag.appendChild(document.createTextNode(part));
-            } else {
-              var w = document.createElement('span');
-              w.className = 'w';
-              var wi = document.createElement('span');
-              wi.className = 'wi';
-              wi.style.setProperty('--i', idx++);
-              wi.textContent = part;
-              w.appendChild(wi);
-              frag.appendChild(w);
-            }
-          });
-          node.replaceChild(frag, child);
-        } else if (child.nodeType === 1) {
-          split(child);
-        }
-      });
-    }
-    try {
-      split(h1);
-      h1.classList.add('split');
-    } catch (e) { /* headline stays visible via fallback */ }
-  })();
-
-  /* ============ Mobile menu ============ */
-  function toggleMenu() {
-    var nav = document.getElementById('navLinks');
-    var btn = document.querySelector('.nav-toggle');
-    var isOpen = nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen);
-  }
-
-  document.querySelectorAll('#navLinks a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      document.getElementById('navLinks').classList.remove('open');
-      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  /* ============ Scroll reveal (with stagger) ============ */
-  document.querySelectorAll('[data-stagger]').forEach(function (parent) {
-    Array.prototype.slice.call(parent.children).forEach(function (child, i) {
-      if (child.classList.contains('reveal')) {
-        child.style.transitionDelay = (i * 110) + 'ms';
-      }
-    });
-  });
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        el.classList.add('visible');
-        observer.unobserve(el);
-        // clear stagger delay so hover transitions stay snappy
-        setTimeout(function () { el.style.transitionDelay = ''; }, 1400);
-      }
-    });
-  }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
-
-  // Failsafe: reveal anything still hidden shortly after load
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight + 200) el.classList.add('visible');
-      });
-    }, 800);
-  });
-
-  /* ============ Custom cursor ============ */
-  (function () {
-    if (!finePointer || prefersReducedMotion) return;
-    var dot = document.getElementById('cursorDot');
-    var ring = document.getElementById('cursorRing');
-    if (!dot || !ring) return;
-    var mx = -100, my = -100, rx = -100, ry = -100, shown = false;
-
-    window.addEventListener('mousemove', function (e) {
-      mx = e.clientX; my = e.clientY;
-      if (!shown) { shown = true; rx = mx; ry = my; document.body.classList.add('cursor-on'); }
-      var t = e.target;
-      var interactive = t.closest && t.closest('a, button, .trust-toggle-btn, .project-filter-btn');
-      document.body.classList.toggle('cursor-hover', !!interactive);
-    });
-
-    document.addEventListener('mouseleave', function () {
-      document.body.classList.remove('cursor-on');
-      shown = false;
-    });
-
-    (function loop() {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(loop);
-    })();
-  })();
-
-  /* ============ Hero particle constellation ============ */
-  (function () {
-    if (prefersReducedMotion) return;
-    var canvas = document.getElementById('heroCanvas');
-    var hero = document.getElementById('hero');
-    if (!canvas || !hero || !canvas.getContext) return;
-    var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, nodes = [], running = true, heroVisible = true;
-    var mouse = { x: -9999, y: -9999 };
-
-    function resize() {
-      W = hero.clientWidth; H = hero.clientHeight;
-      canvas.width = W * dpr; canvas.height = H * dpr;
-      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var count = Math.max(26, Math.min(70, Math.round(W / 22)));
-      nodes = [];
-      for (var i = 0; i < count; i++) {
-        nodes.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.28,
-          vy: (Math.random() - 0.5) * 0.28,
-          r: Math.random() * 1.4 + 0.6
-        });
-      }
-    }
-
-    // The hero can change size without the window doing so (fonts landing,
-    // the preloader releasing), and the canvas has to follow or it renders
-    // into a stale coordinate space and gets clipped.
-    if (window.ResizeObserver) new ResizeObserver(resize).observe(hero);
-    else window.addEventListener('resize', resize);
-    resize();
-
-    hero.addEventListener('mousemove', function (e) {
-      var rect = hero.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-    hero.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
-
-    new IntersectionObserver(function (entries) {
-      heroVisible = entries[0].isIntersecting;
-    }, { threshold: 0 }).observe(hero);
-
-    document.addEventListener('visibilitychange', function () {
-      running = !document.hidden;
-    });
-
-    var LINK = 130, LINK2 = LINK * LINK;
-
-    function frame() {
-      requestAnimationFrame(frame);
-      if (!running || !heroVisible) return;
-      ctx.clearRect(0, 0, W, H);
-
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        // gentle drift toward the mouse
-        var dxm = mouse.x - n.x, dym = mouse.y - n.y;
-        var dm2 = dxm * dxm + dym * dym;
-        if (dm2 < 32400 && dm2 > 1) {
-          var dm = Math.sqrt(dm2);
-          n.vx += (dxm / dm) * 0.012;
-          n.vy += (dym / dm) * 0.012;
-        }
-        n.vx *= 0.985; n.vy *= 0.985;
-        // keep a minimum drift
-        if (Math.abs(n.vx) < 0.05) n.vx += (Math.random() - 0.5) * 0.02;
-        if (Math.abs(n.vy) < 0.05) n.vy += (Math.random() - 0.5) * 0.02;
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < -20) n.x = W + 20; else if (n.x > W + 20) n.x = -20;
-        if (n.y < -20) n.y = H + 20; else if (n.y > H + 20) n.y = -20;
-      }
-
-      // links
-      for (var a = 0; a < nodes.length; a++) {
-        for (var b = a + 1; b < nodes.length; b++) {
-          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
-          var d2 = dx * dx + dy * dy;
-          if (d2 < LINK2) {
-            var alpha = (1 - d2 / LINK2) * 0.14;
-            ctx.strokeStyle = 'rgba(201, 168, 118, ' + alpha.toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(nodes[a].x, nodes[a].y);
-            ctx.lineTo(nodes[b].x, nodes[b].y);
-            ctx.stroke();
-          }
-        }
-        // link to mouse
-        var mdx = nodes[a].x - mouse.x, mdy = nodes[a].y - mouse.y;
-        var md2 = mdx * mdx + mdy * mdy;
-        if (md2 < LINK2 * 1.5) {
-          var malpha = (1 - md2 / (LINK2 * 1.5)) * 0.2;
-          ctx.strokeStyle = 'rgba(201, 168, 118, ' + malpha.toFixed(3) + ')';
-          ctx.beginPath();
-          ctx.moveTo(nodes[a].x, nodes[a].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      }
-
-      // dots
-      for (var k = 0; k < nodes.length; k++) {
-        ctx.fillStyle = 'rgba(201, 168, 118, 0.5)';
-        ctx.beginPath();
-        ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    requestAnimationFrame(frame);
-  })();
-
-  /* ============ Unified scroll handler ============ */
-  (function () {
-    var progressBar = document.getElementById('scrollProgress');
-    var backToTop = document.getElementById('backToTop');
-    var timeline = document.getElementById('timeline');
-    var gesture = document.querySelector('.gesture-line');
-    var heroInner = document.querySelector('.hero-inner');
-    var lastY = window.scrollY;
-    var ticking = false;
-
-    function onScroll() {
-      var y = window.scrollY;
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - window.innerHeight;
-
-      if (progressBar) progressBar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
-
-      document.body.classList.toggle('scrolled', y > 40);
-
-      // hide nav scrolling down, show scrolling up
-      var menuOpen = document.getElementById('navLinks').classList.contains('open');
-      if (!menuOpen) {
-        if (y > 500 && y > lastY + 4) document.body.classList.add('nav-hidden');
-        else if (y < lastY - 4 || y <= 500) document.body.classList.remove('nav-hidden');
-      }
-      lastY = y;
-
-      if (backToTop) backToTop.classList.toggle('show', y > 700);
-
-      // timeline gold line growth
-      if (timeline) {
-        var r = timeline.getBoundingClientRect();
-        var p = (window.innerHeight * 0.75 - r.top) / r.height;
-        timeline.style.setProperty('--tlp', Math.max(0, Math.min(1, p)).toFixed(3));
-      }
-
-      // hero parallax
-      if (!prefersReducedMotion && y < window.innerHeight) {
-        if (heroInner) heroInner.style.transform = 'translateY(' + (y * 0.12) + 'px)';
-        if (gesture) gesture.style.transform = 'translateY(calc(-50% + ' + (y * 0.22) + 'px))';
-      }
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
-    }, { passive: true });
-    onScroll();
-
-    if (backToTop) {
-      backToTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-      });
-    }
-  })();
-
-  /* ============ Nav scroll-spy ============ */
-  (function () {
-    var navAnchors = Array.prototype.slice.call(document.querySelectorAll('#navLinks a[href^="#"]'));
-    var spySections = navAnchors
-      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
-      .filter(Boolean);
-
-    var spyObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = '#' + entry.target.id;
-          navAnchors.forEach(function (a) {
-            var isCurrent = a.getAttribute('href') === id;
-            a.classList.toggle('active', isCurrent);
-            if (isCurrent) a.setAttribute('aria-current', 'true');
-            else a.removeAttribute('aria-current');
-          });
-        }
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-
-    spySections.forEach(function (sec) { spyObserver.observe(sec); });
-  })();
-
-  /* ============ Count-up animation ============ */
-  function animateCountUp(el) {
-    var raw = el.textContent.trim();
-    // Grouped thousands are one number, not "25" followed by ",000" - without
-    // the [\d,]* the counter ran to 25 and then snapped to 25,000.
-    var match = raw.match(/^([^\d]*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
-    if (!match) return;
-    var prefix = match[1], numStr = match[2], suffix = match[3];
-    var grouped = numStr.indexOf(',') !== -1;
-    var target = parseFloat(numStr.replace(/,/g, ''));
-    if (!isFinite(target)) return;
-    var decimals = numStr.indexOf('.') !== -1 ? numStr.split('.')[1].length : 0;
-    if (prefersReducedMotion) {
-      el.textContent = prefix + numStr + suffix;
-      return;
-    }
-    function format(n) {
-      var s = n.toFixed(decimals);
-      if (!grouped) return s;
-      var parts = s.split('.');
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      return parts.join('.');
-    }
-    var duration = 1100;
-    var start = performance.now();
-    function tick(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = prefix + format(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = prefix + numStr + suffix;
-    }
-    requestAnimationFrame(tick);
-  }
-
-  var countObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        animateCountUp(entry.target);
-        countObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  document.querySelectorAll('.count-up').forEach(function (el) { countObserver.observe(el); });
-
-  /* ============ Spotlight glow follows mouse ============ */
-  if (finePointer) {
-    document.querySelectorAll('.spotlight').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-      });
-    });
-  }
-
-  /* ============ 3D tilt on cards ============ */
-  (function () {
-    if (!finePointer || prefersReducedMotion) {
-      document.documentElement.classList.add('no-tilt');
-      return;
-    }
-    var MAX = 3.5;
-    document.querySelectorAll('.tilt').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect = card.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transition = 'transform 0.12s ease-out, border-color 0.3s ease, box-shadow 0.3s ease';
-        card.style.transform = 'perspective(900px) rotateX(' + (-py * MAX) + 'deg) rotateY(' + (px * MAX) + 'deg) translateY(-4px)';
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.transition = 'transform 0.5s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease';
-        card.style.transform = '';
-      });
-    });
-  })();
-
-  /* ============ Magnetic buttons ============ */
-  (function () {
-    if (!finePointer || prefersReducedMotion) return;
-    document.querySelectorAll('.magnetic').forEach(function (btn) {
-      btn.addEventListener('mousemove', function (e) {
-        var rect = btn.getBoundingClientRect();
-        var dx = e.clientX - (rect.left + rect.width / 2);
-        var dy = e.clientY - (rect.top + rect.height / 2);
-        btn.style.transform = 'translate(' + (dx * 0.18) + 'px, ' + (dy * 0.3) + 'px)';
-      });
-      btn.addEventListener('mouseleave', function () {
-        btn.style.transition = 'transform 0.45s var(--ease-out)';
-        btn.style.transform = '';
-        setTimeout(function () { btn.style.transition = ''; }, 500);
-      });
-    });
-  })();
-
-  /* ============ Trust calibration toggle ============ */
-  var trustData = {
-    verbal: { val: '95%', caption: 'Robot states its need directly', width: '95%' },
-    nonverbal: { val: '80%', caption: 'Robot communicates via gesture only', width: '80%' }
-  };
-  var trustVerbalBtn = document.getElementById('trustVerbalBtn');
-  var trustNonverbalBtn = document.getElementById('trustNonverbalBtn');
-  var trustBar = document.getElementById('trustBar');
-  var trustVal = document.getElementById('trustVal');
-  var trustCaption = document.getElementById('trustCaption');
-
-  function setTrustState(key) {
-    var d = trustData[key];
-    if (!d || !trustBar) return;
-    trustBar.style.width = d.width;
-    trustVal.textContent = d.val;
-    trustCaption.textContent = d.caption;
-    var isVerbal = key === 'verbal';
-    trustVerbalBtn.classList.toggle('active', isVerbal);
-    trustVerbalBtn.setAttribute('aria-pressed', isVerbal);
-    trustNonverbalBtn.classList.toggle('active', !isVerbal);
-    trustNonverbalBtn.setAttribute('aria-pressed', !isVerbal);
-  }
-
-  if (trustVerbalBtn && trustNonverbalBtn) {
-    trustVerbalBtn.addEventListener('click', function () { setTrustState('verbal'); });
-    trustNonverbalBtn.addEventListener('click', function () { setTrustState('nonverbal'); });
-  }
-
-  /* ============ Project filters ============ */
-  var filterBtns = document.querySelectorAll('.project-filter-btn');
-  var projectCards = document.querySelectorAll('.project-card');
-
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var filter = btn.dataset.filter;
-      var shown = 0;
-      projectCards.forEach(function (card) {
-        var cats = (card.dataset.category || '').split(' ');
-        var show = filter === 'all' || cats.indexOf(filter) !== -1;
-        card.classList.toggle('filtered-out', !show);
-        if (show) shown++;
-      });
-      var status = document.getElementById('filterStatus');
-      if (status) {
-        status.textContent = shown + (shown === 1 ? ' project' : ' projects') +
-                             ' shown for ' + btn.textContent.trim() + '.';
-      }
-    });
-  });
-
-  /* ============ Live commit line for every Now card ============
-     Fetched only once a card is actually approached. The unauthenticated
-     GitHub API allows 60 requests an hour per IP, so firing three on every
-     page load would exhaust it behind any shared address. */
-  (function () {
-    if (!window.fetch) return;
-    var slots = document.querySelectorAll('.now-commit[data-repo]');
-    if (!slots.length) return;
-
-    function load(el) {
-      var repo = el.dataset.repo;
-      if (!repo || el.dataset.loaded) return;
-      el.dataset.loaded = '1';
-      fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1')
-        .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('http ' + res.status)); })
-        .then(function (data) {
-          var c = data && data[0] && data[0].commit;
-          if (!c || !c.message) return;
-          var message = c.message.split('\n')[0];
-          var stamp = (c.committer && c.committer.date) || (c.author && c.author.date);
-          var age = '';
-          if (stamp) {
-            var hours = Math.max(0, Math.floor((Date.now() - new Date(stamp).getTime()) / 3600000));
-            if (hours < 1) age = 'within the last hour';
-            else if (hours < 24) age = hours + (hours === 1 ? ' hour ago' : ' hours ago');
-            else {
-              var days = Math.floor(hours / 24);
-              age = days + (days === 1 ? ' day ago' : ' days ago');
-            }
-          }
-          var link = document.createElement('a');
-          link.href = 'https://github.com/' + repo + '/commits/main';
-          link.target = '_blank';
-          link.rel = 'noopener';
-          link.className = 'now-commit-msg';
-          link.textContent = '“' + message + '”';
-          el.textContent = age ? 'Latest commit, ' + age + ': ' : 'Latest commit: ';
-          el.appendChild(link);
-        })
-        .catch(function () { /* the static link to the commit history stays in place */ });
-    }
-
-    var pending = Array.prototype.slice.call(slots);
-    var MARGIN = 400;
-
-    // Geometry check, used by both paths below. Same rule either way: load a
-    // slot once it is within a screen-ish of the viewport, never before.
-    function sweep() {
-      for (var i = pending.length - 1; i >= 0; i--) {
-        var rect = pending[i].getBoundingClientRect();
-        if (rect.top < window.innerHeight + MARGIN && rect.bottom > -MARGIN) {
-          load(pending[i]);
-          pending.splice(i, 1);
-        }
-      }
-      if (!pending.length) window.removeEventListener('scroll', onScroll);
-    }
-
-    var queued = false;
-    function onScroll() {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(function () { queued = false; sweep(); });
-    }
-
-    // The observer is the cheap path; the scroll listener is the guarantee,
-    // in the same spirit as the reveal failsafe above. Whichever fires first
-    // wins, and the data-loaded flag keeps the fetch to exactly one per repo.
-    if (window.IntersectionObserver) {
-      var commitObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            load(entry.target);
-            var at = pending.indexOf(entry.target);
-            if (at !== -1) pending.splice(at, 1);
-            commitObserver.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: MARGIN + 'px 0px' });
-      Array.prototype.forEach.call(slots, function (el) { commitObserver.observe(el); });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('load', sweep);
-    sweep();
-  })();
-
-  /* ============ Click-to-load video embeds ============
-     Nothing is requested from YouTube, and no third-party cookie is set,
-     until a visitor asks for the video. */
-  document.querySelectorAll('.video-facade').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var id = btn.dataset.video;
-      if (!id) return;
-      var frame = document.createElement('iframe');
-      frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
-                  '?autoplay=1&rel=0&playsinline=1';
-      frame.title = btn.dataset.title || 'Video';
-      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-      frame.allowFullscreen = true;
-      btn.replaceWith(frame);
-    });
-  });
-
-  /* ============ Copy-to-clipboard buttons ============ */
-  function wireCopyButton(btn, getText) {
-    if (!btn) return;
-    var original = btn.textContent;
-    btn.addEventListener('click', function () {
-      var text = getText();
-      navigator.clipboard.writeText(text).then(function () {
-        btn.textContent = 'Copied';
-        setTimeout(function () { btn.textContent = original; }, 1600);
-      }).catch(function () {
-        btn.textContent = text;
-      });
-    });
-  }
-
-  wireCopyButton(document.getElementById('copyEmailBtn'), function () { return document.getElementById('copyEmailBtn').dataset.email; });
-  wireCopyButton(document.getElementById('copyCitationBtn'), function () { return document.getElementById('copyCitationBtn').dataset.citation; });
-</script>
-
 <script src="assets/analytics.js" defer></script>
 </body>
 </html>

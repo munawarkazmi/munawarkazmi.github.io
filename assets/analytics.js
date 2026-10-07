@@ -69,9 +69,9 @@
    * where a request can be cancelled.
    */
   var MILESTONES = [
-    ['work', 'Reached: Work'],
-    ['publications', 'Reached: Publications'],
-    ['experience', 'Reached: Experience'],
+    ['engineering', 'Reached: Engineering'],
+    ['research', 'Reached: Research'],
+    ['about', 'Reached: About'],
     ['contact', 'Reached: Contact']
   ];
 
@@ -97,11 +97,9 @@
     }
   }
 
-  on('details.now-more', 'toggle', 'engage/measurements-opened', 'Opened the Now measurements');
   on('.video-facade', 'click', 'engage/video-played', 'Played a research video');
-  on('.project-filter-btn', 'click', 'engage/filter-used', 'Used a project filter');
   on('a[href$="Kazmi_Resume.pdf"]', 'click', 'engage/resume-opened', 'Opened the resume');
+  on('a[href$="Kazmi_CV.pdf"]', 'click', 'engage/cv-opened', 'Opened the academic CV');
   on('#copyEmailBtn', 'click', 'engage/email-copied', 'Copied the email address');
-  on('#copyCitationBtn', 'click', 'engage/citation-copied', 'Copied the citation');
   on('a[href$="guides.html"]', 'click', 'engage/guides-opened', 'Opened the plain-language guides');
 })();

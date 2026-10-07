@@ -282,12 +282,8 @@ CLAIMS = [
                   "its README, paper and STATUS all quote the count"),
     dict(label="instructions", site="index.html", shown=">60<",
          repo="plan-failure-bench", fmt=">{}<", value=_pfb_instructions),
-    dict(label="complete runs in the grid", site="index.html", shown="eighteen runs",
-         repo="plan-failure-bench",
-         value=lambda r: "eighteen runs" if _pfb_runs(r) == 18
-         else f"{_pfb_runs(r)} runs",
-         note="the site spells this one, so a change reads as a mismatch and "
-              "wants a human to reword rather than a number substituted"),
+    dict(label="complete runs in the grid", site="index.html", shown="18 runs",
+         repo="plan-failure-bench", fmt="{} runs", value=_pfb_runs),
 
     dict(label="narrowest certified gap", site="index.html", shown="0.0064",
          repo="legibility-bounds", fmt="{:.4f}",
@@ -295,9 +291,9 @@ CLAIMS = [
     dict(label="widest certified gap", site="index.html", shown="0.0567",
          repo="legibility-bounds", fmt="{:.4f}",
          value=lambda r: max(x["bound"] - x["achieved"] for x in _suite(r))),
-    dict(label="construction beats local search by", site="index.html", shown="0.1485",
+    dict(label="construction beats local search by", site="projects/legibility-bounds.html", shown="0.1485",
          repo="legibility-bounds", fmt="{:.4f}", value=_witness_margin),
-    dict(label="cases where construction wins", site="index.html", shown="13 of 32",
+    dict(label="cases where construction wins", site="projects/legibility-bounds.html", shown="13 of 32",
          repo="legibility-bounds", value=_witness_wins),
 
     dict(label="flawed proposals recovered", site="index.html", shown="38/38",
@@ -409,6 +405,9 @@ DOCUMENTS = [
     # still needed rebuilding by hand when the paper's DOI changed under it.
     dict(served="files/Kazmi_Resume.pdf", repo=None, artifact=None,
          sources=["files/Kazmi_Resume.tex"]),
+    # The two-page academic CV, built the same way from the file beside it.
+    dict(served="files/Kazmi_CV.pdf", repo=None, artifact=None,
+         sources=["files/Kazmi_CV.tex"]),
 ]
 
 # --- figures, and the sources that invalidate them -----------------------
