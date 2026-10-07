@@ -26,6 +26,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-500-latin.woff2" crossorigin>
+<script src="assets/theme.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* ============ HOME PAGE ============
@@ -36,7 +37,8 @@
 .site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 24px; padding-top: 14px; padding-bottom: 14px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 17px; font-weight: 600; text-decoration: none; }
 .brand-mark { width: 10px; height: 10px; background: var(--accent); }
-.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+.site-nav { order: 2; margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+.site-header .theme-toggle { order: 3; }
 .site-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--text); text-decoration: none; }
 .site-nav a:hover { color: var(--accent); }
 .site-nav a.nav-contact { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
@@ -218,6 +220,11 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 .site-footer small { font-family: var(--mono); font-size: 13px; color: var(--inverse-muted); }
 
 /* ---- phone ---- */
+/* Below this the links take a row of their own and the switch stays by the name. */
+@media (max-width: 640px) {
+  .site-header .theme-toggle { order: 2; margin-left: auto; }
+  .site-nav { order: 3; flex-basis: 100%; margin-left: 0; }
+}
 @media (max-width: 480px) {
   .site-nav { gap: 0 16px; }
   .site-nav .nav-about { display: none; }
@@ -275,6 +282,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 
 <header class="wrap site-header">
   <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Munawar Kazmi</a>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
   <nav class="site-nav" aria-label="Primary">
     <a href="#engineering">Engineering</a>
     <a href="#research">Research</a>

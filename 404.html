@@ -12,6 +12,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
+<script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/site.css">
 <style>
   /* This page can be served from any depth, so every path on it is absolute. */
@@ -35,9 +36,11 @@
   h1 em { font-style: normal; color: var(--accent); }
   p { color: var(--text); margin-bottom: 2rem; }
   .links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .theme-toggle.corner { position: fixed; top: 16px; right: 16px; }
 </style>
 </head>
 <body>
+<button class="theme-toggle corner" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
 <main>
   <div class="code label">Error 404</div>
   <h1>This page <em>does not exist</em>.</h1>

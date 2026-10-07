@@ -77,11 +77,12 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Every colour on the site is one of these. Nothing below this block, and no
-   page stylesheet, names a colour directly, so a second theme is a second
-   copy of this block and nothing else. The exhibit colours are the ground the
-   project charts are rendered on upstream, and stay the same in any theme. */
+/* Every colour on the site is one of these. Nothing below the theme blocks,
+   and no page stylesheet, names a colour directly, so a theme is one copy of
+   this block and nothing else. The exhibit colours are the ground the project
+   charts are rendered on upstream, and stay the same in either theme. */
 :root {
+  color-scheme: light;
   --bg: #FCFCFD;
   --panel: #F3F4F6;
   --track: #E9EBEE;
@@ -104,11 +105,72 @@
   --exhibit: #121214;
   --exhibit-ink: #FCFCFD;
   --exhibit-text: #C3C7CE;
+  --exhibit-line: #121214;
 
   --sans: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
   --gutter: clamp(24px, 5vw, 64px);
   --page: 1200px;
+}
+
+/* Dark. assets/theme.js sets data-theme on the root element from the
+   visitor's stored choice, or from the system setting when there is none. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1115;
+  --panel: #171A20;
+  --track: #262A32;
+  --ink: #F2F4F7;
+  --text: #C9CED6;
+  --muted: #9AA1AD;
+  --line: #2A2F38;
+  --accent: #7C9BFF;
+  --on-accent: #0B1020;
+  --warn: #F0914A;
+  --warn-ink: #F4A869;
+  --ok: #4CC38A;
+  --neutral: #8A919C;
+  --inverse-bg: #171A20;
+  --inverse-ink: #F2F4F7;
+  --inverse-text: #C9CED6;
+  --inverse-muted: #9AA1AD;
+  --inverse-line: #3A404B;
+  --plate: #FFFFFF;
+  --exhibit: #121214;
+  --exhibit-ink: #FCFCFD;
+  --exhibit-text: #C3C7CE;
+  --exhibit-line: #2A2F38;
+}
+
+/* The same block again for a page running without scripts, which has no
+   data-theme at all and should still honour a system set to dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #0F1115;
+    --panel: #171A20;
+    --track: #262A32;
+    --ink: #F2F4F7;
+    --text: #C9CED6;
+    --muted: #9AA1AD;
+    --line: #2A2F38;
+    --accent: #7C9BFF;
+    --on-accent: #0B1020;
+    --warn: #F0914A;
+    --warn-ink: #F4A869;
+    --ok: #4CC38A;
+    --neutral: #8A919C;
+    --inverse-bg: #171A20;
+    --inverse-ink: #F2F4F7;
+    --inverse-text: #C9CED6;
+    --inverse-muted: #9AA1AD;
+    --inverse-line: #3A404B;
+    --plate: #FFFFFF;
+    --exhibit: #121214;
+    --exhibit-ink: #FCFCFD;
+    --exhibit-text: #C3C7CE;
+    --exhibit-line: #2A2F38;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -169,6 +231,45 @@ a { color: inherit; }
 }
 .text-link:hover { color: var(--ink); }
 
+/* The theme switch. One button, two icons, and the stylesheet shows the one
+   for the theme a click would move to. */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line); cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { border-color: var(--ink); }
+.theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* Paper is light whatever the screen was showing. */
 @media print {
-  .skip-link { display: none; }
+  :root, :root[data-theme="dark"], :root:not([data-theme]) {
+    color-scheme: light;
+    --bg: #FFFFFF;
+    --panel: #F3F4F6;
+    --track: #E9EBEE;
+    --ink: #0E1116;
+    --text: #2A2F37;
+    --muted: #5A616B;
+    --line: #DADDE2;
+    --accent: #1F45E0;
+    --on-accent: #FFFFFF;
+    --warn: #B4530A;
+    --warn-ink: #8A3F06;
+    --ok: #17703E;
+    --neutral: #7C838D;
+    --inverse-bg: #FFFFFF;
+    --inverse-ink: #0E1116;
+    --inverse-text: #2A2F37;
+    --inverse-muted: #5A616B;
+    --inverse-line: #DADDE2;
+    --exhibit-line: #121214;
+  }
+  .skip-link, .theme-toggle { display: none !important; }
 }
