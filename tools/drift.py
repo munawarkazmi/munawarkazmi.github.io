@@ -276,8 +276,8 @@ def _predicate_cases(repo: Path) -> int:
 #
 # `note` records a derivation where the site aggregates repo figures.
 CLAIMS = [
-    dict(label="tests and label proofs", site="index.html", shown="548",
-         repo="plan-failure-bench", pattern=r"\b548\b",
+    dict(label="tests and label proofs", site="index.html", shown="589",
+         repo="plan-failure-bench", pattern=r"\b589\b",
          enforced="that repo's CI collects the suite and fails the build unless "
                   "its README, paper and STATUS all quote the count"),
     dict(label="instructions", site="index.html", shown=">60<",
