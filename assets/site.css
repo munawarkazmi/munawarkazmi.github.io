@@ -254,6 +254,34 @@ a { color: inherit; }
 :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
+/* Moving between pages. Opening a project slides it in from the right and
+   going back slides it away again, so the site reads as one document with
+   depth and not as fifteen separate pages. assets/theme.js names the
+   direction; a browser that cannot do this simply loads the next page. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.28s; animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1); }
+html:active-view-transition-type(forward)::view-transition-old(root) { animation-name: page-out-left; }
+html:active-view-transition-type(forward)::view-transition-new(root) { animation-name: page-in-right; }
+html:active-view-transition-type(back)::view-transition-old(root) { animation-name: page-out-right; }
+html:active-view-transition-type(back)::view-transition-new(root) { animation-name: page-in-left; }
+@keyframes page-out-left { to { opacity: 0; transform: translateX(-32px); } }
+@keyframes page-in-right { from { opacity: 0; transform: translateX(32px); } }
+@keyframes page-out-right { to { opacity: 0; transform: translateX(32px); } }
+@keyframes page-in-left { from { opacity: 0; transform: translateX(-32px); } }
+
+/* Changing theme. The new theme opens as a circle from the switch that was
+   pressed. theme.js sets the three variables and the class for the length of
+   the transition. */
+:root.theme-reveal::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+:root.theme-reveal::view-transition-new(root) { animation: theme-reveal 0.6s cubic-bezier(0.3, 0, 0.2, 1); mix-blend-mode: normal; }
+@keyframes theme-reveal {
+  from { clip-path: circle(0 at var(--reveal-x) var(--reveal-y)); }
+  to { clip-path: circle(var(--reveal-r) at var(--reveal-x) var(--reveal-y)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
 /* Paper is light whatever the screen was showing. */
 @media print {
   :root, :root[data-theme="dark"], :root:not([data-theme]) {

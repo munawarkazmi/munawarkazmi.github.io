@@ -31,4 +31,12 @@ been committed more recently than the copy served here, or if the sitemap
 dates have fallen behind the pages. It is a check, not a build step; the page
 is still the code in this repository.
 
+Two figures on the home page are programs, not pictures. The one at the top
+works out a small legibility trade-off in the browser, and the one under
+Engineering runs a small D* Lite beside a small A* on a map the visitor can
+draw walls on. Both are toys and say so where they stand: their numbers are
+computed on the page and are not results from the repositories above.
+[tools/test_replan_lab.js](tools/test_replan_lab.js) checks the planners in
+the second against Dijkstra over random maps.
+
 All content and design, all rights reserved.
