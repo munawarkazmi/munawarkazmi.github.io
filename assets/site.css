@@ -79,8 +79,15 @@
 
 /* Every colour on the site is one of these. Nothing below the theme blocks,
    and no page stylesheet, names a colour directly, so a theme is one copy of
-   this block and nothing else. The exhibit colours are the ground the project
-   charts are rendered on upstream, and stay the same in either theme. */
+   this block and nothing else.
+
+   The chart tokens are the one place a theme does more than pick a colour.
+   The project charts are images, rendered by each project's own tooling:
+   most on a near-black ground, three on white. A chart drawn for the other
+   theme is shown through a filter that flips its lightness and turns the
+   hues back round, so red stays red and a dark ground becomes a light one.
+   The plate colours are what those two grounds come out as, so the plate
+   and the image meet without a seam. */
 :root {
   color-scheme: light;
   --bg: #FCFCFD;
@@ -102,10 +109,10 @@
   --inverse-muted: #B4BAC3;
   --inverse-line: #5A616B;
   --plate: #FFFFFF;
-  --exhibit: #121214;
-  --exhibit-ink: #FCFCFD;
-  --exhibit-text: #C3C7CE;
-  --exhibit-line: #121214;
+  --chart-dark-filter: invert(1) hue-rotate(180deg) brightness(1.06);
+  --chart-dark-plate: #FBFBF9;
+  --chart-light-filter: none;
+  --chart-light-plate: #FFFFFF;
 
   --sans: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
@@ -136,10 +143,10 @@
   --inverse-muted: #9AA1AD;
   --inverse-line: #3A404B;
   --plate: #FFFFFF;
-  --exhibit: #121214;
-  --exhibit-ink: #FCFCFD;
-  --exhibit-text: #C3C7CE;
-  --exhibit-line: #2A2F38;
+  --chart-dark-filter: none;
+  --chart-dark-plate: #121214;
+  --chart-light-filter: invert(0.93) hue-rotate(180deg);
+  --chart-light-plate: #121212;
 }
 
 /* The same block again for a page running without scripts, which has no
@@ -166,10 +173,10 @@
     --inverse-muted: #9AA1AD;
     --inverse-line: #3A404B;
     --plate: #FFFFFF;
-    --exhibit: #121214;
-    --exhibit-ink: #FCFCFD;
-    --exhibit-text: #C3C7CE;
-    --exhibit-line: #2A2F38;
+    --chart-dark-filter: none;
+    --chart-dark-plate: #121214;
+    --chart-light-filter: invert(0.93) hue-rotate(180deg);
+    --chart-light-plate: #121212;
   }
 }
 
@@ -269,7 +276,10 @@ a { color: inherit; }
     --inverse-text: #2A2F37;
     --inverse-muted: #5A616B;
     --inverse-line: #DADDE2;
-    --exhibit-line: #121214;
+    --chart-dark-filter: invert(1) hue-rotate(180deg) brightness(1.06);
+    --chart-dark-plate: #FBFBF9;
+    --chart-light-filter: none;
+    --chart-light-plate: #FFFFFF;
   }
   .skip-link, .theme-toggle { display: none !important; }
 }

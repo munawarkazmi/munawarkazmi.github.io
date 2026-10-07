@@ -50,7 +50,7 @@
 
   <rect x="60" y="262" width="330" height="66" rx="12" fill="#191A1D" stroke="#C9A876" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="225" y="288" text-anchor="middle" font-size="12.5" font-weight="700" fill="#EDEAE3">Per-seed label proofs</text>
-  <text x="225" y="308" text-anchor="middle" font-size="12" fill="#9C988F">re-proved in CI on every commit (548 tests)</text>
+  <text x="225" y="308" text-anchor="middle" font-size="12" fill="#9C988F">re-proved in CI on every commit (589 tests)</text>
   <line x1="150" y1="262" x2="104" y2="202" stroke="#C9A876" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#parrg)"/>
 
   <rect x="540" y="262" width="360" height="66" rx="12" fill="#191A1D" stroke="#C9A876" stroke-width="1.6" stroke-dasharray="6 4"/>

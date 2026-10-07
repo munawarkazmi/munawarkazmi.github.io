@@ -83,20 +83,22 @@ h3 { font-weight: 600; color: var(--ink); font-size: 19px; line-height: 1.3; mar
   color: var(--ink);
 }
 
-/* A figure sits on a dark plate by default, because the charts are rendered
-   by each project's own tooling on a near-black ground and a plate of the same
-   colour lets them sit flush. The few that are rendered on white carry
-   class="light" and get a light plate instead. */
-figure { background: var(--exhibit); border: 1px solid var(--exhibit-line); padding: 14px; margin: 22px 0; }
-figure.light { background: var(--plate); border: 1px solid var(--line); }
-figure img { width: 100%; height: auto; display: block; }
-figcaption { font-size: 14.5px; color: var(--exhibit-text); padding: 12px 4px 2px; line-height: 1.5; }
-figcaption a, figcaption a:hover, figcaption code { color: var(--exhibit-ink); }
-figcaption a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+/* Figures follow the theme. A chart is an image rendered upstream for one
+   ground or the other, so the token decides whether it is shown as drawn or
+   through the flip filter; see the chart tokens in ../assets/site.css.
+   A plain figure holds a chart drawn on near-black, class="light" one drawn
+   on white, and class="shot" a screenshot or photograph, which is never
+   filtered. */
+figure { background: var(--chart-dark-plate); border: 1px solid var(--line); padding: 14px; margin: 22px 0; }
+figure.light { background: var(--chart-light-plate); }
+figure.shot { background: var(--panel); }
+figure img { width: 100%; height: auto; display: block; filter: var(--chart-dark-filter); }
+figure.light img { filter: var(--chart-light-filter); }
+figure.shot img { filter: none; }
+figcaption { font-size: 14.5px; color: var(--muted); padding: 12px 4px 2px; line-height: 1.5; }
+figcaption a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+figcaption a:hover, figcaption code { color: var(--ink); }
 figcaption code { font-family: var(--mono); font-size: 0.9em; }
-figure.light figcaption { color: var(--muted); }
-figure.light figcaption a { color: var(--accent); }
-figure.light figcaption a:hover, figure.light figcaption code { color: var(--ink); }
 .fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 700px) { .fig-grid { grid-template-columns: 1fr; } }
 
