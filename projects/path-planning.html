@@ -40,7 +40,7 @@
   <header class="hero">
     <div class="eyebrow">ROS2 · C++20 · Nav2 · CI-verified</div>
     <h1>Planning paths that survive a <em>changing world</em></h1>
-    <p class="lede">Two global planner plugins for ROS2 Nav2, written in modern C++20: classic A* and incremental D* Lite, benchmarked head-to-head on the event that matters - an obstacle lands on the route and the planner must recover.</p>
+    <p class="lede">Two global planner plugins for ROS2 Nav2, written in modern C++20: classic A* and incremental D* Lite, benchmarked head to head on one event: an obstacle lands on the route and the planner must recover.</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/path-planning-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
@@ -48,7 +48,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">4.3x</div><div class="metric-label">faster replanning with D* Lite (mean; 11x median), seed 42, 200 trials</div></div>
-      <div class="metric"><div class="metric-num">0</div><div class="metric-label">path-cost mismatches across all 1,716 measured events - both planners provably optimal</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">path-cost mismatches across all 1,716 measured events: both planners return optimal paths</div></div>
       <div class="metric"><div class="metric-num">185,237</div><div class="metric-label">fuzzed incremental replans validated against Dijkstra with exact equality</div></div>
     </div>
   </header>
@@ -56,8 +56,8 @@
   <section class="block">
     <h2>The <em>problem</em></h2>
     <p>Warehouses, hospitals, and homes never hold still. A robot plans a route, someone steps into it, and the plan is suddenly wrong. Classic A* handles this by throwing everything away and searching again from scratch, which costs processing spikes exactly when smoothness matters most. D* Lite takes the other road: it repairs the existing plan incrementally, reusing everything the previous search already learned.</p>
-    <p>This project turns that textbook comparison into running code: a ROS-free C++20 planning core with Nav2 plugin adapters, and a benchmark that settles the question with numbers a stranger can reproduce - the per-event data, the seed, and the code that produced them are committed together, and CI re-runs the tests and a benchmark smoke pass on every push.</p>
-    <p>Getting D* Lite actually correct was the hard part: its priority keys routinely tie between vertices, and floating-point rounding of mathematically equal keys can bury a vertex the algorithm must expand, freezing stale state into the path. The fix is an exact integer cost metric - every g, rhs, and key an integer, every comparison exact - validated by 185,237 fuzzed incremental replans that must match a reference Dijkstra to the unit.</p>
+    <p>This project turns that textbook comparison into running code: a ROS-free C++20 planning core with Nav2 plugin adapters, and a benchmark whose numbers a stranger can reproduce: the per-event data, the seed, and the code that produced them are committed together, and CI re-runs the tests and a benchmark smoke pass on every push.</p>
+    <p>Getting D* Lite correct was the hard part: its priority keys routinely tie between vertices, and floating-point rounding of mathematically equal keys can bury a vertex the algorithm must expand, freezing stale state into the path. The fix is an exact integer cost metric (every g, rhs, and key an integer, every comparison exact), validated by 185,237 fuzzed incremental replans that must match a reference Dijkstra to the unit.</p>
   </section>
 
   <section class="block">
@@ -68,7 +68,7 @@
     </figure>
     <figure>
       <img width="770" height="1100" src="img/replan_obstacle.png" alt="D* Lite repaired route bending around an obstacle that appeared on the original path" loading="lazy">
-      <figcaption>Mid-journey, an obstacle appears directly on the route. D* Lite repairs the same journey by expanding just 256 vertices - reusing everything from its previous search that is still valid. This event is what the benchmark measures.</figcaption>
+      <figcaption>Mid-journey, an obstacle appears directly on the route. D* Lite repairs the same journey by expanding 256 vertices, reusing everything from its previous search that is still valid. This event is what the benchmark measures.</figcaption>
     </figure>
   </section>
 
@@ -80,16 +80,16 @@
     </figure>
     <figure>
       <img width="1210" height="572" src="img/replan_scatter.png" alt="Log-log scatter of every replan event: D* Lite's cost stays in a narrow band while A*'s spans four orders of magnitude" loading="lazy">
-      <figcaption>Every event as a point. D* Lite's repair cost stays in a narrow band no matter how expensive the from-scratch search is; the events above the diagonal are the honest flip side - trivial replans where its bookkeeping loses.</figcaption>
+      <figcaption>Every event as a point. D* Lite's repair cost stays in a narrow band no matter how expensive the from-scratch search is; the events above the diagonal are the other side of the result: trivial replans where its bookkeeping loses.</figcaption>
     </figure>
-    <p>What makes the comparison fair: both planners face byte-identical scenarios, obstacles are injected <strong>on the current path</strong> so the change always matters, measurement order alternates to cancel cache effects, and both planners optimize the same exact cost metric - so the zero cost-mismatch count means the race is between two provably optimal planners. The honest trade-off is stated with the win: D* Lite pays a ~2.7x costlier initial search and loses trivial replans; it dominates exactly where CPU spikes hurt a real robot.</p>
+    <p>What makes the comparison fair: both planners face byte-identical scenarios, obstacles are injected <strong>on the current path</strong> so the change always matters, measurement order alternates to cancel cache effects, and both planners optimize the same exact cost metric, so the zero cost-mismatch count means the race is between two optimal planners. The trade-off: D* Lite pays a ~2.7x costlier initial search and loses trivial replans; it wins where the from-scratch search is expensive, which is where a CPU spike costs a robot most.</p>
   </section>
 
   <section class="block">
     <h2>Under the <em>hood</em></h2>
     <ul>
       <li>ROS-free C++20 planning core; A* and D* Lite (Koenig &amp; Likhachev, persistent search state, correct km accumulation)</li>
-      <li>Exact integer cost metric - the fix for D* Lite's floating-point key-tie failure mode</li>
+      <li>Exact integer cost metric, the fix for D* Lite's floating-point key-tie failure mode</li>
       <li>Tests validate both planners against reference Dijkstra with exact equality; the incrementality property itself is asserted in CI</li>
       <li>Nav2 global planner plugins over the tested core; build-verified against ROS2 Humble in CI</li>
       <li>Every figure on this page rendered from committed run data by a committed script</li>

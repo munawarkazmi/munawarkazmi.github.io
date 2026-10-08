@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROS2 LLM Safety Verifier · Munawar Kazmi</title>
-<meta name="description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40 - the verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
+<meta name="description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40. The verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/llm-safety-verifier.html">
 <meta name="author" content="Munawar Kazmi">
 <meta name="theme-color" content="#FCFCFD">
 <meta property="og:title" content="ROS2 LLM Safety Verifier · Munawar Kazmi">
-<meta property="og:description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40 - the verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
+<meta property="og:description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40. The verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -40,14 +40,14 @@
   <header class="hero">
     <div class="eyebrow">ROS2 · LLM Safety · Deterministic Verification</div>
     <h1>Catching hallucinations <em>before the wheels turn</em></h1>
-    <p class="lede">Language models are being handed the steering wheel of real robots, and sometimes they invent a goal inside a wall. This project puts a deterministic verifier between the LLM and the hardware - and proves what it catches with committed, replayable data.</p>
+    <p class="lede">Language models are being handed the steering wheel of real robots, and sometimes they invent a goal inside a wall. This project puts a deterministic verifier between the LLM and the hardware, and shows what it catches with committed, replayable data.</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/llm-safety-verifier-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
     <div class="metric-row">
-      <div class="metric"><div class="metric-num">35/35 &middot; 32/32</div><div class="metric-label">unsafe plans caught - qwen2.5-7B and llama-3.3-70B respectively - zero false positives, over the same 40 scenarios</div></div>
+      <div class="metric"><div class="metric-num">35/35 &middot; 32/32</div><div class="metric-label">unsafe plans caught, for qwen2.5-7B and llama-3.3-70B respectively, with zero false positives over the same 40 scenarios</div></div>
       <div class="metric"><div class="metric-num">0</div><div class="metric-label">missed dangers: 2,071 constructed + 80 real-model cases, each count CI-enforced in the repo</div></div>
       <div class="metric"><div class="metric-num">10.3 &micro;s</div><div class="metric-label">median verification latency (p99: 77 &micro;s) on x86-64</div></div>
     </div>
@@ -55,8 +55,8 @@
 
   <section class="block">
     <h2>The <em>problem</em></h2>
-    <p>Ask a language model for a navigation plan and it usually gives a sensible one. Usually is the problem. When this project prompted <strong>qwen2.5:7b-instruct</strong> (temperature 0) for waypoint routes over 40 seeded indoor maps, the model produced genuinely unsafe plans in <strong>35 of 40</strong> cases: waypoint jumps no robot can follow, coordinates off the map, and paths straight through walls. The same 40 maps put to <strong>llama-3.3-70b-versatile</strong> - ten times the parameters - still produced unsafe plans in <strong>32 of 40</strong>.</p>
-    <p>The insight this project runs on: you don't need another neural network to check the first one. A <strong>deterministic verifier</strong> - swept footprint collision against the costmap, continuity, workspace bounds, unmapped-space checks - gives a yes or no in microseconds, every time, with no hallucinations of its own.</p>
+    <p>Ask a language model for a navigation plan and it usually gives a sensible one. Usually is the problem. When this project prompted <strong>qwen2.5:7b-instruct</strong> (temperature 0) for waypoint routes over 40 seeded indoor maps, the model produced unsafe plans in <strong>35 of 40</strong> cases: waypoint jumps no robot can follow, coordinates off the map, and paths straight through walls. The same 40 maps put to <strong>llama-3.3-70b-versatile</strong>, a model with ten times the parameters, still produced unsafe plans in <strong>32 of 40</strong>.</p>
+    <p>The idea behind the project is that checking a neural network does not take a second one. A <strong>deterministic verifier</strong> (swept footprint collision against the costmap, continuity, workspace bounds, unmapped-space checks) gives a yes or no in microseconds, and the same answer every time.</p>
   </section>
 
   <section class="block">
@@ -71,19 +71,19 @@
     <h2>The <em>results</em></h2>
     <figure>
       <img width="1210" height="528" src="img/qwen_outcomes.png" alt="Bar charts: all 40 qwen2.5-7B plans by pre-registered outcome bucket, and the violation classes among the 35 rejections" loading="lazy">
-      <figcaption>Every plan lands in one of six outcome buckets that were committed <em>before</em> any model output was evaluated - the accounting cannot bend around the results. The load-bearing cell is unsafe_missed: zero. Failure modes span three classes, not one.</figcaption>
+      <figcaption>Every plan lands in one of six outcome buckets that were committed <em>before</em> any model output was evaluated, so the accounting cannot bend around the results. The load-bearing cell is unsafe_missed: zero. Failure modes span three classes, not one.</figcaption>
     </figure>
     <figure>
       <img width="935" height="715" src="img/qwen_example.png" alt="An actual qwen2.5-7B plan drawn on its scenario map, colliding with an obstacle at waypoint 1, with the verifier's rejection point marked" loading="lazy">
-      <figcaption>One of the 35, exactly as the model proposed it: the route collides immediately and never reaches the goal. This is committed data - the prompt, the raw response, and the map that reproduce this figure are all in the repository.</figcaption>
+      <figcaption>One of the 35, exactly as the model proposed it: the route collides immediately and never reaches the goal. This is committed data: the prompt, the raw response, and the map that reproduce this figure are all in the repository.</figcaption>
     </figure>
     <figure>
       <img width="935" height="506" src="img/verifier_latency.png" alt="Histogram of verification latency over 2,071 constructed evaluation cases: median 10.3 microseconds, p99 77 microseconds" loading="lazy">
       <figcaption>Latency over the 2,071-case constructed evaluation: six built-to-be-unsafe hallucination classes plus oracle-verified safe paths. 1,472 of 1,472 unsafe cases caught, zero false positives, at microsecond cost.</figcaption>
     </figure>
-    <p>A second model through the identical pipeline sharpened the picture. <strong>llama-3.3-70b-versatile</strong> (temperature 0, hosted) proposed unsafe trajectories in <strong>32 of 40</strong> of the same scenarios; the verifier caught all 32, passed all 8 safe plans, and missed zero. The failure profile differs in kind, not just count: collision dominates its rejections (17, against qwen's 8), and it is the first model to trip the unmapped-space check (2 cases). Most telling, its endpoint adherence is perfect - 0 of 40 failures against qwen's 18. The larger model starts and ends exactly where asked and still drives through obstacles on the way: unsafe-but-on-target, the precise failure class a runtime gate exists for.</p>
-    <p>The ground-truth discipline is the point: labels never come from the verifier under test. An independent reference checker with 4x finer sampling validates every safe case and confirms every unsafe one, and CI replays both evaluations from the committed datasets on every push - the build fails if a single unsafe plan ever slips through.</p>
-    <p>Scope, stated plainly: these are facts about two models - a 7B and a 70B - each at one temperature on the same n=40 scenarios, reported per model and never averaged, and about six constructed violation classes - not about "LLMs" in general. Real-hardware trials (TurtleBot3 + Jetson) are the next roadmap step and will be published the same way: raw data first. An earlier version of this project claimed hardware results it could not back; those were retracted, and the git history documents both the retraction and the rebuild.</p>
+    <p>A second model went through the identical pipeline. <strong>llama-3.3-70b-versatile</strong> (temperature 0, hosted) proposed unsafe trajectories in <strong>32 of 40</strong> of the same scenarios; the verifier caught all 32, passed all 8 safe plans, and missed zero. The failure profile differs in kind, not just count: collision dominates its rejections (17, against qwen's 8), and it is the first model to trip the unmapped-space check (2 cases). Its endpoint adherence is perfect: 0 of 40 failures against qwen's 18. The larger model starts and ends exactly where asked and still drives through obstacles on the way: unsafe-but-on-target, the precise failure class a runtime gate exists for.</p>
+    <p>Labels never come from the verifier under test. An independent reference checker with 4x finer sampling validates every safe case and confirms every unsafe one, and CI replays both evaluations from the committed datasets on every push, and the build fails if a single unsafe plan slips through.</p>
+    <p>Scope: these are facts about two models, a 7B and a 70B, each at one temperature on the same n=40 scenarios, reported per model and never averaged, and about six constructed violation classes. They are not facts about "LLMs" in general. Real-hardware trials (TurtleBot3 + Jetson) are the next roadmap step and will be published the same way: raw data first. An earlier version of this project claimed hardware results it could not back; those were retracted, and the git history documents both the retraction and the rebuild.</p>
   </section>
 
   <footer class="footer">
