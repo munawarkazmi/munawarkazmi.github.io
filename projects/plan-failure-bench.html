@@ -88,21 +88,58 @@
   </section>
 
   <section class="block" id="results">
-    <h2>First <em>results</em></h2>
+    <h2>The <em>results</em></h2>
+    <p>Four models, two environments, each in plain language and with every content word renamed to nonsense: 18 complete runs of 30 seeds, two of them superseded and kept visible, with one decode per seed at temperature 0. At 30 seeds these are counts and hypotheses rather than rates, and the benchmark says so on its own front page.</p>
+
+    <h3>Each model fails in its own way</h3>
+    <p>A success rate would rank these four models. The counts explain them.</p>
+    <div class="data-table-scroll">
+      <table class="data-table">
+        <caption>house_01, plain language, 30 seeds</caption>
+        <thead><tr><th>Model</th><th>Format failures</th><th>Traps detected</th><th>False positives</th><th>Valid tasks solved</th></tr></thead>
+        <tbody>
+          <tr><td>Gemini 3.6 Flash</td><td>0/30</td><td>13/13</td><td>0/17</td><td>9/9</td></tr>
+          <tr><td>Gemini 3.1 Flash Lite</td><td>0/30</td><td>12/13</td><td class="mark">4/17</td><td>6/9</td></tr>
+          <tr><td>Llama 3.3 70B</td><td class="mark">18/30</td><td>9/13</td><td>3/17</td><td>5/9</td></tr>
+          <tr><td>Qwen 2.5 7B</td><td>3/30</td><td class="mark">2/13</td><td>0/17</td><td>2/9</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Format failures are replies that break the answer protocol under the strict policy. Traps detected is out of the 13 seeds whose correct answer is a refusal or a request to clarify, and is never read without the false positives beside it: refusals among the 17 seeds that can be carried out.</p>
+    <ul>
+      <li><strong>Gemini 3.6 Flash nearly clears the suite.</strong> No format failures, 13 of 13 traps detected, zero false positives and 9 of 9 valid tasks in all four of its runs. Its one failure is an office_01 sequencing seed where, in both conditions, its plan achieves one of its two goals. The failure findings on this page therefore apply to the three smaller models.</li>
+      <li><strong>Gemini 3.1 Flash Lite detects traps and cannot order steps.</strong> It keeps the format and detects 12 of 13 traps on house_01, solves none of the seven seeds whose trap is ordering rather than impossibility, and refuses more feasible instructions than any other model: 4 of 17 on house_01 and 7 of 17 on office_01.</li>
+      <li><strong>Llama 3.3 70B detects most traps and breaks the protocol.</strong> It detects 9 of 13 in plain language on both environments and wraps its JSON in prose: 18 of 30 strict format failures on house_01 and 24 on office_01. Two reworded prompts gave 12 and 15, so the wording of the prompt does not fix it.</li>
+      <li><strong>Qwen 2.5 7B keeps the format and almost never refuses.</strong> Zero false positives in plain language on both environments, and nearly every trap ends in the same observed failure, a precondition violation.</li>
+    </ul>
     <figure>
       <img width="1840" height="2560" src="img/pfb-confusion.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the house environment" loading="lazy">
-      <figcaption>house_01: planted trap versus observed verdict for four models in both conditions, 30 seeds per run, obfuscated columns under hardened v2 tokens. Counts, not rates; the shape of each matrix is the finding. The bottom row is a frontier reasoning model producing the ideal diagonal twice, plain and obfuscated alike.</figcaption>
+      <figcaption>house_01: planted trap versus observed verdict for four models in both conditions, 30 seeds per run, obfuscated columns under hardened v2 tokens. Counts, not rates; the shape of each matrix is the finding. The bottom row is Gemini 3.6 Flash producing the ideal diagonal twice, plain and obfuscated alike.</figcaption>
     </figure>
-    <p>The two models fail in opposite ways. Llama 3.3 70B detects most infeasibility and ambiguity traps but wraps its answers in prose that violates the protocol. Qwen 2.5 7B follows the format flawlessly and detects almost nothing: zero refusals, so zero false positives, and nearly every trap ends in the same observed failure, a precondition violation. A success rate would rank these two; the matrices explain them.</p>
-    <p>Obfuscation initially appeared to split the 70B model's abilities apart: detection survived while execution collapsed to 1 of 9 valid tasks. Then the methodology retired its own finding. Rerunning under hardened tokens with a guaranteed minimum edit distance showed the collapse was an artefact of confusable nonsense tokens, not a property of the model: under clean tokens, detection improved (false positives fell to zero) and execution held at 5 of 9 in both conditions. What survives is simpler and stranger: this model's planning judgement is essentially unimpaired by stripping every word of meaning.</p>
-    <p>That was the second artefact the methodology caught in the open. Under the first token scheme the 7B model appeared to hallucinate entities 15 times (clean tokens: once) and the 70B model 4 times (clean tokens: zero). The obfuscation is versioned in every record, superseded runs stay visible in the results table, and both generations of results live in the repository history. At 30 seeds everything here is a hypothesis rather than a claim, and the benchmark says so on its own front page.</p>
-    <p>And the frontier column answered the benchmark's central question. Gemini 3.6 Flash cleared house_01 twice with identical results: perfect format, 13 of 13 traps detected, zero false positives, 9 of 9 valid tasks solved, once in plain English, and once with every semantic content word renamed to nonsense. It even chose the compliant route around a constraint about nonsense words in nonsense rooms. For this model on this environment, planning judgement is state tracking, not pattern matching, exactly what the obfuscated condition was built to distinguish. Every failure claim above is therefore bounded to smaller models. And its second environment has now answered in full: in both conditions the frontier model repeats every headline count on the office, 13 of 13 traps detected, zero false positives, 9 of 9 valid tasks solved, and in both conditions the same sequencing seed's plan achieves only one of its two goals, its only planning failure anywhere. The two office rows are identical to each other, blemish included: semantic removal changes nothing this benchmark can measure for this model, and only the confusion matrix, not any summary column, can see the failure that remains.</p>
-    <p>A third model sharpened the picture. Gemini 3.1 Flash Lite, a 2026 reasoning-generation model, followed the format perfectly and detected 12 of 13 infeasibility and ambiguity traps in plain language, yet solved none of the seven seeds whose trap is ordering rather than impossibility, and refused more feasible instructions than any other model, 4 of 17. Under obfuscation those false positives fell to 1, so its over-refusal is driven by what the words mean, not by the structure of the task. Its detection also split cleanly: unreachability survived obfuscation at 4 of 4 with exact reasons, while ambiguity detection collapsed from 2 of 3 to 0 of 3.</p>
+
+    <h3>What removing the meaning changes</h3>
+    <p>The obfuscated condition asks whether a model's judgement is tracking the state of the world or matching familiar words.</p>
+    <ul>
+      <li><strong>For Gemini 3.6 Flash, nothing this benchmark can measure.</strong> Its plain and obfuscated runs give identical counts on both environments, the single office_01 failure included. On house_01 it chose the compliant route around a constraint stated in nonsense words about nonsense rooms.</li>
+      <li><strong>For Llama 3.3 70B, very little.</strong> Under hardened tokens it solves 5 of 9 valid tasks on house_01 in both conditions, and its false positives fall from 3 of 17 to zero.</li>
+      <li><strong>Over-refusal moves in opposite directions.</strong> Obfuscation lowers Flash Lite's false positives (4 to 1 of 17 on house_01, 7 to 2 on office_01) and raises Qwen's (0 to 3 and 0 to 2). Flash Lite's over-refusal is driven by what the words mean, not by the structure of the task.</li>
+      <li><strong>For Flash Lite, a stated fact survives and an inference does not.</strong> The house says outright that its unreachable room has no doors, and Flash Lite's unreachability detection survives obfuscation there at 4 of 4 with exact reasons, while its ambiguity detection falls from 2 of 3 to 0 of 3. The office's isolated annex has to be inferred from the connection list, and under obfuscation that detection falls to 1 of 4, the survivor being a nonexistent object rather than any topology seed. Gemini 3.6 Flash detects all four office seeds in both conditions.</li>
+    </ul>
+
+    <h3>A second map, and sampling</h3>
     <figure>
       <img width="1840" height="2560" src="img/pfb-confusion-office.png" alt="Eight confusion matrices, planted trap versus observed verdict, for four models in both conditions on the office environment" loading="lazy">
       <figcaption>office_01: the second environment, different topology and constraint patterns, same label distribution so the columns stay comparable. Eight complete runs: all four models in both conditions, 30 seeds each.</figcaption>
     </figure>
-    <p>A second environment now tests whether any of this is an artefact of one map. Both models replicated the direction of their failure profiles on it, and the new topology separated something the first environment could not: the house states outright that its unreachable room has no doors, and Gemini Flash Lite's unreachability detection survived obfuscation there at 4 of 4 with exact reasons. The office's isolated annex must be inferred from the connection list, and under obfuscation that detection fell to 1 of 4, the survivor being a nonexistent object rather than any topology seed. Reading a stated fact survives semantic removal; topological inference, for that model, does not. The frontier model is not so bounded: it detects all four office unreachable seeds in both conditions, the inferred-isolation annex seeds included with exact reasons, so the stated-versus-inferred split separates the two reasoning-generation models rather than describing them both.</p>
+    <p>The second environment tests whether any of this is an artefact of one map. On it each model keeps the direction of its profile: Llama again detects 9 of 13 traps and fails the format, Qwen again refuses nothing in plain language, Flash Lite again refuses the most feasible instructions, and Gemini 3.6 Flash repeats its house_01 counts.</p>
+    <p>Sampling tests whether a single decode was luck. At five samples per seed and temperature 0.7, Qwen in plain language gives the same verdict on 26 of 30 house_01 seeds and 24 of 30 office_01 seeds, with no refusal in the 85 feasible decodes on either. Llama keeps 19 of 30 house_01 seeds stable, and its variation sits at the detection boundary: the same seed detected in one sample and planned into in the next.</p>
+
+    <h3>What no model does</h3>
+    <p>No model separates a missing capability from an unreachable goal. On the locked-door seeds every model, Gemini 3.6 Flash included, answers "unreachable". The only exact missing-capability reasons came from Gemini 3.6 Flash on the two seeds whose verb the action language cannot express, mopping on house_01 and photocopying on office_01: three across the eighteen runs.</p>
+
+    <h3>Two artefacts the method caught in itself</h3>
+    <p>Under the first obfuscation token scheme, Llama's valid-task success appeared to collapse under obfuscation, from 5 of 9 to 1 of 9, and Qwen appeared to hallucinate entities 15 times on house_01. Both were artefacts. Rerunning under hardened tokens with a guaranteed minimum edit distance, Llama holds 5 of 9 in both conditions, Qwen's count drops to 1 and Llama's own from 4 to zero: the models had been miscopying confusable nonsense tokens.</p>
+    <p>Every record carries its obfuscation version, the superseded runs stay visible in the results table, and both generations of results live in the repository history.</p>
   </section>
 
   <section class="block">
