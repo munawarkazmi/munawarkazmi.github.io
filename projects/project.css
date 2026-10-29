@@ -361,3 +361,11 @@ pre.code-block {
     color: var(--muted);
   }
 }
+.pl2-world { white-space: pre-wrap; margin: 0 0 .75rem; }
+.el-stage { aspect-ratio: 4 / 3; }
+.el-thumb { position: absolute; right: 8px; bottom: 8px; width: 160px; height: 120px; border: 1px solid var(--ink); background: var(--bg); }
+.el-video { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+@media (max-width: 720px) { .el-thumb { width: 96px; height: 72px; } }
+.lab-budgets { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.lab-bar input[type="number"].lab-select { width: 6.5em; flex: 0 0 auto; }
+.lab-range:has(input[type="number"]) { flex: 0 1 auto; }

@@ -60,6 +60,30 @@
     <p>So this benchmark is built on one hard constraint: <strong>ground truth must be decidable by construction</strong>. Every instruction either admits a valid plan or contains exactly one planted trap: an unreachable goal, a missing capability, an ambiguous referent, a precondition trap, a sequencing trap, or a constraint violation. The model answers in a small JSON action language that includes explicit <strong>infeasible</strong> and <strong>clarify</strong> responses, so detecting a trap is machine-checkable, never judged.</p>
   </section>
 
+  <section class="block" id="try">
+    <h2>Be the <em>checker</em></h2>
+    <p>The checker, running here on the committed replies. Pick an environment, a seed and a model: the text is the model's answer exactly as recorded, and the checker parses it, scans it, and walks it step by step through the world as you read. Then edit the plan: skip the door, pick the glass before walking to the kitchen, carry the knife into the nursery, and watch the verdict and the failing step change under your hands.</p>
+    <figure class="lab" id="plannerLab" hidden>
+      <div class="lab-bar">
+        <select class="lab-select" id="pl2-env" aria-label="Environment"><option value="house_01">house_01</option><option value="office_01">office_01</option></select>
+        <select class="lab-select cl-task" id="pl2-seed" aria-label="Seed"></select>
+        <select class="lab-select" id="pl2-model" aria-label="Model"></select>
+        <button type="button" class="lab-btn" id="pl2-reset">Back to the recorded reply</button>
+      </div>
+      <p class="lab-hint" id="pl2-instr"></p>
+      <pre class="cl-schema pl2-world" id="pl2-world"></pre>
+      <textarea class="cl-text" id="pl2-text" rows="7" spellcheck="false" aria-label="The model's reply, editable"></textarea>
+      <ol class="sl-steps sl-steps-3" id="pl2-steps"></ol>
+      <div class="lab-verdict lab-verdict-1">
+        <div class="is-verdict"><div class="label">Verdict</div><div class="stat-num" id="pl2-verdict"></div><div class="stat-text" id="pl2-reason"></div></div>
+      </div>
+      <p class="lab-match" id="pl2-match"></p>
+      <p class="lab-match" id="pl2-tally"></p>
+      <p class="visually-hidden" id="pl2-said" aria-live="polite"></p>
+      <figcaption class="lab-note">A port of checker.py, dsl.py and schema.py: the same strict parse (one JSON object, at most one code fence), the same static scan, the same simulation, the same verdict order. Ambiguous seeds are checked once per reading, as the benchmark scores them. tools/test_planner_lab.js replays all 1,350 committed replies in the repository's results, every model, condition and sampling run, and requires the recorded verdict, failing step, goal counts and detail for each.</figcaption>
+    </figure>
+  </section>
+
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>A symbolic world (rooms, doors, items, a one-slot gripper, safety constraints that must hold at every step) feeds a fixed prompt. A deterministic checker simulates every returned plan and assigns exactly one verdict. The headline artefact is the <strong>confusion matrix between planted trap and observed failure</strong>: not just whether models fail, but whether they fail as predicted.</p>
@@ -156,6 +180,8 @@
   </footer>
 </div>
 
+<script src="../assets/planner-lab-data.js" defer></script>
+<script src="../assets/planner-lab.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

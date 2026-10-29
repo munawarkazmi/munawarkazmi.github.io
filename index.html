@@ -206,7 +206,7 @@ h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; font-weight: 500; le
 .row-name a { align-self: flex-start; padding: 4px 0; font-size: 18px; font-weight: 600; text-underline-offset: 4px; }
 .row-name a:hover { color: var(--accent); }
 .row-tags { font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.row-tags .live { color: var(--ok); font-weight: 500; }
+.row-tags .live, .entry-meta .live { color: var(--ok); font-weight: 500; }
 .row-desc { flex: 5 1 340px; min-width: 0; font-size: 16px; color: var(--text); text-wrap: pretty; }
 .row-metric { flex: 3 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 12px; }
 .row-num { flex: 0 0 auto; font-family: var(--mono); font-size: 24px; line-height: 1.2; font-weight: 500; }
@@ -555,7 +555,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       <div class="row">
         <div class="row-name">
           <a href="projects/esp32-motion-detector.html">ESP32-CAM motion detector</a>
-          <span class="row-tags"><span class="live">Deployed</span> · C++, ESP32, LoRa mesh</span>
+          <span class="row-tags"><span class="live">Deployed</span> · C++, ESP32, LoRa mesh · <span class="live">Live demo</span></span>
         </div>
         <p class="row-desc">Deterministic firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics. No ML and no vision libraries anywhere. <a class="text-link" href="https://github.com/munawarkazmi/esp32-cam-motion-detector">Code</a></p>
         <div class="row-metric"><span class="row-num">16×12</span><span class="row-what">decision grid distilled from 800×600 frames</span></div>
@@ -691,7 +691,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 
     <article class="entry">
       <div class="entry-body">
-        <div class="entry-meta label"><span class="chip">Working paper</span><span>Sole author, preprint on Zenodo</span></div>
+        <div class="entry-meta label"><span class="chip">Working paper</span><span>Sole author, preprint on Zenodo</span><span class="live">Live demo</span></div>
         <h3>plan-failure-bench: a machine-checkable benchmark of how language model planners fail</h3>
         <p>Every instruction either admits a valid plan or plants exactly one trap, and every ground-truth label carries a proof re-verified in CI. A deterministic checker scores each response, with no human or LLM judge. Across 18 runs on four models the failures are distinct and stable: a frontier reasoning model survives full semantic obfuscation, while smaller models split between silent compliance and surface-anchored refusal.</p>
         <p class="stops"><b>Where it stops.</b> Two symbolic PDDL environments and four models. Detection is never reported without its paired false positive count.</p>

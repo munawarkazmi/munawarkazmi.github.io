@@ -67,6 +67,33 @@
     <p>A note on measurements. Earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong>. The repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and a signed academic reference from Dr. Patrick Holthaus of the University of Hertfordshire. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
   </section>
 
+  <section class="block" id="try">
+    <h2>Run the <em>firmware</em></h2>
+    <p>The detection pipeline, running here. It starts on a synthetic room so the page works without a camera; press the first button to feed it your own camera instead, and the frames are processed in this tab and never leave it. Hold still, then move: the grid is the 16&times;12 block means the device actually reasons over, the outlined cells are the ones that changed by more than the threshold, and the decision is the same line of code that raises the alert on the ESP32.</p>
+    <figure class="lab" id="esp32Lab" hidden>
+      <div class="lab-bar">
+        <button type="button" class="lab-btn" id="el-cam" aria-pressed="false">Use my camera</button>
+        <button type="button" class="lab-btn" id="el-synth" aria-pressed="true">Synthetic scene</button>
+        <label class="lab-range"><span class="label">Threshold</span><input type="range" id="el-thr" min="0.05" max="1" step="0.05" value="0.40" aria-label="Relative change threshold"><output id="el-thr-out" for="el-thr"></output></label>
+      </div>
+      <p class="lab-hint" id="el-hint"></p>
+      <div class="lab-stage el-stage" id="el-stage">
+        <canvas id="el-canvas" role="img" aria-label="The 16 by 12 grid of block mean luminance the detector sees, with the cells that changed outlined."></canvas>
+        <canvas id="el-thumb" class="el-thumb" aria-hidden="true"></canvas>
+        <video id="el-video" class="el-video" playsinline muted hidden></video>
+      </div>
+      <div class="lab-verdict">
+        <div class="is-verdict"><div class="label">Decision</div><div class="stat-num" id="el-decision"></div><div class="stat-text" id="el-decision-text"></div></div>
+        <div><div class="label">Changed cells</div><div class="stat-num" id="el-cells"></div><div class="stat-text">cells whose relative change exceeded the threshold; two or more is motion</div></div>
+        <div><div class="label">Loop rate</div><div class="stat-num" id="el-rate"></div><div class="stat-text">with the firmware's 150 ms pause at the end of each loop</div></div>
+        <div><div class="label">Frames</div><div class="stat-num" id="el-frames"></div><div class="stat-text">since the reference was set</div></div>
+        <div><div class="label">Block</div><div class="stat-num">50&times;50 px</div><div class="stat-text">each cell is the integer mean of 2,500 pixels of an 800&times;600 frame</div></div>
+      </div>
+      <p class="visually-hidden" id="el-said" aria-live="polite"></p>
+      <figcaption class="lab-note">A port of frame_downsampler.cpp and motion_detector.cpp: integer block means, a float32 relative difference against the previous frame, the first frame never detects, two changed cells or more is motion. The device reads grayscale from the sensor; a webcam gives colour, so the page takes standard luma first. tools/test_esp32_lab.js checks the port against hand-computed frames and an independent reference. The threshold slider is the detector's one constructor argument, 0.40 in the shipped sketch.</figcaption>
+    </figure>
+  </section>
+
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
@@ -74,6 +101,7 @@
   </footer>
 </div>
 
+<script src="../assets/esp32-lab.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

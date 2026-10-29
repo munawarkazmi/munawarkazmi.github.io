@@ -39,15 +39,21 @@ computed on the page and are not results from the repositories above.
 [tools/test_replan_lab.js](tools/test_replan_lab.js) checks the planners in
 the second against Dijkstra over random maps.
 
-Four project pages go further and run the project's own algorithm, ported
+Five project pages go further and run the project's own algorithm, ported
 line for line: the safety verifier page replays the committed model
 proposals through a JavaScript port of the verifier, the llm-nav-shield page
 runs the whole detect, recover or halt loop with the same A* and reference
 checker, the exact-predicates page runs the committed adversarial corpus
-through both the float and the exact predicate, and the toolcall-contract
-page runs both validator layers on the committed model replies. Their data
+through both the float and the exact predicate, the toolcall-contract
+page runs both validator layers on the committed model replies, and the
+plan-failure-bench page walks the committed plans through the checker. The
+ESP32-CAM page runs the detection firmware's downsampler and detector on the
+visitor's own camera, or on a synthetic scene, in the browser. The
+legibility-bounds page shows the committed certified intervals and grades a
+typed planner score against them; the lattice is not rebuilt there. Their data
 files are generated from the sibling repositories by
 `tools/make_*_lab_data.js`, and the matching `tools/test_*_lab.js` require
-the ports to reproduce every committed verdict, bucket and recovered path.
+the ports to reproduce every committed verdict, bucket, interval and
+recovered path.
 
 All content and design, all rights reserved.
