@@ -51,6 +51,20 @@
     boundsLab: function () { set('bl-score', '0.47'); }
   };
 
+  /* a change in a verdict, a step or a comparison line is marked for a moment */
+  function watchFreshness(fig) {
+    if (!window.MutationObserver) return;
+    var targets = fig.querySelectorAll('.is-verdict .stat-num, .is-case .stat-num, .lab-match, .sl-step');
+    function mark(el) { el.classList.remove('is-fresh'); void el.offsetWidth; el.classList.add('is-fresh'); }
+    Array.prototype.forEach.call(targets, function (el) {
+      var last = el.textContent + '|' + el.className.replace(/\s*is-fresh/, '');
+      new MutationObserver(function () {
+        var now = el.textContent + '|' + el.className.replace(/\s*is-fresh/, '');
+        if (now !== last) { last = now; mark(el); }
+      }).observe(el, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    });
+  }
+
   function boot() {
     var here = -1;
     for (var i = 0; i < TOUR.length; i++) if ($(TOUR[i].lab)) here = i;
@@ -58,6 +72,7 @@
     var fig = $(TOUR[here].lab), id = TOUR[here].lab;
     if (fig.hidden) return;
     if (STARTS[id]) STARTS[id]();
+    setTimeout(function () { watchFreshness(fig); }, 50);
     var bar = fig.querySelector('.lab-bar');
     if (bar && SHOWS[id]) {
       var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'lab-btn lab-show'; btn.textContent = 'Show me';

@@ -59,6 +59,7 @@
   <section class="block" id="try">
     <h2>Be the <em>checker</em></h2>
     <p>The checker, running here on the committed replies. Pick an environment, a seed and a model: the text is the model's answer exactly as recorded, and the checker parses it, scans it, and walks it step by step through the world as you read. Then edit the plan: skip the door, pick the glass before walking to the kitchen, carry the knife into the nursery, and watch the verdict and the failing step change under your hands.</p>
+    <p class="lab-story">It opens on seed c1, "Bring the glass of water to the living room", with Qwen 2.5 7B's answer. The model walked to the living room and tried to pick up a glass that is in the kitchen. The checker stops at step 2 and says exactly that.</p>
     <figure class="lab" id="plannerLab" hidden>
       <div class="lab-bar">
         <select class="lab-select" id="pl2-env" aria-label="Environment"><option value="house_01">house_01</option><option value="office_01">office_01</option></select>

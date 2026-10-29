@@ -59,6 +59,7 @@
   <section class="block" id="try">
     <h2>Run the <em>firmware</em></h2>
     <p>The detection pipeline, running here. It starts on a synthetic room so the page works without a camera; press the first button to feed it your own camera instead, and the frames are processed in this tab and never leave it. Hold still, then move: the grid is the 16&times;12 block means the device actually reasons over, the outlined cells are the ones that changed by more than the threshold, and the decision is the same line of code that raises the alert on the ESP32.</p>
+    <p class="lab-story">It opens on a synthetic room. A figure crosses it, the cells it crosses change by more than 40 per cent against the previous frame, and the decision goes to Motion; when the figure stops, Still. Press the first button and it does the same on your own camera.</p>
     <figure class="lab" id="esp32Lab" hidden>
       <div class="lab-bar">
         <button type="button" class="lab-btn" id="el-cam" aria-pressed="false">Use my camera</button>

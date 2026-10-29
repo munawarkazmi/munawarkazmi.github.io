@@ -59,6 +59,7 @@
   <section class="block" id="try">
     <h2>Try the <em>validator</em></h2>
     <p>Both layers, running here on the committed responses. Pick a task and a model and the text is the model's reply exactly as recorded; the validator classifies it as you read. Then edit the call: rename the tool, break the schema, point it at a waypoint that does not exist, and watch which layer catches it. The 40 tasks and the eight-tool catalog are the repository's own.</p>
+    <p class="lab-story">It opens on task 28, "Pick up the green cylinder", with qwen's reply. The call parses, names a real tool and satisfies its schema, so a schema check would pass it. The contract layer does not: there is no green cylinder in the object catalog.</p>
     <figure class="lab" id="contractLab" hidden>
       <div class="lab-bar">
         <select class="lab-select" id="cl-model" aria-label="Model"><option value="qwen">qwen2.5-7b-instruct</option><option value="llama">llama-3.3-70b-versatile</option></select>

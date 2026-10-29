@@ -328,9 +328,12 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 
 /* ---- try it ---- */
 .demos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 28px 24px; }
-.demo-card { display: flex; flex-direction: column; color: inherit; text-decoration: none; border: 1px solid var(--line); background: var(--bg); transition: border-color .15s, transform .15s; }
-.demo-card:hover, .demo-card:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
-.demo-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 1px solid var(--line); filter: var(--chart-light-filter); }
+.demo-card { display: flex; flex-direction: column; color: inherit; text-decoration: none; border: 1px solid var(--line); background: var(--bg); transition: border-color .15s; }
+.demo-card:hover, .demo-card:focus-visible { border-color: var(--accent); }
+.demo-media { position: relative; display: block; border-bottom: 1px solid var(--line); }
+.demo-card img, .demo-clip { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: var(--chart-light-filter); }
+.demo-clip { position: absolute; inset: 0; height: 100%; opacity: 0; transition: opacity .25s ease; pointer-events: none; }
+.demo-card.is-playing .demo-clip { opacity: 1; }
 .demo-card-body { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 16px; }
 .demo-card h3 { margin: 0; font-size: 17px; line-height: 1.3; font-weight: 600; color: var(--ink); text-wrap: pretty; }
 .demo-card:hover h3 { color: var(--accent); }
@@ -343,6 +346,9 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 .row-metric { white-space: nowrap; }
 .row-metric .row-what { white-space: normal; }
 .site-nav a.nav-try { font-weight: 600; color: var(--accent); }
+.lab-next { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 14px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+.lab-next a { color: var(--ink); }
+.lab-next a:first-of-type { font-weight: 500; color: var(--accent); }
 .site-map { flex-basis: 100%; order: 3; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 8px 40px; padding-top: 18px; border-top: 1px solid var(--inverse-line); }
 .site-map > div { display: flex; flex-wrap: wrap; gap: 0 16px; align-items: baseline; }
 .site-map .label { flex-basis: 100%; color: var(--inverse-muted); }
@@ -552,7 +558,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
     </div>
     <div class="demos">
       <a class="demo-card" href="projects/llm-safety-verifier.html#try">
-        <img src="assets/demos/verifier.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/verifier.webp" width="960" height="720" alt="" loading="lazy" decoding="async"><video class="demo-clip" muted loop playsinline preload="none" width="640" height="480" aria-hidden="true" tabindex="-1" data-src="assets/demos/verifier.webm"></video></span>
         <div class="demo-card-body">
           <div class="label">1 &middot; Safety verifier</div>
           <h3>Draw a route. The verifier judges it.</h3>
@@ -561,7 +567,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/llm-nav-shield.html#try">
-        <img src="assets/demos/shield.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/shield.webp" width="960" height="720" alt="" loading="lazy" decoding="async"><video class="demo-clip" muted loop playsinline preload="none" width="640" height="480" aria-hidden="true" tabindex="-1" data-src="assets/demos/shield.webm"></video></span>
         <div class="demo-card-body">
           <div class="label">2 &middot; Navigation shield</div>
           <h3>Watch a bad route get repaired, or halted.</h3>
@@ -570,7 +576,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/esp32-motion-detector.html#try">
-        <img src="assets/demos/esp32.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/esp32.webp" width="960" height="720" alt="" loading="lazy" decoding="async"><video class="demo-clip" muted loop playsinline preload="none" width="640" height="480" aria-hidden="true" tabindex="-1" data-src="assets/demos/esp32.webm"></video></span>
         <div class="demo-card-body">
           <div class="label">3 &middot; ESP32-CAM firmware</div>
           <h3>Wave at your camera. The firmware decides.</h3>
@@ -579,7 +585,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/plan-failure-bench.html#try">
-        <img src="assets/demos/planner.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/planner.webp" width="960" height="720" alt="" loading="lazy" decoding="async"></span>
         <div class="demo-card-body">
           <div class="label">4 &middot; Plan checker</div>
           <h3>Edit a robot's plan and watch where it breaks.</h3>
@@ -588,7 +594,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/toolcall-contract.html#try">
-        <img src="assets/demos/contract.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/contract.webp" width="960" height="720" alt="" loading="lazy" decoding="async"></span>
         <div class="demo-card-body">
           <div class="label">5 &middot; Tool-call validator</div>
           <h3>Break a tool call. See which layer catches it.</h3>
@@ -597,7 +603,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/exact-predicates.html#try">
-        <img src="assets/demos/predicates.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/predicates.webp" width="960" height="720" alt="" loading="lazy" decoding="async"><video class="demo-clip" muted loop playsinline preload="none" width="640" height="480" aria-hidden="true" tabindex="-1" data-src="assets/demos/predicates.webm"></video></span>
         <div class="demo-card-body">
           <div class="label">6 &middot; Exact predicates</div>
           <h3>Move a point by one ulp. Float lies. Exact does not.</h3>
@@ -606,7 +612,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="projects/legibility-bounds.html#try">
-        <img src="assets/demos/bounds.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/bounds.webp" width="960" height="720" alt="" loading="lazy" decoding="async"></span>
         <div class="demo-card-body">
           <div class="label">7 &middot; Certified intervals</div>
           <h3>Type a planner's score. The band says what it means.</h3>
@@ -615,7 +621,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </a>
       <a class="demo-card" href="#replanLab">
-        <img src="assets/demos/replan.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <span class="demo-media"><img src="assets/demos/replan.webp" width="960" height="720" alt="" loading="lazy" decoding="async"><video class="demo-clip" muted loop playsinline preload="none" width="640" height="480" aria-hidden="true" tabindex="-1" data-src="assets/demos/replan.webm"></video></span>
         <div class="demo-card-body">
           <div class="label">8 &middot; D* Lite against A*</div>
           <h3>Block the robot. Count what each planner redoes.</h3>
@@ -732,6 +738,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       <p class="visually-hidden" id="lab-said" aria-live="polite"></p>
       <figcaption class="fig-note">A toy in JavaScript with the same exact integer costs as the C++ core, checked against Dijkstra the same way. D* Lite gains most when a wall lands near the robot, where its sensors would find it, and little or nothing when a change undoes most of what it knew. These numbers are the toy's own: the 4.3x below is from the benchmarked C++ planners.</figcaption>
     </figure>
+    <p class="lab-next" id="tour-end"><span>Demo 8 of 8.</span> <span>That is all eight: four verifiers and shields that catch a bad plan, two benchmarks that score one, one certificate of what any planner could do, and this toy. Everything they computed, they computed in your browser from committed data.</span> <a href="#research">Read the research &rarr;</a> <a href="#contact">Get in touch</a></p>
     <div class="group-head">
       <div class="label group-label">Catch it before it runs</div>
       <p>The output exists as text or a plan. Is it well formed, does it keep its contract, and when it is wrong, can a machine say exactly where?</p>
@@ -1096,6 +1103,21 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       btn.textContent = 'Copied';
       setTimeout(function () { btn.textContent = idle; }, 2000);
     });
+  });
+})();
+</script>
+<script>
+(function () {
+  /* a card plays its clip while the pointer or focus is on it; the clip is
+     fetched on first hover, never on phones, and rewinds when left */
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+  var cards = document.querySelectorAll('.demo-card');
+  Array.prototype.forEach.call(cards, function (card) {
+    var v = card.querySelector('.demo-clip'); if (!v) return;
+    function start() { if (!v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src')); var p = v.play(); if (p && p.catch) p.catch(function () {}); card.classList.add('is-playing'); }
+    function stop() { v.pause(); try { v.currentTime = 0; } catch (e) {} card.classList.remove('is-playing'); }
+    card.addEventListener('mouseenter', start); card.addEventListener('mouseleave', stop);
+    card.addEventListener('focus', start); card.addEventListener('blur', stop);
   });
 })();
 </script>

@@ -59,6 +59,7 @@
   <section class="block" id="try">
     <h2>Try the <em>shield</em></h2>
     <p>The whole loop, running here: the verifier, the exact-cost A* over the footprint-inflated grid, and the re-verification by both judges, ported from the repository and its two submodules. Run it on qwen's committed proposal for a map and it makes the decision the C++ build recorded, down to the recovered path. Then wall the goal in and watch it halt, or paint walls of your own and see what it does.</p>
+    <p class="lab-story">It opens on map 0 with qwen2.5-7B's proposal and runs the loop at once. The verifier rejects the proposal, A* on the footprint-inflated grid finds another route, both judges pass it, and the shield forwards that recovery: the same 98 waypoints the C++ build recorded. Then seal the goal in and watch it halt instead.</p>
     <figure class="lab" id="shieldLab" hidden>
       <div class="lab-bar">
         <select class="lab-select" id="sl-scenario" aria-label="Choose a map"></select>

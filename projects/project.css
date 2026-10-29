@@ -377,3 +377,12 @@ pre.code-block {
 .lab-next a:first-of-type { font-weight: 500; color: var(--accent); }
 .lab-show { margin-left: auto; }
 @media (max-width: 480px) { h1 { font-size: 30px; } .lede { font-size: 17px; } .hero-links a { min-height: 36px; } }
+.lab-story { margin: 14px 0 0; padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--panel); font-size: 16.5px; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+/* a verdict that just changed says so, briefly */
+@keyframes lab-fresh { from { color: var(--accent); transform: translateY(4px); opacity: 0.3; } to { transform: none; opacity: 1; } }
+.lab .is-fresh { animation: lab-fresh .28s ease-out; }
+.lab .sl-step.is-fresh { animation: lab-fresh-step .32s ease-out; }
+@keyframes lab-fresh-step { from { background: color-mix(in srgb, var(--accent) 14%, transparent); } to { background: transparent; } }
+@media (prefers-reduced-motion: reduce) { .lab .is-fresh, .lab .sl-step.is-fresh { animation: none; } }
+@media (pointer: coarse) { .lab-btn, .lab-select { min-height: 44px; padding: 0 16px; font-size: 13px; } .lab-range input { min-height: 44px; } }
+
