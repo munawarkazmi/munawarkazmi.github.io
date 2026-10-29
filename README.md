@@ -41,7 +41,10 @@ the second against Dijkstra over random maps.
 
 The home page opens with a grid of the eight demos, each linking to its
 place on the project page, and every demo page links to the next so they can
-be walked in a row (assets/lab-tour.js). Seven project pages go further
+be walked in a row (assets/lab-tour.js). assets/motion.js lets content
+below the fold rise into place, counts the headline numbers up once, and
+grows the bars; it is skipped under prefers-reduced-motion and without it
+nothing is hidden. Seven project pages go further
 and run the project's own algorithm, ported line for line: the safety
 verifier page replays the committed model proposals through a JavaScript port of the verifier, the llm-nav-shield page
 runs the whole detect, recover or halt loop with the same A* and reference

@@ -311,3 +311,36 @@ html:active-view-transition-type(back)::view-transition-new(root) { animation-na
   }
   .skip-link, .theme-toggle { display: none !important; }
 }
+
+/* ---- motion -----------------------------------------------------------
+   assets/motion.js marks what is below the fold with .will-rise and lets it
+   rise as it is scrolled to; bars and bands grow from nothing; the hero
+   settles in on load. All of it is skipped under prefers-reduced-motion,
+   and without the script nothing is hidden. */
+.motion-on .will-rise { opacity: 0; transform: translateY(16px); transition: opacity .65s cubic-bezier(.2, .6, .2, 1), transform .65s cubic-bezier(.2, .6, .2, 1); }
+.motion-on .will-rise.is-risen { opacity: 1; transform: none; }
+.motion-on .will-grow { transform-origin: left center; transform: scaleX(0); transition: transform .9s cubic-bezier(.2, .7, .2, 1) .12s; }
+.motion-on .will-grow.is-grown { transform: none; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.motion-on .hero-copy > *, .motion-on header.hero > * { animation: rise-in .7s cubic-bezier(.2, .6, .2, 1) both; }
+.motion-on .hero-copy > :nth-child(2), .motion-on header.hero > :nth-child(2) { animation-delay: .08s; }
+.motion-on .hero-copy > :nth-child(3), .motion-on header.hero > :nth-child(3) { animation-delay: .16s; }
+.motion-on .hero-copy > :nth-child(4), .motion-on header.hero > :nth-child(4) { animation-delay: .24s; }
+.motion-on .hero-copy > :nth-child(5), .motion-on header.hero > :nth-child(5) { animation-delay: .32s; }
+.motion-on header.hero > :nth-child(6) { animation-delay: .40s; }
+.motion-on .hero-figure { animation: rise-in .8s cubic-bezier(.2, .6, .2, 1) .35s both; }
+.motion-on .site-header, .motion-on .topbar { animation: fade-in .5s ease both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+/* the small things that answer a pointer */
+.btn, .btn-outline, .btn-primary, .btn-secondary { transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease; }
+.btn:hover, .btn-outline:hover, .btn-primary:hover, .btn-secondary:hover { transform: translateY(-1px); }
+.btn:active, .btn-outline:active, .btn-primary:active, .btn-secondary:active { transform: translateY(0) scale(.985); transition-duration: .08s; }
+.text-link { transition: color .15s ease, text-decoration-color .15s ease; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+.text-link:hover { text-decoration-color: currentColor; }
+.theme-toggle svg { transition: transform .35s cubic-bezier(.2, .6, .2, 1); }
+.theme-toggle:hover svg { transform: rotate(-18deg) scale(1.08); }
+@media (prefers-reduced-motion: reduce) {
+  .motion-on .will-rise, .motion-on .will-grow { opacity: 1; transform: none; transition: none; }
+  .motion-on .hero-copy > *, .motion-on header.hero > *, .motion-on .hero-figure, .motion-on .site-header, .motion-on .topbar { animation: none; }
+  .btn:hover, .btn-outline:hover, .btn-primary:hover, .btn-secondary:hover { transform: none; }
+}
