@@ -39,15 +39,15 @@ computed on the page and are not results from the repositories above.
 [tools/test_replan_lab.js](tools/test_replan_lab.js) checks the planners in
 the second against Dijkstra over random maps.
 
-Three project pages go further and run the project's own algorithm, ported
+Four project pages go further and run the project's own algorithm, ported
 line for line: the safety verifier page replays the committed model
 proposals through a JavaScript port of the verifier, the llm-nav-shield page
 runs the whole detect, recover or halt loop with the same A* and reference
-checker, and the exact-predicates page runs the committed adversarial corpus
-through both the float and the exact predicate. Their data files are
-generated from the sibling repositories by `tools/make_*_lab_data.js`, and
-`tools/test_verifier_lab.js`, `tools/test_shield_lab.js` and
-`tools/test_predicates_lab.js` require the ports to reproduce every
-committed verdict, bucket and recovered path.
+checker, the exact-predicates page runs the committed adversarial corpus
+through both the float and the exact predicate, and the toolcall-contract
+page runs both validator layers on the committed model replies. Their data
+files are generated from the sibling repositories by
+`tools/make_*_lab_data.js`, and the matching `tools/test_*_lab.js` require
+the ports to reproduce every committed verdict, bucket and recovered path.
 
 All content and design, all rights reserved.
