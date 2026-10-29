@@ -196,6 +196,19 @@ pre.code-block {
 .lab-verdict-2 .stat-num { font-size: 18px; }
 .lab.is-wrong .lab-verdict .is-case .stat-num { color: var(--warn-ink); }
 .lab.is-agree .lab-verdict .is-case .stat-num { color: var(--ok); }
+.lab-verdict-1 { grid-template-columns: minmax(0, 1fr); }
+.lab.is-forward .lab-verdict .is-verdict .stat-num { color: var(--ok); }
+.lab.is-halt .lab-verdict .is-verdict .stat-num { color: var(--warn-ink); }
+.sl-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
+.block ol.sl-steps { margin: 0; max-width: none; }
+.sl-step { display: flex; flex-direction: column; gap: 2px; padding: 8px 0 8px 12px; border-left: 3px solid var(--line); font-size: 14px; line-height: 1.4; color: var(--muted); }
+.sl-step .sl-name { color: var(--ink); font-weight: 500; }
+.sl-step .sl-out { font-family: var(--mono); font-size: 12.5px; min-height: 1.4em; overflow-wrap: anywhere; }
+.sl-step.is-pass { border-left-color: var(--ok); }
+.sl-step.is-fail { border-left-color: var(--warn); }
+.sl-step.is-fail .sl-out { color: var(--warn-ink); }
+.sl-step.is-skip { opacity: 0.6; }
+@media (max-width: 560px) { .sl-steps { grid-template-columns: minmax(0, 1fr); } }
 .lab-range { display: inline-flex; align-items: center; gap: 10px; flex: 1 1 220px; }
 .lab-range input { flex: 1 1 auto; min-width: 120px; accent-color: var(--accent); }
 .lab-coords { display: flex; flex-wrap: wrap; gap: 4px 22px; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--text); }

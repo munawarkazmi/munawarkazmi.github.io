@@ -59,6 +59,39 @@
     <p>The forward gate is goal-aware: a proposal passes only if it is both verifier-safe <em>and</em> actually ends at the goal. That requirement exists because a dry run caught a real case: a qwen proposal that was safe and went nowhere near the goal. Safety and task-success stay separate judgments; the gate requires both, and the design change is documented in the pre-registration commit, made before any result was published.</p>
   </section>
 
+  <section class="block" id="try">
+    <h2>Try the <em>shield</em></h2>
+    <p>The whole loop, running here: the verifier, the exact-cost A* over the footprint-inflated grid, and the re-verification by both judges, ported from the repository and its two submodules. Run it on qwen's committed proposal for a map and it makes the decision the C++ build recorded, down to the recovered path. Then wall the goal in and watch it halt, or paint walls of your own and see what it does.</p>
+    <figure class="lab" id="shieldLab" hidden>
+      <div class="lab-bar">
+        <select class="lab-select" id="sl-scenario" aria-label="Choose a map"></select>
+        <button type="button" class="lab-btn" data-act="run" id="sl-run">Run the shield</button>
+        <button type="button" class="lab-btn" data-act="seal" id="sl-seal">Seal the goal</button>
+        <button type="button" class="lab-btn" data-act="reset">Reset map</button>
+      </div>
+      <div class="lab-stage" id="sl-stage"><canvas id="sl-canvas" role="img" aria-label="An occupancy grid with the model's proposed path, the recovered path when one is planned, the inflated obstacles the planner saw, and the start and goal."></canvas></div>
+      <div class="lab-bar">
+        <span class="label">Tool</span>
+        <button type="button" class="lab-btn" data-mode="look" aria-pressed="true">Look</button>
+        <button type="button" class="lab-btn" data-mode="wall" aria-pressed="false">Paint wall</button>
+        <button type="button" class="lab-btn" data-mode="erase" aria-pressed="false">Erase</button>
+      </div>
+      <p class="lab-hint" id="sl-hint" aria-hidden="true"></p>
+      <ol class="sl-steps">
+        <li class="sl-step" id="sl-step1"><span class="sl-name">1. Verify the proposal</span><span class="sl-out"></span></li>
+        <li class="sl-step" id="sl-step2"><span class="sl-name">2. Does it end at the goal?</span><span class="sl-out"></span></li>
+        <li class="sl-step" id="sl-step3"><span class="sl-name">3. Plan a recovery on the inflated grid</span><span class="sl-out"></span></li>
+        <li class="sl-step" id="sl-step4"><span class="sl-name">4. Re-verify with both judges</span><span class="sl-out"></span></li>
+      </ol>
+      <div class="lab-verdict lab-verdict-1">
+        <div class="is-verdict"><div class="label">Decision</div><div class="stat-num" id="sl-decision"></div><div class="stat-text" id="sl-detail"></div><div class="stat-text" id="sl-ms"></div></div>
+      </div>
+      <p class="lab-match" id="sl-match" hidden></p>
+      <p class="visually-hidden" id="sl-said" aria-live="polite"></p>
+      <figcaption class="lab-note">Dashed: the model's proposal, red where the verifier stopped it. Solid: the recovered path. Shaded: the inflation the planner saw, the footprint plus one cell around every wall and the map edge. The A* keeps the C++ heap's tie-breaking, so tools/test_shield_lab.js can require all 38 committed recovered paths waypoint for waypoint, and the committed bucket on all 40 proposals and 10 sealed goals.</figcaption>
+    </figure>
+  </section>
+
   <section class="block">
     <h2>The <em>decision flow</em></h2>
     <figure>
@@ -91,6 +124,10 @@
   </footer>
 </div>
 
+<script src="../assets/verifier-lab-data.js" defer></script>
+<script src="../assets/shield-lab-data.js" defer></script>
+<script src="../assets/verifier-lab.js" defer></script>
+<script src="../assets/shield-lab.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>
