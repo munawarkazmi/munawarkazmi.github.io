@@ -26,9 +26,31 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Verbal vs non-verbal HRI",
+  "url": "https://munawarkazmi.com/projects/hri-companionship.html",
+  "description": "A within-subjects study on the JD humanoid comparing gesture and speech for conveying a robot need state: verbal was clearer (d = 0.58, p = 0.017), engagement was statistically comparable, and every gestural failure was a failure of joint attention.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  }
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#research">&larr; All work</a>
@@ -36,13 +58,13 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
-    <div class="eyebrow">Human-Robot Interaction · Trust Calibration · Sim-to-Real</div>
+    <div class="eyebrow">Human-Robot Interaction · Communication Cues · Sim-to-Real</div>
     <h1>Say it, or <em>show it</em></h1>
     <p class="lede">A companion robot has to be able to tell a person what it needs. This study asked whether pointing or speaking does that better, using a scenario chosen to be as mundane as the problem really is: the robot needs recharging. Speech won on clarity by a medium-to-large margin. On engagement the two were indistinguishable, which is the more interesting half of the result.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+      <a class="btn-primary" href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the write-up (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
     <div class="metric-row">
@@ -63,15 +85,11 @@
     <h2>The <em>platform</em></h2>
     <div class="research-photos">
       <div class="research-photo">
-        <img src="../assets/jd-robot.webp" alt="JD humanoid robot platform used in the trust-calibration study" width="400" height="260" loading="lazy" decoding="async">
+        <img src="../assets/jd-robot.webp" alt="JD humanoid robot platform used in the study" width="400" height="260" loading="lazy" decoding="async">
         <div class="research-photo-caption">JD humanoid · EZ-Robot · the study platform</div>
       </div>
-      <div class="research-photo">
-        <img src="../assets/icub.webp" alt="iCub humanoid photographed during a lab visit" width="400" height="260" loading="lazy" decoding="async">
-        <div class="research-photo-caption">iCub humanoid · IIT · photographed on a lab visit, not a platform I worked on</div>
-      </div>
     </div>
-    <p>The study ran on the JD humanoid from EZ-Robot, at the University of Hertfordshire Robot House. Getting a scripted gestural sequence and a spoken alert to run reliably on the same platform, in front of a participant, on a schedule, is most of the work: I built a high-fidelity Isaac Sim digital twin to develop and rehearse the behaviours, engineered the hardware integration through ROS2, and deployed PyTorch-based non-verbal communication models onto the robot's real-time control loop.</p>
+    <p>The study ran on the JD humanoid from EZ-Robot, at the University of Hertfordshire Robot House. Getting a scripted gestural sequence and a spoken alert to run reliably on the same platform, in front of a participant, on a schedule, is most of the work: I built a high-fidelity Isaac Sim digital twin to develop and rehearse the behaviours, engineered the hardware integration through ROS2, and ran the gestural sequence and the spoken alert from the same control loop so the two conditions differed in nothing but the cue.</p>
     <p>The digital twin is not decoration. A gestural condition that has to be identical for twenty participants cannot be tuned live in front of them, and a pointing sequence that reads as intentional rather than mechanical takes many iterations to get right. Doing that in simulation and transferring it is what made the two conditions comparable.</p>
   </section>
 
@@ -97,21 +115,8 @@
       </table>
     </div>
 
-    <div class="trust-demo">
-      <div class="trust-demo-label">TRY IT · VERBAL VS. NON-VERBAL</div>
-      <div class="trust-toggle" role="group" aria-label="Communication condition toggle">
-        <button type="button" class="trust-toggle-btn active" id="trustVerbalBtn" aria-pressed="true">Verbal</button>
-        <button type="button" class="trust-toggle-btn" id="trustNonverbalBtn" aria-pressed="false">Non-verbal</button>
-      </div>
-      <div class="trust-caption" id="trustCaption">Robot states its need directly</div>
-      <div class="trust-bar-row">
-        <span>Intent identification accuracy</span>
-        <span class="trust-bar-val" id="trustVal">95%</span>
-      </div>
-      <div class="trust-bar-track"><div class="trust-bar-fill" id="trustBar" style="width:95%;"></div></div>
-    </div>
 
-    <p style="margin-top:2rem">Speech was clearer, at a medium-to-large effect size. The part worth dwelling on is <em>how</em> gesture failed. All three non-verbal misidentifications were failures of joint attention to the charger: participants understood that the robot wanted something and settled on the wrong object. That is referential ambiguity rather than communicative collapse, and it is exactly the failure mode Holthaus et al. predict when object salience is not established by context beforehand. Gesture is context-contingent in a way speech is not.</p>
+    <p>Speech was clearer, at a medium-to-large effect size. The part worth dwelling on is <em>how</em> gesture failed. All three non-verbal misidentifications were failures of joint attention to the charger: participants understood that the robot wanted something and settled on the wrong object. That is referential ambiguity rather than communicative collapse, and it is exactly the failure mode Holthaus et al. predict when object salience is not established by context beforehand. Gesture is context-contingent in a way speech is not.</p>
     <p>Engagement told the opposite story, and its null result is the more useful one. The difference did not reach significance, which suggests engagement is driven by broader features of the interaction scenario rather than by communicative modality. A robot that gestures is not less engaging for being less clear. On the RoSAS subscales both conditions produced positive competence and warmth profiles with low discomfort, so neither strategy read as threatening; warmth was marginally higher in the non-verbal condition, though not significantly so.</p>
   </section>
 
@@ -157,57 +162,13 @@
   </section>
 
   <footer class="footer">
-    <a href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the paper (PDF) &rarr;</a>
+    <a href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the write-up (PDF) &rarr;</a>
     &ensp;·&ensp;
     <a href="../index.html#research">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
-<script>
-  var trustData = {
-    verbal: { val: '95%', caption: 'Robot states its need directly', width: '95%' },
-    nonverbal: { val: '80%', caption: 'Robot communicates via gesture only', width: '80%' }
-  };
-  var trustVerbalBtn = document.getElementById('trustVerbalBtn');
-  var trustNonverbalBtn = document.getElementById('trustNonverbalBtn');
-  var trustBar = document.getElementById('trustBar');
-  var trustVal = document.getElementById('trustVal');
-  var trustCaption = document.getElementById('trustCaption');
-
-  function setTrustState(key) {
-    var d = trustData[key];
-    if (!d || !trustBar) return;
-    trustBar.style.width = d.width;
-    trustVal.textContent = d.val;
-    trustCaption.textContent = d.caption;
-    var isVerbal = key === 'verbal';
-    trustVerbalBtn.classList.toggle('active', isVerbal);
-    trustVerbalBtn.setAttribute('aria-pressed', isVerbal);
-    trustNonverbalBtn.classList.toggle('active', !isVerbal);
-    trustNonverbalBtn.setAttribute('aria-pressed', !isVerbal);
-  }
-
-  if (trustVerbalBtn && trustNonverbalBtn) {
-    trustVerbalBtn.addEventListener('click', function () { setTrustState('verbal'); });
-    trustNonverbalBtn.addEventListener('click', function () { setTrustState('nonverbal'); });
-  }
-
-  /* The video is a facade until it is asked for: nothing is requested from
-     YouTube, and no third-party cookie is set, until a visitor clicks. */
-  document.querySelectorAll('.video-facade').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var id = btn.dataset.video;
-      if (!id) return;
-      var frame = document.createElement('iframe');
-      frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
-                  '?autoplay=1&rel=0&playsinline=1';
-      frame.title = btn.dataset.title || 'Video';
-      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-      frame.allowFullscreen = true;
-      btn.replaceWith(frame);
-    });
-  });
-</script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>

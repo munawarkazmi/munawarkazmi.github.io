@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#FCFCFD">
 <meta property="og:title" content="legibility-bounds · Munawar Kazmi">
 <meta property="og:description" content="Certified upper bounds on robot motion legibility: for a world, a path budget and a stated observer, a trajectory that exists and a wall no trajectory can cross. All 32 world and budget pairs hold with zero violations.">
-<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og/legibility-bounds.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -26,9 +26,32 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "legibility-bounds",
+  "url": "https://munawarkazmi.com/projects/legibility-bounds.html",
+  "description": "Certified upper bounds on robot motion legibility: for a world, a path budget and a stated observer, a trajectory that exists and a wall no trajectory can cross. All 32 world and budget pairs hold with zero violations.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  },
+  "codeRepository": "https://github.com/munawarkazmi/legibility-bounds"
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#research">&larr; All work</a>
@@ -36,7 +59,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">Human-Robot Interaction · Certified Bounds · Computational Geometry</div>
     <h1>Proving what <em>no robot could</em> achieve</h1>
@@ -131,9 +154,9 @@
     <p>Where the remaining width lives was measured rather than argued. Refining the lattice closes 55 to 79 per cent of it, which means most of the gap is discretisation and will yield to compute.</p>
     <p>What was thought to survive was one loose constant in the obstacle argument, and this page used to name it as the highest-leverage improvement outstanding. That was wrong, and the way it was wrong is worth stating. A sharper argument brought the wrapping factor from 9.28 cell radii to 6.14, which closed 1.6 per cent of the suite's total width: twenty of the thirty two pairs draw nothing from that argument at all and cannot move however tight it becomes. Refinement is worth some forty times as much.</p>
     <p>The looseness had also been measured against a quantity the bound does not claim, between two arbitrary points of a cell rather than from a point to its own lattice point, and sampled from a box wider than the cell. Both flattered it. Corrected, the constant is loose by a factor of 6.2 rather than 3.7, and no sampled point in any world tested is separated from its own lattice point at all, so the wrapping argument never binds here. Where the width in the obstacle worlds actually lives is therefore an open question again, which is a worse position than this page previously claimed and a truer one.</p>
-    <p>The honest ceiling on all of it: the observer model is exactly specified and exactly reproducible, and it has never been validated against people. These are therefore certified bounds on a <em>stated objective</em>, not on what a human watching the robot would actually infer. The proof is only as meaningful as the definition it quantifies over, and saying so is part of the result.</p>
+    <p>The ceiling on all of it: the observer model is exactly specified and exactly reproducible, and it has never been validated against people. These are therefore certified bounds on a <em>stated objective</em>, not on what a human watching the robot would actually infer. The proof is only as meaningful as the definition it quantifies over, and saying so is part of the result.</p>
     <p>The work is now written up as a six-page draft, <a href="../files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">readable here</a>. It states the same headline numbers as this page (8 scenarios at 4 cost ceilings, a widest gap of 0.0567, no bound violated) and carries its own limitations section rather than leaving them to a reviewer to find. That section now includes the correction described above, and the configuration that bounds what any sharper constant could ever be worth. It was submitted to IEEE Robotics and Automation Letters in August 2026, and it is citable: DOI <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">10.5281/zenodo.21834955</a>, archived under CC BY 4.0 with the code and the plain-language guide recorded as related works. That DOI resolves to whichever version is current, so a link through it does not go stale when the paper is revised. The first version predates the correction above, and still gives the wrapping factor as 9.28 and calls a sharper constant the highest-leverage improvement outstanding. It remains citable at <a href="https://doi.org/10.5281/zenodo.21834956" target="_blank" rel="noopener">10.5281/zenodo.21834956</a> rather than being quietly replaced.</p>
-    <p>It was written alongside the code rather than after it, with a working log that tracks each part honestly. Nothing is marked done that cannot be inspected in the repository.</p>
+    <p>It was written alongside the code rather than after it, with a working log that records the state of each part. Nothing is marked done that cannot be inspected in the repository.</p>
     <p><a href="../files/legibility-bounds-paper.pdf" target="_blank" rel="noopener">Read the preprint (PDF) &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://doi.org/10.5281/zenodo.21834955" target="_blank" rel="noopener">Cite via DOI &nearr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/munawarkazmi/legibility-bounds/blob/main/STATUS.md" target="_blank" rel="noopener">Working log &nearr;</a></p>
   </section>
 
@@ -143,8 +166,9 @@
     <a href="../files/legibility-bounds-explained.pdf" target="_blank" rel="noopener">Plain-language guide (PDF)</a>
     &ensp;·&ensp;
     <a href="../index.html#research">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
 <script src="../assets/bounds-lab-data.js" defer></script>
 <script src="../assets/bounds-lab.js" defer></script>

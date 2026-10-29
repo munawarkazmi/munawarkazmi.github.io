@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#FCFCFD">
 <meta property="og:title" content="toolcall-contract · Munawar Kazmi">
 <meta property="og:description" content="A deterministic two-layer validator for LLM tool calls: in 25,000-case differential agreement with jsonschema, plus the semantic contract layer where real failures live. qwen2.5-7B: 0 schema violations, 7 semantic; llama-3.3-70B: 0 and 5; both replayed in CI.">
-<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og/toolcall-contract.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -26,9 +26,32 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "toolcall-contract",
+  "url": "https://munawarkazmi.com/projects/toolcall-contract.html",
+  "description": "A deterministic two-layer validator for LLM tool calls: in 25,000-case differential agreement with jsonschema, plus the semantic contract layer where real failures live. qwen2.5-7B: 0 schema violations, 7 semantic; llama-3.3-70B: 0 and 5; both replayed in CI.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  },
+  "codeRepository": "https://github.com/munawarkazmi/toolcall-contract"
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#engineering">&larr; All work</a>
@@ -36,7 +59,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">LLM Agents · Structured Output · Python / jsonschema Differential</div>
     <h1>Tool calls that look right <em>and silently aren't</em></h1>
@@ -51,7 +74,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">25,000/25,000</div><div class="metric-label">fuzzed structural verdicts in agreement with the pinned jsonschema oracle</div></div>
-      <div class="metric"><div class="metric-num">0</div><div class="metric-label">on both load-bearing cells, validator disagreements and invalid-marked-valid, CI-enforced on both tiers</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">on both cells the design rests on, validator disagreements and invalid-marked-valid, CI-enforced on both tiers</div></div>
       <div class="metric"><div class="metric-num">7 &middot; 5</div><div class="metric-label">schema-valid contract violations by qwen2.5-7B and llama-3.3-70B on the same 40 tasks (0 schema breaks by either)</div></div>
     </div>
   </header>
@@ -111,8 +134,9 @@
     <a href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
     <a href="../index.html#engineering">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
 <script src="../assets/contract-lab-data.js" defer></script>
 <script src="../assets/contract-lab.js" defer></script>

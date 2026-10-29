@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#FCFCFD">
 <meta property="og:title" content="llm-nav-shield · Munawar Kazmi">
 <meta property="og:description" content="A neurosymbolic navigation shield: verify LLM trajectory proposals, recover with a provably-safe classical path, or halt when none exists. 38/38 recovered, 0 unsafe forwarded, 10/10 sealed goals halted, replayed in CI from committed data.">
-<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og/llm-nav-shield.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -26,9 +26,32 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "llm-nav-shield",
+  "url": "https://munawarkazmi.com/projects/llm-nav-shield.html",
+  "description": "A neurosymbolic navigation shield: verify LLM trajectory proposals, recover with a provably-safe classical path, or halt when none exists. 38/38 recovered, 0 unsafe forwarded, 10/10 sealed goals halted, replayed in CI from committed data.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  },
+  "codeRepository": "https://github.com/munawarkazmi/llm-nav-shield"
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#engineering">&larr; All work</a>
@@ -36,7 +59,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">Neurosymbolic · Safe Autonomy · Composition of Verified Cores</div>
     <h1>Detect, recover, <em>or halt</em></h1>
@@ -51,7 +74,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">38/38</div><div class="metric-label">flawed qwen2.5-7B proposals recovered with verified safe paths</div></div>
-      <div class="metric"><div class="metric-num">0</div><div class="metric-label">unsafe fallbacks forwarded: the load-bearing zero, CI-enforced</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">unsafe fallbacks forwarded: the zero the whole design rests on, CI-enforced</div></div>
       <div class="metric"><div class="metric-num">10/10</div><div class="metric-label">sealed-goal cases halted instead of inventing a route</div></div>
     </div>
   </header>
@@ -126,8 +149,9 @@
     <a href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
     <a href="../index.html#engineering">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
 <script src="../assets/verifier-lab-data.js" defer></script>
 <script src="../assets/shield-lab-data.js" defer></script>

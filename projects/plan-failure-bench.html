@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#FCFCFD">
 <meta property="og:title" content="plan-failure-bench · Munawar Kazmi">
 <meta property="og:description" content="A benchmark measuring how LLMs fail at robot task planning: planted traps, a machine-checkable action DSL with refusal terminals, and planted-versus-observed confusion matrices with fully decidable ground truth.">
-<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og/plan-failure-bench.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -26,9 +26,32 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "plan-failure-bench",
+  "url": "https://munawarkazmi.com/projects/plan-failure-bench.html",
+  "description": "A benchmark measuring how LLMs fail at robot task planning: planted traps, a machine-checkable action DSL with refusal terminals, and planted-versus-observed confusion matrices with fully decidable ground truth.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  },
+  "codeRepository": "https://github.com/munawarkazmi/plan-failure-bench"
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#research">&larr; All work</a>
@@ -36,7 +59,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">LLM Evaluation · Robot Task Planning · Benchmark Design · PDDL</div>
     <h1>Measuring <em>how</em> planners fail, not just that they do</h1>
@@ -107,7 +130,7 @@
     <pre class="code-block">{"plan": [{"action": "goto", "args": ["living_room"]},
           {"action": "pick", "args": ["glass_water"]}]}</pre>
     <p>The checker walks the plan step by step and stops at the second action: <strong>precondition violation</strong>, because "glass_water is in the kitchen, robot is in the living_room". One verdict, one failing step, one stated fact. No judge decided anything.</p>
-    <p>The frontier reasoning model answered:</p>
+    <p>Gemini 3.6 Flash answered:</p>
     <pre class="code-block">{"plan": [{"action": "goto", "args": ["kitchen"]},
           {"action": "open", "args": ["d_kitchen_living"]},
           {"action": "pick", "args": ["glass_water"]},
@@ -173,7 +196,7 @@
 
   <section class="block">
     <h2>The <em>working paper</em></h2>
-    <p>A research paper is being completed alongside the experiments rather than after them. The draft lives in the repository, its results tables are generated directly from the committed run records so the numbers can never drift from the data, and a status file tracks each section honestly: nothing is marked done that cannot be inspected in the repository. Current state: benchmark implementation, methodology, the full experiment grid, and the verified literature review are complete; the paper is framed as a methodology contribution with the four-model grid as its demonstration; statistical analysis and a final pre-submission read remain; the paper is public as a citable preprint at DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>.</p>
+    <p>A research paper is being completed alongside the experiments rather than after them. The draft lives in the repository, its results tables are generated directly from the committed run records so the numbers can never drift from the data, and a status file records the state of each section: nothing is marked done that cannot be inspected in the repository. Current state: benchmark implementation, methodology, the full experiment grid, and the verified literature review are complete; the paper is framed as a methodology contribution with the four-model grid as its demonstration; statistical analysis and a final pre-submission read remain; the paper is public as a citable preprint at DOI <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">10.5281/zenodo.21756817</a>.</p>
     <p>If you would rather have the whole thing in plain language, with the real model answers and no jargon, there is a six-page guide: <a href="../files/plan-failure-bench-explained.pdf" target="_blank" rel="noopener">The glass of water problem (PDF)</a>.</p>
     <p><a href="https://github.com/munawarkazmi/plan-failure-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener">Working paper status &nearr;</a> &nbsp;&middot;&nbsp; <a href="https://doi.org/10.5281/zenodo.21756817" target="_blank" rel="noopener">Preprint DOI &nearr;</a></p>
   </section>
@@ -182,8 +205,9 @@
     <a href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
     <a href="../index.html#research">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
 <script src="../assets/planner-lab-data.js" defer></script>
 <script src="../assets/planner-lab.js" defer></script>

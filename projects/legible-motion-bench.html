@@ -26,9 +26,32 @@
 <script src="../assets/theme.js"></script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "legible-motion-bench",
+  "url": "https://munawarkazmi.com/projects/legible-motion-bench.html",
+  "description": "Measuring what a robot gives up in safety when it moves to make its destination obvious: legibility against path cost against constraint satisfaction, computed exactly, with no human rater or model judge in the scoring loop.",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/",
+    "identifier": "https://orcid.org/0009-0004-6565-6067"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Munawar Kazmi",
+    "url": "https://munawarkazmi.com/"
+  },
+  "codeRepository": "https://github.com/munawarkazmi/legible-motion-bench"
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="topbar">
   <div class="topbar-inner">
     <a class="back" href="../index.html#research">&larr; All work</a>
@@ -36,7 +59,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">Human-Robot Interaction · Motion Planning · Benchmark Design · Computational Geometry</div>
     <h1>What a robot gives up to say <em>where it is going</em></h1>
@@ -46,7 +69,7 @@
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
     <div class="metric-row">
-      <div class="metric"><div class="metric-num">80/80</div><div class="metric-label">model decodes that claimed to be legible, 25 of them not physically possible</div></div>
+      <div class="metric"><div class="metric-num">116/120</div><div class="metric-label">model decodes that claimed to be legible, 25 of them not physically possible</div></div>
       <div class="metric"><div class="metric-num">0</div><div class="metric-label">human or model judgements anywhere in the scoring loop</div></div>
       <div class="metric"><div class="metric-num">46</div><div class="metric-label">machine-checked facts the eight worlds carry about themselves, re-verified on every push</div></div>
     </div>
@@ -66,7 +89,7 @@
       <img width="980" height="430" src="img/lmb-observer.svg" alt="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" loading="lazy">
       <figcaption>Every step here is deterministic. The only thing being measured that is not deterministic is the planner, or the model, that produced the path in the first place.</figcaption>
     </figure>
-    <p>The observer is the load-bearing part. It is Boltzmann-rational in the Dragan form: a person who assumes the robot is efficient scores each candidate goal by how much the motion so far has cost relative to the best it could have done. Nothing learns. Given a world and a path, the belief is a deterministic function of the two.</p>
+    <p>Everything rests on the observer. It is Boltzmann-rational in the Dragan form: a person who assumes the robot is efficient scores each candidate goal by how much the motion so far has cost relative to the best it could have done. Nothing learns. Given a world and a path, the belief is a deterministic function of the two.</p>
     <p>That belief rests on the optimal cost-to-go, so the benchmark computes it exactly rather than approximately. Obstacles are convex polygons, the shortest obstacle-avoiding path is a polyline through their vertices, and the optimum comes from search over the visibility graph. No grid, no resolution to defend. The geometric predicate underneath is guarded: it is decided in floating point wherever an error bound proves the sign cannot have been changed by rounding, and in exact rational arithmetic otherwise. On twenty thousand near-collinear cases an unguarded floating point determinant returns the wrong sign on more than a tenth of them, and the test suite asserts both halves of that sentence so the corpus cannot quietly become easy.</p>
     <p>There are two observers, and both are first class. One can see the room and reasons about the true path around obstacles. One cannot, and reasons in straight lines: the person in a doorway who can see the robot and knows the candidate goals but has no view of what stands between them. Whether the ranking of planners survives the change of observer is a question the benchmark asks rather than assumes.</p>
     <p>Keep-out zones do not block motion. A trajectory may cross one and is scored for having done so. If they blocked motion there would be no frontier to measure, because no planner could ever trade safety for clarity.</p>
@@ -148,7 +171,7 @@
 
   <section class="block">
     <h2>The <em>working paper</em></h2>
-    <p>A paper is being written alongside the code rather than after it, with a status file that tracks each section honestly and a verification log recording every citation checked against the cited paper's body rather than its abstract, with the date of each check. Nothing is marked done that cannot be inspected in the repository.</p>
+    <p>A paper is being written alongside the code rather than after it, with a status file that records the state of each section and a verification log recording every citation checked against the cited paper's body rather than its abstract, with the date of each check. Nothing is marked done that cannot be inspected in the repository.</p>
     <p>It builds two ways from one source, so the anonymised submission and the named preprint cannot drift apart: a flag defined before the document class is read decides which, and there is no line to edit between them. Both are four pages with no overfull boxes, and the anonymised one carries no name, no email and no repository link in its text.</p>
     <p>Every number in it, both results tables and the figure, is written from the committed record files by a committed tool. The worlds and the facts each one carries, the prompt template, the records and those tools are all in the repository, so a reader can recompute the tables rather than take them on trust.</p>
     <p>The preprint below is the named build. It is a working draft rather than a peer reviewed paper, and it says so in its own limitations: the metric is exactly reproducible and has not been validated against people, and three models over eight worlds at one temperature is a pilot.</p>
@@ -160,8 +183,9 @@
     <a href="https://github.com/munawarkazmi/legible-motion-bench" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
     <a href="../index.html#research">Back to all work</a>
+    <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
-</div>
+</main>
 
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
