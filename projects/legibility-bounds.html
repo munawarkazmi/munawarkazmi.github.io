@@ -42,7 +42,8 @@
     <h1>Proving what <em>no robot could</em> achieve</h1>
     <p class="lede">Your planner scores 0.58 in a test room. Is the room hard, or did your planner do badly in it? Nobody could tell, because searching only ever proves that something exists, never that nothing better does. This proves the other half: a level no trajectory can reach, whatever anyone tries next.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/legibility-bounds" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/legibility-bounds-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
@@ -52,6 +53,31 @@
       <div class="metric"><div class="metric-num">13/32</div><div class="metric-label">cases where the constructed trajectory beats the vendored local search, by up to 0.1485</div></div>
     </div>
   </header>
+
+  <section class="block" id="try">
+    <h2>Read the <em>intervals</em></h2>
+    <p>The 32 certified intervals, as committed, with one thing the chart above cannot do: type in the legibility a planner reached and the band says what the number means. Inside the band, the planner is within a stated distance of the best anything can do. Below it, there is a trajectory that is known to beat it. Above it is impossible, and the page says so.</p>
+    <figure class="lab" id="boundsLab" hidden>
+      <div class="lab-bar">
+        <select class="lab-select" id="bl-world" aria-label="World"></select>
+        <span class="lab-budgets" id="bl-budgets" role="group" aria-label="Path budget"></span>
+        <label class="lab-range"><span class="label">A planner's score</span><input type="number" class="lab-select" id="bl-score" min="0" max="1" step="0.001" placeholder="0.000" aria-label="A planner's legibility score"></label>
+      </div>
+      <p class="lab-hint" id="bl-hint"></p>
+      <div class="lab-stage" id="bl-stage"><canvas id="bl-canvas" role="img" aria-label="For the chosen world, four certified intervals, one per path budget: a circle at the floor, a diamond at the ceiling, a tick at the shortest path, and a dashed line where the typed score falls."></canvas></div>
+      <div class="lab-verdict">
+        <div class="is-verdict"><div class="label">Your planner</div><div class="stat-num" id="bl-verdict"></div><div class="stat-text" id="bl-verdict-text"></div></div>
+        <div><div class="label">Floor</div><div class="stat-num" id="bl-floor"></div><div class="stat-text">a trajectory that exists</div></div>
+        <div><div class="label">Ceiling</div><div class="stat-num" id="bl-ceil"></div><div class="stat-text">nothing can exceed it</div></div>
+        <div><div class="label">Width</div><div class="stat-num" id="bl-width"></div><div class="stat-text">where the optimum hides</div></div>
+        <div><div class="label">Shortest path</div><div class="stat-num" id="bl-short"></div><div class="stat-text">for contrast</div></div>
+      </div>
+      <p class="lab-match" id="bl-tally"></p>
+      <p class="visually-hidden" id="bl-said" aria-live="polite"></p>
+      <figcaption class="lab-note">The intervals are the committed results/suite_bounds.json, not recomputed here: each ceiling is a lattice relaxation that takes up to about 23 seconds of Python per world. tools/test_bounds_lab.js requires the data served on this page to equal the committed suite row for row, every interval to be a certificate, and the summary line to give the figures stated above.</figcaption>
+    </figure>
+  </section>
+
 
   <section class="block">
     <h2>The <em>problem</em></h2>
@@ -91,30 +117,6 @@
     <p>All 32 world and budget pairs hold, with zero violations. The narrowest gap anywhere in the suite is 0.0064. Read a row as a sentence: in <code>fan_middle</code> at a 25 per cent budget, a trajectory scoring 0.4343 exists, nothing can exceed 0.4909, and the true optimum is somewhere in between. A planner returning 0.43 in that world is not doing badly. The world is hard, and now that can be stated rather than suspected.</p>
   </section>
 
-  <section class="block" id="try">
-    <h2>Read the <em>intervals</em></h2>
-    <p>The 32 certified intervals, as committed, with one thing the chart above cannot do: type in the legibility a planner reached and the band says what the number means. Inside the band, the planner is within a stated distance of the best anything can do. Below it, there is a trajectory that is known to beat it. Above it is impossible, and the page says so.</p>
-    <figure class="lab" id="boundsLab" hidden>
-      <div class="lab-bar">
-        <select class="lab-select" id="bl-world" aria-label="World"></select>
-        <span class="lab-budgets" id="bl-budgets" role="group" aria-label="Path budget"></span>
-        <label class="lab-range"><span class="label">A planner's score</span><input type="number" class="lab-select" id="bl-score" min="0" max="1" step="0.001" placeholder="0.000" aria-label="A planner's legibility score"></label>
-      </div>
-      <p class="lab-hint" id="bl-hint"></p>
-      <div class="lab-stage" id="bl-stage"><canvas id="bl-canvas" role="img" aria-label="For the chosen world, four certified intervals, one per path budget: a circle at the floor, a diamond at the ceiling, a tick at the shortest path, and a dashed line where the typed score falls."></canvas></div>
-      <div class="lab-verdict">
-        <div class="is-verdict"><div class="label">Your planner</div><div class="stat-num" id="bl-verdict"></div><div class="stat-text" id="bl-verdict-text"></div></div>
-        <div><div class="label">Floor</div><div class="stat-num" id="bl-floor"></div><div class="stat-text">a trajectory that exists</div></div>
-        <div><div class="label">Ceiling</div><div class="stat-num" id="bl-ceil"></div><div class="stat-text">nothing can exceed it</div></div>
-        <div><div class="label">Width</div><div class="stat-num" id="bl-width"></div><div class="stat-text">where the optimum hides</div></div>
-        <div><div class="label">Shortest path</div><div class="stat-num" id="bl-short"></div><div class="stat-text">for contrast</div></div>
-      </div>
-      <p class="lab-match" id="bl-tally"></p>
-      <p class="visually-hidden" id="bl-said" aria-live="polite"></p>
-      <figcaption class="lab-note">The intervals are the committed results/suite_bounds.json, not recomputed here: each ceiling is a lattice relaxation that takes up to about 23 seconds of Python per world. tools/test_bounds_lab.js requires the data served on this page to equal the committed suite row for row, every interval to be a certificate, and the summary line to give the figures stated above.</figcaption>
-    </figure>
-  </section>
-
   <section class="block">
     <h2>What safety <em>costs</em></h2>
     <p>The same argument settles a question that comparison cannot. Adding a keep-out zone and observing that the constrained planner scores lower does not establish that the constraint cost anything: the constrained search may simply have been the worse search. Two searches can never separate those.</p>
@@ -143,6 +145,7 @@
 
 <script src="../assets/bounds-lab-data.js" defer></script>
 <script src="../assets/bounds-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

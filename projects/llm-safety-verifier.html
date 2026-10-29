@@ -42,7 +42,8 @@
     <h1>Catching hallucinations <em>before the wheels turn</em></h1>
     <p class="lede">Language models are being handed the steering wheel of real robots, and sometimes they invent a goal inside a wall. This project puts a deterministic verifier between the LLM and the hardware, and shows what it catches with committed, replayable data.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/llm-safety-verifier-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
@@ -52,12 +53,6 @@
       <div class="metric"><div class="metric-num">10.3 &micro;s</div><div class="metric-label">median verification latency (p99: 77 &micro;s) on x86-64</div></div>
     </div>
   </header>
-
-  <section class="block">
-    <h2>The <em>problem</em></h2>
-    <p>Ask a language model for a navigation plan and it usually gives a sensible one. Usually is the problem. When this project prompted <strong>qwen2.5:7b-instruct</strong> (temperature 0) for waypoint routes over 40 seeded indoor maps, the model produced unsafe plans in <strong>35 of 40</strong> cases: waypoint jumps no robot can follow, coordinates off the map, and paths straight through walls. The same 40 maps put to <strong>llama-3.3-70b-versatile</strong>, a model with ten times the parameters, still produced unsafe plans in <strong>32 of 40</strong>.</p>
-    <p>The idea behind the project is that checking a neural network does not take a second one. A <strong>deterministic verifier</strong> (swept footprint collision against the costmap, continuity, workspace bounds, unmapped-space checks) gives a yes or no in microseconds, and the same answer every time.</p>
-  </section>
 
   <section class="block" id="try">
     <h2>Try the <em>verifier</em></h2>
@@ -91,6 +86,13 @@
       <p class="visually-hidden" id="vl-said" aria-live="polite"></p>
       <figcaption class="lab-note">The checks, parameters and maps are the repository's own: robot radius 0.105 m, segments at most 0.5 m, footprint sampled every 0.02 m, unknown space not allowed. tools/test_verifier_lab.js replays all 80 committed proposals through this port and requires the committed verdict for each. The map is shown with north up; the models were given a coarser text picture of it.</figcaption>
     </figure>
+  </section>
+
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>Ask a language model for a navigation plan and it usually gives a sensible one. Usually is the problem. When this project prompted <strong>qwen2.5:7b-instruct</strong> (temperature 0) for waypoint routes over 40 seeded indoor maps, the model produced unsafe plans in <strong>35 of 40</strong> cases: waypoint jumps no robot can follow, coordinates off the map, and paths straight through walls. The same 40 maps put to <strong>llama-3.3-70b-versatile</strong>, a model with ten times the parameters, still produced unsafe plans in <strong>32 of 40</strong>.</p>
+    <p>The idea behind the project is that checking a neural network does not take a second one. A <strong>deterministic verifier</strong> (swept footprint collision against the costmap, continuity, workspace bounds, unmapped-space checks) gives a yes or no in microseconds, and the same answer every time.</p>
   </section>
 
   <section class="block">
@@ -129,6 +131,7 @@
 
 <script src="../assets/verifier-lab-data.js" defer></script>
 <script src="../assets/verifier-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

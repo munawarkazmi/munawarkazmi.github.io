@@ -42,7 +42,8 @@
     <h1>Detect, recover, <em>or halt</em></h1>
     <p class="lede">An LLM proposes a route. A deterministic verifier checks it. On a fail, a provably-correct classical planner recovers a safe path, which is re-verified before anything moves. And when no safe path exists at all, the shield stops. A safe system has to know the difference between "the model was wrong, here is the fix" and "there is no safe action".</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/llm-nav-shield-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
@@ -52,12 +53,6 @@
       <div class="metric"><div class="metric-num">10/10</div><div class="metric-label">sealed-goal cases halted instead of inventing a route</div></div>
     </div>
   </header>
-
-  <section class="block">
-    <h2>The <em>keystone</em></h2>
-    <p>This repository connects my other work: LLM planners fail in measurable ways (<a href="plan-failure-bench.html">plan-failure-bench</a>), so I detect those failures deterministically (<a href="llm-safety-verifier.html">the safety verifier</a>) and recover with a path from a planner that is provably correct (<a href="path-planning.html">the planning core</a>), or halt when no safe path exists. It is deliberately a <strong>composition of already-verified components</strong>, pinned as git submodules at exact commits: no new algorithms, just the full detect-and-recover loop, with every guarantee re-proven by CI on every push. The term <em>shield</em> follows the safe-RL usage of Alshiekh et&nbsp;al.</p>
-    <p>The forward gate is goal-aware: a proposal passes only if it is both verifier-safe <em>and</em> actually ends at the goal. That requirement exists because a dry run caught a real case: a qwen proposal that was safe and went nowhere near the goal. Safety and task-success stay separate judgments; the gate requires both, and the design change is documented in the pre-registration commit, made before any result was published.</p>
-  </section>
 
   <section class="block" id="try">
     <h2>Try the <em>shield</em></h2>
@@ -90,6 +85,13 @@
       <p class="visually-hidden" id="sl-said" aria-live="polite"></p>
       <figcaption class="lab-note">Dashed: the model's proposal, red where the verifier stopped it. Solid: the recovered path. Shaded: the inflation the planner saw, the footprint plus one cell around every wall and the map edge. The A* keeps the C++ heap's tie-breaking, so tools/test_shield_lab.js can require all 38 committed recovered paths waypoint for waypoint, and the committed bucket on all 40 proposals and 10 sealed goals.</figcaption>
     </figure>
+  </section>
+
+
+  <section class="block">
+    <h2>The <em>keystone</em></h2>
+    <p>This repository connects my other work: LLM planners fail in measurable ways (<a href="plan-failure-bench.html">plan-failure-bench</a>), so I detect those failures deterministically (<a href="llm-safety-verifier.html">the safety verifier</a>) and recover with a path from a planner that is provably correct (<a href="path-planning.html">the planning core</a>), or halt when no safe path exists. It is deliberately a <strong>composition of already-verified components</strong>, pinned as git submodules at exact commits: no new algorithms, just the full detect-and-recover loop, with every guarantee re-proven by CI on every push. The term <em>shield</em> follows the safe-RL usage of Alshiekh et&nbsp;al.</p>
+    <p>The forward gate is goal-aware: a proposal passes only if it is both verifier-safe <em>and</em> actually ends at the goal. That requirement exists because a dry run caught a real case: a qwen proposal that was safe and went nowhere near the goal. Safety and task-success stay separate judgments; the gate requires both, and the design change is documented in the pre-registration commit, made before any result was published.</p>
   </section>
 
   <section class="block">
@@ -128,6 +130,7 @@
 <script src="../assets/shield-lab-data.js" defer></script>
 <script src="../assets/verifier-lab.js" defer></script>
 <script src="../assets/shield-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

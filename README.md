@@ -39,9 +39,11 @@ computed on the page and are not results from the repositories above.
 [tools/test_replan_lab.js](tools/test_replan_lab.js) checks the planners in
 the second against Dijkstra over random maps.
 
-Five project pages go further and run the project's own algorithm, ported
-line for line: the safety verifier page replays the committed model
-proposals through a JavaScript port of the verifier, the llm-nav-shield page
+The home page opens with a grid of the eight demos, each linking to its
+place on the project page, and every demo page links to the next so they can
+be walked in a row (assets/lab-tour.js). Seven project pages go further
+and run the project's own algorithm, ported line for line: the safety
+verifier page replays the committed model proposals through a JavaScript port of the verifier, the llm-nav-shield page
 runs the whole detect, recover or halt loop with the same A* and reference
 checker, the exact-predicates page runs the committed adversarial corpus
 through both the float and the exact predicate, the toolcall-contract

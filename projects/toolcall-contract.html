@@ -42,7 +42,8 @@
     <h1>Tool calls that look right <em>and silently aren't</em></h1>
     <p class="lede">LLMs emit structured tool calls that mostly parse, type-check, and validate, and still break the contract. This is my navigation shield's architecture applied to tool calls: a deterministic two-layer validator, an independent oracle, and the finding that the failures live above the schema.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/toolcall-contract" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/toolcall-contract-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
@@ -80,6 +81,7 @@
     </figure>
   </section>
 
+
   <section class="block">
     <h2>The <em>two layers</em></h2>
     <p>The <strong>structural layer</strong> (does the call parse, name a real tool, satisfy its JSON Schema?) is a standard-library checker with zero runtime dependencies, differentially tested against the mature <code>jsonschema</code> package, pinned exactly. On every structural verdict, every committed and fuzzed case, both checkers run and must agree; a disagreement is a bug in one of them, reported and never smoothed over. The tests assert the oracle's sharp edges by name: <code>bool</code> is not a number, <code>1.0</code> is a valid integer, <code>True</code> is not a member of <code>enum [1]</code>.</p>
@@ -111,6 +113,7 @@
 
 <script src="../assets/contract-lab-data.js" defer></script>
 <script src="../assets/contract-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

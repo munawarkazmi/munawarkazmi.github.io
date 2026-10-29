@@ -42,7 +42,8 @@
     <h1>Measuring <em>how</em> planners fail, not just that they do</h1>
     <p class="lede">The literature agrees that language models plan poorly. This benchmark asks the sharper questions: when an instruction hides a specific trap, does the model fail the way the trap predicts, does it say so instead of complying, and does its judgement survive when every semantic cue is renamed to nonsense?</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/plan-failure-bench" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/plan-failure-bench-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="#results">Jump to results</a>
     </div>
@@ -52,13 +53,6 @@
       <div class="metric"><div class="metric-num">15&rarr;1</div><div class="metric-label">hallucination artefact found and eliminated by versioned methodology</div></div>
     </div>
   </header>
-
-  <section class="block">
-    <h2>The <em>problem</em></h2>
-    <p>My <a href="llm-safety-verifier.html">runtime safety verifier</a> catches unsafe trajectories at the last possible moment, on the robot. This project moves upstream to the question that determines whether a language model should be planning for a robot at all: when a task is impossible, ambiguous, or forbidden, does the model notice, or does it comply and fail?</p>
-    <p>Success-rate benchmarks blur that distinction into a single number. A model that politely refuses everything and a model that walks into every trap can score identically. And most evaluations of embodied planning still rely on human or LLM judges somewhere in the loop, which caps how far they scale and how much a reviewer can trust them.</p>
-    <p>So this benchmark is built on one hard constraint: <strong>ground truth must be decidable by construction</strong>. Every instruction either admits a valid plan or contains exactly one planted trap: an unreachable goal, a missing capability, an ambiguous referent, a precondition trap, a sequencing trap, or a constraint violation. The model answers in a small JSON action language that includes explicit <strong>infeasible</strong> and <strong>clarify</strong> responses, so detecting a trap is machine-checkable, never judged.</p>
-  </section>
 
   <section class="block" id="try">
     <h2>Be the <em>checker</em></h2>
@@ -82,6 +76,14 @@
       <p class="visually-hidden" id="pl2-said" aria-live="polite"></p>
       <figcaption class="lab-note">A port of checker.py, dsl.py and schema.py: the same strict parse (one JSON object, at most one code fence), the same static scan, the same simulation, the same verdict order. Ambiguous seeds are checked once per reading, as the benchmark scores them. tools/test_planner_lab.js replays all 1,350 committed replies in the repository's results, every model, condition and sampling run, and requires the recorded verdict, failing step, goal counts and detail for each.</figcaption>
     </figure>
+  </section>
+
+
+  <section class="block">
+    <h2>The <em>problem</em></h2>
+    <p>My <a href="llm-safety-verifier.html">runtime safety verifier</a> catches unsafe trajectories at the last possible moment, on the robot. This project moves upstream to the question that determines whether a language model should be planning for a robot at all: when a task is impossible, ambiguous, or forbidden, does the model notice, or does it comply and fail?</p>
+    <p>Success-rate benchmarks blur that distinction into a single number. A model that politely refuses everything and a model that walks into every trap can score identically. And most evaluations of embodied planning still rely on human or LLM judges somewhere in the loop, which caps how far they scale and how much a reviewer can trust them.</p>
+    <p>So this benchmark is built on one hard constraint: <strong>ground truth must be decidable by construction</strong>. Every instruction either admits a valid plan or contains exactly one planted trap: an unreachable goal, a missing capability, an ambiguous referent, a precondition trap, a sequencing trap, or a constraint violation. The model answers in a small JSON action language that includes explicit <strong>infeasible</strong> and <strong>clarify</strong> responses, so detecting a trap is machine-checkable, never judged.</p>
   </section>
 
   <section class="block">
@@ -182,6 +184,7 @@
 
 <script src="../assets/planner-lab-data.js" defer></script>
 <script src="../assets/planner-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

@@ -42,7 +42,8 @@
     <h1>A watchman that <em>decides in-frame</em></h1>
     <p class="lede">Deterministic C++ firmware for an ESP32-CAM intrusion detector, built under contract for Muxtronics in 2025: the camera sees motion and decides on-device, with alerts carried by the client's proprietary LoRa mesh.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn-primary" href="#try">Try it here</a>
+      <a class="btn-secondary" href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">View on GitHub</a>
       <a class="btn-secondary" href="../files/esp32-motion-detector-explained.pdf" target="_blank" rel="noopener">Read the plain-language guide (PDF)</a>
       <a class="btn-secondary" href="https://www.youtube.com/shorts/3PMJ9setbT8" target="_blank" rel="noopener">Watch the demo</a>
     </div>
@@ -52,20 +53,6 @@
       <div class="metric"><div class="metric-num">CI</div><div class="metric-label">compiles the firmware for the AI-Thinker board on every push</div></div>
     </div>
   </header>
-
-  <section class="block">
-    <h2>The <em>constraint</em></h2>
-    <p>No OpenCV, no TensorFlow Lite, no megabytes to spare. An ESP32-CAM has a camera, a modest processor, and very little memory, and the product had to run on exactly that, outdoors, for hours. The answer is a <strong>fully deterministic</strong> pipeline: the same frames always produce the same decision, which is what makes the firmware testable.</p>
-  </section>
-
-  <section class="block">
-    <h2>How it <em>works</em></h2>
-    <figure>
-      <img width="980" height="300" src="img/pipeline.svg" alt="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" loading="lazy">
-      <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a frame-to-frame relative difference against a tuned threshold makes the call. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public, and the device reports only what it measures at runtime: frames, detections, loop rate, free heap.</figcaption>
-    </figure>
-    <p>A note on measurements. Earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong>. The repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and a signed academic reference from Dr. Patrick Holthaus of the University of Hertfordshire. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
-  </section>
 
   <section class="block" id="try">
     <h2>Run the <em>firmware</em></h2>
@@ -94,6 +81,21 @@
     </figure>
   </section>
 
+
+  <section class="block">
+    <h2>The <em>constraint</em></h2>
+    <p>No OpenCV, no TensorFlow Lite, no megabytes to spare. An ESP32-CAM has a camera, a modest processor, and very little memory, and the product had to run on exactly that, outdoors, for hours. The answer is a <strong>fully deterministic</strong> pipeline: the same frames always produce the same decision, which is what makes the firmware testable.</p>
+  </section>
+
+  <section class="block">
+    <h2>How it <em>works</em></h2>
+    <figure>
+      <img width="980" height="300" src="img/pipeline.svg" alt="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" loading="lazy">
+      <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a frame-to-frame relative difference against a tuned threshold makes the call. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public, and the device reports only what it measures at runtime: frames, detections, loop rate, free heap.</figcaption>
+    </figure>
+    <p>A note on measurements. Earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong>. The repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and a signed academic reference from Dr. Patrick Holthaus of the University of Hertfordshire. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
+  </section>
+
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
@@ -102,6 +104,7 @@
 </div>
 
 <script src="../assets/esp32-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>

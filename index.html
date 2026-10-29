@@ -206,7 +206,6 @@ h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; font-weight: 500; le
 .row-name a { align-self: flex-start; padding: 4px 0; font-size: 18px; font-weight: 600; text-underline-offset: 4px; }
 .row-name a:hover { color: var(--accent); }
 .row-tags { font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.row-tags .live, .entry-meta .live { color: var(--ok); font-weight: 500; }
 .row-desc { flex: 5 1 340px; min-width: 0; font-size: 16px; color: var(--text); text-wrap: pretty; }
 .row-metric { flex: 3 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 12px; }
 .row-num { flex: 0 0 auto; font-family: var(--mono); font-size: 24px; line-height: 1.2; font-weight: 500; }
@@ -323,6 +322,24 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 .site-footer a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--inverse-text); text-underline-offset: 4px; }
 .site-footer small { font-family: var(--mono); font-size: 13px; color: var(--inverse-muted); }
 
+/* ---- try it ---- */
+.demos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 28px 24px; }
+.demo-card { display: flex; flex-direction: column; color: inherit; text-decoration: none; border: 1px solid var(--line); background: var(--bg); transition: border-color .15s, transform .15s; }
+.demo-card:hover, .demo-card:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+.demo-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 1px solid var(--line); filter: var(--chart-light-filter); }
+.demo-card-body { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 16px; }
+.demo-card h3 { margin: 0; font-size: 17px; line-height: 1.3; font-weight: 600; color: var(--ink); text-wrap: pretty; }
+.demo-card:hover h3 { color: var(--accent); }
+.demo-card p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text); }
+.demo-card .demo-proof { margin-top: auto; padding-top: 6px; font-family: var(--mono); font-size: 11.5px; line-height: 1.45; color: var(--ok); }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 48px; padding: 48px 0 12px; }
+.group-head .group-label { padding: 0; }
+.group-head p { flex: 1 1 360px; max-width: 60ch; margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+.row-tags .live, .entry-meta .live { display: inline-block; padding: 1px 7px; border: 1px solid var(--ok); border-radius: 2px; color: var(--ok); font-weight: 500; font-size: 12px; }
+.site-nav a.nav-try { font-weight: 600; color: var(--accent); }
+.site-map { flex-basis: 100%; order: 3; display: flex; flex-wrap: wrap; gap: 0 18px; padding-top: 6px; border-top: 1px solid var(--inverse-line); }
+.site-map a { min-height: 36px; font-size: 13px; }
+
 /* ---- phone ---- */
 /* Below this the links take a row of their own and the switch stays by the name. */
 @media (max-width: 640px) {
@@ -332,6 +349,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 @media (max-width: 480px) {
   .site-nav { gap: 0 16px; }
   .site-nav .nav-about { display: none; }
+  .demos { gap: 20px; }
   .thesis-fig { align-items: flex-start; }
   .thesis-fig img { flex-basis: 84px; width: 84px; height: 84px; }
 }
@@ -388,10 +406,10 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
   <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Munawar Kazmi</a>
   <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
   <nav class="site-nav" aria-label="Primary">
-    <a href="#engineering">Engineering</a>
+    <a class="nav-try" href="#try">Try it</a>
+    <a href="#engineering">Work</a>
     <a href="#research">Research</a>
     <a class="nav-about" href="#about">About</a>
-    <a href="files/Kazmi_Resume.pdf">Resume</a>
     <a class="nav-contact" href="#contact">Contact</a>
   </nav>
 </header>
@@ -409,8 +427,8 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       <p class="lead">I'm a robotics and AI engineer. I build ROS2 planners, embedded firmware and verification layers that stop unsafe plans before hardware moves, and the benchmarks that measure where language-model planners fail.</p>
       <p class="cred">MSc AI &amp; Robotics (Commendation), University of Hertfordshire. C++20, Python, ROS2, PyTorch.</p>
       <div class="cta-row">
-        <a class="btn" href="#engineering">See what I've built</a>
-        <a class="btn-outline" href="#research">Read the research</a>
+        <a class="btn" href="#try">Try the demos</a>
+        <a class="btn-outline" href="#engineering">See what I've built</a>
         <a class="btn-outline" href="files/Kazmi_Resume.pdf">Resume (PDF)</a>
       </div>
     </div>
@@ -515,12 +533,95 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
   </div>
 </section>
 
+<section id="try" class="section">
+  <div class="wrap section-inner">
+    <div class="section-head">
+      <h2>Try it</h2>
+      <p>Eight of these projects run here, in your browser. Each is the project's own algorithm, ported line for line, and each reproduces the results committed in its repository; a test in this site's own repository checks that on every change. Start anywhere, every demo links to the next.</p>
+    </div>
+    <div class="demos">
+      <a class="demo-card" href="projects/llm-safety-verifier.html#try">
+        <img src="assets/demos/verifier.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">1 &middot; Safety verifier</div>
+          <h3>Draw a route. The verifier judges it.</h3>
+          <p>Lay waypoints on a real occupancy map, or load what two language models proposed, and the same checks that gate Nav2 say safe or rejected, with the waypoint that failed.</p>
+          <p class="demo-proof">Reproduces all 80 recorded verdicts, two models on six maps</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/llm-nav-shield.html#try">
+        <img src="assets/demos/shield.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">2 &middot; Navigation shield</div>
+          <h3>Watch a bad route get repaired, or halted.</h3>
+          <p>Verify the proposal, plan a recovery on the inflated grid, re-verify with both judges. Seal the goal and it halts rather than invent a path.</p>
+          <p class="demo-proof">Reproduces 50 recorded decisions and 38 recovered paths waypoint for waypoint</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/esp32-motion-detector.html#try">
+        <img src="assets/demos/esp32.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">3 &middot; ESP32-CAM firmware</div>
+          <h3>Wave at your camera. The firmware decides.</h3>
+          <p>The shipped downsampler and detector, running on your frames in this tab: 192 block means, the cells that changed, the alert line. Nothing leaves the browser.</p>
+          <p class="demo-proof">The exact pipeline from the repository, with a synthetic scene if there is no camera</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/plan-failure-bench.html#try">
+        <img src="assets/demos/planner.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">4 &middot; Plan checker</div>
+          <h3>Edit a robot's plan and watch where it breaks.</h3>
+          <p>Pick a trap, read what a model answered, then change the plan: skip a door, carry the knife into the nursery, and the checker names the step and the rule.</p>
+          <p class="demo-proof">Reproduces all 1,350 recorded verdicts across four models</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/toolcall-contract.html#try">
+        <img src="assets/demos/contract.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">5 &middot; Tool-call validator</div>
+          <h3>Break a tool call. See which layer catches it.</h3>
+          <p>Rename the tool, break the schema, point at an object that does not exist; the structural and the contract layer answer separately, as recorded.</p>
+          <p class="demo-proof">Reproduces every recorded bucket and all 262 constructed cases</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/exact-predicates.html#try">
+        <img src="assets/demos/predicates.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">6 &middot; Exact predicates</div>
+          <h3>Move a point by one ulp. Float lies. Exact does not.</h3>
+          <p>Adversarial cases from the committed corpus, with the floating-point and the exact predicate run side by side and the determinants shown.</p>
+          <p class="demo-proof">Every corpus case: exact verdict as committed, float wrong where recorded</p>
+        </div>
+      </a>
+      <a class="demo-card" href="projects/legibility-bounds.html#try">
+        <img src="assets/demos/bounds.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">7 &middot; Certified intervals</div>
+          <h3>Type a planner's score. The band says what it means.</h3>
+          <p>Thirty-two certified intervals by world and budget: inside the band, below a trajectory that exists, or above a ceiling that nothing can cross.</p>
+          <p class="demo-proof">Served data equals the committed suite row for row, zero violations</p>
+        </div>
+      </a>
+      <a class="demo-card" href="#replanLab">
+        <img src="assets/demos/replan.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+        <div class="demo-card-body">
+          <div class="label">8 &middot; D* Lite against A*</div>
+          <h3>Block the robot. Count what each planner redoes.</h3>
+          <p>A wall lands in the route; D* Lite repairs the plan it has, A* starts from nothing, and the cell counts sit side by side. Both checked against Dijkstra.</p>
+          <p class="demo-proof">A toy with the C++ core's exact integer costs; not a repository result</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="engineering" class="section">
   <span id="work" class="anchor"></span>
   <div class="wrap section-inner">
     <div class="section-head">
-      <h2>Engineering</h2>
-      <p>A portal that an institute runs on every day, firmware for a commercial prototype, and a planning and verification stack for robots that take instructions from language models. Every project has its code, its tests and its limits on its own page.</p>
+      <h2>Work</h2>
+      <p>Everything I have built, grouped by the question it answers. A system that takes instructions from a language model can be wrong at three moments: while the robot moves, before it moves, and in what it was ever possible to ask of it. Every project has its code, its tests and its limits on its own page.</p>
     </div>
 
     <div class="stack">
@@ -542,15 +643,26 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       </div>
     </div>
 
-    <div class="label group-label">Contract work</div>
+    <div class="group-head">
+      <div class="label group-label">Catch it while the robot moves</div>
+      <p>A route is proposed, by a planner or a language model, and something deterministic decides whether hardware may follow it.</p>
+    </div>
     <div class="rows">
       <div class="row">
         <div class="row-name">
-          <a href="projects/safina-portal.html">Safina Portal</a>
-          <span class="row-tags"><span class="live">In production</span> · React, TypeScript, Supabase</span>
+          <a href="projects/llm-safety-verifier.html">ROS2 LLM safety verifier</a>
+          <span class="row-tags">ROS2 · Nav2 · CI-replayed · <span class="live">Live demo</span></span>
         </div>
-        <p class="row-desc">A school management system that runs Safina International day to day: seven roles, prorated billing, payroll, and an append-only audit trail. I am the sole engineer. <a class="text-link" href="https://github.com/munawarkazmi/safina-portal-showcase">Showcase repo</a></p>
-        <div class="row-metric"><span class="row-num">33</span><span class="row-what">audited tables nothing bypasses through the API</span></div>
+        <p class="row-desc">A deterministic gate between LLM planners and Nav2. Collision, continuity and map-bounds checks reject hallucinated trajectories before a controller sees them. <a class="text-link" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier">Code</a></p>
+        <div class="row-metric"><span class="row-num is-long">35/35 &middot; 32/32</span><span class="row-what">unsafe plans caught from two models, zero false positives</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/llm-nav-shield.html">llm-nav-shield</a>
+          <span class="row-tags">Neurosymbolic · safe autonomy · <span class="live">Live demo</span></span>
+        </div>
+        <p class="row-desc">An LLM proposes a route, a deterministic verifier checks it, and a provably correct planner recovers a safe one. When no safe path exists it halts, in 10/10 such cases, and invents nothing. <a class="text-link" href="https://github.com/munawarkazmi/llm-nav-shield">Code</a></p>
+        <div class="row-metric"><span class="row-num">38/38</span><span class="row-what">flawed proposals recovered, none unsafe forwarded</span></div>
       </div>
       <div class="row">
         <div class="row-name">
@@ -560,9 +672,16 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <p class="row-desc">Deterministic firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics. No ML and no vision libraries anywhere. <a class="text-link" href="https://github.com/munawarkazmi/esp32-cam-motion-detector">Code</a></p>
         <div class="row-metric"><span class="row-num">16×12</span><span class="row-what">decision grid distilled from 800×600 frames</span></div>
       </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/path-planning.html">ROS2 deterministic planning</a>
+          <span class="row-tags">C++20 · Nav2 plugins · CI-verified</span>
+        </div>
+        <p class="row-desc">A* and D* Lite as Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic across 185,237 fuzzed replans. <a class="text-link" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning">Code</a></p>
+        <div class="row-metric"><span class="row-num">4.3x</span><span class="row-what">faster mean replanning with D* Lite when an obstacle blocks the path</span></div>
+      </div>
     </div>
 
-    <div class="label group-label">Robot planning and verification</div>
     <figure class="lab" id="replanLab" hidden>
       <div class="lab-head">
         <p class="lab-title">Block the robot's route.</p>
@@ -602,38 +721,18 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
       <p class="visually-hidden" id="lab-said" aria-live="polite"></p>
       <figcaption class="fig-note">A toy in JavaScript with the same exact integer costs as the C++ core, checked against Dijkstra the same way. D* Lite gains most when a wall lands near the robot, where its sensors would find it, and little or nothing when a change undoes most of what it knew. These numbers are the toy's own: the 4.3x below is from the benchmarked C++ planners.</figcaption>
     </figure>
+    <div class="group-head">
+      <div class="label group-label">Catch it before it runs</div>
+      <p>The output exists as text or a plan. Is it well formed, does it keep its contract, and when it is wrong, can a machine say exactly where?</p>
+    </div>
     <div class="rows">
       <div class="row">
         <div class="row-name">
-          <a href="projects/path-planning.html">ROS2 deterministic planning</a>
-          <span class="row-tags">C++20 · Nav2 plugins · CI-verified</span>
+          <a href="projects/plan-failure-bench.html">plan-failure-bench</a>
+          <span class="row-tags">LLM planning · PDDL · <span class="live">Live demo</span></span>
         </div>
-        <p class="row-desc">A* and D* Lite as Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic across 185,237 fuzzed replans. <a class="text-link" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning">Code</a></p>
-        <div class="row-metric"><span class="row-num">4.3x</span><span class="row-what">faster mean replanning with D* Lite when an obstacle blocks the path</span></div>
-      </div>
-      <div class="row">
-        <div class="row-name">
-          <a href="projects/llm-safety-verifier.html">ROS2 LLM safety verifier</a>
-          <span class="row-tags">ROS2 · Nav2 · CI-replayed · <span class="live">Live demo</span></span>
-        </div>
-        <p class="row-desc">A deterministic gate between LLM planners and Nav2. Collision, continuity and map-bounds checks reject hallucinated trajectories before a controller sees them. <a class="text-link" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier">Code</a></p>
-        <div class="row-metric"><span class="row-num is-long">35/35 &middot; 32/32</span><span class="row-what">unsafe plans caught from two models, zero false positives</span></div>
-      </div>
-      <div class="row">
-        <div class="row-name">
-          <a href="projects/llm-nav-shield.html">llm-nav-shield</a>
-          <span class="row-tags">Neurosymbolic · safe autonomy · <span class="live">Live demo</span></span>
-        </div>
-        <p class="row-desc">An LLM proposes a route, a deterministic verifier checks it, and a provably correct planner recovers a safe one. When no safe path exists it halts, in 10/10 such cases, and invents nothing. <a class="text-link" href="https://github.com/munawarkazmi/llm-nav-shield">Code</a></p>
-        <div class="row-metric"><span class="row-num">38/38</span><span class="row-what">flawed proposals recovered, none unsafe forwarded</span></div>
-      </div>
-      <div class="row">
-        <div class="row-name">
-          <a href="projects/exact-predicates.html">exact-predicates</a>
-          <span class="row-tags">C++ · numerical robustness · <span class="live">Live demo</span></span>
-        </div>
-        <p class="row-desc">Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two equal keys landed one ulp apart. Exactness costs about 2x here, not orders of magnitude. <a class="text-link" href="https://github.com/munawarkazmi/exact-predicates">Code</a></p>
-        <div class="row-metric"><span class="row-num">657</span><span class="row-what">adversarial cases where float is wrong and exact is right</span></div>
+        <p class="row-desc">Every instruction either admits a valid plan or plants exactly one trap, and a deterministic checker scores each model reply with no human or LLM judge. <a class="text-link" href="https://github.com/munawarkazmi/plan-failure-bench">Code</a></p>
+        <div class="row-metric"><span class="row-num">1,350</span><span class="row-what">committed model replies, each machine-scored and replayed on this site</span></div>
       </div>
       <div class="row">
         <div class="row-name">
@@ -643,10 +742,72 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <p class="row-desc">LLM tool calls that parse, type-check and validate, and still break the contract. A schema check, which is what most agent frameworks do, passes 39 of 40 of these calls. <a class="text-link" href="https://github.com/munawarkazmi/toolcall-contract">Code</a></p>
         <div class="row-metric"><span class="row-num">32/40</span><span class="row-what">pass the contract</span></div>
       </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/exact-predicates.html">exact-predicates</a>
+          <span class="row-tags">C++ · numerical robustness · <span class="live">Live demo</span></span>
+        </div>
+        <p class="row-desc">Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two equal keys landed one ulp apart. Exactness costs about 2x here, not orders of magnitude. <a class="text-link" href="https://github.com/munawarkazmi/exact-predicates">Code</a></p>
+        <div class="row-metric"><span class="row-num">657</span><span class="row-what">adversarial cases where float is wrong and exact is right</span></div>
+      </div>
+    </div>
+
+    <div class="group-head">
+      <div class="label group-label">Know what was possible at all</div>
+      <p>A benchmark measures what a planner achieved. These ask what any planner could have achieved, and whether a model knows the difference.</p>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/legibility-bounds.html">legibility-bounds</a>
+          <span class="row-tags">Motion planning · certified bounds · <span class="live">Live demo</span></span>
+        </div>
+        <p class="row-desc">An upper bound on legibility over every admissible trajectory under a path cost budget, not only the ones somebody tried. Submitted to IEEE RA-L. <a class="text-link" href="https://doi.org/10.5281/zenodo.21834955">DOI</a></p>
+        <div class="row-metric"><span class="row-num">32/32</span><span class="row-what">world and budget pairs certified, zero violations</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/legible-motion-bench.html">legible-motion-bench</a>
+          <span class="row-tags">LLM motion planning · pilot</span>
+        </div>
+        <p class="row-desc">Legibility against path cost and constraints, computed exactly. Three language models called 116 of 120 trajectories legible, including all 25 that were not physically possible. <a class="text-link" href="https://github.com/munawarkazmi/legible-motion-bench">Code</a></p>
+        <div class="row-metric"><span class="row-num">116/120</span><span class="row-what">trajectories called legible by the models that proposed them</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/degregorio-blowup.html">Finite-time blowup, one dimension</a>
+          <span class="row-tags">Numerical analysis · side interest</span>
+        </div>
+        <p class="row-desc">Two regimes of a one-dimensional fluid model, an exact relation derived in three lines, and simulations that agree with it to 1e-14.</p>
+        <div class="row-metric"><span class="row-num">19/19</span><span class="row-what">checks against closed forms, conserved quantities and convergence rates</span></div>
+      </div>
+    </div>
+
+    <div class="group-head">
+      <div class="label group-label">Built for people</div>
+      <p>Software that other people depend on, and a study of how a robot should ask for help.</p>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/safina-portal.html">Safina Portal</a>
+          <span class="row-tags"><span class="live">In production</span> · React, TypeScript, Supabase</span>
+        </div>
+        <p class="row-desc">A school management system that runs Safina International day to day: seven roles, prorated billing, payroll, and an append-only audit trail. I am the sole engineer. <a class="text-link" href="https://github.com/munawarkazmi/safina-portal-showcase">Showcase repo</a></p>
+        <div class="row-metric"><span class="row-num">33</span><span class="row-what">audited tables nothing bypasses through the API</span></div>
+      </div>
+      <div class="row">
+        <div class="row-name">
+          <a href="projects/hri-companionship.html">Human-robot companionship study</a>
+          <span class="row-tags">HRI · JD humanoid · MSc thesis</span>
+        </div>
+        <p class="row-desc">A sim-to-real pipeline on the JD humanoid so a gestural and a spoken condition could be delivered identically to 20 participants; under review at Robotics (MDPI). <a class="text-link" href="files/Kazmi_HRI_MSc_Thesis.pdf">Thesis (PDF)</a></p>
+        <div class="row-metric"><span class="row-num">95%</span><span class="row-what">intent identified correctly from speech, 80% from gesture alone</span></div>
+      </div>
     </div>
 
     <div class="after-rows">
-      <p>Every project is also explained without the jargon, with the same numbers and the same stated limits. A side interest in numerical analysis lives there too: a note on finite-time blowup in one-dimensional fluid models.</p>
+      <p>Every project is also explained without the jargon, with the same numbers and the same stated limits.</p>
       <div class="cta-row">
         <a class="btn" href="https://github.com/munawarkazmi">All code on GitHub</a>
         <a class="btn-outline" href="projects/guides.html">Plain-language guides</a>
@@ -779,6 +940,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <div class="label">Education</div>
         <div class="fact"><b>MSc AI &amp; Robotics, Commendation</b><span>University of Hertfordshire, 2023-2024</span></div>
         <div class="fact"><b>BEng Mechatronics Engineering</b><span>NUST, 2018-2022</span></div>
+        <div class="fact"><b><a href="files/Kazmi_Resume.pdf">One-page resume (PDF)</a></b><span><a href="files/Kazmi_CV.pdf">Academic CV (PDF)</a></span></div>
       </div>
     </div>
 
@@ -896,6 +1058,10 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <a href="https://github.com/munawarkazmi">GitHub</a>
         <a href="https://orcid.org/0009-0004-6565-6067">ORCID</a>
         <a href="https://medium.com/@munawarkazmi">Medium</a>
+      </nav>
+      <nav class="site-map" aria-label="Every page">
+        <a href="#try">Try it</a><a href="#engineering">Work</a><a href="#research">Research</a><a href="#about">About</a><a href="projects/guides.html">Plain-language guides</a>
+        <a href="projects/llm-safety-verifier.html">Safety verifier</a><a href="projects/llm-nav-shield.html">llm-nav-shield</a><a href="projects/esp32-motion-detector.html">ESP32-CAM</a><a href="projects/path-planning.html">ROS2 planning</a><a href="projects/plan-failure-bench.html">plan-failure-bench</a><a href="projects/toolcall-contract.html">toolcall-contract</a><a href="projects/exact-predicates.html">exact-predicates</a><a href="projects/legibility-bounds.html">legibility-bounds</a><a href="projects/legible-motion-bench.html">legible-motion-bench</a><a href="projects/degregorio-blowup.html">Finite-time blowup</a><a href="projects/safina-portal.html">Safina Portal</a><a href="projects/hri-companionship.html">HRI study</a>
       </nav>
       <small>© 2026 Munawar Kazmi · Robotics &amp; AI Engineer</small>
     </footer>
