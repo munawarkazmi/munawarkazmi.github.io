@@ -59,6 +59,39 @@
     <p>First the danger has to be shown to be real. The committed corpus contains 657 adversarial inputs: Fibonacci triples whose true determinant is exactly &plusmn;1 at coordinate scale ~2<sup>59</sup> (Catalan's identity), near-collinear lattice quadruples whose in-circle determinant collapses into double's rounding noise, parallel segments separated by a determinant of exactly &plusmn;1. CI asserts, on every case, <strong>both</strong> that the naive double version gives the wrong answer <strong>and</strong> that the exact version gives the right one.</p>
   </section>
 
+  <section class="block" id="try">
+    <h2>Try the <em>predicates</em></h2>
+    <p>Both versions of the predicate, running here: the double-precision formula exactly as ordinary code writes it, and the exact integer one, on the repository's own adversarial cases. The picture is drawn in doubles, which is why it cannot show you the difference. The verdicts are not.</p>
+    <figure class="lab" id="predicatesLab" hidden>
+      <div class="lab-bar">
+        <span class="label">Predicate</span>
+        <button type="button" class="lab-btn" data-pred="orientation" aria-pressed="true">Orientation</button>
+        <button type="button" class="lab-btn" data-pred="incircle" aria-pressed="false">In-circle</button>
+        <label class="lab-range"><span class="label">Corpus case</span><input type="range" id="pl-case" min="0" max="399" value="0" aria-label="Which corpus case"></label>
+      </div>
+      <div class="lab-stage" id="pl-stage"><canvas id="pl-canvas" role="img" aria-label="The points of the current case, with the line or circle they are tested against."></canvas></div>
+      <div class="lab-bar">
+        <span class="label">Nudge the last point</span>
+        <button type="button" class="lab-btn" data-nudge="-1,0">x - 1</button>
+        <button type="button" class="lab-btn" data-nudge="1,0">x + 1</button>
+        <button type="button" class="lab-btn" data-nudge="0,-1">y - 1</button>
+        <button type="button" class="lab-btn" data-nudge="0,1">y + 1</button>
+        <button type="button" class="lab-btn" id="pl-reset">Back to the case</button>
+      </div>
+      <p class="lab-hint" id="pl-hint" aria-hidden="true"></p>
+      <div class="lab-coords" id="pl-coords"></div>
+      <p class="lab-note" id="pl-scale"></p>
+      <div class="lab-verdict lab-verdict-2">
+        <div class="is-case"><div class="label" id="pl-which"></div><div class="stat-num" id="pl-badge"></div></div>
+        <div><div class="label">Double says</div><div class="stat-num" id="pl-fsays"></div><div class="stat-text">determinant <span id="pl-fdet"></span></div></div>
+        <div><div class="label">Exact says</div><div class="stat-num" id="pl-esays"></div><div class="stat-text">determinant <span id="pl-edet"></span></div></div>
+      </div>
+      <p class="lab-match" id="pl-tally"></p>
+      <p class="visually-hidden" id="pl-said" aria-live="polite"></p>
+      <figcaption class="lab-note">The double version is the same IEEE arithmetic in the same order as the C++ build, so it is wrong in the same places; the exact version uses BigInt where the C++ uses __int128, with the same bounds and the same refusal beyond them. tools/test_predicates_lab.js requires, on every committed case, the committed exact verdict and a wrong float one.</figcaption>
+    </figure>
+  </section>
+
   <section class="block">
     <h2>Bounds enforced by <em>code, not prose</em></h2>
     <p>Exactness here has a domain: |coordinate| &le; 2<sup>60</sup> for orientation, 2<sup>28</sup> for in-circle, proven by static bit-arithmetic. A documented bound that isn't checked would let an out-of-range input overflow silently and return a confidently wrong answer while the README still said "exact". So every predicate validates its inputs <em>before any arithmetic happens</em>, with a plain magnitude comparison that can never rely on observing the overflow it prevents, and throws on violation. The single most important test in the repository feeds coordinates one past each bound, in every argument position, and asserts the throw fires. For exact predicates over arbitrary doubles, the README names Shewchuk's adaptive predicates and CGAL: reimplementing those would risk looking right while being subtly wrong in the error-bound bookkeeping, the precise anti-pattern this project exists to refute.</p>
@@ -88,6 +121,8 @@
   </footer>
 </div>
 
+<script src="../assets/predicates-lab-data.js" defer></script>
+<script src="../assets/predicates-lab.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
 </body>
 </html>
