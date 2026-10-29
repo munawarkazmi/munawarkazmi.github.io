@@ -62,6 +62,7 @@
 <main class="wrap" id="main-content">
   <header class="hero">
     <div class="eyebrow">ROS2 · C++20 · Nav2 · CI-verified</div>
+    <p class="fact-line"><span>Sole developer</span><span>Nov 2025 to Aug 2026</span><span>complete, every result replayed in CI</span></p>
     <h1>Planning paths that survive a <em>changing world</em></h1>
     <p class="lede">Two global planner plugins for ROS2 Nav2, written in modern C++20: classic A* and incremental D* Lite, benchmarked head to head on one event: an obstacle lands on the route and the planner must recover.</p>
     <div class="cta-row">
@@ -73,7 +74,7 @@
     </div>
     <div class="metric-row">
       <div class="metric"><div class="metric-num">4.3x</div><div class="metric-label">faster replanning with D* Lite (mean; 11x median), seed 42, 200 trials</div></div>
-      <div class="metric"><div class="metric-num">0</div><div class="metric-label">path-cost mismatches across all 1,716 measured events: both planners return optimal paths</div></div>
+      <div class="metric"><div class="metric-num">0</div><div class="metric-label">path-cost mismatches across all 1,715 comparisons: 200 initial plans, 1,493 replans, and 22 events where the obstacle walled off the goal and both planners agreed no path exists</div></div>
       <div class="metric"><div class="metric-num">185,237</div><div class="metric-label">fuzzed incremental replans validated against Dijkstra with exact equality</div></div>
     </div>
   </header>

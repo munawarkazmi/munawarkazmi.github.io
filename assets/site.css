@@ -328,6 +328,7 @@ html:active-view-transition-type(back)::view-transition-new(root) { animation-na
 .motion-on .hero-copy > :nth-child(4), .motion-on header.hero > :nth-child(4) { animation-delay: .24s; }
 .motion-on .hero-copy > :nth-child(5), .motion-on header.hero > :nth-child(5) { animation-delay: .32s; }
 .motion-on header.hero > :nth-child(6) { animation-delay: .40s; }
+.motion-on header.hero > :nth-child(7) { animation-delay: .48s; }
 .motion-on .hero-figure { animation: rise-in .8s cubic-bezier(.2, .6, .2, 1) .35s both; }
 .motion-on .site-header, .motion-on .topbar { animation: fade-in .5s ease both; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }

@@ -393,3 +393,5 @@ pre.code-block {
 .sl-step { transition: border-color .3s ease, background-color .3s ease; }
 .cl-text { transition: border-color .3s ease; }
 .footer-privacy { display: block; margin-top: 14px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.fact-line { display: flex; flex-wrap: wrap; gap: 4px 0; margin: -8px 0 18px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+.fact-line span + span::before { content: "\00b7"; margin: 0 10px; color: var(--line); }
