@@ -333,6 +333,10 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 .door-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; text-underline-offset: 4px; }
 .contact a:hover { color: var(--inverse-muted); }
 .contact :focus-visible { outline-color: var(--inverse-ink); }
+.practical { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px 40px; margin: 0; padding: 28px 0 8px; border-top: 1px solid var(--inverse-line); }
+.practical div:last-child { grid-column: 1 / -1; }
+.practical dt { font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--inverse-muted); margin-bottom: 6px; }
+.practical dd { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--inverse-text); max-width: 80ch; text-wrap: pretty; }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
 .mail a { font-family: var(--mono); font-size: clamp(15px, 2.2vw, 26px); line-height: 1.6; text-underline-offset: 6px; overflow-wrap: anywhere; }
 .copy-btn { min-height: 44px; padding: 0 16px; background: transparent; color: var(--inverse-ink); border: 1px solid var(--inverse-line); font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
@@ -1115,6 +1119,12 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         </div>
       </div>
     </div>
+    <dl class="practical">
+      <div><dt>Notice period</dt><dd>Immediate.</dd></div>
+      <div><dt>Interviews</dt><dd>I am in Pakistan, UTC+5, and keep UK, EU and US hours for calls.</dd></div>
+      <div><dt>Languages</dt><dd>English and Urdu. Learning German and Arabic.</dd></div>
+      <div><dt>Hardware</dt><dd>The ROS 2 work targets Humble and Nav2 with a TurtleBot3 footprint, ships with a Gazebo world and a containerised environment, and runs on any TurtleBot3-class robot; the real-robot trials wait on access to a TurtleBot3 and a Jetson Orin Nano. The ESP32 firmware runs on any AI-Thinker ESP32-CAM. I have worked on the JD humanoid and the Unitree Go1 at Hertfordshire.</dd></div>
+    </dl>
     <div class="mail">
       <a href="mailto:hello@munawarkazmi.com">hello@munawarkazmi.com</a>
       <button class="copy-btn" id="copyEmailBtn" type="button" data-copy="hello@munawarkazmi.com">Copy email</button>
