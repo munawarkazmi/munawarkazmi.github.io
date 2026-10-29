@@ -338,6 +338,10 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
 .practical dt { font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--inverse-muted); margin-bottom: 6px; }
 .practical dd { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--inverse-text); max-width: 80ch; text-wrap: pretty; }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.book-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; background: var(--inverse-ink); color: var(--inverse-bg); font-weight: 500; text-decoration: none; border: 1px solid var(--inverse-ink); transition: background-color .15s ease, color .15s ease, transform .18s ease; }
+.mail a.book-btn { font-family: var(--sans); font-size: 16px; line-height: 1.2; text-decoration: none; }
+.book-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); transform: translateY(-1px); }
+.book-note { flex-basis: 100%; font-size: 13.5px; color: var(--inverse-muted); }
 .mail a { font-family: var(--mono); font-size: clamp(15px, 2.2vw, 26px); line-height: 1.6; text-underline-offset: 6px; overflow-wrap: anywhere; }
 .copy-btn { min-height: 44px; padding: 0 16px; background: transparent; color: var(--inverse-ink); border: 1px solid var(--inverse-line); font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
 .copy-btn:hover { border-color: var(--inverse-ink); }
@@ -1107,6 +1111,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <p>I am open to robotics and AI engineering roles in the UK, EU and USA. I am based in Pakistan and would need visa sponsorship in each.</p>
         <div class="door-links">
           <a href="mailto:hello@munawarkazmi.com?subject=Role%20Inquiry">Email about roles</a>
+          <a href="https://calendar.app.google/UxzkoQkqBZefgQ2x5" target="_blank" rel="noopener">Book a call</a>
           <a href="files/Kazmi_Resume.pdf">One-page resume (PDF)</a>
         </div>
       </div>
@@ -1115,6 +1120,7 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
         <p>I am pursuing a PhD in human-robot interaction and AI reliability, and I'm happy to share full research proposals.</p>
         <div class="door-links">
           <a href="mailto:hello@munawarkazmi.com?subject=Research%20Inquiry">Email about research</a>
+          <a href="https://calendar.app.google/UxzkoQkqBZefgQ2x5" target="_blank" rel="noopener">Book a call</a>
           <a href="files/Kazmi_CV.pdf">Academic CV (PDF)</a>
         </div>
       </div>
@@ -1128,6 +1134,8 @@ h3 { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01
     <div class="mail">
       <a href="mailto:hello@munawarkazmi.com">hello@munawarkazmi.com</a>
       <button class="copy-btn" id="copyEmailBtn" type="button" data-copy="hello@munawarkazmi.com">Copy email</button>
+      <a class="book-btn" href="https://calendar.app.google/UxzkoQkqBZefgQ2x5" target="_blank" rel="noopener">Book a 30-minute call</a>
+      <span class="book-note">Google Calendar, your time zone shown, a Meet link added on booking.</span>
     </div>
     <footer class="site-footer">
       <nav aria-label="Profiles">
