@@ -89,8 +89,8 @@
     /* the floor and its light */
     var floor = new T.Mesh(new T.PlaneGeometry(90, 90), new T.MeshStandardMaterial({ color: 0x121318, roughness: 0.7, metalness: 0.1, map: tFloor }));
     floor.rotation.x = -Math.PI / 2; scene.add(floor);
-    scene.add(new T.HemisphereLight(0xc6ccdf, 0x050506, 0.22));
-    var key = new T.SpotLight(0xfff1e0, 1.2, 30, 0.6, 1, 1.2); key.position.set(CENTRE.x + 0.6, 8.5, CENTRE.z + 1.2); key.target.position.copy(CENTRE); scene.add(key); scene.add(key.target);
+    scene.add(new T.HemisphereLight(0xc6ccdf, 0x050506, 0.25));
+    var key = new T.SpotLight(0xfff1e0, 1.32, 30, 0.6, 1, 1.2); key.position.set(CENTRE.x + 0.6, 8.5, CENTRE.z + 1.2); key.target.position.copy(CENTRE); scene.add(key); scene.add(key.target);
     var rim = new T.DirectionalLight(0x8fa3ff, 0.55); rim.position.set(-4, 3, -6); scene.add(rim);
 
     function decal(map, color, opacity, additive) { return new T.MeshBasicMaterial({ map: map || null, color: color, transparent: true, opacity: opacity, depthWrite: false, blending: additive === false ? T.NormalBlending : T.AdditiveBlending, side: T.DoubleSide, fog: false }); }
@@ -407,6 +407,9 @@
 
   /* ---------------- dragging: the handles sit over the scene ---------------- */
   var HND = { start: $('h-start'), a: $('h-a'), b: $('h-b'), zone: $('h-zone') };
+  /* the readout and its controls stay out of the way until someone touches the scene */
+  function reveal() { var r = document.getElementById('read'), h = document.getElementById('hint'); if (r) r.classList.add('on'); if (h) h.classList.add('off'); }
+  ['start', 'a', 'b', 'zone'].forEach(function (k) { if (HND[k]) { HND[k].addEventListener('pointerdown', reveal); HND[k].addEventListener('keydown', reveal); } });
   function placeHandles() {
     ['start', 'a', 'b'].forEach(function (k) { var p = R.scr(world[k]); HND[k].style.left = p[0] + 'px'; HND[k].style.top = p[1] + 'px'; });
     var z = world.zone, q = [R.scr({ x: z.x, y: z.y }), R.scr({ x: z.x + z.w, y: z.y }), R.scr({ x: z.x + z.w, y: z.y + z.h }), R.scr({ x: z.x, y: z.y + z.h })];
@@ -584,10 +587,10 @@
   var tFloor = tex(256, 256, function (g, w) { var d = g.createImageData(w, w); for (var i = 0; i < w * w; i++) { var v = 205 + Math.random() * 50; d.data[i * 4] = d.data[i * 4 + 1] = d.data[i * 4 + 2] = v; d.data[i * 4 + 3] = 255; } g.putImageData(d, 0, 0); }, true);
   tFloor.repeat.set(26, 26);
 
-  var floor = new T.Mesh(new T.PlaneGeometry(70, 70), new T.MeshStandardMaterial({ color: 0x16171d, roughness: 0.78, metalness: 0.05, map: tFloor }));
+  var floor = new T.Mesh(new T.PlaneGeometry(70, 70), new T.MeshStandardMaterial({ color: 0x22242c, roughness: 0.78, metalness: 0.05, map: tFloor }));
   floor.rotation.x = -Math.PI / 2; scene.add(floor);
-  scene.add(new T.HemisphereLight(0xc6ccdf, 0x050506, 0.34));
-  var key = new T.SpotLight(0xfff4e6, 1.9, 26, 0.6, 1, 1.2); key.position.set(0.5, 7.5, 1); scene.add(key); scene.add(key.target);
+  scene.add(new T.HemisphereLight(0xc6ccdf, 0x050506, 0.5));
+  var key = new T.SpotLight(0xfff4e6, 2.5, 26, 0.6, 1, 1.2); key.position.set(0.5, 7.5, 1); scene.add(key); scene.add(key.target);
   var rim = new T.DirectionalLight(0x8fa3ff, 0.55); rim.position.set(-4, 3, -6); scene.add(rim);
 
   function decal(map, color, opacity, additive) { return new T.MeshBasicMaterial({ map: map || null, color: color, transparent: true, opacity: opacity, depthWrite: false, blending: additive === false ? T.NormalBlending : T.AdditiveBlending, side: T.DoubleSide, fog: false }); }
@@ -616,7 +619,7 @@
     var tip = new T.Mesh(new T.SphereGeometry(0.024, 16, 12), new T.MeshBasicMaterial({ color: bright ? PT : WH, fog: false })); tip.position.set(0.25, 0.97, -0.14); g.add(tip);
     g.position.set(x, 0, z); scene.add(g); g.glow = gl; return g;
   }
-  var wallMat = new T.MeshStandardMaterial({ color: 0x9a9da8, roughness: 0.6, metalness: 0.02 }), crateMat = new T.MeshStandardMaterial({ color: 0x8a6a4c, roughness: 0.8 });
+  var wallMat = new T.MeshStandardMaterial({ color: 0xc9ccd6, roughness: 0.6, metalness: 0.02 }), crateMat = new T.MeshStandardMaterial({ color: 0x8a6a4c, roughness: 0.8 });
   function wall(x1, z1, x2, z2, h, mat) { var len = Math.hypot(x2 - x1, z2 - z1), m = new T.Mesh(new T.BoxGeometry(len + 0.07, h || 0.42, 0.07), mat || wallMat); m.position.set((x1 + x2) / 2, (h || 0.42) / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1); scene.add(m); return m; }
   function crate(x, z, s) { var m = new T.Mesh(new T.BoxGeometry(s, s * 0.8, s), crateMat); m.position.set(x, s * 0.4, z); m.rotation.y = 0.3; scene.add(m); }
 

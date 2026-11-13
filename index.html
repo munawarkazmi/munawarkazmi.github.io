@@ -68,10 +68,9 @@
 
 <header class="hero" id="top">
  <div class="copy wrap"><div class="inner">
-  <div class="avail mono"><span class="dot"></span>Open to robotics and AI roles, and PhD positions</div>
   <h1>Teaching robots to say what they mean, and to know <em>when they can't.</em></h1>
-  <p class="sub">I build the layers that stop an unsafe plan before hardware moves, and the benchmarks that show where language-model planners fail.</p>
-  <div class="cta"><a class="btn" href="#work">See the work</a><a class="link" href="files/Kazmi_Resume.pdf">One-page resume</a></div>
+  <p class="sub">I build the layers that stop an unsafe plan before hardware moves.</p>
+  <div class="cta"><a class="btn film" href="projects/llm-nav-shield.html#watch"><svg width="11" height="13" viewBox="0 0 11 13" aria-hidden="true"><path d="M0 0l11 6.5L0 13z" fill="currentColor"/></svg>Watch the 3-minute film</a></div>
  </div></div>
  <div class="stage" id="stage">
   <canvas id="scene" role="img" aria-label="A robot's candidate paths from the start to goal A, past a keep-out zone, drawn as light on a floor. The start, both goals and the zone can be moved."></canvas>
@@ -81,7 +80,8 @@
   <button class="handle" id="h-b" aria-label="Move goal B. Arrow keys also work."></button>
   <button class="handle zone" id="h-zone" aria-label="Move the keep-out zone. Arrow keys also work."></button>
  </div>
- <div class="read wrap"><div class="inner"><div class="box mono">
+ <p class="hint mono" id="hint">Drag a goal. The robot replans.</p>
+ <div class="read wrap" id="read"><div class="inner"><div class="box mono">
   <p id="status" aria-live="off">Drag the start, a goal or the zone.</p>
   <div class="row"><span>A watcher's guess</span><span><b id="pct-a">Goal A 50%</b> &nbsp; <span id="pct-b">Goal B 50%</span></span></div>
   <div class="bar"><i id="bar-a"></i></div>
@@ -94,7 +94,7 @@
  <div class="rv"><div class="n">0<span>of 67</span></div><p>unsafe routes from language models got past the safety verifier.</p><span class="m mono">0 of 599 safe routes refused</span></div>
  <div class="rv"><div class="n">32<span>of 32</span></div><p>certified legibility bounds hold when re-checked.</p><span class="m mono">a ceiling, not a best guess</span></div>
  <div class="rv"><div class="n">10<span>of 10</span></div><p>sealed goals made the navigation shield halt instead of inventing a route.</p><span class="m mono">0 unsafe recoveries sent on</span></div>
- <div class="split"><div><span>Hiring an engineer?</span><a class="link" href="files/Kazmi_Resume.pdf">One-page resume</a></div><div><span>Looking for a PhD student?</span><a class="link" href="files/Kazmi_CV.pdf">Two-page CV</a></div></div>
+ <div class="split"><div class="avail mono"><span class="dot"></span>Open to robotics and AI roles, and PhD positions</div><div><span>Hiring an engineer?</span><a class="link" href="files/Kazmi_Resume.pdf">One-page resume</a></div><div><span>Looking for a PhD student?</span><a class="link" href="files/Kazmi_CV.pdf">Two-page CV</a></div></div>
 </div></section>
 
 <section class="work wrap" id="work"><div class="inner">

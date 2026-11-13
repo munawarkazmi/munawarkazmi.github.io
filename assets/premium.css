@@ -257,3 +257,15 @@ nav .links a.on::before,.pnav .links a.on::before{content:"";position:absolute;l
 /* nothing pushes the page sideways */
 html,body{overflow-x:clip}
 @media (max-width:520px){.paper .fig{padding:18px 14px}.crow{grid-template-columns:92px minmax(0,1fr) 38px;gap:8px;font-size:11px}.crow .v{overflow:hidden}}
+
+/* a quieter hero: one line, one button, the scene. The readout appears once you touch the scene */
+.btn.film{display:inline-flex;align-items:center;gap:13px;padding:17px 30px;font-size:16.5px}
+.read{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s cubic-bezier(.2,.7,.2,1);visibility:hidden}
+.read.on{opacity:1;transform:none;visibility:visible}
+.hint{position:absolute;z-index:5;right:max(16px, env(safe-area-inset-right, 0px));bottom:clamp(28px,4.6vw,66px);margin:0 clamp(0px,4vw,56px) 0 0;color:#a9b8ff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:opacity .4s;pointer-events:none}
+.hint::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#cfd8ff;box-shadow:0 0 12px 3px rgba(123,147,255,.8);margin-right:12px;animation:hintPulse 1.8s ease-in-out infinite}
+.hint.off{opacity:0}
+@keyframes hintPulse{50%{transform:scale(1.7);opacity:.5}}
+.split .avail{color:#c9ccd4}
+@media (max-width:900px){.hint{position:static;margin:14px 16px 0;}.read{display:none}.read.on{display:block}}
+@media (prefers-reduced-motion:reduce){.hint::before{animation:none}.read{transition:none}}
