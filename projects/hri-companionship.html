@@ -7,7 +7,7 @@
 <meta name="description" content="A within-subjects study on the JD humanoid comparing gesture and speech for conveying a robot need state: verbal was clearer (d = 0.58, p = 0.017), engagement was statistically comparable, and every gestural failure was a failure of joint attention.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/hri-companionship.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="Verbal vs non-verbal HRI · Munawar Kazmi">
 <meta property="og:description" content="A within-subjects study on the JD humanoid comparing gesture and speech for conveying a robot need state: verbal was clearer (d = 0.58, p = 0.017), engagement was statistically comparable, and every gestural failure was a failure of joint attention.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,15 +52,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#research">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="hri" role="img" aria-label="A small robot signalling to a person across the room."></canvas></div>
     <div class="eyebrow">Human-Robot Interaction · Communication Cues · Sim-to-Real</div>
     <p class="fact-line"><span>Sole author, supervised by Dr Patrick Holthaus</span><span>study 2023 to 2024, write-up 2025</span><span>under review at Robotics (MDPI)</span></p>
     <h1>Say it, or <em>show it</em></h1>
@@ -97,14 +94,24 @@
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>Within-subjects and counterbalanced: all twenty participants saw both conditions, with presentation order counterbalanced against order and learning effects. Twenty participants, ten female and ten male, mean age 23.4 (SD 3.2, range 18 to 35), recruited by opportunity sampling at Hertfordshire, with anyone holding professional robotics or HRI experience excluded and no financial incentive offered. Ethical approval was granted by the University of Hertfordshire Ethics Committee, reference cSPECS/CL/UH/05098, and every participant gave written informed consent.</p>
-    <p><strong>Non-verbal condition.</strong> The robot performed a scripted referential pointing sequence, modelled on the object-directed pointing that dogs use to communicate need states without a shared language. No speech at all.</p>
-    <p><strong>Verbal condition.</strong> The robot waved to establish joint attention, then spoke a single synthesised utterance: "I'm running low on battery. Could you please plug me into the charger?" No gestures beyond the opening wave.</p>
-    <p>After each condition, participants completed the Robotic Social Attributes Scale, eighteen items on a seven-point scale across three orthogonal factors, plus a single-item clarity rating and a forced-choice question recording what they believed the robot wanted. Sessions ran about twenty five minutes and closed with a semi-structured interview, transcribed and thematically analysed by two independent coders who reached a Cohen's kappa of 0.74 before consensus discussion.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">130 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p><strong>Non-verbal condition.</strong> The robot performed a scripted referential pointing sequence, modelled on the object-directed pointing that dogs use to communicate need states without a shared language. No speech at all.</p>
+      <p><strong>Verbal condition.</strong> The robot waved to establish joint attention, then spoke a single synthesised utterance: "I'm running low on battery. Could you please plug me into the charger?" No gestures beyond the opening wave.</p>
+      <p>After each condition, participants completed the Robotic Social Attributes Scale, eighteen items on a seven-point scale across three orthogonal factors, plus a single-item clarity rating and a forced-choice question recording what they believed the robot wanted. Sessions ran about twenty five minutes and closed with a semi-structured interview, transcribed and thematically analysed by two independent coders who reached a Cohen's kappa of 0.74 before consensus discussion.</p>
+      </div>
+    </details>
+
+
   </section>
 
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
-    <div class="data-table-scroll">
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">123 words, about 1 min</span></summary>
+      <div class="more-b">
+      <div class="data-table-scroll">
       <table class="data-table">
         <caption>Non-verbal against verbal, paired-samples t-tests, df = 19</caption>
         <thead><tr><th>Measure</th><th>Non-verbal</th><th>Verbal</th><th>t(19)</th><th>p</th></tr></thead>
@@ -115,10 +122,13 @@
         </tbody>
       </table>
     </div>
+      <p>Engagement told the opposite story, and its null result is the more useful one. The difference did not reach significance, which suggests engagement is driven by broader features of the interaction scenario rather than by communicative modality. A robot that gestures is not less engaging for being less clear. On the RoSAS subscales both conditions produced positive competence and warmth profiles with low discomfort, so neither strategy read as threatening; warmth was marginally higher in the non-verbal condition, though not significantly so.</p>
+      </div>
+    </details>
 
 
     <p>Speech was clearer, at a medium-to-large effect size. The part worth dwelling on is <em>how</em> gesture failed. All three non-verbal misidentifications were failures of joint attention to the charger: participants understood that the robot wanted something and settled on the wrong object. That is referential ambiguity rather than communicative collapse, and it is exactly the failure mode Holthaus et al. predict when object salience is not established by context beforehand. Gesture is context-contingent in a way speech is not.</p>
-    <p>Engagement told the opposite story, and its null result is the more useful one. The difference did not reach significance, which suggests engagement is driven by broader features of the interaction scenario rather than by communicative modality. A robot that gestures is not less engaging for being less clear. On the RoSAS subscales both conditions produced positive competence and warmth profiles with low discomfort, so neither strategy read as threatening; warmth was marginally higher in the non-verbal condition, though not significantly so.</p>
+
   </section>
 
   <section class="block">
@@ -151,26 +161,40 @@
   <section class="block">
     <h2>What people <em>said</em></h2>
     <p><strong>Trust through mimicry, in the non-verbal condition.</strong> Participants who rated the gestural phase highly described the movement as human-like and attributed thinking to a contemplative pause the robot made: "It was like it was thinking about how to tell me." That is trust grounded in perceived shared intentionality rather than in accurate information transfer, which is a different thing to be building on.</p>
-    <p><strong>Clarity through speech, in the verbal condition.</strong> Directness was cited consistently: "It just told me what it needed, no guessing." The criticisms were of the synthesised voice rather than of the strategy, which suggests speech quality could moderate the advantage over a relationship longer than twenty five minutes.</p>
-    <p><strong>Complementarity, unprompted, across both.</strong> Several participants proposed combining the two without being asked: "If it pointed and then said what it wanted, that would be perfect." A design recommendation that participants reach on their own, before anybody suggests it to them, is worth more than the same recommendation derived from the means.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">100 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p><strong>Clarity through speech, in the verbal condition.</strong> Directness was cited consistently: "It just told me what it needed, no guessing." The criticisms were of the synthesised voice rather than of the strategy, which suggests speech quality could moderate the advantage over a relationship longer than twenty five minutes.</p>
+      <p><strong>Complementarity, unprompted, across both.</strong> Several participants proposed combining the two without being asked: "If it pointed and then said what it wanted, that would be perfect." A design recommendation that participants reach on their own, before anybody suggests it to them, is worth more than the same recommendation derived from the means.</p>
+      </div>
+    </details>
+
   </section>
 
   <section class="block">
     <h2>What this <em>does not</em> show</h2>
     <p>Twenty participants is a pilot. It is consistent with prototyping norms in HRI and it is not enough for definitive inference: detecting an effect of d = 0.58 at alpha = 0.05, two-tailed, with 80% power would need about 55. Everything here is reported as exploratory for that reason, and the effect sizes are given precisely so that a replication can be powered properly.</p>
-    <p>One laboratory, one robot, one need state. A low-battery request is a narrow slice of what a companion robot has to communicate, and a scripted pointing sequence is a narrow slice of what gesture can do. The interview themes are hypothesis-generating rather than confirmatory, from twenty conversations coded by two people. Nothing here speaks to how any of it holds up over weeks rather than minutes, which is the timescale companionship actually lives on.</p>
-    <p>The study was run during the MSc (2023-2024). The PDF is its article-format write-up, completed in 2025. The manuscript is under review at <em>Robotics</em> (MDPI) and is not yet published.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">104 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>One laboratory, one robot, one need state. A low-battery request is a narrow slice of what a companion robot has to communicate, and a scripted pointing sequence is a narrow slice of what gesture can do. The interview themes are hypothesis-generating rather than confirmatory, from twenty conversations coded by two people. Nothing here speaks to how any of it holds up over weeks rather than minutes, which is the timescale companionship actually lives on.</p>
+      <p>The study was run during the MSc (2023-2024). The PDF is its article-format write-up, completed in 2025. The manuscript is under review at <em>Robotics</em> (MDPI) and is not yet published.</p>
+      </div>
+    </details>
+
   </section>
 
   <footer class="footer">
     <a href="../files/Kazmi_HRI_MSc_Thesis.pdf" target="_blank" rel="noopener">Read the write-up (PDF) &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#research">Back to all work</a>
+    <a href="../research.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
 
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

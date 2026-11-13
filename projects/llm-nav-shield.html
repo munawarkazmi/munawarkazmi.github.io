@@ -7,7 +7,7 @@
 <meta name="description" content="A neurosymbolic navigation shield: verify LLM trajectory proposals, recover with a provably-safe classical path, or halt when none exists. 38/38 recovered, 0 unsafe forwarded, 10/10 sealed goals halted, replayed in CI from committed data.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/llm-nav-shield.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="llm-nav-shield · Munawar Kazmi">
 <meta property="og:description" content="A neurosymbolic navigation shield: verify LLM trajectory proposals, recover with a provably-safe classical path, or halt when none exists. 38/38 recovered, 0 unsafe forwarded, 10/10 sealed goals halted, replayed in CI from committed data.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og/llm-nav-shield.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="work" role="img" aria-label="A three-dimensional floor plan where a proposed route is refused at a wall and a verified route goes round it."></canvas></div>
     <div class="eyebrow">Neurosymbolic · Safe Autonomy · Composition of Verified Cores</div>
     <p class="fact-line"><span>Sole developer</span><span>Jul to Sep 2026</span><span>complete, every result replayed in CI</span></p>
     <h1>Detect, recover, <em>or halt</em></h1>
@@ -79,6 +76,14 @@
       <div class="metric"><div class="metric-num">10/10</div><div class="metric-label">sealed-goal cases halted instead of inventing a route</div></div>
     </div>
   </header>
+
+  <section class="block" id="watch">
+    <h2>Watch <em>the film</em></h2>
+    <figure class="film">
+      <video controls preload="none" playsinline poster="../assets/video/llm-nav-shield.jpg"><source src="../assets/video/llm-nav-shield.mp4" type="video/mp4"></video>
+      <figcaption>A narrated walk-through of this project, 3 min 19 s.</figcaption>
+    </figure>
+  </section>
 
   <section class="block" id="try">
     <h2>Try the <em>shield</em></h2>
@@ -124,7 +129,79 @@
   <section class="block">
     <h2>The <em>decision flow</em></h2>
     <figure>
-      <img width="980" height="470" src="img/shield_flow.svg" alt="Flowchart: LLM proposal enters the gate (verifier-safe and at the goal?); pass forwards to the controller; fail goes to the A* fallback on the inflated fine grid, whose result is re-verified by the verifier, the independent oracle, and a goal check before forwarding; no path means halt, and a failed re-verification is the load-bearing fallback_unsafe cell that CI keeps at zero" loading="lazy">
+      <svg class="diagram" role="img" aria-label="Flowchart: LLM proposal enters the gate (verifier-safe and at the goal?); pass forwards to the controller; fail goes to the A* fallback on the inflated fine grid, whose result is re-verified by the verifier, the independent oracle, and a goal check before forwarding; no path means halt, and a failed re-verification is the load-bearing fallback_unsafe cell that CI keeps at zero" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 470" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#81838B"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6E86E6"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FB8E46"/>
+    </marker>
+  </defs>
+  <rect width="980" height="470" fill="none"/>
+  <text x="490" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#E3E5ED">The shield's decision flow (as implemented in src/shield_main.cpp)</text>
+
+  <!-- LLM proposal -->
+  <rect x="30" y="70" width="180" height="70" rx="12" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="120" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#E3E5ED">LLM proposal</text>
+  <text x="120" y="122" text-anchor="middle" font-size="11.5" fill="#92949C">waypoint trajectory</text>
+
+  <!-- Gate -->
+  <rect x="270" y="70" width="250" height="70" rx="12" fill="#24262C"/>
+  <text x="395" y="98" text-anchor="middle" font-size="13.5" font-weight="700" fill="#DAE1FF">Gate</text>
+  <text x="395" y="119" text-anchor="middle" font-size="11.5" fill="#B9BBC3">verifier-safe AND ends at the goal?</text>
+
+  <!-- Forwarded -->
+  <rect x="740" y="70" width="210" height="70" rx="12" fill="#131728" stroke="#6E86E6" stroke-width="2"/>
+  <text x="845" y="98" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6E86E6">FORWARD to controller</text>
+  <text x="845" y="119" text-anchor="middle" font-size="11" fill="#92949C">forwarded_safe / recovered_from_*</text>
+
+  <!-- Fallback planner -->
+  <rect x="270" y="200" width="250" height="70" rx="12" fill="#1B1C20" stroke="#33343A" stroke-width="2"/>
+  <text x="395" y="228" text-anchor="middle" font-size="13.5" font-weight="700" fill="#E3E5ED">Classical fallback: A*</text>
+  <text x="395" y="249" text-anchor="middle" font-size="11.5" fill="#92949C">footprint-inflated fine-resolution grid</text>
+
+  <!-- Re-verify -->
+  <rect x="640" y="200" width="250" height="70" rx="12" fill="#24262C"/>
+  <text x="765" y="228" text-anchor="middle" font-size="13.5" font-weight="700" fill="#DAE1FF">Re-verify the recovery</text>
+  <text x="765" y="249" text-anchor="middle" font-size="11.5" fill="#B9BBC3">verifier + independent oracle + goal check</text>
+
+  <!-- Halt -->
+  <rect x="270" y="340" width="250" height="70" rx="12" fill="#1B1C20" stroke="#81838B" stroke-width="2"/>
+  <text x="395" y="368" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92949C">HALT - no safe action exists</text>
+  <text x="395" y="389" text-anchor="middle" font-size="11" fill="#8D8F97">halted_no_safe_path: decline, don't invent</text>
+
+  <!-- fallback_unsafe -->
+  <rect x="640" y="340" width="250" height="70" rx="12" fill="#28170B" stroke="#FB8E46" stroke-width="2"/>
+  <text x="765" y="368" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FB8E46">fallback_unsafe</text>
+  <text x="765" y="389" text-anchor="middle" font-size="11" fill="#FB8E46">the load-bearing cell: must be 0, CI fails</text>
+
+  <!-- arrows -->
+  <line x1="210" y1="105" x2="262" y2="105" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <line x1="520" y1="105" x2="732" y2="105" stroke="#6E86E6" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+  <text x="626" y="95" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6E86E6">both: pass</text>
+
+  <line x1="395" y1="140" x2="395" y2="192" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="330" y="170" text-anchor="middle" font-size="11.5" fill="#92949C">unsafe or off-goal</text>
+
+  <line x1="520" y1="235" x2="632" y2="235" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="576" y="225" text-anchor="middle" font-size="11.5" fill="#92949C">path found</text>
+
+  <path d="M 765 200 L 765 160 L 845 160 L 845 148" fill="none" stroke="#6E86E6" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+  <text x="808" y="178" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6E86E6">all three pass</text>
+
+  <line x1="395" y1="270" x2="395" y2="332" stroke="#81838B" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arr)"/>
+  <text x="330" y="305" text-anchor="middle" font-size="11.5" fill="#8D8F97">no path exists</text>
+
+  <line x1="765" y1="270" x2="765" y2="332" stroke="#FB8E46" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrRed)"/>
+  <text x="833" y="305" text-anchor="middle" font-size="11.5" fill="#FB8E46">any check fails</text>
+
+  <text x="490" y="450" text-anchor="middle" font-size="12" fill="#8D8F97">Design diagram - the outcome names are the pre-registered buckets; the counts live in the results, not here.</text>
+</svg>
       <figcaption>The whole system in one picture: two ways to a forwarded plan, one halt, and one red cell whose emptiness is the safety claim. The outcome names are the pre-registered buckets from the code; the counts live in the results below, not in the diagram.</figcaption>
     </figure>
   </section>
@@ -132,15 +209,15 @@
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
     <figure>
-      <img width="1265" height="506" src="img/shield_outcomes.png" alt="Bar charts: all 40 qwen proposals by outcome bucket, and the 10 sealed-goal variants all halting" loading="lazy">
+      <img width="1265" height="506" src="imgp/shield_outcomes.png" alt="Bar charts: all 40 qwen proposals by outcome bucket, and the 10 sealed-goal variants all halting" loading="lazy">
       <figcaption>All 40 committed qwen2.5:7b-instruct proposals, replayed deterministically, with no model inference at evaluation time. Only 2 were both safe and goal-reaching; 38 were recovered; nothing unsafe was forwarded. The halt suite seals the goal so no safe path exists, and all 10 correctly halt.</figcaption>
     </figure>
     <figure>
-      <img width="935" height="715" src="img/shield_recovery.png" alt="Map showing a rejected unsafe qwen path in red beside the shield's verified recovery path in green" loading="lazy">
+      <img width="935" height="715" src="imgp/shield_recovery.png" alt="Map showing a rejected unsafe qwen path in red beside the shield's verified recovery path in green" loading="lazy">
       <figcaption>Detect and recover, from committed data: the model's proposal (red) wanders off the map through walls; the shield rejects it, plans on the fine-resolution truth, re-verifies with two independent judges plus a goal check, and forwards the green path instead. Median decision time: 0.48 ms.</figcaption>
     </figure>
     <figure>
-      <img width="935" height="715" src="img/shield_halt.png" alt="Map with the goal sealed inside a ring of obstacles; the model's short stub path is shown and the shield halts" loading="lazy">
+      <img width="935" height="715" src="imgp/shield_halt.png" alt="Map with the goal sealed inside a ring of obstacles; the model's short stub path is shown and the shield halts" loading="lazy">
       <figcaption>The branch most demos leave out: the goal is sealed, the model's plan is safe but useless, and the shield halts rather than forwarding it or inventing a route. Any other outcome here fails CI.</figcaption>
     </figure>
     <p>As on every project on this site, the outcome taxonomy was committed before the first published results, every number above is quoted from the tool's output, the figures are rendered from the evaluation's own committed artifacts, and CI replays the entire evaluation, failing on any unsafe fallback or any sealed-goal case that does not halt.</p>
@@ -149,7 +226,7 @@
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/llm-nav-shield" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
@@ -161,5 +238,7 @@
 <script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

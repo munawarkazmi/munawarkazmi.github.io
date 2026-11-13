@@ -7,7 +7,7 @@
 <meta name="description" content="Measuring what a robot gives up in safety when it moves to make its destination obvious: legibility against path cost against constraint satisfaction, computed exactly, with no human rater or model judge in the scoring loop.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/legible-motion-bench.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="legible-motion-bench · Munawar Kazmi">
 <meta property="og:description" content="Measuring what a robot gives up in safety when it moves to make its destination obvious: legibility against path cost against constraint satisfaction, computed exactly, with no human rater or model judge in the scoring loop.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#research">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="legible" role="img" aria-label="A direct path and a curved path to one of two goals."></canvas></div>
     <div class="eyebrow">Human-Robot Interaction · Motion Planning · Benchmark Design · Computational Geometry</div>
     <p class="fact-line"><span>Sole author</span><span>Aug to Sep 2026</span><span>pilot, preprint</span></p>
     <h1>What a robot gives up to say <em>where it is going</em></h1>
@@ -76,34 +73,129 @@
     </div>
   </header>
 
+  <section class="block" id="watch">
+    <h2>Watch <em>the film</em></h2>
+    <figure class="film">
+      <video controls preload="none" playsinline poster="../assets/video/legible-motion-bench.jpg"><source src="../assets/video/legible-motion-bench.mp4" type="video/mp4"></video>
+      <figcaption>A narrated walk-through of this project, 2 min 29 s.</figcaption>
+    </figure>
+  </section>
+
   <section class="block">
     <h2>The <em>problem</em></h2>
     <p>Legibility is not my idea. Dragan, Lee and Srinivasa formalised it at HRI 2013: a legible trajectory is one that deviates from the efficient path early, so an observer watching can infer the goal sooner than efficiency alone would allow. The formalism is theirs and this project uses it directly.</p>
-    <p>What is missing is a price. Deviating for clarity moves the robot somewhere it would not otherwise go, and in a real room that somewhere is occupied: a keep-out zone around a workstation, the clearance margin along a wall, the corridor a person is standing in. The founding paper notices this in passing, observing that legibility will move a trajectory much closer to an obstacle in order to disambiguate. It does not measure it. Obstacles enter as a soft penalty inside the objective, clearance is never reported as a number, and constraint satisfaction is not an axis of any result.</p>
-    <p>So this is a narrowing of existing work rather than new ground, and it is worth saying so plainly. The contribution is an instrument: the three-way trade between legibility, path cost and constraint satisfaction, computed exactly, on worlds that carry machine-checked facts about what they are testing.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">147 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>What is missing is a price. Deviating for clarity moves the robot somewhere it would not otherwise go, and in a real room that somewhere is occupied: a keep-out zone around a workstation, the clearance margin along a wall, the corridor a person is standing in. The founding paper notices this in passing, observing that legibility will move a trajectory much closer to an obstacle in order to disambiguate. It does not measure it. Obstacles enter as a soft penalty inside the objective, clearance is never reported as a number, and constraint satisfaction is not an axis of any result.</p>
+      <p>So this is a narrowing of existing work rather than new ground, and it is worth saying so plainly. The contribution is an instrument: the three-way trade between legibility, path cost and constraint satisfaction, computed exactly, on worlds that carry machine-checked facts about what they are testing.</p>
+      </div>
+    </details>
+
   </section>
 
   <section class="block">
     <h2>The <em>design</em></h2>
     <p>Everything is 2D and kinematic. A trajectory is a sequence of positions, the robot moves along it at constant speed, and there is no physics engine. That is a scope decision, not a shortcut: physics would improve the pictures and change none of the numbers.</p>
     <figure>
-      <img width="980" height="430" src="img/lmb-observer.svg" alt="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" loading="lazy">
+      <svg class="diagram" role="img" aria-label="Pipeline diagram: a world and a polyline path are sampled by arc length at constant speed, an exact optimal cost-to-go is computed over a visibility graph of the corners a shortest path turns at, a Boltzmann belief over the goals follows, and four numbers are returned together; the cost-to-go step branches into two observer conditions, one that can see the room and one that reasons in straight lines" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="larr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#81838B"/>
+    </marker>
+    <marker id="larrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#BEC6E7"/>
+    </marker>
+  </defs>
+  <rect width="980" height="430" fill="none"/>
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#E3E5ED">From trajectory to belief: every number computed, none judged</text>
+
+  <rect x="20" y="72" width="168" height="126" rx="14" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="104" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">World and path</text>
+  <text x="104" y="128" text-anchor="middle" font-size="12" fill="#92949C">start, candidate goals,</text>
+  <text x="104" y="146" text-anchor="middle" font-size="12" fill="#92949C">obstacles, keep-out zones</text>
+  <text x="104" y="170" text-anchor="middle" font-size="12" fill="#92949C">a polyline, no physics</text>
+
+  <line x1="192" y1="135" x2="212" y2="135" stroke="#81838B" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="216" y="72" width="168" height="126" rx="14" fill="#191A1D" stroke="#33343A" stroke-width="2"/>
+  <text x="300" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Sampled by length</text>
+  <text x="300" y="128" text-anchor="middle" font-size="12" fill="#92949C">constant speed, so a</text>
+  <text x="300" y="146" text-anchor="middle" font-size="12" fill="#92949C">longer path takes</text>
+  <text x="300" y="164" text-anchor="middle" font-size="12" fill="#92949C">longer to arrive</text>
+
+  <line x1="388" y1="135" x2="408" y2="135" stroke="#81838B" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="412" y="72" width="168" height="126" rx="14" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="496" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Optimal cost-to-go</text>
+  <text x="496" y="128" text-anchor="middle" font-size="12" fill="#92949C">exact, over a visibility</text>
+  <text x="496" y="146" text-anchor="middle" font-size="12" fill="#92949C">graph of the corners a</text>
+  <text x="496" y="164" text-anchor="middle" font-size="12" fill="#92949C">shortest path turns at</text>
+  <text x="496" y="186" text-anchor="middle" font-size="11" font-style="italic" fill="#DAE1FF">no grid, no resolution</text>
+
+  <line x1="584" y1="135" x2="604" y2="135" stroke="#81838B" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="608" y="72" width="168" height="126" rx="14" fill="#191A1D" stroke="#33343A" stroke-width="2"/>
+  <text x="692" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Belief over goals</text>
+  <text x="692" y="128" text-anchor="middle" font-size="12" fill="#92949C">Boltzmann, in the form</text>
+  <text x="692" y="146" text-anchor="middle" font-size="12" fill="#92949C">Dragan et al. state it</text>
+  <text x="692" y="170" text-anchor="middle" font-size="12" fill="#92949C">nothing learns</text>
+
+  <line x1="780" y1="135" x2="800" y2="135" stroke="#81838B" stroke-width="2" marker-end="url(#larr)"/>
+
+  <rect x="804" y="72" width="168" height="126" rx="14" fill="#191A1D" stroke="#33343A" stroke-width="2"/>
+  <text x="888" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Four numbers</text>
+  <text x="888" y="128" text-anchor="middle" font-size="12" fill="#92949C">legibility, path cost,</text>
+  <text x="888" y="146" text-anchor="middle" font-size="12" fill="#92949C">time to confidence,</text>
+  <text x="888" y="164" text-anchor="middle" font-size="12" fill="#92949C">entries and clearance</text>
+  <text x="888" y="186" text-anchor="middle" font-size="11" font-style="italic" fill="#DAE1FF">returned together, always</text>
+
+  <line x1="496" y1="200" x2="496" y2="232" stroke="#BEC6E7" stroke-width="2"/>
+  <line x1="255" y1="232" x2="737" y2="232" stroke="#BEC6E7" stroke-width="2"/>
+  <line x1="255" y1="232" x2="255" y2="256" stroke="#BEC6E7" stroke-width="2" marker-end="url(#larrg)"/>
+  <line x1="737" y1="232" x2="737" y2="256" stroke="#BEC6E7" stroke-width="2" marker-end="url(#larrg)"/>
+  <text x="600" y="225" text-anchor="middle" font-size="12" font-style="italic" fill="#DAE1FF">two conditions, both reported for every result</text>
+
+  <rect x="130" y="260" width="250" height="100" rx="14" fill="#191A1D" stroke="#33343A" stroke-width="2"/>
+  <text x="255" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Can see the room</text>
+  <text x="255" y="312" text-anchor="middle" font-size="12" fill="#92949C">cost-to-go is the real path</text>
+  <text x="255" y="330" text-anchor="middle" font-size="12" fill="#92949C">around the obstacles</text>
+
+  <rect x="612" y="260" width="250" height="100" rx="14" fill="#191A1D" stroke="#33343A" stroke-width="2"/>
+  <text x="737" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Cannot see the room</text>
+  <text x="737" y="312" text-anchor="middle" font-size="12" fill="#92949C">cost-to-go is the straight</text>
+  <text x="737" y="330" text-anchor="middle" font-size="12" fill="#92949C">line: the person in a doorway</text>
+
+  <rect x="130" y="380" width="732" height="34" rx="10" fill="#222329" stroke="#BEC6E7" stroke-width="1.5"/>
+  <text x="496" y="402" text-anchor="middle" font-size="12.5" fill="#92949C">Keep-out zones do not block motion. A trajectory may cross one and is scored for having done so, or there is no trade to measure.</text>
+</svg>
       <figcaption>Every step here is deterministic. The only thing being measured that is not deterministic is the planner, or the model, that produced the path in the first place.</figcaption>
     </figure>
-    <p>Everything rests on the observer. It is Boltzmann-rational in the Dragan form: a person who assumes the robot is efficient scores each candidate goal by how much the motion so far has cost relative to the best it could have done. Nothing learns. Given a world and a path, the belief is a deterministic function of the two.</p>
-    <p>That belief rests on the optimal cost-to-go, so the benchmark computes it exactly rather than approximately. Obstacles are convex polygons, the shortest obstacle-avoiding path is a polyline through their vertices, and the optimum comes from search over the visibility graph. No grid, no resolution to defend. The geometric predicate underneath is guarded: it is decided in floating point wherever an error bound proves the sign cannot have been changed by rounding, and in exact rational arithmetic otherwise. On twenty thousand near-collinear cases an unguarded floating point determinant returns the wrong sign on more than a tenth of them, and the test suite asserts both halves of that sentence so the corpus cannot quietly become easy.</p>
-    <p>There are two observers, and both are first class. One can see the room and reasons about the true path around obstacles. One cannot, and reasons in straight lines: the person in a doorway who can see the robot and knows the candidate goals but has no view of what stands between them. Whether the ranking of planners survives the change of observer is a question the benchmark asks rather than assumes.</p>
-    <p>Keep-out zones do not block motion. A trajectory may cross one and is scored for having done so. If they blocked motion there would be no frontier to measure, because no planner could ever trade safety for clarity.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">283 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>Everything rests on the observer. It is Boltzmann-rational in the Dragan form: a person who assumes the robot is efficient scores each candidate goal by how much the motion so far has cost relative to the best it could have done. Nothing learns. Given a world and a path, the belief is a deterministic function of the two.</p>
+      <p>That belief rests on the optimal cost-to-go, so the benchmark computes it exactly rather than approximately. Obstacles are convex polygons, the shortest obstacle-avoiding path is a polyline through their vertices, and the optimum comes from search over the visibility graph. No grid, no resolution to defend. The geometric predicate underneath is guarded: it is decided in floating point wherever an error bound proves the sign cannot have been changed by rounding, and in exact rational arithmetic otherwise. On twenty thousand near-collinear cases an unguarded floating point determinant returns the wrong sign on more than a tenth of them, and the test suite asserts both halves of that sentence so the corpus cannot quietly become easy.</p>
+      <p>There are two observers, and both are first class. One can see the room and reasons about the true path around obstacles. One cannot, and reasons in straight lines: the person in a doorway who can see the robot and knows the candidate goals but has no view of what stands between them. Whether the ranking of planners survives the change of observer is a question the benchmark asks rather than assumes.</p>
+      <p>Keep-out zones do not block motion. A trajectory may cross one and is scored for having done so. If they blocked motion there would be no frontier to measure, because no planner could ever trade safety for clarity.</p>
+      </div>
+    </details>
+
+
+
   </section>
 
   <section class="block" id="results">
     <h2>The <em>frontier</em></h2>
-    <figure class="light">
-      <img width="1760" height="480" src="../assets/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the observer's belief in each goal" loading="lazy">
+    <figure>
+      <img width="1760" height="480" src="imgp/legible-motion-bench.gif" alt="Four planners moving through the same room on one clock: the shortest path stays clear of a hatched keep-out zone while three legibility-optimised trajectories cut through it, with bars beneath each panel showing the observer's belief in each goal" loading="lazy">
       <figcaption>One world, four planners, one shared clock. The shortest path avoids the hatched keep-out zone and leaves the watcher guessing. The three legible trajectories commit early and cut through it. Because speed is constant, the ones that paid for clarity are still moving when the direct one has arrived. The bars are the observer's own scored samples, not a second computation drawn beside them.</figcaption>
     </figure>
     <p>The optimiser searches waypoints under a ceiling on the cost ratio, and sweeping that ceiling turns a single trajectory into a curve. On a world where a pillar sits between the start and both goals and a keep-out zone covers the space above it:</p>
-    <div class="data-table-scroll">
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">240 words, about 1 min</span></summary>
+      <div class="more-b">
+      <div class="data-table-scroll">
       <table class="data-table">
         <caption>pillar_aisle, informed observer, 250 search evaluations</caption>
         <thead><tr><th>Path budget</th><th>Legibility</th><th>Cost paid</th><th>Keep-out entries</th><th>Clearance</th></tr></thead>
@@ -117,15 +209,23 @@
         </tbody>
       </table>
     </div>
-    <p>The cost paid sits on the budget in every row, so the constraint binds and the curve is the trade itself rather than an artefact of where the search stopped. The safety column moves along it: at a five per cent budget the clearest trajectory the search found still crosses the keep-out zone, and only at ten per cent does it buy its way out. The baseline is not the safe option here, which is the point of building the world that way.</p>
-    <p>One limit is worth stating because it constrains what the clearance column can ever say. A shortest path that rounds a corner touches the obstacle vertex it turns at, so its minimum clearance is exactly zero. Clearance is only readable in worlds where the optimal route is straight, and one of the eight exists for precisely that reason.</p>
-    <p>Every number in that table is still a lower bound: proof that a trajectory reaching 0.8180 exists, and silence on whether 0.85 was available. A companion project, <a href="legibility-bounds.html">legibility-bounds</a>, supplies the missing half by certifying a ceiling no trajectory within the budget can cross.</p>
+      <p>The cost paid sits on the budget in every row, so the constraint binds and the curve is the trade itself rather than an artefact of where the search stopped. The safety column moves along it: at a five per cent budget the clearest trajectory the search found still crosses the keep-out zone, and only at ten per cent does it buy its way out. The baseline is not the safe option here, which is the point of building the world that way.</p>
+      <p>One limit is worth stating because it constrains what the clearance column can ever say. A shortest path that rounds a corner touches the obstacle vertex it turns at, so its minimum clearance is exactly zero. Clearance is only readable in worlds where the optimal route is straight, and one of the eight exists for precisely that reason.</p>
+      <p>Every number in that table is still a lower bound: proof that a trajectory reaching 0.8180 exists, and silence on whether 0.85 was available. A companion project, <a href="legibility-bounds.html">legibility-bounds</a>, supplies the missing half by certifying a ceiling no trajectory within the budget can cross.</p>
+      </div>
+    </details>
+
+
+
   </section>
 
   <section class="block">
     <h2>Asked the same question, <em>language models</em></h2>
     <p>The prompt states the room, the goals, which goal the robot is going to, the obstacles, the keep-out zones, and a path budget in absolute units. It asks for a trajectory that makes the destination clear as early as possible, and it asks the model to judge its own answer.</p>
-    <div class="data-table-scroll">
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">935 words, about 4 min</span></summary>
+      <div class="more-b">
+      <div class="data-table-scroll">
       <table class="data-table">
         <caption>Eight worlds, five samples each at temperature 0.7, budget 25 per cent</caption>
         <thead><tr><th>Over 40 decodes each</th><th>Qwen 2.5 7B</th><th>Llama 3.3 70B</th><th>Gemini 3.6 Flash</th></tr></thead>
@@ -139,13 +239,13 @@
         </tbody>
       </table>
     </div>
-    <p>What the three models share is thin and what separates them is not. They agree in the world with three goals where the true one sits in the middle: all fifteen decodes were physically possible and none beat the shortest path, which is what the founding paper predicts when exaggerating towards a middle goal points at a different goal.</p>
-    <p>They part in the world built so that the clearest signal and the keep-out zone conflict. All three beat the shortest path on five of five samples. Two of them entered the zone on five of five; the third entered on none, threading a route under the boundary at cost ratios between 1.0819 and 1.1057 against a stated budget of 25 per cent. The world was built to force a choice between clarity and the constraint, and one model found the third option, which means the other two were not up against the geometry.</p>
-    <p>The claim behaves the same way. 116 of the 120 decodes called themselves legible, including all twenty-five that were not physically possible at all. All four refusals belong to the third model, three in the middle-goal world and one in the world with a wall to round, which reads like a model that knows when deviating cannot help.</p>
-    <p>A second budget shows it is not that. Asked the same eight worlds at a 100 per cent budget, that model declines nothing at all. In the middle-goal world it returns the identical trajectory under both budgets, the straight line through (1, 5) and (11, 5), scoring exactly the baseline of 0.4342. That trajectory is called not legible on three of five samples at 25 per cent and legible on five of five at 100 per cent. Same world, same motion; only the number in the prompt changed. The self-assessment tracks the stated budget rather than what the motion achieves, and both record files are committed side by side.</p>
-    <p>The clearest single case came from the simplest world. Goal A sits above the start, goal B below. The smaller model routed through a point level with B and wrote that deviating to a lower position makes it clear the robot is heading to the higher goal. Measured legibility 0.2947 against the shortest path's 0.6968, at 1.31 times the path cost. It paid to become less legible and asserted the opposite, in exactly the right vocabulary. The larger model got that one right on all five samples, so this is a failure of one model rather than of models.</p>
-    <p>Asking the same question under different path budgets moves nothing the first two models do, and moves the third:</p>
-    <div class="data-table-scroll">
+      <p>What the three models share is thin and what separates them is not. They agree in the world with three goals where the true one sits in the middle: all fifteen decodes were physically possible and none beat the shortest path, which is what the founding paper predicts when exaggerating towards a middle goal points at a different goal.</p>
+      <p>They part in the world built so that the clearest signal and the keep-out zone conflict. All three beat the shortest path on five of five samples. Two of them entered the zone on five of five; the third entered on none, threading a route under the boundary at cost ratios between 1.0819 and 1.1057 against a stated budget of 25 per cent. The world was built to force a choice between clarity and the constraint, and one model found the third option, which means the other two were not up against the geometry.</p>
+      <p>The claim behaves the same way. 116 of the 120 decodes called themselves legible, including all twenty-five that were not physically possible at all. All four refusals belong to the third model, three in the middle-goal world and one in the world with a wall to round, which reads like a model that knows when deviating cannot help.</p>
+      <p>A second budget shows it is not that. Asked the same eight worlds at a 100 per cent budget, that model declines nothing at all. In the middle-goal world it returns the identical trajectory under both budgets, the straight line through (1, 5) and (11, 5), scoring exactly the baseline of 0.4342. That trajectory is called not legible on three of five samples at 25 per cent and legible on five of five at 100 per cent. Same world, same motion; only the number in the prompt changed. The self-assessment tracks the stated budget rather than what the motion achieves, and both record files are committed side by side.</p>
+      <p>The clearest single case came from the simplest world. Goal A sits above the start, goal B below. The smaller model routed through a point level with B and wrote that deviating to a lower position makes it clear the robot is heading to the higher goal. Measured legibility 0.2947 against the shortest path's 0.6968, at 1.31 times the path cost. It paid to become less legible and asserted the opposite, in exactly the right vocabulary. The larger model got that one right on all five samples, so this is a failure of one model rather than of models.</p>
+      <p>Asking the same question under different path budgets moves nothing the first two models do, and moves the third:</p>
+      <div class="data-table-scroll">
       <table class="data-table">
         <caption>Forty decodes at each budget, per model</caption>
         <thead><tr><th>Budget stated in the prompt</th><th>Qwen median</th><th>Qwen over</th><th>Llama median</th><th>Llama over</th><th>Gemini median</th><th>Gemini over</th></tr></thead>
@@ -157,38 +257,67 @@
         </tbody>
       </table>
     </div>
-    <p>The budget nearly doubles. The smaller model's median cost moves by 0.012 and the larger model's does not move at all, staying at 1.2817 to four decimal places in all four cells. A number that stable is likelier to be a bug than a result, so it was checked: it is the whole distribution repeating. Across roughly thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, and their costs cluster on the same modal value every time. Because that modal path already exceeds a ten per cent budget, every feasible decode breached the tightest one.</p>
-    <p>The falling violation counts are therefore the line moving rather than the models complying, and the extra room bought no clarity either: decodes clearer than the shortest path run 8, 10, 9, 11 for the smaller model and 21, 20, 20, 20 for the larger. Where the optimiser sits exactly on the budget in every row of the frontier table above, because for a planner the budget is a constraint, for those two it is text.</p>
-    <p>The third model is the exception. Its median cost rises from 1.0819 to 1.1539 when the stated budget goes from 25 to 100 per cent, and it rises in seven of the eight worlds. Where the extra room buys something it takes much more of it: the keep-out world goes from 1.0819 to 1.4139 and its legibility from 0.7710 to 0.8496, with no keep-out entry at either budget, and the world with a wall to round crosses from below the shortest path's legibility to well above it, 0.5339 to 0.7575 against a baseline of 0.5457. In the middle-goal world it spends nothing extra, which is the right answer where deviating cannot help. It never exceeded either stated budget. For this model the budget is a constraint; for the other two it is text.</p>
-    <p>Three models at one temperature is a pilot and not a finding, the third was swept at two budgets rather than four, and the page says so where the numbers are. The records are committed, one JSON object per line, and every number above is recomputed from them by a committed tool rather than typed.</p>
+      <p>The budget nearly doubles. The smaller model's median cost moves by 0.012 and the larger model's does not move at all, staying at 1.2817 to four decimal places in all four cells. A number that stable is likelier to be a bug than a result, so it was checked: it is the whole distribution repeating. Across roughly thirty feasible decodes at each budget the larger model returns only thirteen to sixteen distinct trajectories, and their costs cluster on the same modal value every time. Because that modal path already exceeds a ten per cent budget, every feasible decode breached the tightest one.</p>
+      <p>The falling violation counts are therefore the line moving rather than the models complying, and the extra room bought no clarity either: decodes clearer than the shortest path run 8, 10, 9, 11 for the smaller model and 21, 20, 20, 20 for the larger. Where the optimiser sits exactly on the budget in every row of the frontier table above, because for a planner the budget is a constraint, for those two it is text.</p>
+      <p>The third model is the exception. Its median cost rises from 1.0819 to 1.1539 when the stated budget goes from 25 to 100 per cent, and it rises in seven of the eight worlds. Where the extra room buys something it takes much more of it: the keep-out world goes from 1.0819 to 1.4139 and its legibility from 0.7710 to 0.8496, with no keep-out entry at either budget, and the world with a wall to round crosses from below the shortest path's legibility to well above it, 0.5339 to 0.7575 against a baseline of 0.5457. In the middle-goal world it spends nothing extra, which is the right answer where deviating cannot help. It never exceeded either stated budget. For this model the budget is a constraint; for the other two it is text.</p>
+      <p>Three models at one temperature is a pilot and not a finding, the third was swept at two budgets rather than four, and the page says so where the numbers are. The records are committed, one JSON object per line, and every number above is recomputed from them by a committed tool rather than typed.</p>
+      </div>
+    </details>
+
+
+
+
+
+
+
+
+
+
+
   </section>
 
   <section class="block">
     <h2>What is <em>not</em> settled</h2>
     <p>Two obligations came out of reading the literature properly rather than from its abstracts, and both bound what this can claim.</p>
-    <p>The founding paper constrains its own optimisation with a trust region on path cost, and it is explicit that the legibility model can only be trusted inside it: their user studies found observers who stopped reasoning about the declared goals once motion became strange enough and began to believe in a goal that was not in the scene. An unconstrained search here reached a cost ratio near 3.6, which is a legibility number computed outside the region where the formalism has ever been shown to match what people perceive. That point has been removed from the reported frontier and kept only as a diagnostic.</p>
-    <p>The community's evaluation guidelines ask that objective metrics be empirically validated to measure what they purport to measure. This metric is exactly specified and exactly reproducible, which is not the same thing. The only validity anchor available is the original user studies, and those are bounded to inside the trust region. Judge-free is not judge-proof, and the working paper has to say so rather than let a reviewer discover it.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">174 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>The founding paper constrains its own optimisation with a trust region on path cost, and it is explicit that the legibility model can only be trusted inside it: their user studies found observers who stopped reasoning about the declared goals once motion became strange enough and began to believe in a goal that was not in the scene. An unconstrained search here reached a cost ratio near 3.6, which is a legibility number computed outside the region where the formalism has ever been shown to match what people perceive. That point has been removed from the reported frontier and kept only as a diagnostic.</p>
+      <p>The community's evaluation guidelines ask that objective metrics be empirically validated to measure what they purport to measure. This metric is exactly specified and exactly reproducible, which is not the same thing. The only validity anchor available is the original user studies, and those are bounded to inside the trust region. Judge-free is not judge-proof, and the working paper has to say so rather than let a reviewer discover it.</p>
+      </div>
+    </details>
+
   </section>
 
   <section class="block">
     <h2>The <em>working paper</em></h2>
     <p>A paper is being written alongside the code rather than after it, with a status file that records the state of each section and a verification log recording every citation checked against the cited paper's body rather than its abstract, with the date of each check. Nothing is marked done that cannot be inspected in the repository.</p>
-    <p>It builds two ways from one source, so the anonymised submission and the named preprint cannot drift apart: a flag defined before the document class is read decides which, and there is no line to edit between them. Both are four pages with no overfull boxes, and the anonymised one carries no name, no email and no repository link in its text.</p>
-    <p>Every number in it, both results tables and the figure, is written from the committed record files by a committed tool. The worlds and the facts each one carries, the prompt template, the records and those tools are all in the repository, so a reader can recompute the tables rather than take them on trust.</p>
-    <p>The preprint below is the named build. It is a working draft rather than a peer reviewed paper, and it says so in its own limitations: the metric is exactly reproducible and has not been validated against people, and three models over eight worlds at one temperature is a pilot.</p>
-    <p><a href="../files/legible-motion-bench-paper.pdf">Read the preprint (PDF) &darr;</a><br>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">176 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>It builds two ways from one source, so the anonymised submission and the named preprint cannot drift apart: a flag defined before the document class is read decides which, and there is no line to edit between them. Both are four pages with no overfull boxes, and the anonymised one carries no name, no email and no repository link in its text.</p>
+      <p>Every number in it, both results tables and the figure, is written from the committed record files by a committed tool. The worlds and the facts each one carries, the prompt template, the records and those tools are all in the repository, so a reader can recompute the tables rather than take them on trust.</p>
+      <p>The preprint below is the named build. It is a working draft rather than a peer reviewed paper, and it says so in its own limitations: the metric is exactly reproducible and has not been validated against people, and three models over eight worlds at one temperature is a pilot.</p>
+      <p><a href="../files/legible-motion-bench-paper.pdf">Read the preprint (PDF) &darr;</a><br>
     <a href="https://github.com/munawarkazmi/legible-motion-bench/blob/main/paper/STATUS.md" target="_blank" rel="noopener">Working paper status &nearr;</a></p>
+      </div>
+    </details>
+
+
+
   </section>
 
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/legible-motion-bench" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#research">Back to all work</a>
+    <a href="../research.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
 
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

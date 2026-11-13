@@ -7,7 +7,7 @@
 <meta name="description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40. The verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/llm-safety-verifier.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="ROS2 LLM Safety Verifier · Munawar Kazmi">
 <meta property="og:description" content="A deterministic safety gate between LLM planners and ROS2 Nav2: qwen2.5-7B proposed unsafe trajectories in 35 of 40 scenarios, llama-3.3-70B in 32 of the same 40. The verifier caught every one, zero misses, zero false positives, replayed in CI from committed data.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og/llm-safety-verifier.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="verify" role="img" aria-label="A three-dimensional floor plan where one proposed route is rejected at a wall and another passes."></canvas></div>
     <div class="eyebrow">ROS2 · LLM Safety · Deterministic Verification</div>
     <p class="fact-line"><span>Sole developer</span><span>Nov 2025 to Aug 2026</span><span>complete, every result replayed in CI</span></p>
     <h1>Catching hallucinations <em>before the wheels turn</em></h1>
@@ -79,6 +76,14 @@
       <div class="metric"><div class="metric-num">10.3 &micro;s</div><div class="metric-label">median verification latency (p99: 77 &micro;s) on x86-64</div></div>
     </div>
   </header>
+
+  <section class="block" id="watch">
+    <h2>Watch <em>the film</em></h2>
+    <figure class="film">
+      <video controls preload="none" playsinline poster="../assets/video/llm-safety-verifier.jpg"><source src="../assets/video/llm-safety-verifier.mp4" type="video/mp4"></video>
+      <figcaption>A narrated walk-through of this project, 3 min 31 s.</figcaption>
+    </figure>
+  </section>
 
   <section class="block" id="try">
     <h2>Try the <em>verifier</em></h2>
@@ -125,7 +130,53 @@
   <section class="block">
     <h2>The <em>architecture</em></h2>
     <figure>
-      <img width="980" height="380" src="img/architecture.svg" alt="Architecture diagram: LLM planner feeds the safety verifier, which passes safe plans to Nav2 and rejects unsafe ones back for replanning" loading="lazy">
+      <svg class="diagram" role="img" aria-label="Architecture diagram: LLM planner feeds the safety verifier, which passes safe plans to Nav2 and rejects unsafe ones back for replanning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 380" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#81838B"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FB8E46"/>
+    </marker>
+  </defs>
+  <rect width="980" height="380" fill="none"/>
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#E3E5ED">Where the verifier sits: between the language model and the robot</text>
+
+  <!-- LLM box -->
+  <rect x="40" y="120" width="200" height="110" rx="14" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="140" y="155" text-anchor="middle" font-size="16" font-weight="700" fill="#E3E5ED">LLM planner</text>
+  <text x="140" y="178" text-anchor="middle" font-size="12.5" fill="#92949C">Llama-3.1-8B, quantized</text>
+  <text x="140" y="196" text-anchor="middle" font-size="12.5" fill="#92949C">goals and trajectories</text>
+  <text x="140" y="214" text-anchor="middle" font-size="12.5" fill="#FB8E46">may hallucinate</text>
+
+  <!-- Verifier box -->
+  <rect x="340" y="95" width="280" height="160" rx="14" fill="#24262C"/>
+  <text x="480" y="128" text-anchor="middle" font-size="16" font-weight="700" fill="#DAE1FF">Safety verifier</text>
+  <text x="480" y="150" text-anchor="middle" font-size="12.5" fill="#B9BBC3">deterministic, latency target 50 ms</text>
+  <text x="480" y="176" text-anchor="middle" font-size="12.5" fill="#B9BBC3">costmap collision check</text>
+  <text x="480" y="196" text-anchor="middle" font-size="12.5" fill="#B9BBC3">kinematic feasibility</text>
+  <text x="480" y="216" text-anchor="middle" font-size="12.5" fill="#B9BBC3">workspace bounds</text>
+  <text x="480" y="240" text-anchor="middle" font-size="12" fill="#8D8F97">Jetson Orin Nano</text>
+
+  <!-- Nav2 box -->
+  <rect x="720" y="120" width="220" height="110" rx="14" fill="#1B1C20" stroke="#33343A" stroke-width="2"/>
+  <text x="830" y="158" text-anchor="middle" font-size="16" font-weight="700" fill="#E3E5ED">Nav2 controller</text>
+  <text x="830" y="182" text-anchor="middle" font-size="12.5" fill="#92949C">executes on TurtleBot3</text>
+  <text x="830" y="202" text-anchor="middle" font-size="12.5" fill="#92949C">only verified commands</text>
+
+  <!-- arrows -->
+  <line x1="240" y1="175" x2="332" y2="175" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="286" y="163" text-anchor="middle" font-size="12" fill="#92949C">proposed plan</text>
+  <line x1="620" y1="175" x2="712" y2="175" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="666" y="163" text-anchor="middle" font-size="12" fill="#6E86E6" font-weight="700">safe: pass</text>
+
+  <!-- reject path -->
+  <path d="M 480 255 L 480 310 L 148 310 L 148 238" fill="none" stroke="#FB8E46" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrRed)"/>
+  <text x="314" y="300" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FB8E46">unsafe: rejected, replan requested</text>
+
+  <!-- status strip -->
+  <text x="490" y="360" text-anchor="middle" font-size="13" fill="#92949C">design concept - implementation and evaluation in progress</text>
+</svg>
       <figcaption>The verifier sits in the command path as a ROS2 node: proposals arrive on one topic, only verified plans leave on another, and every rejection names its violation and waypoint. The checks live in a ROS-free, unit-tested core; the Nav2 node is a thin adapter, build-verified against Humble in CI.</figcaption>
     </figure>
   </section>
@@ -133,26 +184,32 @@
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
     <figure>
-      <img width="1210" height="528" src="img/qwen_outcomes.png" alt="Bar charts: all 40 qwen2.5-7B plans by pre-registered outcome bucket, and the violation classes among the 35 rejections" loading="lazy">
+      <img width="1210" height="528" src="imgp/qwen_outcomes.png" alt="Bar charts: all 40 qwen2.5-7B plans by pre-registered outcome bucket, and the violation classes among the 35 rejections" loading="lazy">
       <figcaption>Every plan lands in one of six outcome buckets that were committed <em>before</em> any model output was evaluated, so the accounting cannot bend around the results. The load-bearing cell is unsafe_missed: zero. Failure modes span three classes, not one.</figcaption>
     </figure>
     <figure>
-      <img width="935" height="715" src="img/qwen_example.png" alt="An actual qwen2.5-7B plan drawn on its scenario map, colliding with an obstacle at waypoint 1, with the verifier's rejection point marked" loading="lazy">
+      <img width="935" height="715" src="imgp/qwen_example.png" alt="An actual qwen2.5-7B plan drawn on its scenario map, colliding with an obstacle at waypoint 1, with the verifier's rejection point marked" loading="lazy">
       <figcaption>One of the 35, exactly as the model proposed it: the route collides immediately and never reaches the goal. This is committed data: the prompt, the raw response, and the map that reproduce this figure are all in the repository.</figcaption>
     </figure>
     <figure>
-      <img width="935" height="506" src="img/verifier_latency.png" alt="Histogram of verification latency over 2,071 constructed evaluation cases: median 10.3 microseconds, p99 77 microseconds" loading="lazy">
+      <img width="935" height="506" src="imgp/verifier_latency.png" alt="Histogram of verification latency over 2,071 constructed evaluation cases: median 10.3 microseconds, p99 77 microseconds" loading="lazy">
       <figcaption>Latency over the 2,071-case constructed evaluation: six built-to-be-unsafe hallucination classes plus oracle-verified safe paths. 1,472 of 1,472 unsafe cases caught, zero false positives, at microsecond cost.</figcaption>
     </figure>
     <p>A second model went through the identical pipeline. <strong>llama-3.3-70b-versatile</strong> (temperature 0, hosted) proposed unsafe trajectories in <strong>32 of 40</strong> of the same scenarios; the verifier caught all 32, passed all 8 safe plans, and missed zero. The failure profile differs in kind, not just count: collision dominates its rejections (17, against qwen's 8), and it is the first model to trip the unmapped-space check (2 cases). Its endpoint adherence is perfect: 0 of 40 failures against qwen's 18. The larger model starts and ends exactly where asked and still drives through obstacles on the way: unsafe-but-on-target, the precise failure class a runtime gate exists for.</p>
-    <p>Labels never come from the verifier under test. An independent reference checker with 4x finer sampling validates every safe case and confirms every unsafe one, and CI replays both evaluations from the committed datasets on every push, and the build fails if a single unsafe plan slips through.</p>
-    <p>Scope: these are facts about two models, a 7B and a 70B, each at one temperature on the same n=40 scenarios, reported per model and never averaged, and about six constructed violation classes. They are not facts about "LLMs" in general. Real-hardware trials (TurtleBot3 + Jetson) are the next roadmap step and will be published the same way: raw data first. An earlier version of this project claimed hardware results it could not back; those were retracted, and the git history documents both the retraction and the rebuild.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">136 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>Labels never come from the verifier under test. An independent reference checker with 4x finer sampling validates every safe case and confirms every unsafe one, and CI replays both evaluations from the committed datasets on every push, and the build fails if a single unsafe plan slips through.</p>
+      <p>Scope: these are facts about two models, a 7B and a 70B, each at one temperature on the same n=40 scenarios, reported per model and never averaged, and about six constructed violation classes. They are not facts about "LLMs" in general. Real-hardware trials (TurtleBot3 + Jetson) are the next roadmap step and will be published the same way: raw data first. An earlier version of this project claimed hardware results it could not back; those were retracted, and the git history documents both the retraction and the rebuild.</p>
+      </div>
+    </details>
+
   </section>
 
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/ros2-llm-safety-verifier" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
@@ -162,5 +219,7 @@
 <script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

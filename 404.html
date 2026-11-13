@@ -6,14 +6,15 @@
 <title>Page not found · Munawar Kazmi</title>
 <meta name="description" content="That page does not exist on munawarkazmi.com.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="/assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/premium.css">
 <style>
   /* This page can be served from any depth, so every path on it is absolute. */
   body {
@@ -37,17 +38,19 @@
   p { color: var(--text); margin-bottom: 2rem; }
   .links { display: flex; gap: 12px; flex-wrap: wrap; }
   .theme-toggle.corner { position: fixed; top: 16px; right: 16px; }
+  h1 { font-family: var(--display); font-weight: 400; font-size: clamp(3rem, 8vw, 5rem); text-shadow: none; }
+  h1 em { font-style: italic; }
+  .btn, .btn-outline { border-radius: 2px; }
 </style>
 </head>
 <body>
-<button class="theme-toggle corner" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
 <main>
   <div class="code label">Error 404</div>
   <h1>This page <em>does not exist</em>.</h1>
   <p>Which is at least a failure that announces itself. Nothing here was moved quietly; the link is either old or mistyped.</p>
   <div class="links">
     <a class="btn" href="/">Back to the homepage</a>
-    <a class="btn-outline" href="/#engineering">All work</a>
+    <a class="btn-outline" href="/work.html">All work</a>
     <a class="btn-outline" href="/projects/guides.html">Plain-language guides</a>
   </div>
 </main>

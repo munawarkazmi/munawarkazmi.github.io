@@ -17,7 +17,7 @@
     { page: 'toolcall-contract', lab: 'contractLab', title: 'the tool-call validator' },
     { page: 'exact-predicates', lab: 'predicatesLab', title: 'the exact predicates' },
     { page: 'legibility-bounds', lab: 'boundsLab', title: 'the certified intervals' },
-    { page: '../index.html#replanLab', lab: 'replanLab', title: 'D* Lite against A* on the home page' }
+    { page: 'path-planning', lab: 'replanLab', title: 'D* Lite against A*' }
   ];
   var $ = function (id) { return document.getElementById(id); };
   function fire(el, type) { el.dispatchEvent(new Event(type, { bubbles: true })); }
@@ -90,7 +90,7 @@
     }
     var nx = TOUR[(here + 1) % TOUR.length], p = document.createElement('p'); p.className = 'lab-next';
     var href = nx.page.indexOf('/') >= 0 ? nx.page : nx.page + '.html#try';
-    p.innerHTML = '<span>Demo ' + (here + 1) + ' of ' + TOUR.length + '.</span> <a href="' + href + '">Next: ' + nx.title + ' &rarr;</a> <a href="../index.html#try">All eight</a>';
+    p.innerHTML = '<span>Demo ' + (here + 1) + ' of ' + TOUR.length + '.</span> <a href="' + href + '">Next: ' + nx.title + ' &rarr;</a> <a href="../work.html#try">All eight</a>';
     fig.parentNode.insertBefore(p, fig.nextSibling);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();

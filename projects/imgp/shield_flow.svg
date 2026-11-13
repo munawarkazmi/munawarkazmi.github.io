@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 470" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#81838B"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6E86E6"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FB8E46"/>
+    </marker>
+  </defs>
+  <rect width="980" height="470" fill="none"/>
+  <text x="490" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#E3E5ED">The shield's decision flow (as implemented in src/shield_main.cpp)</text>
+
+  <!-- LLM proposal -->
+  <rect x="30" y="70" width="180" height="70" rx="12" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="120" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#E3E5ED">LLM proposal</text>
+  <text x="120" y="122" text-anchor="middle" font-size="11.5" fill="#92949C">waypoint trajectory</text>
+
+  <!-- Gate -->
+  <rect x="270" y="70" width="250" height="70" rx="12" fill="#24262C"/>
+  <text x="395" y="98" text-anchor="middle" font-size="13.5" font-weight="700" fill="#DAE1FF">Gate</text>
+  <text x="395" y="119" text-anchor="middle" font-size="11.5" fill="#B9BBC3">verifier-safe AND ends at the goal?</text>
+
+  <!-- Forwarded -->
+  <rect x="740" y="70" width="210" height="70" rx="12" fill="#131728" stroke="#6E86E6" stroke-width="2"/>
+  <text x="845" y="98" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6E86E6">FORWARD to controller</text>
+  <text x="845" y="119" text-anchor="middle" font-size="11" fill="#92949C">forwarded_safe / recovered_from_*</text>
+
+  <!-- Fallback planner -->
+  <rect x="270" y="200" width="250" height="70" rx="12" fill="#1B1C20" stroke="#33343A" stroke-width="2"/>
+  <text x="395" y="228" text-anchor="middle" font-size="13.5" font-weight="700" fill="#E3E5ED">Classical fallback: A*</text>
+  <text x="395" y="249" text-anchor="middle" font-size="11.5" fill="#92949C">footprint-inflated fine-resolution grid</text>
+
+  <!-- Re-verify -->
+  <rect x="640" y="200" width="250" height="70" rx="12" fill="#24262C"/>
+  <text x="765" y="228" text-anchor="middle" font-size="13.5" font-weight="700" fill="#DAE1FF">Re-verify the recovery</text>
+  <text x="765" y="249" text-anchor="middle" font-size="11.5" fill="#B9BBC3">verifier + independent oracle + goal check</text>
+
+  <!-- Halt -->
+  <rect x="270" y="340" width="250" height="70" rx="12" fill="#1B1C20" stroke="#81838B" stroke-width="2"/>
+  <text x="395" y="368" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92949C">HALT - no safe action exists</text>
+  <text x="395" y="389" text-anchor="middle" font-size="11" fill="#8D8F97">halted_no_safe_path: decline, don't invent</text>
+
+  <!-- fallback_unsafe -->
+  <rect x="640" y="340" width="250" height="70" rx="12" fill="#28170B" stroke="#FB8E46" stroke-width="2"/>
+  <text x="765" y="368" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FB8E46">fallback_unsafe</text>
+  <text x="765" y="389" text-anchor="middle" font-size="11" fill="#FB8E46">the load-bearing cell: must be 0, CI fails</text>
+
+  <!-- arrows -->
+  <line x1="210" y1="105" x2="262" y2="105" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <line x1="520" y1="105" x2="732" y2="105" stroke="#6E86E6" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+  <text x="626" y="95" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6E86E6">both: pass</text>
+
+  <line x1="395" y1="140" x2="395" y2="192" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="330" y="170" text-anchor="middle" font-size="11.5" fill="#92949C">unsafe or off-goal</text>
+
+  <line x1="520" y1="235" x2="632" y2="235" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="576" y="225" text-anchor="middle" font-size="11.5" fill="#92949C">path found</text>
+
+  <path d="M 765 200 L 765 160 L 845 160 L 845 148" fill="none" stroke="#6E86E6" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+  <text x="808" y="178" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6E86E6">all three pass</text>
+
+  <line x1="395" y1="270" x2="395" y2="332" stroke="#81838B" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arr)"/>
+  <text x="330" y="305" text-anchor="middle" font-size="11.5" fill="#8D8F97">no path exists</text>
+
+  <line x1="765" y1="270" x2="765" y2="332" stroke="#FB8E46" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrRed)"/>
+  <text x="833" y="305" text-anchor="middle" font-size="11.5" fill="#FB8E46">any check fails</text>
+
+  <text x="490" y="450" text-anchor="middle" font-size="12" fill="#8D8F97">Design diagram - the outcome names are the pre-registered buckets; the counts live in the results, not here.</text>
+</svg>

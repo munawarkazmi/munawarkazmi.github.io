@@ -7,7 +7,7 @@
 <meta name="description" content="Deterministic C++ firmware for a commercial ESP32-CAM intrusion-detection prototype: block-difference motion detection with no ML and no vision libraries, CI-compiled for the target board.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/esp32-motion-detector.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="ESP32-CAM Motion Detector · Munawar Kazmi">
 <meta property="og:description" content="Deterministic C++ firmware for a commercial ESP32-CAM intrusion-detection prototype: block-difference motion detection with no ML and no vision libraries, CI-compiled for the target board.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og/esp32-motion-detector.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="grid" role="img" aria-label="A grid of cells lighting up as a figure walks across it."></canvas></div>
     <div class="eyebrow">Embedded C++ · ESP32 · Commercial Prototype</div>
     <p class="fact-line"><span>Contract for Muxtronics, sole firmware engineer</span><span>Jan to May 2025</span><span>deployed prototype</span></p>
     <h1>A watchman that <em>decides in-frame</em></h1>
@@ -117,16 +114,51 @@
   <section class="block">
     <h2>How it <em>works</em></h2>
     <figure>
-      <img width="980" height="300" src="img/pipeline.svg" alt="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" loading="lazy">
+      <svg class="diagram" role="img" aria-label="Pipeline diagram: ESP32-CAM frames are block-downsampled, a temporal difference makes the motion decision, and alerts travel over a LoRa mesh" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 300" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#81838B"/>
+    </marker>
+  </defs>
+  <rect width="980" height="300" fill="none"/>
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#E3E5ED">Detection pipeline: deterministic C++, no OpenCV, no ML runtime</text>
+
+  <rect x="30" y="90" width="165" height="105" rx="14" fill="#222329" stroke="#BEC6E7" stroke-width="2"/>
+  <text x="112" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">ESP32-CAM</text>
+  <text x="112" y="148" text-anchor="middle" font-size="12" fill="#92949C">OV2640 sensor</text>
+  <text x="112" y="166" text-anchor="middle" font-size="12" fill="#92949C">800 × 600 frames</text>
+
+  <rect x="240" y="90" width="175" height="105" rx="14" fill="#1B1C20" stroke="#33343A" stroke-width="2"/>
+  <text x="327" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Block downsample</text>
+  <text x="327" y="148" text-anchor="middle" font-size="12" fill="#92949C">800 × 600 → 16 × 12</text>
+  <text x="327" y="166" text-anchor="middle" font-size="12" fill="#92949C">mean-luma blocks</text>
+
+  <rect x="460" y="90" width="185" height="105" rx="14" fill="#1B1C20" stroke="#33343A" stroke-width="2"/>
+  <text x="552" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#E3E5ED">Motion decision</text>
+  <text x="552" y="148" text-anchor="middle" font-size="12" fill="#92949C">temporal difference</text>
+  <text x="552" y="166" text-anchor="middle" font-size="12" fill="#92949C">adaptive threshold</text>
+
+  <rect x="690" y="90" width="165" height="105" rx="14" fill="#24262C"/>
+  <text x="772" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#DAE1FF">LoRa mesh alert</text>
+  <text x="772" y="148" text-anchor="middle" font-size="12" fill="#B9BBC3">carries alerts off the device</text>
+  <text x="772" y="166" text-anchor="middle" font-size="12" fill="#8D8F97">firmware confidential</text>
+
+  <line x1="195" y1="142" x2="232" y2="142" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="415" y1="142" x2="452" y2="142" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="645" y1="142" x2="682" y2="142" stroke="#81838B" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <text x="490" y="245" text-anchor="middle" font-size="13.5" fill="#92949C">Deterministic block-difference detection - no ML, no external vision libraries</text>
+  <text x="490" y="272" text-anchor="middle" font-size="12.5" fill="#8D8F97">Commercial prototype, Muxtronics 2025</text>
+</svg>
       <figcaption>800&times;600 frames collapse into 16&times;12 mean-luminance blocks; a frame-to-frame relative difference against a tuned threshold makes the call. The proprietary mesh firmware remains confidential to Muxtronics; the detection firmware is public, and the device reports only what it measures at runtime: frames, detections, loop rate, free heap.</figcaption>
     </figure>
-    <p>A note on measurements. Earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong>. The repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and the reference from the Muxtronics CEO on the <a href="../index.html#references">home page</a>. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
+    <p>A note on measurements. Earlier versions of this page quoted field-trial accuracy figures that the repository could not substantiate, and they have been <strong>retracted</strong>. The repository documents the retraction. What stands behind the project instead: the public firmware, a live demo video, and the reference from the Muxtronics CEO on the <a href="../about.html#references">home page</a>. If field numbers are published in the future, they will come with the raw logs and the ground-truth method that produced them.</p>
   </section>
 
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/esp32-cam-motion-detector" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
@@ -135,5 +167,7 @@
 <script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

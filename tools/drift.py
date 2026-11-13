@@ -276,19 +276,19 @@ def _predicate_cases(repo: Path) -> int:
 #
 # `note` records a derivation where the site aggregates repo figures.
 CLAIMS = [
-    dict(label="tests and label proofs", site="index.html", shown="589",
+    dict(label="tests and label proofs", site="research.html", shown="589",
          repo="plan-failure-bench", pattern=r"\b589\b",
          enforced="that repo's CI collects the suite and fails the build unless "
                   "its README, paper and STATUS all quote the count"),
-    dict(label="instructions", site="index.html", shown=">60<",
+    dict(label="instructions", site="research.html", shown=">60<",
          repo="plan-failure-bench", fmt=">{}<", value=_pfb_instructions),
-    dict(label="complete runs in the grid", site="index.html", shown="18 runs",
+    dict(label="complete runs in the grid", site="research.html", shown="18 runs",
          repo="plan-failure-bench", fmt="{} runs", value=_pfb_runs),
 
-    dict(label="narrowest certified gap", site="index.html", shown="0.0064",
+    dict(label="narrowest certified gap", site="research.html", shown="0.0064",
          repo="legibility-bounds", fmt="{:.4f}",
          value=lambda r: min(x["bound"] - x["achieved"] for x in _suite(r))),
-    dict(label="widest certified gap", site="index.html", shown="0.0567",
+    dict(label="widest certified gap", site="research.html", shown="0.0567",
          repo="legibility-bounds", fmt="{:.4f}",
          value=lambda r: max(x["bound"] - x["achieved"] for x in _suite(r))),
     dict(label="construction beats local search by", site="projects/legibility-bounds.html", shown="0.1485",
@@ -296,34 +296,34 @@ CLAIMS = [
     dict(label="cases where construction wins", site="projects/legibility-bounds.html", shown="13 of 32",
          repo="legibility-bounds", value=_witness_wins),
 
-    dict(label="flawed proposals recovered", site="index.html", shown="38/38",
+    dict(label="flawed proposals recovered", site="work.html", shown="38/38",
          repo="llm-nav-shield", value=_shield_recovered,
          note="recovered_from_unsafe plus recovered_from_off_goal, over every "
               "qwen case that was not already safe"),
-    dict(label="no-safe-path cases halted", site="index.html", shown="10/10",
+    dict(label="no-safe-path cases halted", site="work.html", shown="10/10",
          repo="llm-nav-shield", value=_shield_halted),
 
-    dict(label="adversarial predicate cases", site="index.html", shown="657",
+    dict(label="adversarial predicate cases", site="work.html", shown="657",
          repo="exact-predicates", value=_predicate_cases,
          note="summed from the four corpora, which is all the summary states"),
 
-    dict(label="schema passes n of 40", site="index.html", shown="39 of 40",
+    dict(label="schema passes n of 40", site="work.html", shown="39 of 40",
          repo="toolcall-contract", value=_toolcall_schema_passes,
          note="what structure alone lets through: the calls the contract "
               "passes, plus the ones only the contract catches"),
 
-    dict(label="fuzzed replans vs Dijkstra", site="index.html", shown="185,237",
+    dict(label="fuzzed replans vs Dijkstra", site="work.html", shown="185,237",
          repo="ros2-dynamic-path-planning", value=_fuzz_replans,
          note="the fuzzer used to only print this; it now writes a summary and "
               "this reads it, which was the last claim here with no record"),
-    dict(label="D* Lite mean speedup", site="index.html", shown="4.3x",
+    dict(label="D* Lite mean speedup", site="work.html", shown="4.3x",
          repo="ros2-dynamic-path-planning", value=_dstar_speedup,
          note="rounded from the summary's 4.27x, as the site rounds it"),
 
-    dict(label="unsafe plans caught, both models", site="index.html", shown="35/35 &middot; 32/32",
+    dict(label="unsafe plans caught, both models", site="work.html", shown="35/35 &middot; 32/32",
          repo="ros2-llm-safety-verifier", value=_verifier_caught,
          note="caught over caught plus missed, per model, in the site's order"),
-    dict(label="constructed verifier cases", site="index.html", shown="2,071",
+    dict(label="constructed verifier cases", site="projects/llm-safety-verifier.html", shown="2,071",
          repo="ros2-llm-safety-verifier", value=_verifier_cases),
 ]
 

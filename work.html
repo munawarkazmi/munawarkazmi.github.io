@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work | Munawar Kazmi</title>
+<meta name="description" content="Eleven projects grouped by when the mistake gets caught, and eight demos that run in the browser, each checked against its repository.">
+<meta name="author" content="Munawar Kazmi">
+<meta name="theme-color" content="#08090b">
+<link rel="canonical" href="https://munawarkazmi.com/work.html">
+<meta property="og:title" content="Work | Munawar Kazmi">
+<meta property="og:description" content="Eleven projects grouped by when the mistake gets caught, and eight demos that run in the browser, each checked against its repository.">
+<meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://munawarkazmi.com/work.html">
+<meta property="og:site_name" content="Munawar Kazmi">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="stylesheet" href="assets/home-fonts.css">
+<style>body{margin:0}img{max-width:100%}</style><link rel="stylesheet" href="assets/home.css">
+</head>
+<body>
+<header class="plain"><nav class="wrap"><div class="inner"><a class="logo" href="./"><i></i>Munawar Kazmi</a><div class="links mono"><a href="work.html" aria-current="page" class="on">Work</a><a href="research.html">Research</a><a href="about.html">About</a><a href="./#contact">Contact</a><a class="link keep" href="files/Kazmi_Resume.pdf">Resume</a></div></div></nav></header><section class="phero wrap"><div class="live3"><canvas id="scene3" data-scene="work" role="img" aria-label="A scale model of a building floor with a refused route and a recovered route drawn in light."></canvas><div class="art"><img src="assets/home/p1.jpg" alt=""></div></div><div class="inner"><div class="kick mono">Work</div><h1>Everything I have built, by the <em>question it answers.</em></h1><p class="lede">A system that takes instructions from a language model can be wrong at three moments: while the robot moves, before it moves, and in what it was ever possible to ask of it. Every project has its code, its tests and its limits on its own page.</p></div></section><main><section class="sec wrap" style="padding-top:0"><div class="inner"><div class="stack"><div><div class="k mono">Robotics and software</div><p>C++20, Python, ROS2 (Nav2, plugin development), Git and CI/CD, Docker</p></div><div><div class="k mono">Simulation</div><p>Isaac Sim, MuJoCo, Gazebo, Unity, sim-to-real transfer</p></div><div><div class="k mono">AI and perception</div><p>PyTorch, TensorFlow, TensorRT, computer vision, LLM integration</p></div><div><div class="k mono">Hardware and embedded</div><p>JD humanoid, Unitree Go1, Jetson Nano, ESP32 and LoRa, bare-metal C/C++</p></div></div></div></section><section class="sec wrap" id="try"><div class="inner"><div class="kick mono">Try it</div><h2>Eight of these run here, <em>in your browser.</em></h2><p class="intro">Six are the project's own algorithm, ported line for line, and recompute the results committed in its repository; one serves the committed certified intervals and grades a score against them; one is a toy with the C++ core's costs. A test in this site's own repository checks each of the seven against its repository on every change.</p><div class="demos"><a class="demo rv" href="projects/llm-safety-verifier.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/verifier.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">1 · Safety verifier</span><h3>Draw a route. The verifier judges it.</h3><p>Lay waypoints on a real occupancy map, or load what two language models proposed, and the same checks that gate Nav2 say safe or rejected, with the waypoint that failed.</p><p class="chk">Reproduces all 80 recorded verdicts, two models on six maps</p></a><a class="demo rv" href="projects/llm-nav-shield.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/shield.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">2 · Navigation shield</span><h3>Watch a bad route get repaired, or halted.</h3><p>Verify the proposal, plan a recovery on the inflated grid, re-verify with both judges. Seal the goal and it halts rather than invent a path.</p><p class="chk">Reproduces 50 recorded decisions and 38 recovered paths waypoint for waypoint</p></a><a class="demo rv" href="projects/esp32-motion-detector.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/esp32.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">3 · ESP32-CAM firmware</span><h3>Wave at your camera. The firmware decides.</h3><p>The shipped downsampler and detector, running on your frames in this tab: 192 block means, the cells that changed, the alert line. Nothing leaves the browser.</p><p class="chk">The exact pipeline from the repository, with a synthetic scene if there is no camera</p></a><a class="demo rv" href="projects/plan-failure-bench.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/planner.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">4 · Plan checker</span><h3>Edit a robot's plan and watch where it breaks.</h3><p>Pick a trap, read what a model answered, then change the plan: skip a door, carry the knife into the nursery, and the checker names the step and the rule.</p><p class="chk">Reproduces all 1,350 recorded verdicts across four models</p></a><a class="demo rv" href="projects/toolcall-contract.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/contract.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">5 · Tool-call validator</span><h3>Break a tool call. See which layer catches it.</h3><p>Rename the tool, break the schema, point at an object that does not exist; the structural and the contract layer answer separately, as recorded.</p><p class="chk">Reproduces every recorded bucket and all 262 constructed cases</p></a><a class="demo rv" href="projects/exact-predicates.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/predicates.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">6 · Exact predicates</span><h3>Move a point by one ulp. Float lies. Exact does not.</h3><p>Adversarial cases from the committed corpus, with the floating-point and the exact predicate run side by side and the determinants shown.</p><p class="chk">Every corpus case: exact verdict as committed, float wrong where recorded</p></a><a class="demo rv" href="projects/legibility-bounds.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/bounds.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">7 · Certified intervals</span><h3>Type a planner's score. The band says what it means.</h3><p>Thirty-two certified intervals by world and budget: inside the band, below a trajectory that exists, or above a ceiling that nothing can cross.</p><p class="chk">Served data equals the committed suite row for row, zero violations</p></a><a class="demo rv" href="projects/path-planning.html#try"><span class="th" data-tilt="9"><img src="assets/home/demos/replan.jpg" alt="" loading="lazy" width="960" height="720"></span><span class="k mono">8 · D* Lite against A*</span><h3>Block the robot. Count what each planner redoes.</h3><p>A wall lands in the route; D* Lite repairs the plan it has, A* starts from nothing, and the cell counts sit side by side. Both checked against Dijkstra.</p><p class="chk">A toy with the C++ core's exact integer costs; not a repository result</p></a></div></div></section><section class="sec wrap" id="projects"><div class="inner"><div class="kick mono">All projects</div><h2>Grouped by when the mistake <em>gets caught.</em></h2><div class="grp"><h3>Catch it while the robot moves</h3><p>A route is proposed, by a planner or a language model, and something deterministic decides whether hardware may follow it.</p><div class="row rv"><div><a class="t" href="projects/llm-safety-verifier.html">ROS2 LLM safety verifier</a><span class="meta mono">2025 to 2026 · ROS2 · Nav2 · every proposal replayed in CI · <b>Live demo</b></span></div><p>A deterministic gate between LLM planners and Nav2. Collision, continuity and map-bounds checks reject hallucinated trajectories before a controller sees them. <a class="link" href="https://github.com/munawarkazmi/ros2-llm-safety-verifier">Code</a></p><div class="f"><b>35/35 &middot; 32/32</b><span>unsafe plans caught from two models, zero false positives</span></div></div><div class="row rv"><div><a class="t" href="projects/llm-nav-shield.html">llm-nav-shield</a><span class="meta mono">2026 · LLM plus a verified planner · safe autonomy · <b>Live demo</b></span></div><p>An LLM proposes a route, a deterministic verifier checks it, and a provably correct planner recovers a safe one. When no safe path exists it halts, in 10/10 such cases, and invents nothing. <a class="link" href="https://github.com/munawarkazmi/llm-nav-shield">Code</a></p><div class="f"><b>38/38</b><span>flawed proposals recovered, none unsafe forwarded</span></div></div><div class="row rv"><div><a class="t" href="projects/esp32-motion-detector.html">ESP32-CAM motion detector</a><span class="meta mono">2025 · Deployed · C++, ESP32, LoRa mesh · <b>Live demo</b></span></div><p>Deterministic firmware for a commercial intrusion-detection prototype, built under contract for Muxtronics. No ML and no vision libraries anywhere. <a class="link" href="https://github.com/munawarkazmi/esp32-cam-motion-detector">Code</a></p><div class="f"><b>16×12</b><span>decision grid distilled from 800×600 frames</span></div></div><div class="row rv"><div><a class="t" href="projects/path-planning.html">ROS2 deterministic planning</a><span class="meta mono">2025 to 2026 · C++20 · Nav2 plugins · CI-verified · <b>Live demo</b></span></div><p>A* and D* Lite as Nav2 plugins over a ROS-free core, validated against Dijkstra with exact integer arithmetic across 185,237 fuzzed replans. <a class="link" href="https://github.com/munawarkazmi/ros2-dynamic-path-planning">Code</a></p><div class="f"><b>4.3x</b><span>faster mean replanning with D* Lite when an obstacle blocks the path</span></div></div></div><div class="grp"><h3>Catch it before it runs</h3><p>The output exists as text or a plan. Is it well formed, does it keep its contract, and when it is wrong, can a machine say exactly where?</p><div class="row rv"><div><a class="t" href="projects/plan-failure-bench.html">plan-failure-bench</a><span class="meta mono">2026 · LLM planning · symbolic worlds · <b>Live demo</b></span></div><p>Every instruction either admits a valid plan or plants exactly one trap, and a deterministic checker scores each model reply with no human or LLM judge. <a class="link" href="https://github.com/munawarkazmi/plan-failure-bench">Code</a></p><div class="f"><b>1,350</b><span>committed model replies, each machine-scored and replayed on this site</span></div></div><div class="row rv"><div><a class="t" href="projects/toolcall-contract.html">toolcall-contract</a><span class="meta mono">2026 · LLM agents · Python · <b>Live demo</b></span></div><p>LLM tool calls that parse, type-check and validate, and still break the contract. A schema check, which is what most agent frameworks do, passes 39 of 40 of these calls. <a class="link" href="https://github.com/munawarkazmi/toolcall-contract">Code</a></p><div class="f"><b>32/40</b><span>pass the contract</span></div></div><div class="row rv"><div><a class="t" href="projects/exact-predicates.html">exact-predicates</a><span class="meta mono">2026 · C++ · numerical robustness · <b>Live demo</b></span></div><p>Geometric predicates that cannot be wrong, grown from a real D* Lite bug where two keys that should have been equal differed by the smallest step a double can take. Exactness costs about 2x here, not orders of magnitude. <a class="link" href="https://github.com/munawarkazmi/exact-predicates">Code</a></p><div class="f"><b>657</b><span>adversarial cases where float is wrong and exact is right</span></div></div></div><div class="grp"><h3>Know what was possible at all</h3><p>A benchmark measures what a planner achieved. These ask what any planner could have achieved, and whether a model knows the difference.</p><div class="row rv"><div><a class="t" href="projects/legibility-bounds.html">legibility-bounds</a><span class="meta mono">2026 · Motion planning · certified bounds · <b>Live demo</b></span></div><p>An upper bound on legibility over every admissible trajectory under a path cost budget, not only the ones somebody tried. <a class="link" href="https://github.com/munawarkazmi/legibility-bounds">Code</a></p><div class="f"><b>32/32</b><span>world and budget pairs certified, zero violations</span></div></div><div class="row rv"><div><a class="t" href="projects/legible-motion-bench.html">legible-motion-bench</a><span class="meta mono">2026 · LLM motion planning · pilot</span></div><p>Legibility against path cost and constraints, computed exactly. Three language models called 116 of 120 trajectories legible, including all 25 that were not physically possible. <a class="link" href="https://github.com/munawarkazmi/legible-motion-bench">Code</a></p><div class="f"><b>116/120</b><span>trajectories called legible by the models that proposed them</span></div></div></div><div class="grp"><h3>Built for people</h3><p>Software that other people depend on, and a study of how a robot should ask for help.</p><div class="row rv"><div><a class="t" href="projects/safina-portal.html">Safina Portal</a><span class="meta mono">2026 · In production · React, TypeScript, Supabase</span></div><p>A school management system that runs Safina International day to day: seven roles, prorated billing, payroll, and an append-only audit trail. I am the sole engineer. <a class="link" href="https://github.com/munawarkazmi/safina-portal-showcase">Showcase repo</a></p><div class="f"><b>33</b><span>database tables where every change is logged, with no way around it through the API</span></div></div><div class="row rv"><div><a class="t" href="projects/hri-companionship.html">Human-robot companionship study</a><span class="meta mono">2023 to 2025 · HRI · JD humanoid · MSc thesis</span></div><p>A sim-to-real pipeline on the JD humanoid so a gestural and a spoken condition could be delivered identically to 20 participants; under review at Robotics (MDPI). <a class="link" href="files/Kazmi_HRI_MSc_Thesis.pdf">Write-up (PDF)</a></p><div class="f"><b>95%</b><span>intent identified correctly from speech, 80% from gesture alone</span></div></div></div><div class="after"><p>Ten of these projects are also explained without the jargon, with the same numbers and the same stated limits. A side interest in numerical analysis lives there too: <a class="link" href="projects/degregorio-blowup.html">finite-time blowup in one-dimensional fluid models</a>.</p><span style="display:flex;gap:26px;flex-wrap:wrap"><a class="link" href="https://github.com/munawarkazmi">All code on GitHub</a><a class="link" href="projects/guides.html">Plain-language guides</a></span></div></div></section></main><section class="endcta wrap"><div class="inner"><div class="mono" style="color:var(--peri-t)">Next</div><h2 style="margin-top:16px">Want the reasoning <em>behind these?</em></h2><div class="mail"><code id="mail">hello@munawarkazmi.com</code><button type="button" id="copy">Copy</button><a class="link" href="https://calendar.app.google/UxzkoQkqBZefgQ2x5" target="_blank" rel="noopener">Book a 30-minute call</a></div></div></section>
+<footer class="wrap"><div class="inner mono"><span>© 2026 Munawar Kazmi</span><span><a href="work.html">Work</a> &nbsp;&nbsp; <a href="research.html">Research</a> &nbsp;&nbsp; <a href="about.html">About</a> &nbsp;&nbsp; <a href="projects/guides.html">Plain-language guides</a></span></div></footer><script>(function(){var $=function(i){return document.getElementById(i)};
+function copy(b,text,node){var done=function(){var t=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=t},1600)};var pick=function(){if(!node)return;var r=document.createRange();r.selectNodeContents(node);var s=getSelection();s.removeAllRanges();s.addRange(r)};try{navigator.clipboard.writeText(text).then(done,pick)}catch(e){pick()}}
+if($('copy'))$('copy').addEventListener('click',function(){copy(this,'hello@munawarkazmi.com',$('mail'))});
+[].forEach.call(document.querySelectorAll('[data-bib]'),function(b){b.addEventListener('click',function(){copy(b,b.getAttribute('data-bib'),b.previousElementSibling)})});
+var still=matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!still&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});[].forEach.call(document.querySelectorAll('.rv'),function(el){if(el.getBoundingClientRect().top>innerHeight*.92){el.classList.add('pre');io.observe(el)}})}
+})();</script><script src="assets/three.min.js"></script><script>/* Inner pages: a small real-time scene in each page header, and cursor tilt on pictures. */
+(function () {
+  'use strict';
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  /* ---- the top bar: it stays put, gains a backing once the page moves, and marks where you are ---- */
+  (function () {
+    var bar = document.querySelector('.pnav') || document.querySelector('nav'); if (!bar) return;
+    var links = [].slice.call(bar.querySelectorAll('.links a:not(.keep)')), here = location.pathname.split('/').pop() || 'index.html';
+    function mark(a) { links.forEach(function (l) { var on = l === a; l.classList.toggle('on', on); if (on) l.setAttribute('aria-current', l.getAttribute('href').charAt(0) === '#' ? 'location' : 'page'); else l.removeAttribute('aria-current'); }); }
+    var fixed = null;                                   /* a page that is itself a destination keeps its own link lit */
+    links.forEach(function (l) { var h = (l.getAttribute('href') || '').split('#')[0].split('/').pop(); if (h && h === here) fixed = l; });
+    if (!fixed && /\/projects\//.test(location.pathname)) links.forEach(function (l) { if (/work\.html$/.test(l.getAttribute('href'))) fixed = l; });
+    var spies = fixed ? [] : links.map(function (l) { var h = l.getAttribute('href') || ''; return h.charAt(0) === '#' && h.length > 1 ? { a: l, el: document.getElementById(h.slice(1)) } : null; }).filter(function (x) { return x && x.el; });
+    function tick() {
+      bar.classList.toggle('stuck', window.scrollY > 12);
+      if (fixed) { mark(fixed); return; }
+      var cur = null, mid = window.innerHeight * 0.45;
+      spies.forEach(function (sp) { var r = sp.el.getBoundingClientRect(); if (r.top < mid && r.bottom > mid * 0.4) cur = sp.a; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4 && spies.length) cur = spies[spies.length - 1].a;
+      mark(cur);
+    }
+    window.addEventListener('scroll', tick, { passive: true }); window.addEventListener('resize', tick); tick();
+  })();
+
+  /* ---- pictures and figures lean towards the cursor ---- */
+  if (!still && window.matchMedia && window.matchMedia('(hover:hover)').matches) {
+    [].forEach.call(document.querySelectorAll('[data-tilt]'), function (el) {
+      var k = parseFloat(el.getAttribute('data-tilt')) || 7;
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(900px) rotateY(' + (x * k).toFixed(2) + 'deg) rotateX(' + (-y * k).toFixed(2) + 'deg) translateZ(8px)';
+      });
+      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+    });
+  }
+
+
+
+
+  /* ---- the headline arrives a word at a time ---- */
+  var h1 = document.querySelector('.phero h1, .hero h1');
+  if (h1 && !still) {
+    h1.setAttribute('aria-label', h1.textContent.replace(/\s+/g, ' ').trim()); var wi = 0;
+    (function split(node) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) { var f = document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(function (w) { if (!w) return; if (/^\s+$/.test(w)) { f.appendChild(document.createTextNode(' ')); return; } var o = document.createElement('span'), i = document.createElement('span'); o.className = 'w'; o.setAttribute('aria-hidden', 'true'); i.textContent = w; i.style.setProperty('--i', wi++); o.appendChild(i); f.appendChild(o); }); node.replaceChild(f, n); }
+        else if (n.nodeType === 1 && n.tagName !== 'BR') split(n);
+      });
+    })(h1);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { h1.classList.add('in'); }); });
+  }
+
+  /* ---- headline numbers count up when they come into view ---- */
+  if (!still && 'IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (es) { es.forEach(function (e) {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      var el = e.target, full = el.textContent, parts = full.split(/(\d[\d,]*\.?\d*)/), t0c = performance.now();
+      (function tick(now) { var u = Math.min(1, (now - t0c) / 1100), k = 1 - Math.pow(1 - u, 3);
+        el.textContent = parts.map(function (p, i) { if (i % 2 === 0) return p; var dec = (p.split('.')[1] || '').length, v = parseFloat(p.replace(/,/g, '')) * k, s = v.toFixed(dec); return p.indexOf(',') >= 0 ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : s; }).join('');
+        if (u < 1) requestAnimationFrame(tick); else el.textContent = full; })(t0c);
+    }); }, { rootMargin: '0px 0px -12% 0px' });
+    [].forEach.call(document.querySelectorAll('.row .f b, .nums b'), function (el) { cio.observe(el); });
+  }
+
+  /* ---- a soft light follows the cursor across plates, and the main buttons lean towards it ---- */
+  if (!still && window.matchMedia && window.matchMedia('(hover:hover)').matches) {
+    [].forEach.call(document.querySelectorAll('section.block > figure, .fig-grid figure, .paper .fig, .refs figure, .demo .th'), function (el) {
+      el.classList.add('lit');
+      el.addEventListener('pointermove', function (e) { var r = el.getBoundingClientRect(); el.style.setProperty('--lx', (e.clientX - r.left) + 'px'); el.style.setProperty('--ly', (e.clientY - r.top) + 'px'); });
+      el.addEventListener('pointerleave', function () { el.style.setProperty('--lx', '-999px'); });
+    });
+    [].forEach.call(document.querySelectorAll('.btn-primary, .btn-secondary, .mail button'), function (el) {
+      el.addEventListener('pointermove', function (e) { var r = el.getBoundingClientRect(); el.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1) + 'px)'; });
+      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+    });
+  }
+
+  /* ---- folded detail opens when a link, a search or the printer needs what is inside it ---- */
+  function openFor(id) { var el = id && document.getElementById(id), d = el && el.closest && el.closest('details.more'); if (d) { d.open = true; el.scrollIntoView(); } }
+  window.addEventListener('hashchange', function () { openFor(location.hash.slice(1)); }); openFor(location.hash.slice(1));
+  window.addEventListener('beforeprint', function () { [].forEach.call(document.querySelectorAll('details.more'), function (d) { d.open = true; }); });
+
+  /* ---- the rail down the left edge: how far along the page you are ---- */
+  var rail = document.createElement('div'); rail.className = 'rail'; rail.setAttribute('aria-hidden', 'true'); rail.innerHTML = '<i></i><b></b><span></span>'; document.body.appendChild(rail);
+  var railLabel = rail.lastChild, marks = [].slice.call(document.querySelectorAll('section[id]'));
+  function prog() {
+    var m = document.documentElement.scrollHeight - window.innerHeight, p = m > 0 ? Math.min(1, window.scrollY / m) : 0, name = '';
+    rail.style.setProperty('--p', p.toFixed(4));
+    for (var i = 0; i < marks.length; i++) if (marks[i].getBoundingClientRect().top < window.innerHeight * 0.5) name = marks[i].id;
+    railLabel.textContent = name.replace(/-/g, ' ').toUpperCase();
+  }
+  window.addEventListener('scroll', prog, { passive: true }); window.addEventListener('resize', prog); prog();
+
+  /* ---- figures and tables on project pages rise into place ---- */
+  if (!still && 'IntersectionObserver' in window) {
+    var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('low'); rio.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    [].forEach.call(document.querySelectorAll('section.block > figure, section.block > .fig-grid, section.block > .data-table-scroll'), function (el) { if (el.getBoundingClientRect().top > window.innerHeight * 0.95) { el.classList.add('rise', 'low'); rio.observe(el); } });
+  }
+
+  var T = window.THREE; if (!T) return;
+  [].forEach.call(document.querySelectorAll('canvas[data-scene]'), function (cv) {   /* one scene per canvas */
+  var inset = cv.hasAttribute('data-inset');
+  var q = /[?&]t=([\d.]+)/.exec(location.search), FIX = q ? parseFloat(q[1]) : -1;
+  var kind = cv.getAttribute('data-scene'), box = cv.parentNode, renderer;
+  try { renderer = new T.WebGLRenderer({ canvas: cv, antialias: true, alpha: false }); } catch (e) { return; }
+  if (!renderer.getContext()) return;
+  box.classList.add('live');
+  renderer.setClearColor(0x08090b, 1); renderer.outputEncoding = T.sRGBEncoding;
+  var scene = new T.Scene(); scene.fog = new T.Fog(0x08090b, 7, 19);
+  var cam = new T.PerspectiveCamera(34, 1, 0.1, 60);
+  var PERI = 0x7b93ff, PT = 0xcfd8ff, ORG = 0xff8a3d, WH = 0xf4f3ef;
+
+  function tex(w, h, paint, rep) { var c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'), w, h); var t = new T.CanvasTexture(c); if (rep) t.wrapS = t.wrapT = T.RepeatWrapping; t.encoding = T.sRGBEncoding; return t; }
+  var tHalo = tex(4, 128, function (g, w, h) { var gr = g.createLinearGradient(0, 0, 0, h); for (var i = 0; i <= 16; i++) { var x = i / 16 * 2 - 1; gr.addColorStop(i / 16, 'rgba(255,255,255,' + Math.exp(-x * x * 7).toFixed(3) + ')'); } g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  var tBlob = tex(128, 128, function (g, w) { var gr = g.createRadialGradient(w / 2, w / 2, 0, w / 2, w / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.45, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, w); });
+  var tRing = tex(256, 256, function (g, w) { var gr = g.createRadialGradient(w / 2, w / 2, 0, w / 2, w / 2, w / 2); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.42, 'rgba(255,255,255,.05)'); gr.addColorStop(0.62, 'rgba(255,255,255,.75)'); gr.addColorStop(0.8, 'rgba(255,255,255,.08)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, w); });
+  var tFloor = tex(256, 256, function (g, w) { var d = g.createImageData(w, w); for (var i = 0; i < w * w; i++) { var v = 205 + Math.random() * 50; d.data[i * 4] = d.data[i * 4 + 1] = d.data[i * 4 + 2] = v; d.data[i * 4 + 3] = 255; } g.putImageData(d, 0, 0); }, true);
+  tFloor.repeat.set(26, 26);
+
+  var floor = new T.Mesh(new T.PlaneGeometry(70, 70), new T.MeshStandardMaterial({ color: 0x16171d, roughness: 0.78, metalness: 0.05, map: tFloor }));
+  floor.rotation.x = -Math.PI / 2; scene.add(floor);
+  scene.add(new T.HemisphereLight(0xc6ccdf, 0x050506, 0.34));
+  var key = new T.SpotLight(0xfff4e6, 1.9, 26, 0.6, 1, 1.2); key.position.set(0.5, 7.5, 1); scene.add(key); scene.add(key.target);
+  var rim = new T.DirectionalLight(0x8fa3ff, 0.55); rim.position.set(-4, 3, -6); scene.add(rim);
+
+  function decal(map, color, opacity, additive) { return new T.MeshBasicMaterial({ map: map || null, color: color, transparent: true, opacity: opacity, depthWrite: false, blending: additive === false ? T.NormalBlending : T.AdditiveBlending, side: T.DoubleSide, fog: false }); }
+  function flat(size, mat, y, x, z) { var m = new T.Mesh(new T.PlaneGeometry(size, size), mat); m.rotation.x = -Math.PI / 2; m.position.set(x || 0, y, z || 0); scene.add(m); return m; }
+  function smooth(pts, n) { return new T.CatmullRomCurve3(pts.map(function (p) { return new T.Vector3(p[0], 0, p[1]); }), false, 'centripetal').getSpacedPoints(n || 160).map(function (v) { return [v.x, v.z]; }); }
+  function straight(pts, n) { var out = [], i, j, tot = 0, L = []; for (i = 0; i < pts.length - 1; i++) { L.push(Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1])); tot += L[i]; } for (i = 0; i < pts.length - 1; i++) { var k = Math.max(2, Math.round((n || 160) * L[i] / tot)); for (j = 0; j < k; j++) out.push([pts[i][0] + (pts[i + 1][0] - pts[i][0]) * j / k, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * j / k]); } out.push(pts[pts.length - 1]); return out; }
+  function ribbon(p, width, y, dash) {
+    var n = p.length, pos = [], uv = [], h = width / 2, L = [], R = [], i;
+    for (i = 0; i < n; i++) { var a = p[Math.max(0, i - 1)], b = p[Math.min(n - 1, i + 1)], dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz) || 1, nx = -dz / l, nz = dx / l; L.push([p[i][0] + nx * h, p[i][1] + nz * h]); R.push([p[i][0] - nx * h, p[i][1] - nz * h]); }
+    for (i = 0; i < n - 1; i++) { var on = !dash || (i % dash[1]) < dash[0], q = on ? [L[i], R[i], L[i + 1], R[i], R[i + 1], L[i + 1]] : [L[i], L[i], L[i], L[i], L[i], L[i]], vs = [0, 1, 0, 1, 1, 0]; for (var j = 0; j < 6; j++) { pos.push(q[j][0], y, q[j][1]); uv.push(i / (n - 1), vs[j]); } }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2)); return g;
+  }
+  function Line(pts, color, o) {
+    o = o || {}; this.pts = pts; this.n = pts.length - 1;
+    this.core = new T.Mesh(ribbon(pts, o.w || 0.03, o.y || 0.012, o.dash), decal(null, o.core || color, o.op === undefined ? 1 : o.op)); this.core.frustumCulled = false; scene.add(this.core);
+    if (o.halo !== 0) { this.halo = new T.Mesh(ribbon(pts, o.hw || 0.34, (o.y || 0.012) - 0.003), decal(tHalo, color, o.halo || 0.5)); this.halo.frustumCulled = false; scene.add(this.halo); }
+    this.show(o.full ? 1 : 0);
+  }
+  Line.prototype.show = function (u) { var b = Math.round(Math.max(0, Math.min(1, u)) * this.n); this.core.visible = b > 0; this.core.geometry.setDrawRange(0, b * 6); if (this.halo) { this.halo.visible = b > 0; this.halo.geometry.setDrawRange(0, b * 6); } };
+  Line.prototype.at = function (u) { var f = Math.max(0, Math.min(1, u)) * this.n, i = Math.min(this.n - 1, Math.floor(f)), t = f - i, a = this.pts[i], b = this.pts[i + 1]; return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, Math.atan2(b[1] - a[1], b[0] - a[0])]; };
+  function goal(x, z, color, bright) {
+    var g = new T.Group();
+    var ring = new T.Mesh(new T.TorusGeometry(0.2, bright ? 0.011 : 0.008, 10, 72), new T.MeshBasicMaterial({ color: bright ? PT : WH, transparent: true, opacity: bright ? 1 : 0.6, fog: false })); ring.rotation.x = Math.PI / 2; ring.position.y = 0.012; g.add(ring);
+    var gl = new T.Mesh(new T.PlaneGeometry(1.25, 1.25), decal(tRing, color, bright ? 0.95 : 0.22)); gl.rotation.x = -Math.PI / 2; gl.position.y = 0.006; g.add(gl);
+    var post = new T.Mesh(new T.CylinderGeometry(0.008, 0.008, 0.95, 10), new T.MeshStandardMaterial({ color: 0x0b0b0d, roughness: 0.5 })); post.position.set(0.25, 0.475, -0.14); g.add(post);
+    var tip = new T.Mesh(new T.SphereGeometry(0.024, 16, 12), new T.MeshBasicMaterial({ color: bright ? PT : WH, fog: false })); tip.position.set(0.25, 0.97, -0.14); g.add(tip);
+    g.position.set(x, 0, z); scene.add(g); g.glow = gl; return g;
+  }
+  var wallMat = new T.MeshStandardMaterial({ color: 0x9a9da8, roughness: 0.6, metalness: 0.02 }), crateMat = new T.MeshStandardMaterial({ color: 0x8a6a4c, roughness: 0.8 });
+  function wall(x1, z1, x2, z2, h, mat) { var len = Math.hypot(x2 - x1, z2 - z1), m = new T.Mesh(new T.BoxGeometry(len + 0.07, h || 0.42, 0.07), mat || wallMat); m.position.set((x1 + x2) / 2, (h || 0.42) / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1); scene.add(m); return m; }
+  function crate(x, z, s) { var m = new T.Mesh(new T.BoxGeometry(s, s * 0.8, s), crateMat); m.position.set(x, s * 0.4, z); m.rotation.y = 0.3; scene.add(m); }
+
+  /* the robot, the same model as on the home page */
+  var bot = new T.Group(), dark = new T.MeshStandardMaterial({ color: 0x15161a, roughness: 0.45, metalness: 0.35 }), shell = new T.MeshStandardMaterial({ color: 0xd9dbe2, roughness: 0.32, metalness: 0.15 });
+  function part(geo, mat, y) { var m = new T.Mesh(geo, mat); m.position.y = y; bot.add(m); return m; }
+  part(new T.CylinderGeometry(0.19, 0.2, 0.06, 56), dark, 0.04);
+  part(new T.CylinderGeometry(0.196, 0.196, 0.014, 56), new T.MeshBasicMaterial({ color: WH, fog: false }), 0.077);
+  part(new T.CylinderGeometry(0.178, 0.19, 0.075, 56), shell, 0.122);
+  part(new T.CylinderGeometry(0.15, 0.178, 0.016, 56), shell, 0.167);
+  part(new T.CylinderGeometry(0.062, 0.066, 0.05, 32), dark, 0.2);
+  part(new T.CylinderGeometry(0.064, 0.064, 0.008, 32), new T.MeshBasicMaterial({ color: PERI, fog: false }), 0.205);
+  var eye = part(new T.BoxGeometry(0.02, 0.022, 0.13), new T.MeshBasicMaterial({ color: PT, fog: false }), 0.125); eye.position.x = 0.181;
+  var nose = new T.Mesh(new T.PlaneGeometry(0.5, 0.34), decal(tBlob, PERI, 0.55)); nose.rotation.x = -Math.PI / 2; nose.position.set(0.36, 0.007, 0); bot.add(nose);
+  scene.add(bot);
+  var shadow = flat(0.95, decal(tBlob, 0x000000, 0.8, false), 0.0025), under = flat(0.9, decal(tBlob, WH, 0.16), 0.005);
+  function place(p) { bot.position.set(p[0], 0, p[1]); bot.rotation.y = -p[2]; shadow.position.x = under.position.x = p[0]; shadow.position.z = under.position.z = p[1]; }
+
+
+  /* ---- other robots: original stylised models, built from primitives like the wheeled base ---- */
+  function mk(geo, mat, x, y, z, parent) { var m = new T.Mesh(geo, mat); m.position.set(x || 0, y || 0, z || 0); (parent || scene).add(m); return m; }
+  var glowP = new T.MeshBasicMaterial({ color: PT, fog: false }), glowO = new T.MeshBasicMaterial({ color: ORG, fog: false });
+  function humanoid() {                  /* a small desktop humanoid, about knee height */
+    var g = new T.Group(), k = 1;
+    [-0.09, 0.09].forEach(function (z) {
+      mk(new T.BoxGeometry(0.17, 0.045, 0.1), dark, 0.025, 0.022, z, g);
+      mk(new T.CylinderGeometry(0.034, 0.038, 0.2, 16), shell, 0, 0.145, z, g);
+      mk(new T.SphereGeometry(0.043, 16, 12), dark, 0, 0.255, z, g);
+      mk(new T.CylinderGeometry(0.04, 0.036, 0.19, 16), shell, 0, 0.36, z, g);
+    });
+    mk(new T.BoxGeometry(0.15, 0.09, 0.26), dark, 0, 0.49, 0, g);
+    mk(new T.BoxGeometry(0.19, 0.27, 0.3), shell, 0, 0.665, 0, g);
+    mk(new T.BoxGeometry(0.012, 0.1, 0.14), glowP, 0.097, 0.7, 0, g);
+    mk(new T.CylinderGeometry(0.035, 0.035, 0.05, 16), dark, 0, 0.82, 0, g);
+    var head = new T.Group(); head.position.y = 0.93; g.add(head);
+    mk(new T.BoxGeometry(0.19, 0.17, 0.23), shell, 0, 0, 0, head);
+    mk(new T.BoxGeometry(0.02, 0.085, 0.19), dark, 0.09, 0.005, 0, head);
+    [-0.05, 0.05].forEach(function (z) { mk(new T.SphereGeometry(0.018, 12, 10), glowP, 0.101, 0.008, z, head); });
+    g.arms = [-1, 1].map(function (sd) {
+      var sh = new T.Group(); sh.position.set(0, 0.76, sd * 0.185); g.add(sh);
+      mk(new T.SphereGeometry(0.046, 16, 12), dark, 0, 0, 0, sh);
+      mk(new T.CylinderGeometry(0.03, 0.028, 0.17, 14), shell, 0, -0.1, 0, sh);
+      var el = new T.Group(); el.position.y = -0.2; sh.add(el);
+      mk(new T.SphereGeometry(0.034, 14, 10), dark, 0, 0, 0, el);
+      mk(new T.CylinderGeometry(0.027, 0.024, 0.16, 14), shell, 0, -0.095, 0, el);
+      mk(new T.SphereGeometry(0.034, 14, 10), dark, 0, -0.19, 0, el);
+      return { sh: sh, el: el };
+    });
+    g.head = head;
+    g.pose = function (now, gesture) {   /* idle sway; with gesture, the right arm points and the head follows */
+      var a = Math.sin(now / 900) * 0.06, r = g.arms[1], l = g.arms[0];
+      l.sh.rotation.z = 0.08 + a; l.el.rotation.z = -0.15;
+      r.sh.rotation.z = -0.08 - gesture * 1.75 + a * (1 - gesture); r.sh.rotation.x = gesture * 0.25; r.el.rotation.z = -0.15 - gesture * 0.2 * Math.sin(now / 260);
+      head.rotation.y = gesture * -0.35 + Math.sin(now / 1700) * 0.12;
+    };
+    return g;
+  }
+  function quadruped() {                 /* a four-legged walker */
+    var g = new T.Group(), body = new T.Group(); body.position.y = 0.36; g.add(body);
+    mk(new T.BoxGeometry(0.62, 0.11, 0.2), shell, 0, 0.02, 0, body);
+    mk(new T.BoxGeometry(0.5, 0.05, 0.16), dark, 0, -0.05, 0, body);
+    mk(new T.BoxGeometry(0.13, 0.11, 0.16), dark, 0.36, 0.02, 0, body);
+    mk(new T.BoxGeometry(0.012, 0.03, 0.12), glowP, 0.428, 0.035, 0, body);
+    mk(new T.BoxGeometry(0.2, 0.012, 0.012), glowP, 0, 0.078, 0, body);
+    g.legs = [[0.24, 0.13], [0.24, -0.13], [-0.24, 0.13], [-0.24, -0.13]].map(function (q, i) {
+      var hip = new T.Group(); hip.position.set(q[0], -0.02, q[1]); body.add(hip);
+      mk(new T.SphereGeometry(0.05, 16, 12), dark, 0, 0, 0, hip);
+      mk(new T.BoxGeometry(0.055, 0.2, 0.045), shell, 0, -0.1, 0, hip);
+      var knee = new T.Group(); knee.position.y = -0.2; hip.add(knee);
+      mk(new T.SphereGeometry(0.032, 14, 10), dark, 0, 0, 0, knee);
+      mk(new T.CylinderGeometry(0.02, 0.016, 0.19, 12), dark, 0, -0.095, 0, knee);
+      mk(new T.SphereGeometry(0.028, 14, 10), dark, 0, -0.19, 0, knee);
+      return { hip: hip, knee: knee, ph: (i === 0 || i === 3) ? 0 : Math.PI };
+    });
+    g.pose = function (now) {            /* a trot: diagonal pairs move together */
+      var w = now / 190;
+      g.legs.forEach(function (L) { var sw = Math.sin(w + L.ph), lift = Math.max(0, Math.cos(w + L.ph)); L.hip.rotation.z = 0.55 + sw * 0.32; L.knee.rotation.z = -1.1 - lift * 0.5; });
+      body.position.y = 0.345 + 0.008 * Math.sin(w * 2); body.rotation.x = 0.02 * Math.sin(w);
+    };
+    return g;
+  }
+  function camnode() {                   /* a camera board on a stand, with its radio antenna */
+    var g = new T.Group(), board = new T.Group(); board.position.y = 0.5; board.rotation.z = -0.12; g.add(board);
+    mk(new T.CylinderGeometry(0.16, 0.19, 0.03, 32), dark, 0, 0.015, 0, g);
+    mk(new T.CylinderGeometry(0.014, 0.014, 0.36, 10), dark, -0.04, 0.2, 0, g);
+    mk(new T.BoxGeometry(0.03, 0.42, 0.3), new T.MeshStandardMaterial({ color: 0x1b2a44, roughness: 0.5, metalness: 0.2 }), 0, 0, 0, board);
+    mk(new T.BoxGeometry(0.03, 0.13, 0.13), dark, 0.03, 0.09, 0, board);
+    var lens = mk(new T.CylinderGeometry(0.045, 0.05, 0.06, 24), dark, 0.07, 0.09, 0, board); lens.rotation.z = Math.PI / 2;
+    var glass = mk(new T.CylinderGeometry(0.03, 0.03, 0.005, 24), glowP, 0.102, 0.09, 0, board); glass.rotation.z = Math.PI / 2;
+    mk(new T.BoxGeometry(0.02, 0.11, 0.16), shell, 0.025, -0.1, 0, board);
+    mk(new T.BoxGeometry(0.012, 0.03, 0.03), new T.MeshStandardMaterial({ color: 0xb9a36a, roughness: 0.4, metalness: 0.6 }), 0.02, -0.18, 0.11, board);
+    g.led = mk(new T.SphereGeometry(0.014, 10, 8), glowO, 0.02, 0.18, -0.11, board);
+    mk(new T.CylinderGeometry(0.006, 0.006, 0.34, 8), dark, -0.02, 0.36, 0.12, board);
+    mk(new T.SphereGeometry(0.012, 8, 8), dark, -0.02, 0.53, 0.12, board);
+    var cone = new T.Mesh(new T.ConeGeometry(0.75, 1.5, 32, 1, true), decal(null, PERI, 0.07)); cone.rotation.z = Math.PI / 2; cone.position.set(0.85, 0.09, 0); board.add(cone);
+    g.pose = function (now) { var on = Math.sin(now / 1500) > 0.55; g.led.visible = on; cone.material.opacity = on ? 0.13 : 0.05; glass.material.color.setHex(on ? 0xffffff : PT); };
+    return g;
+  }
+  function wheeled() {                   /* a copy of the wheeled base, for the turntable */
+    var g = bot.clone(true); g.visible = true; g.pose = function () {}; return g;
+  }
+
+  /* ---- the scenes. Each sets step(t), with t running 0..1 over its loop ---- */
+  var step, LOOP = 11000, eyeAt = [0.2, 4.9, 6.2], lookAt = [0, 0, 0], lookY = 0, continuous = false, pose = null, zoom = 1;
+  function seg(t, a, b) { var u = Math.max(0, Math.min(1, (t - a) / (b - a))); return u * u * (3 - 2 * u); }
+  function noBot() { bot.visible = shadow.visible = under.visible = false; }
+  function startDot(x, z) { flat(0.5, decal(tBlob, WH, 0.25), 0.004, x, z); }
+  function stopRing(x, z) { var r = new T.Mesh(new T.TorusGeometry(0.13, 0.012, 8, 40), new T.MeshBasicMaterial({ color: ORG, fog: false })); r.rotation.x = Math.PI / 2; r.position.set(x, 0.014, z); scene.add(r); var g = flat(0.9, decal(tRing, ORG, 0.8), 0.006, x, z); return function (k) { r.visible = g.visible = k > 0; r.scale.setScalar(0.6 + 0.4 * k); g.material.opacity = 0.8 * k; }; }
+  function rooms() { wall(-3, -1.9, 3, -1.9); wall(-3, 1.9, 3, 1.9); wall(-3, -1.9, -3, 1.9); wall(3, -1.9, 3, 1.9); wall(-0.9, -1.9, -0.9, 0.5); wall(0.9, 1.9, 0.9, -0.4); wall(0.9, -1.9, 0.9, -1.25); crate(-1.9, -1.2, 0.3); crate(2.3, 1.2, 0.34); crate(0.1, 1.35, 0.26); }
+  function glowBox(w, h, d, color) { return new T.Mesh(new T.BoxGeometry(w, h, d), new T.MeshBasicMaterial({ color: color, fog: false })); }
+  var S = {};
+
+  S.work = function (verifyOnly) {       /* a proposal is refused at a wall; a verified route goes round */
+    rooms();
+    var bad = new Line(straight([[-2.2, 0.9], [-0.95, -0.3]], 40), ORG, { dash: [3, 6], core: 0xffb27a, halo: 0.45, w: 0.034 });
+    var ghost = new Line(straight([[-0.85, -0.4], [2.2, -1.1]], 60), ORG, { dash: [2, 6], core: 0xffb27a, halo: 0, op: 0.28, w: 0.022 });
+    var way = [[-2.2, 0.9], [-1.5, 1.25], [-0.5, 1.2], [0.05, 0.4], [0.3, -0.7], [0.9, -0.83], [1.6, -0.9], [2.2, -1.1]];
+    var good = new Line(verifyOnly ? straight(way, 200) : smooth(way), PERI, { core: PT });
+    if (verifyOnly) way.forEach(function (p) { var d = new T.Mesh(new T.SphereGeometry(0.035, 12, 10), new T.MeshBasicMaterial({ color: PT, fog: false })); d.position.set(p[0], 0.03, p[1]); scene.add(d); });
+    var stop = stopRing(-0.98, -0.27), g1 = goal(2.2, -1.1, PERI, true); startDot(-2.2, 0.9);
+    step = function (t) {
+      bad.show(seg(t, 0.04, 0.2)); ghost.show(seg(t, 0.2, 0.3)); stop(seg(t, 0.2, 0.26));
+      var u = seg(t, 0.32, 0.86); good.show(u); place(good.at(u)); g1.glow.material.opacity = 0.5 + 0.45 * seg(t, 0.82, 0.9);
+    };
+  };
+  S.verify = function () { S.work(true); };
+  S.planfail = function () {             /* the plan walks into a locked door, and the checker names the step */
+    rooms();
+    var door = glowBox(0.06, 0.4, 0.85, ORG); door.position.set(0.9, 0.2, -0.825); scene.add(door);
+    var plan = new Line(smooth([[-2.2, -0.9], [-1.6, 0.4], [-0.9, 1.2], [-0.2, 0.9], [0.3, -0.3], [0.62, -0.8]]), PERI, { core: PT });
+    var ghost = new Line(straight([[0.7, -0.82], [2.2, -1.1]], 50), ORG, { dash: [2, 6], core: 0xffb27a, halo: 0, op: 0.4, w: 0.022 });
+    var stop = stopRing(0.62, -0.8); goal(2.2, -1.1, WH, false); startDot(-2.2, -0.9);
+    step = function (t) { var u = seg(t, 0.06, 0.6); plan.show(u); place(plan.at(u)); var k = seg(t, 0.6, 0.68); stop(k); ghost.show(seg(t, 0.64, 0.8)); door.material.color.setHex(k > 0.5 ? 0xffb27a : ORG); };
+  };
+  S.replan = function () {               /* a block lands on the route; the plan is repaired from where the robot is */
+    wall(-1.4, -1.6, -1.4, -0.3); wall(1.2, 0.5, 1.2, 1.7); crate(-2.1, 1.2, 0.3);
+    var p1 = smooth([[-2.7, 0.3], [-1.2, 0.35], [0.3, 0.0], [1.4, -0.3], [2.6, -0.6]], 200), plan = new Line(p1, WH, { core: WH, op: 0.3, halo: 0, w: 0.016, y: 0.009 }), lit = new Line(p1, PERI, { core: PT });
+    var from = lit.at(0.42), fix = new Line(smooth([[from[0], from[1]], [0.1, -0.55], [0.75, -1.2], [1.6, -1.05], [2.6, -0.6]], 140), PERI, { core: PT });
+    var blk = new T.Mesh(new T.BoxGeometry(0.55, 0.5, 0.9), new T.MeshStandardMaterial({ color: 0x9a9da8, roughness: 0.6 })); blk.position.set(0.85, 3, -0.15); scene.add(blk);
+    var stop = stopRing(0.85, -0.15), g1 = goal(2.6, -0.6, PERI, true); startDot(-2.7, 0.3);
+    step = function (t) {
+      plan.show(seg(t, 0.02, 0.12)); var u = seg(t, 0.1, 0.4) * 0.42; lit.show(u);
+      var f = seg(t, 0.3, 0.4); blk.position.y = 0.25 + (1 - f * f) * 3.2; blk.visible = t > 0.28; stop(seg(t, 0.39, 0.44) * (1 - seg(t, 0.6, 0.7)));
+      var v = seg(t, 0.46, 0.88); fix.show(v); place(v > 0 ? fix.at(v) : lit.at(u)); g1.glow.material.opacity = 0.5 + 0.45 * seg(t, 0.84, 0.9);
+    };
+  };
+  S.research = function () {             /* many candidate paths to one goal; one of them tells a watcher early */
+    wall(-0.2, -0.75, -0.2, 0.75, 0.5); eyeAt = [0.2, 4.5, 6.3];
+    var S0 = [-2.6, 0.2], A = [2.4, -1.15], B = [2.4, 1.35], fans = [];
+    [-1.75, -1.45, -1.2, 1.35, 1.75].forEach(function (c) { fans.push(new Line(smooth([S0, [-1.3, c * 0.55], [-0.2, c], [1.2, c * 0.8 + A[1] * 0.2], A]), WH, { core: WH, op: 0.34, halo: 0, w: 0.014, y: 0.009 })); });
+    var best = new Line(smooth([S0, [-1.5, -0.85], [-0.2, -1.55], [1.3, -1.5], A]), PERI, { core: PT });
+    var gA = goal(A[0], A[1], PERI, true); goal(B[0], B[1], WH, false); startDot(S0[0], S0[1]);
+    step = function (t) { fans.forEach(function (f, i) { f.show(seg(t, 0.03 + i * 0.03, 0.24 + i * 0.03)); }); var u = seg(t, 0.3, 0.86); best.show(u); place(best.at(u)); gA.glow.material.opacity = 0.35 + 0.6 * seg(t, 0.36, 0.6); };
+  };
+  S.legible = function () {              /* the direct path keeps a watcher guessing; the curved one commits early */
+    eyeAt = [0.2, 4.5, 6.3];
+    var S0 = [-2.6, 0.1], A = [2.3, -1.0], B = [2.3, 1.2];
+    var direct = new Line(straight([S0, A], 120), WH, { core: WH, op: 0.4, halo: 0, w: 0.016, y: 0.009, dash: [3, 5] });
+    var arc = new Line(smooth([S0, [-1.4, -0.75], [0.2, -1.45], [1.5, -1.35], A]), PERI, { core: PT });
+    var gA = goal(A[0], A[1], PERI, true), gB = goal(B[0], B[1], WH, false); startDot(S0[0], S0[1]);
+    step = function (t) { direct.show(seg(t, 0.03, 0.2)); var u = seg(t, 0.24, 0.86); arc.show(u); place(arc.at(u)); gA.glow.material.opacity = 0.3 + 0.65 * seg(t, 0.3, 0.5); gB.glow.material.opacity = 0.22 * (1 - seg(t, 0.3, 0.5)); };
+  };
+  S.gates = function () {                /* a call passes two layers and is stopped at the third */
+    var xs = [-1.3, 0.1, 1.5], gs = xs.map(function (x) { var g = new T.Group(), m = new T.MeshBasicMaterial({ color: 0x5b5f6b, fog: false }); [[-0.55, 0.4, 0.04, 0.8, 0.04], [0.55, 0.4, 0.04, 0.8, 0.04], [0, 0.8, 0.04, 0.04, 1.14]].forEach(function (b) { var q = new T.Mesh(new T.BoxGeometry(b[2], b[3], b[4]), m); q.position.set(0, b[1], b[0]); g.add(q); }); g.position.x = x; scene.add(g); var pad = flat(1.5, decal(tBlob, PERI, 0), 0.004, x, 0); return { m: m, pad: pad }; });
+    var path = new Line(straight([[-2.8, 0], [1.2, 0]], 160), PERI, { core: PT }), ghost = new Line(straight([[1.6, 0], [2.9, 0]], 40), ORG, { dash: [2, 6], core: 0xffb27a, halo: 0, op: 0.4, w: 0.022 });
+    var stop = stopRing(1.2, 0); startDot(-2.8, 0); var col = new T.Color();
+    step = function (t) {
+      var u = seg(t, 0.06, 0.62); path.show(u); var p = path.at(u); place(p);
+      gs.forEach(function (g, i) { var k = seg(p[0], xs[i] - 0.5, xs[i] - 0.1), last = i === 2; col.setHex(0x5b5f6b).lerp(new T.Color(last ? ORG : PT), k); g.m.color.copy(col); g.pad.material.color.setHex(last ? ORG : PERI); g.pad.material.opacity = 0.35 * k; });
+      stop(seg(t, 0.62, 0.68)); ghost.show(seg(t, 0.66, 0.8));
+    };
+  };
+  S.predicates = function () {           /* a point a hair's width from a line: which side is it on? */
+    noBot(); continuous = true; eyeAt = [0.2, 3.6, 5.0];
+    var a = [-2.6, 0.9], b = [2.6, -0.9], line = new Line(straight([a, b], 120), WH, { core: WH, halo: 0.3, w: 0.02, full: true });
+    [a, b].forEach(function (p) { var d = new T.Mesh(new T.SphereGeometry(0.06, 16, 12), new T.MeshBasicMaterial({ color: WH, fog: false })); d.position.set(p[0], 0.06, p[1]); scene.add(d); });
+    var q = new T.Mesh(new T.SphereGeometry(0.07, 20, 14), new T.MeshBasicMaterial({ color: PT, fog: false })); scene.add(q);
+    var ring = new T.Mesh(new T.TorusGeometry(0.2, 0.012, 8, 48), new T.MeshBasicMaterial({ color: PT, fog: false })); ring.rotation.x = Math.PI / 2; scene.add(ring); var gl = flat(1.2, decal(tRing, PERI, 0.8), 0.006);
+    var nx = 0.9 / Math.hypot(5.2, 1.8) * 2, nz = 5.2 / Math.hypot(5.2, 1.8);
+    step = function (t) {
+      var along = 0.2 + 0.25 * Math.sin(t * Math.PI * 2), off = 0.5 * Math.cos(t * Math.PI * 4) * Math.exp(-3 * Math.abs(Math.sin(t * Math.PI * 2))) + 0.018 * Math.sin(t * Math.PI * 16);
+      var x = a[0] + (b[0] - a[0]) * (0.5 + along * 0.5) + nx * 0.35 * off, z = a[1] + (b[1] - a[1]) * (0.5 + along * 0.5) + nz * off, above = off > 0;
+      q.position.set(x, 0.07, z); ring.position.set(x, 0.014, z); gl.position.x = x; gl.position.z = z;
+      q.material.color.setHex(above ? PT : 0xffb27a); ring.material.color.setHex(above ? PT : ORG); gl.material.color.setHex(above ? PERI : ORG);
+    };
+  };
+  S.grid = function () {                 /* a 16 by 12 grid of block means; the cells that changed light up */
+    noBot(); continuous = true; eyeAt = [0.2, 4.6, 5.6];
+    var NX = 16, NZ = 12, c = 0.34, cells = [], heat = [];
+    for (var j = 0; j < NZ; j++) for (var i = 0; i < NX; i++) { var m = new T.Mesh(new T.PlaneGeometry(c * 0.9, c * 0.9), decal(null, PERI, 0.05)); m.rotation.x = -Math.PI / 2; m.position.set((i - NX / 2 + 0.5) * c, 0.006, (j - NZ / 2 + 0.5) * c); scene.add(m); cells.push(m); heat.push(0); }
+    var body = new T.Mesh(new T.CylinderGeometry(0.16, 0.2, 0.9, 24), new T.MeshStandardMaterial({ color: 0x23252b, roughness: 0.6 })), head = new T.Mesh(new T.SphereGeometry(0.15, 20, 14), new T.MeshStandardMaterial({ color: 0x2b2d34, roughness: 0.6 })); head.position.y = 0.62; body.add(head); scene.add(body);
+    var sh = flat(1.1, decal(tBlob, 0x000000, 0.8, false), 0.008);
+    step = function (t) {
+      var x = -3.2 + 6.4 * seg(t, 0.05, 0.9), z = 0.7 * Math.sin(t * Math.PI * 3); body.position.set(x, 0.45, z); sh.position.x = x; sh.position.z = z;
+      for (var k = 0; k < cells.length; k++) { var p = cells[k].position, d = Math.hypot(p.x - x, p.z - z), hit = d < 0.5 ? 1 : 0; heat[k] = Math.max(hit, heat[k] * 0.93); cells[k].material.opacity = 0.05 + 0.8 * heat[k]; cells[k].material.color.setHex(heat[k] > 0.6 ? PT : PERI); }
+    };
+  };
+  S.turn = function (which) {            /* one robot on a plinth, turning slowly */
+    noBot(); continuous = true; eyeAt = [0, 1.25, 3.0]; lookY = which === 'quadruped' ? 0.3 : which === 'wheeled' ? 0.12 : 0.5; zoom = which === 'wheeled' ? 0.6 : which === 'quadruped' ? 0.6 : which === 'camnode' ? 0.66 : 0.74;
+    key.position.set(0.8, 5.5, 1.6); key.angle = 0.36; key.intensity = 2.6;
+    mk(new T.CylinderGeometry(0.62, 0.66, 0.05, 64), new T.MeshStandardMaterial({ color: 0x1a1c22, roughness: 0.5, metalness: 0.3 }), 0, 0.025, 0);
+    var rimr = mk(new T.TorusGeometry(0.625, 0.006, 8, 96), glowP, 0, 0.052, 0); rimr.rotation.x = Math.PI / 2;
+    flat(2.6, decal(tRing, PERI, 0.35), 0.004);
+    var m = { humanoid: humanoid, quadruped: quadruped, camnode: camnode, wheeled: wheeled }[which](); m.position.y = 0.05; if (which === 'wheeled') m.scale.setScalar(1.7); scene.add(m);
+    step = function () {}; pose = function (now) { m.rotation.y = now / 4200; m.pose(now, 0.5 + 0.5 * Math.sin(now / 1600)); };
+  };
+  ['humanoid', 'quadruped', 'camnode', 'wheeled'].forEach(function (w) { S['turn-' + w] = function () { S.turn(w); }; });
+  S.hri = function () {                  /* the robot says what it needs, and points; the person across the room understands */
+    noBot(); continuous = true; eyeAt = [0.2, 3.3, 5.2]; lookY = 0.4;
+    var h = humanoid(); h.position.set(-1.9, 0, 0.2); h.rotation.y = -0.1; h.scale.setScalar(1.35); scene.add(h);
+    flat(1.0, decal(tBlob, 0x000000, 0.5, false), 0.003, -1.9, 0.2);
+    var per = new T.Group(), pm = new T.MeshStandardMaterial({ color: 0xb9bcc6, roughness: 0.55 });
+    var torso = new T.Mesh(new T.CylinderGeometry(0.2, 0.15, 1.25, 24), pm); torso.position.y = 0.625; per.add(torso); var hd = new T.Mesh(new T.SphereGeometry(0.17, 20, 14), pm); hd.position.y = 1.48; per.add(hd); per.position.set(2.0, 0, -0.2); scene.add(per);
+    var heard = flat(1.5, decal(tRing, PERI, 0), 0.006, 2.0, -0.2);
+    var dock = mk(new T.BoxGeometry(0.3, 0.04, 0.3), dark, -0.6, 0.02, 1.5), dockGlow = flat(1.0, decal(tRing, ORG, 0.5), 0.005, -0.6, 1.5);
+    var waves = [0, 1, 2].map(function () { var w = new T.Mesh(new T.TorusGeometry(1, 0.012, 8, 96), new T.MeshBasicMaterial({ color: PT, transparent: true, fog: false })); w.rotation.x = Math.PI / 2; w.position.set(-1.9, 0.02, 0.2); scene.add(w); return w; });
+    step = function (t) {
+      var speak = seg(t, 0.05, 0.15) * (1 - seg(t, 0.42, 0.5)), point = seg(t, 0.55, 0.65) * (1 - seg(t, 0.9, 0.97));
+      waves.forEach(function (w, i) { var u = (t * 6 + i / 3) % 1; w.scale.setScalar(0.25 + u * 3.9); w.material.opacity = speak * 0.9 * (1 - u) * Math.min(1, u * 8); });
+      heard.material.opacity = 0.75 * Math.max(speak, point * 0.55); dockGlow.material.opacity = 0.25 + 0.6 * point;
+      h.pose(performance.now(), point); h.rotation.y = -0.1 - point * 0.75;
+    };
+  };
+  S.blowup = function () {               /* a smooth profile steepens towards a point in finite time */
+    noBot(); continuous = true; eyeAt = [0.2, 3.9, 6.0]; lookAt = [0, 0, 0];
+    var N = 61, bars = [], mat = new T.MeshStandardMaterial({ color: 0x8f96ad, roughness: 0.5, emissive: PERI, emissiveIntensity: 0.25 });
+    for (var i = 0; i < N; i++) { var m = new T.Mesh(new T.BoxGeometry(0.055, 1, 0.5), mat); m.position.x = (i - (N - 1) / 2) * 0.09; scene.add(m); bars.push(m); }
+    var tipGlow = flat(1.6, decal(tBlob, PERI, 0.3), 0.004);
+    step = function (t) { var e = 1.2 * Math.pow(1 - seg(t, 0.05, 0.85), 2) + 0.012; for (var i = 0; i < N; i++) { var x = bars[i].position.x, h = Math.min(1.7, 0.16 / (x * x * 0.9 + e) + 0.03); bars[i].scale.y = h; bars[i].position.y = h / 2; } tipGlow.material.opacity = 0.2 + 0.6 * seg(t, 0.4, 0.85); };
+  };
+  S.about = function (NP) {              /* one route, a marker for each stop along it */
+    eyeAt = [0.4, 4.6, 6.4]; NP = NP || 7;
+    var route = new Line(smooth([[-2.9, 1.3], [-2.0, 0.2], [-1.1, 0.95], [-0.2, -0.1], [0.7, 0.7], [1.5, -0.4], [2.1, -0.2], [2.7, -1.2]], 220), PERI, { core: PT }), posts = [];
+    for (var i = 0; i < NP; i++) {
+      var u0 = (i + 0.6) / (NP + 0.6), p = route.at(u0), x = p[0] - Math.sin(p[2]) * 0.42, z = p[1] + Math.cos(p[2]) * 0.42;
+      var pm = new T.Mesh(new T.CylinderGeometry(0.01, 0.01, 0.7, 10), new T.MeshStandardMaterial({ color: 0x0b0b0d, roughness: 0.5 })); pm.position.set(x, 0.35, z); scene.add(pm);
+      var tipm = new T.Mesh(new T.SphereGeometry(0.03, 16, 12), new T.MeshBasicMaterial({ color: WH, fog: false })); tipm.position.set(x, 0.72, z); scene.add(tipm);
+      posts.push({ u: u0, tip: tipm, pad: flat(0.6, decal(tRing, PERI, 0), 0.005, x, z) });
+    }
+    var gEnd = goal(2.7, -1.2, PERI, true); startDot(-2.9, 1.3);
+    step = function (t) {
+      var u = seg(t, 0.05, 0.88); route.show(u); place(route.at(u));
+      posts.forEach(function (q) { var on = seg(u, q.u - 0.03, q.u + 0.03); q.pad.material.opacity = 0.6 * on; q.tip.material.color.setHex(on > 0.5 ? PT : 0x8a8d96); q.tip.scale.setScalar(1 + 0.5 * on); });
+      gEnd.glow.material.opacity = 0.5 + 0.45 * seg(t, 0.84, 0.9);
+    };
+  };
+  S.guides = function () { S.about(10); };
+
+  /* Real shadows from the key light, and dust drifting through its beam. Returns a per-frame step. */
+  function realism(T, renderer, scene, key, floor, centre, quiet) {
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
+    key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.bias = -0.0006; key.shadow.radius = 5; key.shadow.camera.near = 2; key.shadow.camera.far = 22;
+    scene.traverse(function (o) { if (o.isMesh && o.material && o.material.isMeshStandardMaterial) { o.receiveShadow = true; if (o !== floor) o.castShadow = true; } });
+    var N = 150, pos = new Float32Array(N * 3), seed = [], i;
+    for (i = 0; i < N; i++) { pos[i * 3] = centre.x + (Math.random() - 0.5) * 7; pos[i * 3 + 1] = 0.1 + Math.random() * 2.6; pos[i * 3 + 2] = centre.z + (Math.random() - 0.5) * 5; seed.push(Math.random() * 6.28, 0.00012 + Math.random() * 0.0003); }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3));
+    var c = document.createElement('canvas'); c.width = c.height = 32; var x = c.getContext('2d'), gr = x.createRadialGradient(16, 16, 0, 16, 16, 16); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = gr; x.fillRect(0, 0, 32, 32);
+    var dust = new T.Points(g, new T.PointsMaterial({ size: 0.03, map: new T.CanvasTexture(c), color: 0xcfd8ff, transparent: true, opacity: 0.5, depthWrite: false, blending: T.AdditiveBlending, sizeAttenuation: true }));
+    dust.frustumCulled = false; scene.add(dust);
+    var last = 0;
+    return function (now) {
+      if (quiet) return; var dt = Math.min(60, now - last); last = now;
+      for (var i = 0; i < N; i++) { pos[i * 3 + 1] += seed[i * 2 + 1] * dt; pos[i * 3] += Math.sin(now / 2600 + seed[i * 2]) * 0.00006 * dt; if (pos[i * 3 + 1] > 2.8) pos[i * 3 + 1] = 0.1; }
+      g.attributes.position.needsUpdate = true;
+    };
+  }
+  (S[kind] || S.about)();
+  if (inset) { key.angle = 0.4; key.intensity = 2.3; }                 /* a tighter pool of light, so the scene fades out on its own */
+  var fx = realism(T, renderer, scene, key, floor, new T.Vector3(0, 0, 0), still);
+  shadow.material.opacity = 0.45;
+
+  /* ---- camera, size, loop ---- */
+  var W = 1, H = 1, mx = 0, my = 0, cx = 0, cy = 0, t0 = performance.now(), raf = 0, seen = true, narrow = false;
+  function size() {
+    var r = box.getBoundingClientRect(); W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height)); narrow = inset || W < 900 || window.innerWidth < 900;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(W, H, false);
+    cam.aspect = W / H; cam.fov = narrow ? 40 : 34; cam.clearViewOffset(); if (!narrow && !inset) cam.setViewOffset(W, H, -0.27 * W, -0.03 * H, W, H); cam.updateProjectionMatrix();
+  }
+  function frame(now) {
+    raf = 0; var raw = ((now - t0) % (continuous ? LOOP : LOOP * 1.9)) / (continuous ? LOOP : LOOP * 1.9), t = FIX >= 0 ? FIX : still ? 0.95 : continuous ? raw : Math.min(0.955, raw * 1.9);   /* a scene plays once, then rests before it replays */
+    step(t); fx(now);
+    if (!still && FIX < 0) { cv.style.opacity = pose ? '1' : raw > 0.975 ? ((1 - raw) / 0.025).toFixed(3) : raw < 0.02 ? (raw / 0.02).toFixed(3) : '1'; if (pose) pose(now); if (bot.visible) { bot.position.y = 0.003 * Math.sin(now / 170); eye.material.color.setHex(Math.sin(now / 420) > 0.92 ? 0xffffff : PT); } }
+    cx += (mx - cx) * 0.05; cy += (my - cy) * 0.05;
+    var k = still || FIX >= 0 ? 1 : Math.min(1, (now - t0) / 2200); k = 1 - Math.pow(1 - k, 3);          /* the camera settles in on arrival */
+    var sy = inset ? 0 : Math.max(0, Math.min(1, window.scrollY / 700));                                              /* and lifts away as the page scrolls */
+    var drift = still ? 0 : Math.sin(now / 5200) * 0.35, d = (inset ? 1.12 : narrow ? 1.25 : 1.36) * zoom * (1 + 0.4 * (1 - k));
+    cam.position.set((eyeAt[0] + cx * 1.5 + drift + (1 - k) * 1.6) * d, (eyeAt[1] - cy * 0.7 + (1 - k) * 1.4 + sy * 1.6) * d, (eyeAt[2] - sy * 0.9) * d);
+    cam.lookAt(lookAt[0] + cx * 0.25, lookY, lookAt[2] - sy * 0.5);
+    renderer.render(scene, cam);
+    if (!still && seen) raf = requestAnimationFrame(frame);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+  window.addEventListener('resize', function () { size(); kick(); });
+  window.addEventListener('scroll', function () { if (still) kick(); }, { passive: true });
+  window.addEventListener('pointermove', function (e) { mx = e.clientX / window.innerWidth * 2 - 1; my = e.clientY / window.innerHeight * 2 - 1; if (still) kick(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) kick(); }).observe(cv);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
+  size(); kick();
+  });
+})();
+</script>
+<script src="assets/analytics.js" defer></script>
+</body>
+</html>

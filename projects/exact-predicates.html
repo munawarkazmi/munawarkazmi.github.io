@@ -7,7 +7,7 @@
 <meta name="description" content="Exact geometric predicates over integer coordinates with code-enforced bounds, and 657 committed adversarial cases where CI asserts the floating-point version is wrong and the exact one is right, on every push.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/exact-predicates.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="exact-predicates · Munawar Kazmi">
 <meta property="og:description" content="Exact geometric predicates over integer coordinates with code-enforced bounds, and 657 committed adversarial cases where CI asserts the floating-point version is wrong and the exact one is right, on every push.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og/exact-predicates.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="predicates" role="img" aria-label="A point moving from one side of a line to the other."></canvas></div>
     <div class="eyebrow">Numerical Robustness · Computational Geometry · C++ / __int128</div>
     <p class="fact-line"><span>Sole developer</span><span>Jul to Aug 2026</span><span>complete, 657 cases asserted in CI</span></p>
     <h1>Predicates that <em>cannot be wrong</em></h1>
@@ -129,15 +126,15 @@
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
     <figure>
-      <img width="990" height="550" src="img/vanishing_determinant.png" alt="Log-log scatter: Fibonacci triples whose true determinant is exactly plus or minus one; double computes it correctly until coordinates reach about 2 to the 26, then returns zeros and garbage values" loading="lazy">
+      <img width="990" height="550" src="imgp/vanishing_determinant.png" alt="Log-log scatter: Fibonacci triples whose true determinant is exactly plus or minus one; double computes it correctly until coordinates reach about 2 to the 26, then returns zeros and garbage values" loading="lazy">
       <figcaption>The vanishing determinant: every point's true determinant is exactly &plusmn;1, by construction. Double arithmetic sees it perfectly until the coordinates pass ~2<sup>26</sup>, after which it returns zero or garbage in the 10<sup>15</sup> range. Rendered from committed data that CI drift-checks against the committed generator.</figcaption>
     </figure>
     <figure>
-      <img width="990" height="550" src="img/incircle_threshold.png" alt="Curve: percentage of near-collinear quadruples where the double in-circle sign is wrong, zero until scale 2 to the 24 and rising to about 7.5 percent at the bound" loading="lazy">
+      <img width="990" height="550" src="imgp/incircle_threshold.png" alt="Curve: percentage of near-collinear quadruples where the double in-circle sign is wrong, zero until scale 2 to the 24 and rising to about 7.5 percent at the bound" loading="lazy">
       <figcaption>Where the bug class actually lives: on the near-collinear in-circle family, double is flawless up to coordinate scale ~2<sup>24</sup> and fails routinely near the bound. Mapping this matters: a corpus built at small scales would have "proven" a danger that doesn't exist there.</figcaption>
     </figure>
     <figure>
-      <img width="1155" height="506" src="img/hull_breakage.png" alt="Two panels: counts of float-predicate hull invariant violations across 60 configs, and one config's exact residuals all sitting inside double's rounding-noise band" loading="lazy">
+      <img width="1155" height="506" src="imgp/hull_breakage.png" alt="Two panels: counts of float-predicate hull invariant violations across 60 configs, and one config's exact residuals all sitting inside double's rounding-noise band" loading="lazy">
       <figcaption>The same monotone-chain hull algorithm, two predicates, two truths: the float version violates convexity or containment on all 60 committed degenerate configs (left), because the &plusmn;1 residual structure that decides the hull sits entirely inside double's rounding-noise band (right). The exact hull, property-tested on random clouds as well, never violates an invariant.</figcaption>
     </figure>
     <p>An independent check: a Python big-integer oracle with no coordinate bound re-verifies every committed case (1,554 of them, zero disagreements) and computes answers <em>beyond</em> the C++ bound where the guard refuses, which shows the bound is a restriction of the implementation, not of the problem. CI also regenerates both the corpus and the figure data and diffs them against the committed files, so neither can drift from the code. The cost: exactness runs about 2x slower than the float versions (<code>__int128</code> is cheap), measured and machine-named, because the float versions buy their speed by being wrong.</p>
@@ -146,7 +143,7 @@
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/exact-predicates" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
@@ -156,5 +153,7 @@
 <script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

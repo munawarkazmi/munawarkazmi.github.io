@@ -7,7 +7,7 @@
 <meta name="description" content="A* vs D* Lite global planners for ROS2 Nav2: D* Lite replans 4.3x faster on average in a fair, seeded 200-trial benchmark, validated against Dijkstra ground truth and re-run in CI.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/path-planning.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="ROS2 Dynamic Path Planning · Munawar Kazmi">
 <meta property="og:description" content="A* vs D* Lite global planners for ROS2 Nav2: D* Lite replans 4.3x faster on average in a fair, seeded 200-trial benchmark, validated against Dijkstra ground truth and re-run in CI.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="replan" role="img" aria-label="A robot whose route is blocked by a falling obstacle and repaired from where it stands."></canvas></div>
     <div class="eyebrow">ROS2 · C++20 · Nav2 · CI-verified</div>
     <p class="fact-line"><span>Sole developer</span><span>Nov 2025 to Aug 2026</span><span>complete, every result replayed in CI</span></p>
     <h1>Planning paths that survive a <em>changing world</em></h1>
@@ -79,21 +76,78 @@
     </div>
   </header>
 
+  <section class="block" id="try">
+    <h2>Try the <em>replanner</em></h2>
+    <figure class="lab" id="replanLab" hidden>
+      <div class="lab-head">
+        <p class="lab-title">Block the robot's route.</p>
+        <p class="lab-lede"><span id="lab-how">Click or drag on the map</span> to build a wall in the robot's way. D* Lite repairs the plan it already has. A* is run from scratch on the same map, so the two amounts of work sit side by side. Both planners are running in your browser.</p>
+      </div>
+      <div class="lab-stage" id="lab-stage"><canvas id="lab-canvas" role="img" aria-label="A grid map with walls and doors. A robot drives across it and replans its route whenever a wall is put in its way."></canvas></div>
+      <p class="lab-status" id="lab-status" aria-hidden="true"></p>
+      <div class="lab-stats">
+        <div class="lab-stat">
+          <div class="label"><span class="lab-key lab-key-d"></span>D* Lite, last replan</div>
+          <div class="stat-num" id="lab-d">0</div>
+          <div class="lab-bar"><span id="lab-bar-d"></span></div>
+          <div class="stat-text">cells repaired, reusing the search it already had</div>
+        </div>
+        <div class="lab-stat">
+          <div class="label"><span class="lab-key lab-key-a"></span>A*, same replan</div>
+          <div class="stat-num" id="lab-a">0</div>
+          <div class="lab-bar"><span id="lab-bar-a"></span></div>
+          <div class="stat-text">cells searched, starting again from nothing</div>
+        </div>
+        <div class="lab-stat">
+          <div class="label">This session</div>
+          <div class="stat-num" id="lab-ratio">0.0x</div>
+          <div class="stat-text" id="lab-ratio-text">waiting for the first wall</div>
+        </div>
+        <div class="lab-stat">
+          <div class="label">Same answer</div>
+          <div class="stat-num" id="lab-equal">0/0</div>
+          <div class="stat-text">replans where both planners found a path of exactly equal cost</div>
+        </div>
+      </div>
+      <div class="lab-controls">
+        <button type="button" class="lab-btn" id="lab-block">Block the route</button>
+        <button type="button" class="lab-btn" id="lab-clear">Clear walls</button>
+        <button type="button" class="lab-btn" id="lab-toggle" aria-pressed="true">Pause</button>
+      </div>
+      <p class="visually-hidden" id="lab-said" aria-live="polite"></p>
+      <figcaption class="lab-note">A toy in JavaScript with the same exact integer costs as the C++ core, checked against Dijkstra the same way. D* Lite gains most when a wall lands near the robot, where its sensors would find it, and little or nothing when a change undoes most of what it knew. These numbers are the toy's own: the 4.3x below is from the benchmarked C++ planners.</figcaption>
+    </figure>
+  </section>
+
+  <section class="block" id="watch">
+    <h2>Watch <em>the film</em></h2>
+    <figure class="film">
+      <video controls preload="none" playsinline poster="../assets/video/path-planning.jpg"><source src="../assets/video/path-planning.mp4" type="video/mp4"></video>
+      <figcaption>A narrated walk-through of this project, 2 min 48 s.</figcaption>
+    </figure>
+  </section>
+
   <section class="block">
     <h2>The <em>problem</em></h2>
     <p>Warehouses, hospitals, and homes never hold still. A robot plans a route, someone steps into it, and the plan is suddenly wrong. Classic A* handles this by throwing everything away and searching again from scratch, which costs processing spikes exactly when smoothness matters most. D* Lite takes the other road: it repairs the existing plan incrementally, reusing everything the previous search already learned.</p>
-    <p>This project turns that textbook comparison into running code: a ROS-free C++20 planning core with Nav2 plugin adapters, and a benchmark whose numbers a stranger can reproduce: the per-event data, the seed, and the code that produced them are committed together, and CI re-runs the tests and a benchmark smoke pass on every push.</p>
-    <p>Getting D* Lite correct was the hard part: its priority keys routinely tie between vertices, and floating-point rounding of mathematically equal keys can bury a vertex the algorithm must expand, freezing stale state into the path. The fix is an exact integer cost metric (every g, rhs, and key an integer, every comparison exact), validated by 185,237 fuzzed incremental replans that must match a reference Dijkstra to the unit.</p>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">123 words, about 1 min</span></summary>
+      <div class="more-b">
+      <p>This project turns that textbook comparison into running code: a ROS-free C++20 planning core with Nav2 plugin adapters, and a benchmark whose numbers a stranger can reproduce: the per-event data, the seed, and the code that produced them are committed together, and CI re-runs the tests and a benchmark smoke pass on every push.</p>
+      <p>Getting D* Lite correct was the hard part: its priority keys routinely tie between vertices, and floating-point rounding of mathematically equal keys can bury a vertex the algorithm must expand, freezing stale state into the path. The fix is an exact integer cost metric (every g, rhs, and key an integer, every comparison exact), validated by 185,237 fuzzed incremental replans that must match a reference Dijkstra to the unit.</p>
+      </div>
+    </details>
+
   </section>
 
   <section class="block">
     <h2>What the planner <em>sees</em></h2>
     <figure>
-      <img width="770" height="1100" src="img/astar_plan.png" alt="A* global plan across the office map with its 125,760 expanded nodes shown as a blue cloud" loading="lazy">
+      <img width="770" height="1100" src="imgp/astar_plan.png" alt="A* global plan across the office map with its 125,760 expanded nodes shown as a blue cloud" loading="lazy">
       <figcaption>A real A* run on the repository's 39.2 m &times; 58.4 m office map: 125,760 expanded nodes (blue cloud) on the way to a 919-cell path. Rendered from actual algorithm output by a committed script.</figcaption>
     </figure>
     <figure>
-      <img width="770" height="1100" src="img/replan_obstacle.png" alt="D* Lite repaired route bending around an obstacle that appeared on the original path" loading="lazy">
+      <img width="770" height="1100" src="imgp/replan_obstacle.png" alt="D* Lite repaired route bending around an obstacle that appeared on the original path" loading="lazy">
       <figcaption>Mid-journey, an obstacle appears directly on the route. D* Lite repairs the same journey by expanding 256 vertices, reusing everything from its previous search that is still valid. This event is what the benchmark measures.</figcaption>
     </figure>
   </section>
@@ -101,11 +155,11 @@
   <section class="block" id="results">
     <h2>The <em>results</em></h2>
     <figure>
-      <img width="1210" height="550" src="img/benchmark_summary.png" alt="Histogram and bar chart of replan times: D* Lite 2.21 ms mean versus A* 9.42 ms mean over 1,493 replan events" loading="lazy">
+      <img width="1210" height="550" src="imgp/benchmark_summary.png" alt="Histogram and bar chart of replan times: D* Lite 2.21 ms mean versus A* 9.42 ms mean over 1,493 replan events" loading="lazy">
       <figcaption>1,493 replan events across 200 seeded trials, identical maps and obstacles for both planners, replanning work timed in isolation. D* Lite: 2.21 ms mean / 0.245 ms median. A*: 9.42 ms mean / 2.72 ms median. Every event asserts both planners returned equal-cost paths.</figcaption>
     </figure>
     <figure>
-      <img width="1210" height="572" src="img/replan_scatter.png" alt="Log-log scatter of every replan event: D* Lite's cost stays in a narrow band while A*'s spans four orders of magnitude" loading="lazy">
+      <img width="1210" height="572" src="imgp/replan_scatter.png" alt="Log-log scatter of every replan event: D* Lite's cost stays in a narrow band while A*'s spans four orders of magnitude" loading="lazy">
       <figcaption>Every event as a point. D* Lite's repair cost stays in a narrow band no matter how expensive the from-scratch search is; the events above the diagonal are the other side of the result: trivial replans where its bookkeeping loses.</figcaption>
     </figure>
     <p>What makes the comparison fair: both planners face byte-identical scenarios, obstacles are injected <strong>on the current path</strong> so the change always matters, measurement order alternates to cancel cache effects, and both planners optimize the same exact cost metric, so the zero cost-mismatch count means the race is between two optimal planners. The trade-off: D* Lite pays a ~2.7x costlier initial search and loses trivial replans; it wins where the from-scratch search is expensive, which is where a CPU spike costs a robot most.</p>
@@ -125,12 +179,16 @@
   <footer class="footer">
     <a href="https://github.com/munawarkazmi/ros2-dynamic-path-planning" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
 
+<script src="../assets/replan-lab.js" defer></script>
+<script src="../assets/lab-tour.js" defer></script>
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>

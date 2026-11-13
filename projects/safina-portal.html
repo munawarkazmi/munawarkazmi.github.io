@@ -7,7 +7,7 @@
 <meta name="description" content="A complete school management system built and operated solo, live in production: seven user roles, prorated billing, payroll, digital ID cards, and an append-only, trigger-written audit trail.">
 <link rel="canonical" href="https://munawarkazmi.com/projects/safina-portal.html">
 <meta name="author" content="Munawar Kazmi">
-<meta name="theme-color" content="#FCFCFD">
+<meta name="theme-color" content="#08090b">
 <meta property="og:title" content="Safina Portal · Munawar Kazmi">
 <meta property="og:description" content="A complete school management system built and operated solo, live in production: seven user roles, prorated billing, payroll, digital ID cards, and an append-only, trigger-written audit trail.">
 <meta property="og:image" content="https://munawarkazmi.com/assets/og-card.png">
@@ -23,9 +23,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/ibm-plex-sans-500-latin.woff2" crossorigin>
-<script src="../assets/theme.js"></script>
+<script>document.documentElement.setAttribute("data-theme","dark")</script>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../assets/premium.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,15 +53,11 @@
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="back" href="../index.html#engineering">&larr; All work</a>
-    <span class="topbar-right"><a href="../index.html">Munawar Kazmi</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" hidden><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></span>
-  </div>
-</div>
+<header class="pnav"><div><a class="logo" href="../index.html"><i></i>Munawar Kazmi</a><div class="links"><a href="../work.html">Work</a><a href="../research.html">Research</a><a href="../about.html">About</a><a href="../index.html#contact">Contact</a><a class="keep" href="../files/Kazmi_Resume.pdf">Resume</a></div></div></header>
 
 <main class="wrap" id="main-content">
   <header class="hero">
+    <div class="live3"><canvas id="scene3" data-scene="about" role="img" aria-label="A route of light with seven markers along it."></canvas></div>
     <div class="eyebrow">React · TypeScript · Supabase · In Production</div>
     <p class="fact-line"><span>Contract for Safina International, sole engineer</span><span>Jul 2026 to present</span><span>in production</span></p>
     <h1>The system an institute <em>runs on, every day</em></h1>
@@ -93,12 +90,17 @@
 
   <section class="block">
     <h2>The parts that were <em>hard</em></h2>
-    <ul>
+    <details class="more">
+      <summary><span class="more-t">The detail</span><span class="more-n">119 words, about 1 min</span></summary>
+      <div class="more-b">
+      <ul>
       <li><strong>Billing that matches real life.</strong> Tuition and subscriptions in advance, sessions in arrears, mid-month joins charged immediately and prorated to the day, one-time trials with month locks, automatic suspension for unpaid fees with a grace mechanism.</li>
       <li><strong>Money that cannot be silently edited.</strong> Financial records are append-only: corrections happen through recorded reversals and waivers, never deletion, and every change lands in a database-trigger audit log with before-and-after values.</li>
       <li><strong>Security with no server of my own.</strong> Authorization lives entirely in PostgreSQL row-level security and guarded functions; each of the seven roles reads exactly what it needs. The service-role key is never used.</li>
       <li><strong>Built for non-technical users, in two languages.</strong> Plain-language interfaces, printable branded PDFs, and parent handouts in English and Urdu.</li>
     </ul>
+      </div>
+    </details>
   </section>
 
   <section class="block">
@@ -111,12 +113,14 @@
     &ensp;·&ensp;
     <a href="https://github.com/munawarkazmi/safina-portal-showcase" target="_blank" rel="noopener">Source on GitHub</a>
     &ensp;·&ensp;
-    <a href="../index.html#engineering">Back to all work</a>
+    <a href="../work.html">Back to all work</a>
     <span class="footer-privacy">Analytics by GoatCounter: no cookies, no personal data, and nothing at all when your browser sends Do Not Track. The camera demo processes frames in your browser and sends nothing.</span>
   </footer>
 </main>
 
 <script src="../assets/motion.js" defer></script>
 <script src="../assets/analytics.js" defer></script>
+<script src="../assets/three.min.js"></script>
+<script src="../assets/scene.js"></script>
 </body>
 </html>
