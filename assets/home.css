@@ -490,3 +490,13 @@ video::cue{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:.9em;line-
 .doors.early .go .btn svg{flex:none}
 nav .links a.keep+a.keep,.pnav .links a.keep+a.keep{margin-left:calc(-1 * clamp(4px,1.2vw,18px))}
 @media (max-width:620px){nav .links,.pnav .links{gap:9px!important}nav .links a.keep+a.keep,.pnav .links a.keep+a.keep{margin-left:0}}
+
+/* contact: one solid button to act on, the address and its copy button beneath */
+.reach{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 30px;margin-top:36px}
+.btn.mailbtn{display:inline-flex;align-items:center;gap:13px;padding:17px 32px;font-size:17px;background:#f4f3ef;color:#08090b;border-radius:2px;font-weight:600;text-decoration:none;transition:transform .2s,background .2s}
+.btn.mailbtn:hover{background:#fff;transform:translateY(-2px)}
+.reach+.mail{margin-top:22px;gap:12px}
+.reach+.mail code{font-size:15px;color:#a4a9b6}
+.endcta .reach .link{color:#f4f3ef;border-bottom:1px solid rgba(255,255,255,.34);padding-bottom:3px;text-decoration:none}
+/* the one number where the warning colour is on message */
+.warnw{color:#ffb27a;font-weight:500}
