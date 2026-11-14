@@ -278,3 +278,19 @@ html,body{overflow-x:clip}
   .hero .cta{margin-top:clamp(20px,3.6vh,36px)}
   .read,.hint{bottom:clamp(22px,4vh,56px)}
 }
+
+/* Work: four projects at full size, the rest as a compact list */
+.when{display:block;color:#a9b8ff;font-size:11px;letter-spacing:.1em;margin-bottom:12px}
+.more-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,5vw,80px);margin-top:26px}
+.mini{position:relative;border-top:1px solid rgba(255,255,255,.14);padding-block:26px 30px}
+.mini a.t{font-family:"Instrument Serif",Georgia,serif;font-size:27px;line-height:1.1}
+.mini a.t:hover{color:#a9b8ff}
+.mini .meta{display:block;color:#7c8290;margin-top:8px;font-size:11px;line-height:1.7}
+.mini .meta b{color:#4cd08a;font-weight:500}
+.mini p{margin:14px 0 0;color:#c9ccd4;font-size:15.5px;line-height:1.58}
+.mini .mf{display:flex;align-items:baseline;gap:14px;margin-top:16px}
+.mini .mf b{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:30px;line-height:1;color:#f4f3ef;white-space:nowrap}
+.mini .mf span{color:#8d93a1;font-size:13.5px;line-height:1.4}
+@media (max-width:900px){.more-list{grid-template-columns:1fr}}
+/* subtitles on the films */
+video::cue{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:.9em;line-height:1.35;color:#f4f3ef;background:rgba(8,9,11,.78)}

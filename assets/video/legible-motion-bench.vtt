@@ -1,0 +1,112 @@
+WEBVTT
+
+00:00:03.950 --> 00:00:06.731
+A robot sets off across a room.
+
+00:00:06.791 --> 00:00:11.598
+For the first few seconds, nobody watching
+can tell where it is going.
+
+00:00:11.658 --> 00:00:16.394
+And that is exactly when people hesitate,
+or step into its path.
+
+00:00:17.944 --> 00:00:20.273
+The shortest route is safe.
+
+00:00:20.333 --> 00:00:22.685
+But it keeps everyone guessing.
+
+00:00:25.835 --> 00:00:31.460
+A legible route bends early, and pays
+extra distance to make itself clear.
+
+00:00:31.519 --> 00:00:34.912
+But here, the clearest way to say where it
+is going,
+
+00:00:34.862 --> 00:00:37.412
+is the way it is not allowed to go.
+
+00:00:43.962 --> 00:00:47.329
+Legible Motion Bench measures that trade.
+
+00:00:47.389 --> 00:00:50.791
+Clarity, against distance, against safety.
+
+00:00:50.851 --> 00:00:54.334
+No human raters. No AI judge.
+
+00:00:54.394 --> 00:00:59.018
+Every number is computed exactly, from the
+path and the world.
+
+00:01:02.969 --> 00:01:07.311
+Give a planner more distance to spend, and
+a frontier appears.
+
+00:01:07.371 --> 00:01:12.129
+With five percent extra, its clearest
+route still crosses the zone.
+
+00:01:12.189 --> 00:01:15.313
+At ten percent, it buys its way out.
+
+00:01:20.063 --> 00:01:24.001
+Then the same question goes to three
+language models.
+
+00:01:24.061 --> 00:01:28.462
+Two of them cut straight through the zone,
+five times out of five.
+
+00:01:28.523 --> 00:01:31.754
+The third finds an option the others
+missed.
+
+00:01:31.814 --> 00:01:36.435
+It slips just under the boundary, and
+stays well inside its budget.
+
+00:01:38.585 --> 00:01:41.418
+Now change the budget in the prompt.
+
+00:01:41.478 --> 00:01:45.973
+Nearly double it, and one model's spending
+does not move at all.
+
+00:01:46.032 --> 00:01:48.603
+Another's climbs at every step.
+
+00:01:48.663 --> 00:01:51.847
+For one model, the budget is a constraint.
+
+00:01:51.907 --> 00:01:54.398
+For the other two, it is text.
+
+00:01:56.147 --> 00:01:58.639
+And of a hundred and twenty answers,
+
+00:01:58.589 --> 00:02:02.144
+a hundred and sixteen called themselves
+legible.
+
+00:02:02.204 --> 00:02:06.094
+Including all twenty five that were not
+even feasible.
+
+00:02:10.844 --> 00:02:14.273
+One caution, which the project states
+itself.
+
+00:02:14.333 --> 00:02:17.722
+Three models, one prompt, one temperature.
+
+00:02:17.782 --> 00:02:19.950
+A pilot, not a finding.
+
+00:02:20.900 --> 00:02:23.043
+Legible Motion Bench.
+
+00:02:23.103 --> 00:02:26.081
+What clarity costs, measured exactly.

@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.978 --> 00:00:03.897
+A robot is about to cross this room.
+
+00:00:04.096 --> 00:00:06.741
+There are two places it could be going.
+
+00:00:06.962 --> 00:00:08.264
+Watch it move.
+
+00:00:08.541 --> 00:00:10.787
+How soon can you tell which one?
+
+00:00:11.179 --> 00:00:13.716
+The shortest route keeps you guessing.
+
+00:00:13.973 --> 00:00:16.963
+For most of the way, it could be heading
+to either.
+
+00:00:18.970 --> 00:00:22.410
+A legible route gives the answer away
+early.
+
+00:00:22.637 --> 00:00:26.517
+It swings wide, away from the place it is
+not going.
+
+00:00:26.752 --> 00:00:29.093
+But that costs extra distance.
+
+00:00:30.896 --> 00:00:34.241
+Planners search for the clearest route a
+budget allows,
+
+00:00:34.191 --> 00:00:36.348
+and report the best they found.
+
+00:00:36.602 --> 00:00:39.783
+Which leaves a question no search can
+settle.
+
+00:00:40.008 --> 00:00:42.732
+Is this room hard to be clear in?
+
+00:00:42.972 --> 00:00:45.290
+Or did the planner just do badly?
+
+00:00:45.181 --> 00:00:47.770
+Legibility Bounds answers it.
+
+00:00:48.054 --> 00:00:50.013
+The key fact is this.
+
+00:00:50.231 --> 00:00:54.293
+What the observer believes depends only on
+where the robot is,
+
+00:00:54.243 --> 00:00:56.096
+not on how it got there.
+
+00:00:56.356 --> 00:00:59.856
+So belief is a map of the floor, drawn
+once.
+
+00:00:59.840 --> 00:01:03.447
+And a robot on a budget cannot be just
+anywhere.
+
+00:01:03.673 --> 00:01:07.217
+Part way along, it must still be near
+enough to the start,
+
+00:01:07.167 --> 00:01:09.154
+and near enough to the goal.
+
+00:01:09.402 --> 00:01:12.947
+The best belief inside that region is a
+ceiling.
+
+00:01:13.185 --> 00:01:15.825
+On every possible route, at once.
+
+00:01:15.976 --> 00:01:19.715
+Then it builds a real route to stand
+beneath that ceiling.
+
+00:01:19.972 --> 00:01:27.585
+Here, with half as much path again to
+spend, a route that scores 0.8004 exists.
+
+00:01:27.768 --> 00:01:30.715
+And nothing can reach 0.81.
+
+00:01:31.969 --> 00:01:34.742
+Eight test worlds, four budgets each.
+
+00:01:34.928 --> 00:01:36.614
+No bound broken.
+
+00:01:36.864 --> 00:01:42.653
+And the same argument puts a certified
+price on keeping clear of a safety zone.
+
+00:01:42.673 --> 00:01:45.854
+One caution, which the project states
+itself.
+
+00:01:46.161 --> 00:01:49.111
+The observer is a mathematical model.
+
+00:01:49.364 --> 00:01:52.502
+It has not yet been tested against people.
+
+00:01:52.369 --> 00:01:54.199
+Legibility Bounds.
+
+00:01:54.381 --> 00:01:57.096
+Not just the best a search could find.
+
+00:01:57.308 --> 00:02:00.408
+Proof of what is possible, and what is
+not.

@@ -1,0 +1,151 @@
+WEBVTT
+
+00:00:03.950 --> 00:00:06.395
+A gate can stop a bad route.
+
+00:00:06.455 --> 00:00:10.483
+But a robot that only ever hears no, never
+arrives.
+
+00:00:10.543 --> 00:00:15.177
+On forty test buildings, the model gave a
+usable route twice.
+
+00:00:16.927 --> 00:00:19.942
+So this project goes one step further.
+
+00:00:20.002 --> 00:00:23.132
+When the model is wrong, it finds the
+right route.
+
+00:00:23.082 --> 00:00:26.031
+And when there is no right route, it
+stops.
+
+00:00:30.781 --> 00:00:34.436
+The model proposes. The verifier refuses.
+
+00:00:38.386 --> 00:00:42.058
+The same start and goal go to a classical
+planner,
+
+00:00:42.008 --> 00:00:44.915
+on the fine map the model never saw.
+
+00:00:44.975 --> 00:00:48.461
+It plans with a wider berth than the check
+demands.
+
+00:00:48.411 --> 00:00:52.079
+Twenty centimetres, where ten and a half
+would do.
+
+00:00:52.139 --> 00:00:56.688
+Then the new route is verified as well,
+before anything moves.
+
+00:00:58.637 --> 00:01:03.938
+One more trap. A route can be perfectly
+safe, and go to the wrong place.
+
+00:01:03.998 --> 00:01:07.915
+So the gate asks for both. Safe, and at
+the goal.
+
+00:01:09.865 --> 00:01:15.549
+Forty proposals. Two forwarded untouched.
+Thirty five recovered from unsafe.
+
+00:01:15.499 --> 00:01:18.987
+Three recovered from the wrong
+destination.
+
+00:01:19.046 --> 00:01:22.887
+Unsafe recoveries sent to the motors:
+zero.
+
+00:01:28.237 --> 00:01:30.765
+Now, wall the goal off completely.
+
+00:01:30.825 --> 00:01:35.014
+There is no safe route. The only right
+answer is to stop.
+
+00:01:36.964 --> 00:01:41.586
+The planner searches everywhere it can
+reach, and finds no way in.
+
+00:01:41.646 --> 00:01:45.194
+So the shield halts. It does not invent a
+route.
+
+00:01:45.254 --> 00:01:47.974
+Ten sealed goals. Ten halts.
+
+00:01:53.125 --> 00:01:58.593
+All of that was on tidy, generated maps.
+Real maps are not tidy.
+
+00:01:58.653 --> 00:02:03.251
+So the shield was replayed on three public
+sensor recordings.
+
+00:02:04.801 --> 00:02:08.804
+From a single scan, more than half the map
+is unknown.
+
+00:02:08.864 --> 00:02:12.896
+There, the model gave a usable route once
+in forty.
+
+00:02:14.846 --> 00:02:21.010
+A map built twenty five milliseconds late
+changed three decisions out of seventy
+nine.
+
+00:02:21.070 --> 00:02:25.168
+The shield is only as right as the map it
+is handed.
+
+00:02:27.117 --> 00:02:31.773
+And maps move. When the robot's position
+estimate was corrected,
+
+00:02:31.723 --> 00:02:35.838
+five of twenty six verified routes stopped
+verifying.
+
+00:02:35.899 --> 00:02:39.430
+So a route already in flight can be
+checked again.
+
+00:02:39.380 --> 00:02:42.186
+Twenty one kept going. Five stopped.
+
+00:02:47.336 --> 00:02:49.188
+Now, the fine print.
+
+00:02:49.248 --> 00:02:51.921
+The zero is a guard, not a discovery.
+
+00:02:51.871 --> 00:02:56.353
+The wide berth makes recovered routes pass
+by construction.
+
+00:02:56.413 --> 00:03:00.600
+The second check is the same rule, applied
+more finely.
+
+00:03:00.660 --> 00:03:03.965
+This is one small model, on forty
+buildings.
+
+00:03:03.915 --> 00:03:09.023
+And no recording is closed loop. No robot
+ever reacted to a halt.
+
+00:03:10.773 --> 00:03:13.067
+LLM Nav Shield.
+
+00:03:13.127 --> 00:03:15.704
+Detect. Recover. Or halt.

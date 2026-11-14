@@ -151,9 +151,25 @@
     var tip = new T.Mesh(new T.SphereGeometry(0.024, 16, 12), new T.MeshBasicMaterial({ color: bright ? PT : WH, fog: false })); tip.position.set(0.25, 0.97, -0.14); g.add(tip);
     g.position.set(x, 0, z); scene.add(g); g.glow = gl; return g;
   }
-  var wallMat = new T.MeshStandardMaterial({ color: 0xc9ccd6, roughness: 0.6, metalness: 0.02 }), crateMat = new T.MeshStandardMaterial({ color: 0x8a6a4c, roughness: 0.8 });
-  function wall(x1, z1, x2, z2, h, mat) { var len = Math.hypot(x2 - x1, z2 - z1), m = new T.Mesh(new T.BoxGeometry(len + 0.07, h || 0.42, 0.07), mat || wallMat); m.position.set((x1 + x2) / 2, (h || 0.42) / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1); scene.add(m); return m; }
-  function crate(x, z, s) { var m = new T.Mesh(new T.BoxGeometry(s, s * 0.8, s), crateMat); m.position.set(x, s * 0.4, z); m.rotation.y = 0.3; scene.add(m); }
+  /* Architectural-model detail: walls with a lighter cap, a crisp edge line and a soft contact shadow; a faint floor grid for scale. */
+  var wallMat = new T.MeshStandardMaterial({ color: 0xc3c6d0, roughness: 0.55, metalness: 0.03 }), capMat = new T.MeshStandardMaterial({ color: 0xeef0f5, roughness: 0.35, metalness: 0.02 }), crateMat = new T.MeshStandardMaterial({ color: 0xa9adb9, roughness: 0.7, metalness: 0.02 });
+  var edgeMat = new T.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.22, fog: false });
+  var tAO = tex(8, 64, function (g, w, h) { var gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(0.5, 'rgba(0,0,0,.6)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  function edges(m) { var l = new T.LineSegments(new T.EdgesGeometry(m.geometry), edgeMat); m.add(l); return m; }
+  function wall(x1, z1, x2, z2, h, mat) {
+    h = h || 0.42; var len = Math.hypot(x2 - x1, z2 - z1), g = new T.Group();
+    var m = new T.Mesh(new T.BoxGeometry(len + 0.07, h - 0.018, 0.07), mat || wallMat); m.position.y = (h - 0.018) / 2; g.add(m);
+    var cap = new T.Mesh(new T.BoxGeometry(len + 0.085, 0.018, 0.085), capMat); cap.position.y = h - 0.009; g.add(edges(cap));
+    var ao = new T.Mesh(new T.PlaneGeometry(len + 0.3, 0.42), decal(tAO, 0x000000, 0.55, false)); ao.rotation.x = -Math.PI / 2; ao.position.y = 0.0035; g.add(ao);
+    g.position.set((x1 + x2) / 2, 0, (z1 + z2) / 2); g.rotation.y = -Math.atan2(z2 - z1, x2 - x1); scene.add(g); return g;
+  }
+  function crate(x, z, s) {
+    var m = edges(new T.Mesh(new T.BoxGeometry(s, s * 0.8, s), crateMat)); m.position.set(x, s * 0.4, z); m.rotation.y = 0.3; scene.add(m);
+    var lid = new T.Mesh(new T.BoxGeometry(s * 1.04, s * 0.05, s * 1.04), capMat); lid.position.y = s * 0.425; m.add(lid);
+    flat(s * 2.6, decal(tBlob, 0x000000, 0.5, false), 0.003, x, z);
+  }
+  var tGrid = tex(128, 128, function (g, w) { g.clearRect(0, 0, w, w); g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 1.5; g.strokeRect(0, 0, w, w); }, true); tGrid.repeat.set(28, 20); tGrid.anisotropy = 8;
+  var grid = new T.Mesh(new T.PlaneGeometry(14, 10), decal(tGrid, 0xaab6ff, 0.05)); grid.rotation.x = -Math.PI / 2; grid.position.y = 0.002; scene.add(grid);
 
   /* the robot, the same model as on the home page */
   var bot = new T.Group(), dark = new T.MeshStandardMaterial({ color: 0x15161a, roughness: 0.45, metalness: 0.35 }), shell = new T.MeshStandardMaterial({ color: 0xd9dbe2, roughness: 0.32, metalness: 0.15 });
